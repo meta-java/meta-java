@@ -15,8 +15,12 @@ PRIVATE_LIBS = "\
     libsctp.so libsplashscreen.so libsunec.so libunpack.so libverify.so libzip.so \
 "
 
-PACKAGECONFIG ??= "repack"
-PACKAGECONFIG[x11] = "--with-x,,libx11 xproto libxt libxext libxrender"
+PACKAGECONFIG ??= " \
+    repack \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'x11 cups', '', d)} \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'alsa', 'alsa', '', d)} \
+"
+PACKAGECONFIG[x11] = "--with-x,,libx11 xproto libxt libxext libxrender libxtst"
 PACKAGECONFIG[cups] = "--with-cups,,cups"
 PACKAGECONFIG[alsa] = "--with-alsa,,alsa-lib"
 
@@ -30,6 +34,11 @@ PACKAGECONFIG[zero] = "--with-jvm-variants=zero,,,"
 PACKAGECONFIG[shark] = "--with-jvm-variants=zeroshark,,llvm3.5,"
 
 PACKAGECONFIG[repack] = ",,,"
+
+CACHED_CONFIGUREVARS = " \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'ac_x_includes=${STAGING_INCDIR}', '', d)} \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'ac_x_libraries=${STAGING_LIBDIR}', '', d)} \
+"
 
 require openjdk-8-common.inc
 

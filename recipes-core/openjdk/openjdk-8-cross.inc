@@ -42,7 +42,7 @@ SRC_URI_append = "\
 EXTRA_OECONF_append = "\
     --with-jobs=${@java_get_parallel_make(d)} \
     \
-    --with-sys-root=${STAGING_DIR} \
+    --with-sys-root=${STAGING_DIR_HOST} \
     --with-tools-dir=${STAGING_DIR_NATIVE} \
     --with-boot-jdk=${STAGING_LIBDIR_NATIVE}/jvm/openjdk-8-native \
     --with-cacerts-file=${STAGING_LIBDIR_NATIVE}/jvm/openjdk-8-native/jre/lib/security/cacerts \

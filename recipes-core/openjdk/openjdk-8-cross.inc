@@ -18,7 +18,7 @@ PRIVATE_LIBS = "\
 PACKAGECONFIG ??= "repack"
 PACKAGECONFIG[x11] = "--with-x,,libx11 xproto libxt libxext libxrender"
 PACKAGECONFIG[cups] = "--with-cups,,cups"
-PACKAGECONFIG[alsa] = "--with-alsa,,alsa-lib-native"
+PACKAGECONFIG[alsa] = "--with-alsa,,alsa-lib"
 
 PACKAGECONFIG[jce] = "--enable-unlimited-crypto,,"
 

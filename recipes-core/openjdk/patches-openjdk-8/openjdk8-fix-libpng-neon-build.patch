@@ -1,0 +1,29 @@
+# HG changeset patch
+# User enevill
+# Date 1430816900 0
+#      Tue May 05 09:08:20 2015 +0000
+# Node ID 88d2b7d7285281d41bcff45af0dd983b0f72811e
+# Parent  51f5501a54a62aceed6342e7ea3a9a3c67f3885d
+8078245: AARCH64: JDK fails to build due to undefined symbol in libpng
+Summary: Add -DPNG_ARM_NEON_OPT=0 to LIBSPLASHSCREEN_CFLAGS flags
+Reviewed-by: dholmes, ihse, erikj
+
+Upstream-Status: Backport
+
+Signed-off-by: Ming Liu <peter.x.liu@external.atlascopco.com>
+---
+ jdk/make/lib/Awt2dLibraries.gmk |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git jdk/make/lib/Awt2dLibraries.gmk jdk/make/lib/Awt2dLibraries.gmk
+--- jdk/make/lib/Awt2dLibraries.gmk
++++ jdk/make/lib/Awt2dLibraries.gmk
+@@ -1205,7 +1205,7 @@ ifndef BUILD_HEADLESS_ONLY
+     LIBSPLASHSCREEN_DIRS += $(JDK_TOPDIR)/src/macosx/native/sun/awt/splashscreen
+   endif
+
+-  LIBSPLASHSCREEN_CFLAGS := -DSPLASHSCREEN -DPNG_NO_MMX_CODE \
++  LIBSPLASHSCREEN_CFLAGS := -DSPLASHSCREEN -DPNG_NO_MMX_CODE -DPNG_ARM_NEON_OPT=0 \
+       $(foreach dir, $(LIBSPLASHSCREEN_DIRS), -I$(dir))
+
+   ifeq ($(OPENJDK_TARGET_OS), macosx)

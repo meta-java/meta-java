@@ -1,20 +1,6 @@
 require openjdk-8-release-102b14.inc
 require openjdk-8-cross.inc
 
-# some patches extracted from http://cr.openjdk.java.net/~rkennke/shark-build-hotspot/webrev.01/hotspot.patch
-# reported via http://mail.openjdk.java.net/pipermail/build-dev/2015-January/013972.html
-# by Roman Kennke (rkennke at redhat.com)
-PATCHES_URI_append = "\
-    file://openjdk8-restrict-to-staging-dir.patch;apply=no \
-    file://openjdk8-fix-shark-build.patch;apply=no \
-    file://openjdk8-fix-shark-stdc++11.patch;apply=no \
-    file://openjdk8-fix-assembler-flag-handling-in-makefile.patch;apply=no \
-    file://openjdk8-fix-adlc-flags.patch;apply=no \
-    file://openjdk8-silence-d_fortify_source-warning.patch;apply=no \
-    file://openjdk8-fix-zero-mode-crash.patch;apply=no \
-    file://openjdk8-add-missing-linker-flags.patch;apply=no \
-"
-
 do_install() {
     rm -rf ${D}${JDK_HOME}
     mkdir -p ${D}${JDK_HOME}

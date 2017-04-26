@@ -1,0 +1,26 @@
+--- openjdk/hotspot/src/share/vm/gc_implementation/g1/concurrentMark.cpp
++++ openjdk/hotspot/src/share/vm/gc_implementation/g1/concurrentMark.cpp
+@@ -4378,9 +4378,9 @@
+ #define G1PPRL_DOUBLE_H_FORMAT        "  %14s"
+ 
+ // For summary info
+-#define G1PPRL_SUM_ADDR_FORMAT(tag)    "  "tag":"G1PPRL_ADDR_BASE_FORMAT
+-#define G1PPRL_SUM_BYTE_FORMAT(tag)    "  "tag": "SIZE_FORMAT
+-#define G1PPRL_SUM_MB_FORMAT(tag)      "  "tag": %1.2f MB"
++#define G1PPRL_SUM_ADDR_FORMAT(tag)    "  " tag ":"G1PPRL_ADDR_BASE_FORMAT
++#define G1PPRL_SUM_BYTE_FORMAT(tag)    "  " tag ": "SIZE_FORMAT
++#define G1PPRL_SUM_MB_FORMAT(tag)      "  " tag ": %1.2f MB"
+ #define G1PPRL_SUM_MB_PERC_FORMAT(tag) G1PPRL_SUM_MB_FORMAT(tag)" / %1.2f %%"
+ 
+ G1PrintRegionLivenessInfoClosure::
+--- openjdk/hotspot/src/share/vm/prims/unsafe.cpp
++++ openjdk/hotspot/src/share/vm/prims/unsafe.cpp
+@@ -950,7 +950,7 @@
+   }
+ UNSAFE_END
+ 
+-#define DAC_Args CLS"[B["OBJ
++#define DAC_Args CLS "[B[" OBJ
+ // define a class but do not make it known to the class loader or system dictionary
+ // - host_class:  supplies context for linkage, access control, protection domain, and class loader
+ // - data:  bytes of a class file, a raw memory address (length gives the number of bytes)

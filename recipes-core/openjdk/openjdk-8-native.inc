@@ -6,7 +6,7 @@ DEPENDS = "\
     glib-2.0-native freetype-native fontconfig-native \
     zlib-native zip-native \
     unzip-native make-native \
-    ca-certificates-native openssl-native \
+    ca-certificates-native openssl-native coreutils-native \
 "
 
 PACKAGECONFIG ??= ""

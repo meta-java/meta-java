@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=a2e66c2e2482aa23c11342f1469fa3b6"
 
 HOMEPAGE = "http://jaxen.org/"
 
-DEPENDS = "fastjar-native xerces-j xom"
+DEPENDS = "fastjar-native virtual/javac-native xerces-j xom"
 
 # upstream has moved to github, do not rely on ephemeral tarball, use git
 SRCREV = "7d7755ac8b19daa2ff6f319f432b864cc72d89b6"

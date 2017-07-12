@@ -50,8 +50,10 @@ ALTJARFILENAMES = "${BPN}.jar"
 # Java "source" distributions often contain precompiled things
 # we want to delete first.
 do_removebinaries() {
-  find ${WORKDIR} -name "*.jar" -exec rm {} \;
-  find ${WORKDIR} -name "*.class" -exec rm {} \;
+  find ${WORKDIR} ! -path "${RECIPE_SYSROOT}/*" ! -path "${RECIPE_SYSROOT_NATIVE}/*" \
+                  -name "*.jar" -exec rm {} \;
+  find ${WORKDIR} ! -path "${RECIPE_SYSROOT}/*" ! -path "${RECIPE_SYSROOT_NATIVE}/*" \
+                  -name "*.class" -exec rm {} \;
 }
 
 addtask removebinaries after do_unpack before do_patch

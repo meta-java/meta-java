@@ -43,6 +43,7 @@ SRC_URI = " \
   file://jaxws_fix_NullPointerException.patch;apply=no \
   file://timezoneszip.patch \
   file://sigsegv.patch;apply=no \
+  file://vframeArray_Fix_sigsegv.patch;apply=no \
   "
 
 S = "${WORKDIR}/${ICEDTEA}"
@@ -154,6 +155,7 @@ do_configure_append() {
 
 	patch -p1 < ${WORKDIR}/jaxws_fix_NullPointerException.patch
 	patch -p1 < ${WORKDIR}/sigsegv.patch
+	patch -p1 < ${WORKDIR}/vframeArray_Fix_sigsegv.patch
 }
 
 EXTRA_OEMAKE = ' \

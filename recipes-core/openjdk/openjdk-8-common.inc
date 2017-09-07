@@ -218,10 +218,11 @@ EXTRA_OECONF_append = "\
         --with-update-version=${OPENJDK_UPDATE_VERSION} \
 "
 
-# GCC 6 sets the default C++ standard to C++14 and introduces dead store
-# elimination by default. OpenJDK 8 is not ready for either of these
-# changes.
+# Since v6, GCC sets the default C++ standard to C++14 and introduces
+# dead store elimination by default. OpenJDK 8 is not ready for either
+# of these changes.
 FLAGS_GCC6 = "-fno-lifetime-dse -fno-delete-null-pointer-checks"
+FLAGS_GCC7 = "-fno-lifetime-dse -fno-delete-null-pointer-checks"
 
 # All supported cross compilers support the compiler flags that were
 # added to make compilation with gcc6 work. But the host compiler for

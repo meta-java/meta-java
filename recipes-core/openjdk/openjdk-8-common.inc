@@ -238,13 +238,9 @@ def version_specific_cflags(d):
     if bb.data.inherits_class('native', d):
         from subprocess import Popen, PIPE
 
-        cmd = d.expand('${CPP} -P -').split()
-        cc = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE)
-        # This check is GCC specific. Clang always returns 4. For Clang
-        # __clang_major__ and __clang_minor__ need to be checked. Ideally
-        # __GNUC_MINOR__ would be checked as well, but for this recipe
-        # GCC major is all we care about.
-        version = cc.communicate(b'__GNUC__')[0].decode('utf-8')[0]
+        cmd = d.expand('${CC} -dumpversion').split()
+        cc = Popen(cmd, stdout=PIPE, stderr=PIPE)
+        version = cc.communicate()[0].decode('utf-8')[0]
     else:
         # in the cross case, trust that GCCVERSION is correct. This won't
         # work if the native toolchain is Clang, but as of this writing that

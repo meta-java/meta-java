@@ -1,0 +1,60 @@
+Disable Optimization on vframeArray::unpack_to_stack
+
+GCC7 triggers a sigsegv while building:
+
+
+| JAVA_HOME=/home/ricardo/curro/qt5022/build-qt5022-pyro/build/tmp/work/x86_64-linux/icedtea7-native/2.1.3-r1.0/icedtea-2.1.3/build/bootstrap/jdk1.6.0 ANT_OPTS=-Djava.io.tmpdir='/home/ricardo/curro/qt5022/build-qt5022-pyro/build/tmp/work/x86_64-linux/icedtea7-native/2.1.3-r1.0/icedtea-2.1.3/build/openjdk.build/langtools/build/ant-tmp' /home/ricardo/curro/qt5022/build-qt5022-pyro/build/tmp/work/x86_64-linux/icedtea7-native/2.1.3-r1.0/recipe-sysroot-native/usr/bin/ant -Djdk.version=1.7.0_03 -Dfull.version='1.7.0_03-icedtea-b21'  -Drelease=1.7.0_03 -Dbuild.number=b21 -Djavac.debug=true -Ddebug.classfiles=true -Djavac.target=7 -Djavac.source=7 -Dboot.java.home=/home/ricardo/curro/qt5022/build-qt5022-pyro/build/tmp/work/x86_64-linux/icedtea7-native/2.1.3-r1.0/icedtea-2.1.3/build/bootstrap/jdk1.6.0 -Dimport.jdk=/home/ricardo/curro/qt5022/build-qt5022-pyro/build/tmp/work/x86_64-linux/icedtea7-native/2.1.3-r1.0/icedtea-2.1.3/build/openjdk/jdk  ....
+| Buildfile: /home/ricardo/curro/qt5022/build-qt5022-pyro/build/tmp/work/x86_64-linux/icedtea7-native/2.1.3-r1.0/icedtea-2.1.3/build/openjdk/langtools/make/build.xml
+| #
+| # A fatal error has been detected by the Java Runtime Environment:
+| #
+| #  SIGSEGV (0xb) at pc=0x00007fad7906e868, pid=9747, tid=140383055484672
+| #
+| # JRE version: 7.0_03-b21
+| # Java VM: OpenJDK 64-Bit Server VM (22.0-b10 mixed mode linux-amd64 compressed oops)
+| # Derivative: IcedTea7 2.1.3
+| # Distribution: Custom build (Thu Sep  7 09:36:21 CEST 2017)
+| # Problematic frame:
+| # V  [libjvm.so+0x78b868]  vframeArray::unpack_to_stack(frame&, int, int)+0x88
+| #
+| # Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+| #
+| # An error report file with more information is saved as:
+| # /home/ricardo/curro/qt5022/build-qt5022-pyro/build/tmp/work/x86_64-linux/icedtea7-native/2.1.3-r1.0/icedtea-2.1.3/build/openjdk/langtools/make/hs_err_pid9747.log
+| #
+| # If you would like to submit a bug report, please include
+| # instructions on how to reproduce the bug and visit:
+| #   http://icedtea.classpath.org/bugzilla
+| #
+| Aborted
+
+
+Upstream-Status: Inappropriate
+
+Signed-off-by: Ricardo Ribalda Delgado <ricardo.ribalda@gmail.com>
+diff --git a/openjdk-boot/hotspot/src/share/vm/runtime/vframeArray.cpp b/build/openjdk-boot/hotspot/src/share/vm/runtime/vframeArray.cpp
+index 52b080999224..81b6a09ea91a 100644
+--- a/openjdk-boot/hotspot/src/share/vm/runtime/vframeArray.cpp
++++ b/openjdk-boot/hotspot/src/share/vm/runtime/vframeArray.cpp
+@@ -500,7 +500,7 @@ void vframeArray::fill_in(JavaThread* thread,
+   }
+ }
+ 
+-void vframeArray::unpack_to_stack(frame &unpack_frame, int exec_mode, int caller_actual_parameters) {
++void __attribute__((optimize("O0"))) vframeArray::unpack_to_stack(frame &unpack_frame, int exec_mode, int caller_actual_parameters) {
+   // stack picture
+   //   unpack_frame
+   //   [new interpreter frames ] (frames are skeletal but walkable)
+diff --git a/openjdk/hotspot/src/share/vm/runtime/vframeArray.cpp b/build/openjdk/hotspot/src/share/vm/runtime/vframeArray.cpp
+index 52b080999224..81b6a09ea91a 100644
+--- a/openjdk/hotspot/src/share/vm/runtime/vframeArray.cpp
++++ b/openjdk/hotspot/src/share/vm/runtime/vframeArray.cpp
+@@ -500,7 +500,7 @@ void vframeArray::fill_in(JavaThread* thread,
+   }
+ }
+ 
+-void vframeArray::unpack_to_stack(frame &unpack_frame, int exec_mode, int caller_actual_parameters) {
++void __attribute__((optimize("O0"))) vframeArray::unpack_to_stack(frame &unpack_frame, int exec_mode, int caller_actual_parameters) {
+   // stack picture
+   //   unpack_frame
+   //   [new interpreter frames ] (frames are skeletal but walkable)

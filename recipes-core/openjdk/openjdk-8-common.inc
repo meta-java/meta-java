@@ -231,39 +231,27 @@ FLAGS_GCC7 = "-fno-lifetime-dse -fno-delete-null-pointer-checks"
 # version is and only add the flags that are appropriate for that GCC
 # version.
 
-def version_specific_cflags(d, toolchain):
+def version_specific_cflags(d):
     extraflags = None
     version = None
 
-    from subprocess import Popen, PIPE
-    cmd = d.expand('%s -dumpversion' % toolchain ).split()
-    cc = Popen(cmd, stdout=PIPE, stderr=PIPE)
-    version = cc.communicate()[0].decode('utf-8')[0]
+    if bb.data.inherits_class('native', d):
+        from subprocess import Popen, PIPE
+
+        cmd = d.expand('${CC} -dumpversion').split()
+        cc = Popen(cmd, stdout=PIPE, stderr=PIPE)
+        version = cc.communicate()[0].decode('utf-8')[0]
+    else:
+        # in the cross case, trust that GCCVERSION is correct. This won't
+        # work if the native toolchain is Clang, but as of this writing that
+        # doesn't work anyway.
+        version = d.getVar('GCCVERSION', expand=True)[0]
 
     if version.isdigit():
         extraflags = d.getVar('FLAGS_GCC%d' % int(version), True) or ''
         return extraflags
     return ''
 
-python __anonymous() {
-    if bb.data.inherits_class('native', d):
-        toolchain = d.getVar('CC', True)
-        extraflags = version_specific_cflags(d, toolchain)
-        d.appendVar("CFLAGS", ' ' + extraflags) 
-        d.appendVar("CXXFLAGS", ' ' + extraflags)
-    else:
-        # in the cross case, trust that GCCVERSION is correct. This won't
-        # work if the native toolchain is Clang, but as of this writing that
-        # doesn't work anyway.
-        version = d.getVar('GCCVERSION', expand=True)[0]
-        extraflags = d.getVar('FLAGS_GCC%d' % int(version), True) or ''
-        d.appendVar("TARGET_CFLAGS", ' ' + extraflags)
-        d.appendVar("TARGET_CXXFLAGS", ' ' + extraflags)
-
-        toolchain = d.getVar('BUILD_CC', True)
-        extraflags = version_specific_cflags(d, toolchain)
-        d.appendVar("BUILD_CFLAGS", ' ' + extraflags)
-        d.appendVar("BUILD_CXXFLAGS", ' ' + extraflags)
-}
-
+CFLAGS_append = " ${@version_specific_cflags(d)}"
+CXXFLAGS_append = " ${@version_specific_cflags(d)}"
 CXX_append = " -std=gnu++98"

@@ -170,6 +170,10 @@ EXTRA_OEMAKE = ' \
                '
 
 do_compile() {
+	# Use JAVA_TOOL_OPTIONS from environment. On some machines this is needed
+	# in order to start java when the amount of RAM is limited for the user.
+	export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS}"
+
 	# OpenJDK uses slightly different names for certain arches. We need to know
 	#	this to create some files which are expected by the build.
 	case "${TRANSLATED_TARGET_ARCH}" in

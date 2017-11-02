@@ -9,6 +9,8 @@ DEPENDS = "\
     ca-certificates-native openssl-native coreutils-native \
 "
 
+SRC_URI_append += "file://handle_extra_output.patch"
+
 PACKAGECONFIG ??= ""
 PACKAGECONFIG[x11] = "--with-x,,libx11-native xproto-native libxt-native libxext-native libxrender-native"
 PACKAGECONFIG[cups] = "--with-cups,,cups"
@@ -46,6 +48,14 @@ EXTRA_OEMAKE_append = ' \
     QUIETLY= \
     images \
 '
+
+do_configure_prepend() {
+    export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS}"
+}
+
+do_compile_prepend() {
+    export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS}"
+}
 
 do_compile_append() {
     set -x

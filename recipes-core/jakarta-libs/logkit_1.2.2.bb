@@ -11,7 +11,6 @@ inherit java-library
 S = "${WORKDIR}/${BP}-dev"
 
 DEPENDS = "oro servlet2.3 gnumail gnujaf log4j1.2 avalon-framework-api"
-DEPENDS_virtclass-native = "oro-native servlet2.3-native gnumail-native gnujaf-native log4j1.2-native avalon-framework-api-native"
 
 do_compile() {
   mkdir -p build

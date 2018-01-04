@@ -8,7 +8,6 @@ SRC_URI = "${SOURCEFORGE_MIRROR}/jsch/jsch-${PV}.zip"
 inherit java-library
 
 DEPENDS = "jzlib"
-DEPENDS_virtclass-native = "jzlib-native"
 
 RDEPENDS_${PN} = "libjzlib-java"
 RDEPENDS_${PN}_virtclass-native = ""

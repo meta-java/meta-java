@@ -10,7 +10,6 @@ SRC_URI = "http://archive.apache.org/dist/logging/log4j/${PV}/log4j-${PV}.tar.gz
 inherit java-library
 
 DEPENDS = "gnumail gnujaf"
-DEPENDS_virtclass-native = "gnumail-native gnujaf-native"
 
 S = "${WORKDIR}/apache-log4j-${PV}"
 

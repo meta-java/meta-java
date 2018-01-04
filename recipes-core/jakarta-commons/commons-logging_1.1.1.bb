@@ -7,7 +7,6 @@ DESCRIPTION = "Java Internet protocol suite library"
 SRC_URI = "http://archive.apache.org/dist/commons/logging/source/${BP}-src.tar.gz"
 
 DEPENDS += "log4j1.2 servlet2.3 logkit"
-DEPENDS_virtclass-native += "log4j1.2-native servlet2.3-native logkit-native"
 
 CP = "log4j-1.2 servlet-2.3 logkit"
 

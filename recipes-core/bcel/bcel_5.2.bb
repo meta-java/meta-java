@@ -8,8 +8,6 @@ SRC_URI = "http://archive.apache.org/dist/jakarta/bcel/source/${BP}-src.tar.gz"
 inherit java-library
 
 DEPENDS = "xerces-j regexp"
-DEPENDS_virtclass-native = "xerces-j-native regexp-native"
-
 
 do_compile() {
   mkdir -p build

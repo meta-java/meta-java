@@ -10,9 +10,6 @@ HOMEPAGE = "http://xml.apache.org/xalan-j"
 PR = "r1"
 
 DEPENDS = "xerces-j regexp jlex cup jaxp1.3 bcel"
-DEPENDS_virtclass-native = " \
-	xerces-j-native regexp-native jlex-native cup-native jaxp1.3-native bcel-native \
-	"
 
 SRC_URI = "\
 	http://archive.apache.org/dist/xml/${BPN}/${BPN}_2_7_1-src.tar.gz;name=archive \

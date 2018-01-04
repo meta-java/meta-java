@@ -9,7 +9,6 @@ SRC_URI = "http://archive.apache.org/dist/jakarta/bsf/source/bsf-src-${PV}.tar.g
 inherit java-library
 
 DEPENDS = "jacl commons-logging rhino xalan-j bcel"
-DEPENDS_virtclass-native = "jacl-native commons-logging-native rhino-native xalan-j-native bcel-native"
 
 do_compile() {
   mkdir -p build

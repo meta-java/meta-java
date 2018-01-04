@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;md5=2c9db91c00f38e52cfc8e67bafaa7c
 
 
 RDEPENDS_${PN} = "java2-runtime"
-RDEPENDS_${PN}_virtclass-native = ""
+RDEPENDS_${PN}_class-native = ""
 
 inherit java-library
 

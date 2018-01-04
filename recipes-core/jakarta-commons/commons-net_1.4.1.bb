@@ -12,7 +12,7 @@ S = "${WORKDIR}/${BP}"
 DEPENDS += "oro"
 
 RDEPENDS_${PN} = "liboro-java"
-RDEPENDS_${PN}_virtclass-native = ""
+RDEPENDS_${PN}_class-native = ""
 
 CP = "oro"
 

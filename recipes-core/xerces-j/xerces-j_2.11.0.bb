@@ -23,7 +23,7 @@ JPN = "libxerces2-java"
 DEPENDS = "fastjar-native jaxp1.3 xml-commons-resolver1.1"
 
 RDEPENDS_${PN} = "libjaxp1.3-java libxml-commons-resolver1.1-java"
-RDEPENDS_${PN}_virtclass-native = ""
+RDEPENDS_${PN}_class-native = ""
 
 do_unpackpost[dirs] = "${B}"
 do_unpackpost() {

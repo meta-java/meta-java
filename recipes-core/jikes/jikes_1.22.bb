@@ -14,8 +14,8 @@ inherit autotools update-alternatives relative_symlinks
 BBCLASSEXTEND = "native"
 
 RDEPENDS_${PN} = "classpath"
-PROVIDES_virtclass-native = ""
-RDEPENDS_${PN}_virtclass-native = ""
+PROVIDES_class-native = ""
+RDEPENDS_${PN}_class-native = ""
 
 EXTRA_OECONF = "--disable-fp-emulation --enable-source15"
 

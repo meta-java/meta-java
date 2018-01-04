@@ -20,7 +20,7 @@ PACKAGES = "${JPN} rhino"
 
 FILES_${PN} = "${bindir}/rhino ${bindir}/rhino-jsc"
 RDEPENDS_${PN} = "java2-runtime ${JPN}"
-RDEPENDS_${PN}_virtclass-native = ""
+RDEPENDS_${PN}_class-native = ""
 
 do_compile() {
 	mkdir -p build

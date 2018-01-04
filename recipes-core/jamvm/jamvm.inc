@@ -15,8 +15,9 @@ RPROVIDES_${PN}_class-native = ""
 
 BBCLASSEXTEND = "native"
 
+inherit java autotools update-alternatives pkgconfig relative_symlinks distro_features_check
 
-inherit java autotools update-alternatives pkgconfig relative_symlinks
+REQUIRED_DISTRO_FEATURES_class-target = "x11"
 
 # This uses 32 bit arm, so force the instruction set to arm, not thumb
 ARM_INSTRUCTION_SET = "arm"

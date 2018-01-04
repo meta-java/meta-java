@@ -3,10 +3,6 @@
 
 require jamvm.inc
 
-inherit distro_features_check
-
-REQUIRED_DISTRO_FEATURES = "x11"
-
 SRCREV = "6cef41d859fbc9ce7868a97cb2cb5dd2b10b9103"
 PV = "2.0.0-devel+git${SRCPV}"
 

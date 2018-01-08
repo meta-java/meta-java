@@ -53,7 +53,7 @@ index 6fe5191..765fc6d 100644
  
  # Hotspot uses very unstrict aliasing turn this optimization off
  OPT_CFLAGS += -fno-strict-aliasing
-@@ -208,15 +208,7 @@ LFLAGS += -Wl,-relax
+@@ -208,15 +208,8 @@ LFLAGS += -Wl,-relax
  endif
  
  # Enable linker optimization
@@ -66,6 +66,7 @@ index 6fe5191..765fc6d 100644
 -  LDFLAGS_HASH_STYLE = -Wl,--hash-style=both
 -endif
 -LFLAGS += $(LDFLAGS_HASH_STYLE)
++LDFLAGS_HASH_STYLE = -Wl,--hash-style=both
 +LFLAGS += $(OE_LDFLAGS)
  
  # Use $(MAPFLAG:FILENAME=real_file_name) to specify a map file.

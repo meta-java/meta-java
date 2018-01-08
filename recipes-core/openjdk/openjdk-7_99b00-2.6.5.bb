@@ -51,6 +51,9 @@ ICEDTEAPATCHES = "\
     file://icedtea-xawt-crosscompile-fix.patch;apply=no \
     file://icedtea-jdk-unzip.patch;apply=no \
     file://icedtea-dtrace-std_h.patch;apply=no \
+    file://icedtea-hotspot-fix-string-literal-marcos.patch;apply=no \
+    file://icedtea-flags-to-compile-with-GCC-6.patch;apply=no \
+    file://icedtea-specify-overloaded-variant-of-fmod.patch;apply=no \
 "
 
 DISTRIBUTION_PATCHES = "\
@@ -61,10 +64,17 @@ DISTRIBUTION_PATCHES = "\
     patches/icedtea-xawt-crosscompile-fix.patch \
     patches/icedtea-jdk-unzip.patch \
     patches/icedtea-dtrace-std_h.patch \
+    patches/icedtea-hotspot-fix-string-literal-marcos.patch \
+    patches/icedtea-flags-to-compile-with-GCC-6.patch \
+    patches/icedtea-specify-overloaded-variant-of-fmod.patch \
 "
 
 export DISTRIBUTION_PATCHES
 
 # readdir_r was deprecated in glibc-2.24. Ignore the error for now
+#
+# Furthermore shifting negative values produces an error in current gcc versions
+# to avoid this error add -fpermissive
+#
 # NOTE: When updating the recipe, please check if this is still needed
-CFLAGS_append = " -Wno-error=deprecated-declarations"
+CFLAGS_append = " -Wno-error=deprecated-declarations -Wno-error=narrowing -fpermissive"

@@ -232,6 +232,8 @@ FLAGS_GCC7 = "-fno-lifetime-dse -fno-delete-null-pointer-checks"
 # version.
 
 def version_specific_cflags(d):
+    import re
+
     extraflags = None
     version = None
 
@@ -246,6 +248,10 @@ def version_specific_cflags(d):
         # work if the native toolchain is Clang, but as of this writing that
         # doesn't work anyway.
         version = d.getVar('GCCVERSION', expand=True)[0]
+        # skip non digit characters at the beginning, e.g. from "linaro-6.2%"
+        match = re.search("\d", version)
+        if match:
+            version = version[match.start():]
 
     if version.isdigit():
         extraflags = d.getVar('FLAGS_GCC%d' % int(version), True) or ''

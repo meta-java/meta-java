@@ -99,8 +99,6 @@ EXTRA_OEMAKE_append = '\
     ${@jdk_make_options(d)} \
     ALT_SDT_H="${STAGING_INCDIR}" \
     ALT_CUPS_HEADERS_PATH="${STAGING_INCDIR}" \
-    ALT_FREETYPE_HEADERS_PATH="${STAGING_INCDIR}/freetype2" \
-    ALT_FREETYPE_LIB_PATH="${STAGING_LIBDIR}" \
     STRIP_POLICY=no_strip \
     MAKE_VERBOSE=y VERBOSE=-s LOG_LEVEL=trace \
     QUIETLY= \

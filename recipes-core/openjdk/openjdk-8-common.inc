@@ -181,7 +181,8 @@ def get_llvm_configure_arch(d):
     elif arch == "powerpc" or arch == "powerpc64":
         arch = "powerpc"
     else:
-        bb.warn("%s does not support %s yet" % (d.getVar('PN', True), arch) );
+        if 'shark' in d.getVar('PACKAGECONFIG').split():
+            bb.warn("%s does not support %s in Shark builds yet" % (d.getVar('PN', True), arch) );
 
     return arch
 

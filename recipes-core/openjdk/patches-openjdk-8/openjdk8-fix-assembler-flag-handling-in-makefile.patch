@@ -9,7 +9,7 @@ Upstream-Status: Pending
 ---
 --- make/common/NativeCompilation.gmk
 +++ make/common/NativeCompilation.gmk
-@@ -372,7 +372,7 @@ define SetupNativeCompilation
+@@ -376,7 +376,7 @@ define SetupNativeCompilation
    $$(foreach p,$$($1_SRCS), \
        $$(eval $$(call add_native_source,$1,$$p,$$($1_OBJECT_DIR), \
            $$($1_CFLAGS) $$($1_EXTRA_CFLAGS),$$($1_CC), \

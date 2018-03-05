@@ -1,4 +1,4 @@
-require openjdk-8-release-102b14.inc
+require openjdk-8-release-${PV}.inc
 require openjdk-8-cross.inc
 
 do_install() {

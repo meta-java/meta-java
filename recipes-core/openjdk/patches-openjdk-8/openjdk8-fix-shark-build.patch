@@ -1,6 +1,6 @@
---- hotspot/make/Makefile.orig	2015-08-31 19:44:44.459038814 +0200
-+++ hotspot/make/Makefile	2015-08-31 19:44:58.511038867 +0200
-@@ -525,7 +525,7 @@
+--- hotspot/make/Makefile.orig
++++ hotspot/make/Makefile
+@@ -525,7 +525,7 @@ $(EXPORT_INCLUDE_DIR)/%:			$(SHARK_BUILD
  # Unix
  $(EXPORT_JRE_LIB_ARCH_DIR)/%.$(LIBRARY_SUFFIX): $(SHARK_BUILD_DIR)/%.$(LIBRARY_SUFFIX)
  	$(install-file)
@@ -9,28 +9,28 @@
  	$(install-file)
  $(EXPORT_JRE_LIB_ARCH_DIR)/%.diz:		$(SHARK_BUILD_DIR)/%.diz
  	$(install-file)
---- hotspot/src/share/vm/ci/ciTypeFlow.cpp.orig	2015-08-31 19:45:28.611038980 +0200
-+++ hotspot/src/share/vm/ci/ciTypeFlow.cpp	2015-08-31 19:47:17.539039390 +0200
-@@ -35,7 +35,9 @@
+--- hotspot/src/share/vm/ci/ciTypeFlow.cpp.orig
++++ hotspot/src/share/vm/ci/ciTypeFlow.cpp
+@@ -35,8 +35,10 @@
  #include "interpreter/bytecode.hpp"
  #include "interpreter/bytecodes.hpp"
  #include "memory/allocation.inline.hpp"
--#include "opto/compile.hpp"
 +#ifdef COMPILER2
-+#include "opto/compile.hpp"
+ #include "opto/compile.hpp"
  #include "opto/node.hpp"
 +#endif
  #include "runtime/deoptimization.hpp"
  #include "utilities/growableArray.hpp"
-@@ -2647,6 +2649,7 @@
+ 
+@@ -2648,6 +2650,7 @@ void ciTypeFlow::df_flow_types(Block* st
        assert (!blk->has_pre_order(), "");
        blk->set_next_pre_order();
-
+ 
 +#ifdef COMPILER2
        if (_next_pre_order >= (int)Compile::current()->max_node_limit() / 2) {
          // Too many basic blocks.  Bail out.
          // This can happen when try/finally constructs are nested to depth N,
-@@ -2656,6 +2659,7 @@
+@@ -2657,6 +2660,7 @@ void ciTypeFlow::df_flow_types(Block* st
          record_failure("too many basic blocks");
          return;
        }
@@ -38,9 +38,9 @@
        if (do_flow) {
          flow_block(blk, temp_vector, temp_set);
          if (failing()) return; // Watch for bailouts.
---- hotspot/src/share/vm/classfile/systemDictionary.cpp.orig	2015-08-31 19:50:00.367040003 +0200
-+++ hotspot/src/share/vm/classfile/systemDictionary.cpp	2015-08-31 19:51:28.323040334 +0200
-@@ -2276,6 +2276,7 @@
+--- hotspot/src/share/vm/classfile/systemDictionary.cpp.orig
++++ hotspot/src/share/vm/classfile/systemDictionary.cpp
+@@ -2289,6 +2289,7 @@ methodHandle SystemDictionary::find_meth
      spe = NULL;
      // Must create lots of stuff here, but outside of the SystemDictionary lock.
      m = Method::make_method_handle_intrinsic(iid, signature, CHECK_(empty));
@@ -48,7 +48,7 @@
      if (!Arguments::is_interpreter_only()) {
        // Generate a compiled form of the MH intrinsic.
        AdapterHandlerLibrary::create_native_wrapper(m);
-@@ -2285,6 +2286,7 @@
+@@ -2298,6 +2299,7 @@ methodHandle SystemDictionary::find_meth
                     "out of space in CodeCache for method handle intrinsic", empty);
        }
      }
@@ -56,9 +56,9 @@
      // Now grab the lock.  We might have to throw away the new method,
      // if a racing thread has managed to install one at the same time.
      {
-@@ -2298,9 +2300,11 @@
+@@ -2311,9 +2313,11 @@ methodHandle SystemDictionary::find_meth
    }
-
+ 
    assert(spe != NULL && spe->method() != NULL, "");
 +#ifndef SHARK
    assert(Arguments::is_interpreter_only() || (spe->method()->has_compiled_code() &&
@@ -67,13 +67,13 @@
 +#endif
    return spe->method();
  }
-
---- hotspot/src/share/vm/runtime/handles.inline.hpp.orig	2015-08-31 20:01:39.295042634 +0200
-+++ hotspot/src/share/vm/runtime/handles.inline.hpp	2015-08-31 20:04:31.331043282 +0200
-@@ -51,6 +51,12 @@
+ 
+--- hotspot/src/share/vm/runtime/handles.inline.hpp.orig
++++ hotspot/src/share/vm/runtime/handles.inline.hpp
+@@ -51,6 +51,12 @@ inline Handle::Handle(Thread* thread, oo
  }
  #endif // ASSERT
-
+ 
 +#ifdef SHARK
 +#define assert_on_stack(expr) (void)(expr)
 +#else
@@ -83,7 +83,7 @@
  // Constructors for metadata handles
  #define DEF_METADATA_HANDLE_FN(name, type) \
  inline name##Handle::name##Handle(type* obj) : _value(obj), _thread(NULL) {       \
-@@ -79,7 +85,7 @@
+@@ -79,7 +85,7 @@ inline name##Handle::name##Handle(const
      } else {                                                           \
        _thread = Thread::current();                                     \
      }                                                                  \
@@ -92,12 +92,12 @@
      _thread->metadata_handles()->push((Metadata*)_value);              \
    } else {                                                             \
      _thread = NULL;                                                    \
---- hotspot/src/cpu/zero/vm/entry_zero.hpp.orig	2015-08-31 20:53:40.743054385 +0200
-+++ hotspot/src/cpu/zero/vm/entry_zero.hpp	2015-08-31 20:53:54.459054436 +0200
+--- hotspot/src/cpu/zero/vm/entry_zero.hpp.orig
++++ hotspot/src/cpu/zero/vm/entry_zero.hpp
 @@ -26,6 +26,10 @@
  #ifndef CPU_ZERO_VM_ENTRY_ZERO_HPP
  #define CPU_ZERO_VM_ENTRY_ZERO_HPP
-
+ 
 +#include "utilities/globalDefinitions.hpp"
 +#include "utilities/exceptions.hpp"
 +#include "interpreter/cppInterpreter.hpp"
@@ -105,22 +105,22 @@
  class ZeroEntry {
   public:
    ZeroEntry() {
---- hotspot/src/share/vm/shark/sharkEntry.hpp.orig	2015-08-31 20:47:13.091052925 +0200
-+++ hotspot/src/share/vm/shark/sharkEntry.hpp	2015-08-31 20:49:42.755053489 +0200
+--- hotspot/src/share/vm/shark/sharkEntry.hpp.orig
++++ hotspot/src/share/vm/shark/sharkEntry.hpp
 @@ -27,6 +27,7 @@
  #define SHARE_VM_SHARK_SHARKENTRY_HPP
-
+ 
  #include "shark/llvmHeaders.hpp"
 +#include "entry_zero.hpp"
-
+ 
  class SharkContext;
-
---- hotspot/src/share/vm/interpreter/cppInterpreterGenerator.hpp.orig	2015-08-31 21:01:14.847056094 +0200
-+++ hotspot/src/share/vm/interpreter/cppInterpreterGenerator.hpp	2015-08-31 21:01:24.459056130 +0200
+ 
+--- hotspot/src/share/vm/interpreter/cppInterpreterGenerator.hpp.orig
++++ hotspot/src/share/vm/interpreter/cppInterpreterGenerator.hpp
 @@ -30,6 +30,10 @@
-
+ 
  #ifdef CC_INTERP
-
+ 
 +#ifdef TARGET_ARCH_zero
 +#include "entry_zero.hpp"
 +#endif
@@ -128,8 +128,8 @@
  class CppInterpreterGenerator: public AbstractInterpreterGenerator {
    protected:
    // shared code sequences
---- hotspot/src/cpu/zero/vm/nativeInst_zero.cpp.orig	2015-08-31 21:07:21.643057475 +0200
-+++ hotspot/src/cpu/zero/vm/nativeInst_zero.cpp	2015-08-31 21:14:49.019059159 +0200
+--- hotspot/src/cpu/zero/vm/nativeInst_zero.cpp.orig
++++ hotspot/src/cpu/zero/vm/nativeInst_zero.cpp
 @@ -26,6 +26,9 @@
  #include "precompiled.hpp"
  #include "assembler_zero.inline.hpp"
@@ -140,23 +140,23 @@
  #include "nativeInst_zero.hpp"
  #include "oops/oop.inline.hpp"
  #include "runtime/handles.hpp"
---- hotspot/src/share/vm/shark/llvmHeaders.hpp.orig	2015-09-01 14:17:09.793868541 +0200
-+++ hotspot/src/share/vm/shark/llvmHeaders.hpp	2015-09-01 16:20:25.653868618 +0200
+--- hotspot/src/share/vm/shark/llvmHeaders.hpp.orig
++++ hotspot/src/share/vm/shark/llvmHeaders.hpp
 @@ -35,7 +35,11 @@
    #undef DEBUG
  #endif
-
+ 
 +#if SHARK_LLVM_VERSION <= 34
  #include <llvm/Analysis/Verifier.h>
 +#else
 +#include <llvm-c/Analysis.h>
 +#endif
  #include <llvm/ExecutionEngine/ExecutionEngine.h>
-
+ 
  // includes specific to each version
---- common/autoconf/libraries.m4.orig	2015-09-01 16:53:51.821868486 +0200
-+++ common/autoconf/libraries.m4	2015-09-01 16:55:27.653868542 +0200
-@@ -847,8 +847,9 @@
+--- common/autoconf/libraries.m4.orig
++++ common/autoconf/libraries.m4
+@@ -834,8 +834,9 @@ AC_DEFUN_ONCE([LIB_SETUP_STATIC_LINK_LIB
          fi
        fi
      done
@@ -164,23 +164,23 @@
 +    llvm_version=$("${LLVM_CONFIG}" --version | sed 's/\.//; s/svn.*//; s/\..*$//')
      LLVM_CFLAGS="${LLVM_CFLAGS} -DSHARK_LLVM_VERSION=${llvm_version}"
 +    AS_IF([test $llvm_version -ge 34], [LLVM_CFLAGS="${LLVM_CFLAGS} -std=gnu++11"])
-
+ 
      unset LLVM_LDFLAGS
      for flag in $("${LLVM_CONFIG}" --ldflags); do
-@@ -862,7 +862,7 @@
+@@ -848,7 +849,7 @@ AC_DEFUN_ONCE([LIB_SETUP_STATIC_LINK_LIB
      done
-
+ 
      unset LLVM_LIBS
 -    for flag in $("${LLVM_CONFIG}" --libs ${llvm_components}); do
 +    for flag in $("${LLVM_CONFIG}" --libs --system-libs ${llvm_components}); do
        if echo "${flag}" | grep -q '^-l'; then
          if test "${LLVM_LIBS}" != ""; then
            LLVM_LIBS="${LLVM_LIBS} "
---- hotspot/src/share/vm/shark/sharkIntrinsics.cpp.orig	2015-09-02 16:58:17.000000000 +0200
-+++ hotspot/src/share/vm/shark/sharkIntrinsics.cpp	2015-09-02 17:09:26.000000000 +0200
-@@ -265,7 +265,11 @@
+--- hotspot/src/share/vm/shark/sharkIntrinsics.cpp.orig
++++ hotspot/src/share/vm/shark/sharkIntrinsics.cpp
+@@ -265,7 +265,11 @@ void SharkIntrinsics::do_Unsafe_compareA
      "addr");
-
+ 
    // Perform the operation
 +#if SHARK_LLVM_VERSION <= 34
    Value *result = builder()->CreateAtomicCmpXchg(addr, e, x, llvm::SequentiallyConsistent);
@@ -190,22 +190,22 @@
    // Push the result
    state()->push(
      SharkValue::create_jint(
---- hotspot/src/share/vm/shark/sharkRuntime.cpp.orig	2015-09-02 17:11:58.000000000 +0200
-+++ hotspot/src/share/vm/shark/sharkRuntime.cpp	2015-09-02 17:12:57.000000000 +0200
+--- hotspot/src/share/vm/shark/sharkRuntime.cpp.orig
++++ hotspot/src/share/vm/shark/sharkRuntime.cpp
 @@ -32,6 +32,7 @@
  #ifdef TARGET_ARCH_zero
  # include "stack_zero.inline.hpp"
  #endif
 +#include "memory/oopFactory.hpp"
-
+ 
  using namespace llvm;
-
---- hotspot/src/share/vm/shark/sharkTopLevelBlock.cpp.orig	2015-09-02 17:23:07.000000000 +0200
-+++ hotspot/src/share/vm/shark/sharkTopLevelBlock.cpp	2015-09-02 17:43:20.000000000 +0200
-@@ -1732,7 +1732,11 @@
+ 
+--- hotspot/src/share/vm/shark/sharkTopLevelBlock.cpp.orig
++++ hotspot/src/share/vm/shark/sharkTopLevelBlock.cpp
+@@ -1732,7 +1732,11 @@ void SharkTopLevelBlock::do_new() {
      heap_object = builder()->CreateIntToPtr(
        old_top, SharkType::oop_type(), "heap_object");
-
+ 
 +#if SHARK_LLVM_VERSION <= 34
      Value *check = builder()->CreateAtomicCmpXchg(top_addr, old_top, new_top, llvm::SequentiallyConsistent);
 +#else
@@ -214,8 +214,8 @@
      builder()->CreateCondBr(
        builder()->CreateICmpEQ(old_top, check),
        initialize, retry);
-@@ -1933,7 +1937,11 @@
-
+@@ -1933,7 +1937,11 @@ void SharkTopLevelBlock::acquire_lock(Va
+ 
    Value *lock = builder()->CreatePtrToInt(
      monitor_header_addr, SharkType::intptr_type());
 +#if SHARK_LLVM_VERSION <= 34
@@ -226,10 +226,10 @@
    builder()->CreateCondBr(
      builder()->CreateICmpEQ(disp, check),
      acquired_fast, try_recursive);
-@@ -2018,7 +2026,11 @@
+@@ -2018,7 +2026,11 @@ void SharkTopLevelBlock::release_lock(in
      PointerType::getUnqual(SharkType::intptr_type()),
      "mark_addr");
-
+ 
 +#if SHARK_LLVM_VERSION <= 34
    Value *check = builder()->CreateAtomicCmpXchg(mark_addr, lock, disp, llvm::Release);
 +#else
@@ -238,8 +238,8 @@
    builder()->CreateCondBr(
      builder()->CreateICmpEQ(lock, check),
      released_fast, slow_path);
---- hotspot/src/cpu/zero/vm/interpreter_zero.cpp.orig	2015-09-14 20:13:25.539432044 +0200
-+++ hotspot/src/cpu/zero/vm/interpreter_zero.cpp	2015-09-14 20:13:46.107432122 +0200
+--- hotspot/src/cpu/zero/vm/interpreter_zero.cpp.orig
++++ hotspot/src/cpu/zero/vm/interpreter_zero.cpp
 @@ -49,7 +49,7 @@
  #ifdef COMPILER1
  #include "c1/c1_Runtime1.hpp"
@@ -248,21 +248,21 @@
 +#if defined(CC_INTERP) || defined(SHARK)
  #include "interpreter/cppInterpreter.hpp"
  #endif
-
---- hotspot/src/share/vm/shark/sharkCompiler.hpp.orig	2015-08-31 20:08:44.723044236 +0200
-+++ hotspot/src/share/vm/shark/sharkCompiler.hpp	2015-08-31 20:08:59.387044291 +0200
-@@ -40,6 +40,8 @@
+ 
+--- hotspot/src/share/vm/shark/sharkCompiler.hpp.orig
++++ hotspot/src/share/vm/shark/sharkCompiler.hpp
+@@ -40,6 +40,8 @@ class SharkCompiler : public AbstractCom
    // Creation
    SharkCompiler();
-
+ 
 +  void init_llvm();
 +
    // Name of this compiler
    const char *name()     { return "shark"; }
-
---- hotspot/src/share/vm/shark/sharkCompiler.cpp.orig	2015-09-19 12:19:21.000000000 +0200
-+++ hotspot/src/share/vm/shark/sharkCompiler.cpp	2015-09-19 12:27:17.000000000 +0200
-@@ -61,11 +61,25 @@
+ 
+--- hotspot/src/share/vm/shark/sharkCompiler.cpp.orig
++++ hotspot/src/share/vm/shark/sharkCompiler.cpp
+@@ -61,11 +61,25 @@ SharkCompiler::SharkCompiler()
    : AbstractCompiler() {
    // Create the lock to protect the memory manager and execution engine
    _execution_engine_lock = new Monitor(Mutex::leaf, "SharkExecutionEngineLock");
@@ -274,7 +274,7 @@
 +  // All done
 +  set_state(initialized);
 +}
-
+ 
 +void SharkCompiler::init_llvm() {
 +  // with llvm 3.5, Multi-threading can only be enabled/disabled with the
 +  // compile time define LLVM_ENABLE_THREADS
@@ -286,19 +286,19 @@
 +  if (!llvm_is_multithreaded())
 +    fatal("llvm_is_multithreaded() tells no multithreading support in llvm");
 +#endif
-
+ 
    // Initialize the native target
    InitializeNativeTarget();
-@@ -83,7 +97,7 @@
+@@ -83,7 +97,7 @@ SharkCompiler::SharkCompiler()
    // Finetune LLVM for the current host CPU.
    StringMap<bool> Features;
    bool gotCpuFeatures = llvm::sys::getHostCPUFeatures(Features);
 -  std::string cpu("-mcpu=" + llvm::sys::getHostCPUName());
 +  std::string cpu("-mcpu=" + std::string(llvm::sys::getHostCPUName()));
-
+ 
    std::vector<const char*> args;
    args.push_back(""); // program name
-@@ -112,6 +126,9 @@
+@@ -112,6 +126,9 @@ SharkCompiler::SharkCompiler()
    builder.setMAttrs(MAttrs);
    builder.setJITMemoryManager(memory_manager());
    builder.setEngineKind(EngineKind::JIT);
@@ -308,9 +308,10 @@
    builder.setErrorStr(&ErrorMsg);
    if (! fnmatch(SharkOptimizationLevel, "None", 0)) {
      tty->print_cr("Shark optimization level set to: None");
-@@ -134,9 +151,10 @@
+@@ -133,10 +150,11 @@ SharkCompiler::SharkCompiler()
+     exit(1);
    }
-
+ 
 +#if SHARK_LLVM_VERSION > 34
 +  _native_context->execution_engine(_execution_engine);
 +  _normal_context->execution_engine(_execution_engine);
@@ -320,19 +321,19 @@
 -  // All done
 -  set_state(initialized);
  }
-
+ 
  void SharkCompiler::initialize() {
-@@ -165,7 +179,7 @@
+@@ -165,7 +183,7 @@ void SharkCompiler::compile_method(ciEnv
    }
-
+ 
    // Create the recorders
 -  Arena arena;
 +  Arena arena(mtCompiler);
    env->set_oop_recorder(new OopRecorder(&arena));
    OopMapSet oopmaps;
    env->set_debug_info(new DebugInformationRecorder(env->oop_recorder()));
-@@ -268,7 +282,12 @@
-
+@@ -268,7 +286,12 @@ void SharkCompiler::generate_native_code
+ 
    if (SharkVerifyFunction != NULL) {
      if (!fnmatch(SharkVerifyFunction, name, 0)) {
 +#if SHARK_LLVM_VERSION <= 34
@@ -343,8 +344,8 @@
 +#endif
      }
    }
-
-@@ -298,7 +317,11 @@
+ 
+@@ -298,7 +321,11 @@ void SharkCompiler::generate_native_code
  #endif
  #endif // !NDEBUG
      memory_manager()->set_entry_for_function(function, entry);
@@ -356,11 +357,11 @@
    }
    assert(code != NULL, "code must be != NULL");
    entry->set_entry_point(code);
---- hotspot/src/share/vm/shark/sharkContext.cpp.orig	2015-09-21 11:22:51.707813194 +0200
-+++ hotspot/src/share/vm/shark/sharkContext.cpp	2015-09-21 13:47:56.243845961 +0200
+--- hotspot/src/share/vm/shark/sharkContext.cpp.orig
++++ hotspot/src/share/vm/shark/sharkContext.cpp
 @@ -34,8 +34,13 @@
  using namespace llvm;
-
+ 
  SharkContext::SharkContext(const char* name)
 -  : LLVMContext(),
 -    _free_queue(NULL) {
@@ -373,32 +374,32 @@
 +{
    // Create a module to build our functions into
    _module = new Module(name, *this);
-
---- hotspot/src/share/vm/shark/sharkContext.hpp.orig	2015-09-21 10:58:37.195807719 +0200
-+++ hotspot/src/share/vm/shark/sharkContext.hpp	2015-09-21 13:50:48.459846609 +0200
+ 
+--- hotspot/src/share/vm/shark/sharkContext.hpp.orig
++++ hotspot/src/share/vm/shark/sharkContext.hpp
 @@ -29,6 +29,8 @@
  #include "shark/llvmHeaders.hpp"
  #include "shark/sharkCompiler.hpp"
-
+ 
 +#include <map>
 +
  // The LLVMContext class allows multiple instances of LLVM to operate
  // independently of each other in a multithreaded context.  We extend
  // this here to store things in Shark that are LLVMContext-specific.
-@@ -41,12 +43,28 @@
-
+@@ -41,12 +43,28 @@ class SharkContext : public llvm::LLVMCo
+ 
   private:
    llvm::Module* _module;
 +#if SHARK_LLVM_VERSION > 34
 +  llvm::ExecutionEngine *_ee;
 +  std::map<std::string, llvm::Module *> func_mod_map;
 +#endif
-
+ 
   public:
    llvm::Module* module() const {
      return _module;
    }
-
+ 
 +#if SHARK_LLVM_VERSION > 34
 +  llvm::ExecutionEngine *execution_engine(llvm::ExecutionEngine *ee) {
 +      llvm::ExecutionEngine *oee = _ee;
@@ -414,8 +415,8 @@
    // Get this thread's SharkContext
   public:
    static SharkContext& current() {
-@@ -55,12 +73,35 @@
-
+@@ -55,12 +73,35 @@ class SharkContext : public llvm::LLVMCo
+ 
    // Module accessors
   public:
 -  void add_function(llvm::Function* function) const {
@@ -449,5 +450,5 @@
 +    }
 +#endif
    }
-
+ 
    // Basic types

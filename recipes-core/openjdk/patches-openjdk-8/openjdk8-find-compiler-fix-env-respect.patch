@@ -1,18 +1,18 @@
---- common/autoconf/toolchain.m4.orig	2015-08-07 20:52:38.000000000 +0200
-+++ common/autoconf/toolchain.m4	2015-10-27 13:57:19.708566525 +0100
-@@ -27,7 +27,7 @@
+--- common/autoconf/toolchain.m4.orig
++++ common/autoconf/toolchain.m4
+@@ -77,7 +77,7 @@ AC_DEFUN([TOOLCHAIN_CHECK_COMPILER_VERSI
  # $2 = human readable name of compiler (C or C++)
- AC_DEFUN([TOOLCHAIN_CHECK_COMPILER_VERSION],
+ AC_DEFUN([TOOLCHAIN_EXTRACT_COMPILER_VERSION],
  [
 -  COMPILER=[$]$1
 +  COMPILER="[$]$1"
    COMPILER_NAME=$2
-
+ 
    if test "x$OPENJDK_TARGET_OS" = xsolaris; then
-@@ -123,64 +123,37 @@
+@@ -174,64 +174,37 @@ AC_DEFUN([TOOLCHAIN_FIND_COMPILER],
  [
    COMPILER_NAME=$2
-
+ 
 -  $1=
 +  FOUND_$1=
 +
@@ -31,7 +31,7 @@
 +    FOUND_$1=$TOOLS_DIR_$1
      PATH="$PATH_save"
    fi
-
+ 
    # AC_PATH_PROGS can't be run multiple times with the same variable,
    # so create a new name for this run.
 -  if test "x[$]$1" = x; then
@@ -40,7 +40,7 @@
 -    $1=$POTENTIAL_$1
 +    FOUND_$1=$POTENTIAL_$1
    fi
-
+ 
 -  if test "x[$]$1" = x; then
 +  if test "x[$]FOUND_$1" = x; then
      HELP_MSG_MISSING_DEPENDENCY([devkit])
@@ -86,10 +86,10 @@
 +  TEST_COMPILER="[$]FOUND_$1"
 +
 +  $1="$TEST_COMPILER"
-   TOOLCHAIN_CHECK_COMPILER_VERSION([$1], [$COMPILER_NAME])
+   TOOLCHAIN_EXTRACT_COMPILER_VERSION([$1], [$COMPILER_NAME])
  ])
-
-@@ -214,12 +187,12 @@
+ 
+@@ -265,12 +238,12 @@ AC_DEFUN([TOOLCHAIN_SETUP_PATHS],
      # otherwise we might pick up cross-compilers which don't use standard naming.
      # Otherwise, we'll set the BUILD_tools to the native tools, but that'll have
      # to wait until they are properly discovered.
@@ -108,12 +108,12 @@
    fi
    AC_SUBST(BUILD_CC)
    AC_SUBST(BUILD_CXX)
---- common/autoconf/basics.m4.orig	2015-08-31 15:03:54.942975387 +0200
-+++ common/autoconf/basics.m4	2015-08-31 15:02:25.090975049 +0200
-@@ -171,8 +171,15 @@
+--- common/autoconf/basics.m4.orig
++++ common/autoconf/basics.m4
+@@ -171,8 +171,15 @@ AC_DEFUN([BASIC_REMOVE_SYMBOLIC_LINKS],
        fi
      fi
-
+ 
 +    # First separate the path from the arguments. This will split at the first
 +    # space.
 +    complete="[$]$1"
@@ -127,7 +127,7 @@
      else
        # Save the current directory for restoring afterwards
        STARTDIR=$PWD
-@@ -198,8 +205,9 @@
+@@ -198,8 +205,9 @@ AC_DEFUN([BASIC_REMOVE_SYMBOLIC_LINKS],
          let COUNTER=COUNTER+1
        done
        cd $STARTDIR
@@ -137,4 +137,4 @@
 +    $1="$new_path ${arguments% *}"
    fi
  ])
-
+ 

@@ -1,9 +1,9 @@
---- jdk/make/GenerateSources.gmk.orig	2015-08-24 11:23:34.720648954 +0200
-+++ jdk/make/GenerateSources.gmk	2015-08-24 11:24:41.376649205 +0200
-@@ -73,9 +73,11 @@
+--- jdk/make/GenerateSources.gmk.orig
++++ jdk/make/GenerateSources.gmk
+@@ -73,9 +73,11 @@ ifneq ($(OPENJDK_TARGET_OS), windows)
      GENSRC += $(GENSRC_OSX_ICONS)
    endif
-
+ 
 -  ifneq ($(OPENJDK_TARGET_OS), macosx)
 -    include gensrc/GensrcX11Wrappers.gmk
 -    GENSRC += $(GENSRC_X11WRAPPERS)
@@ -14,4 +14,4 @@
 +    endif
    endif
  endif
-
+ 

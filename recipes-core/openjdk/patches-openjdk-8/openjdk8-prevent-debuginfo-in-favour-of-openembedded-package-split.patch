@@ -1,6 +1,6 @@
---- make/common/NativeCompilation.gmk.orig	2015-09-09 17:15:33.869765681 +0200
-+++ make/common/NativeCompilation.gmk	2015-09-09 17:55:26.485774688 +0200
-@@ -434,58 +434,6 @@
+--- make/common/NativeCompilation.gmk.orig
++++ make/common/NativeCompilation.gmk
+@@ -438,58 +438,6 @@ define SetupNativeCompilation
            $$($1_OUTPUT_DIR)/% : $$($1_OBJECT_DIR)/%
  		$(CP) $$< $$@
          endif
@@ -58,8 +58,8 @@
 -        endif
        endif
      endif
-
-@@ -518,58 +466,6 @@
+ 
+@@ -522,58 +470,6 @@ endif # no MacOS X support yet
            $$($1_OUTPUT_DIR)/% : $$($1_OBJECT_DIR)/%
  		$(CP) $$< $$@
          endif
@@ -117,4 +117,4 @@
 -        endif
        endif
      endif
-
+ 

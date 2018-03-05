@@ -2,10 +2,8 @@ When adding the environment variable JAVA_TOOL_OPTIONS an extra line
 in the output from 'java -version' is produced. As this output is
 parsed by configure script the extra line has to be filtered out.
 
-Index: jdk8u-e8bed1496ff2/common/autoconf/boot-jdk.m4
-===================================================================
---- jdk8u-e8bed1496ff2.orig/common/autoconf/boot-jdk.m4
-+++ jdk8u-e8bed1496ff2/common/autoconf/boot-jdk.m4
+--- jdk8u-4be07cb28b21.orig/common/autoconf/boot-jdk.m4
++++ jdk8u-4be07cb28b21/common/autoconf/boot-jdk.m4
 @@ -51,7 +51,7 @@ AC_DEFUN([BOOTJDK_DO_CHECK],
              BOOT_JDK_FOUND=no
            else

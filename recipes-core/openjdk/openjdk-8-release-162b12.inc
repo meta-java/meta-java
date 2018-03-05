@@ -6,6 +6,7 @@ PATCHES_URI = "\
     file://openjdk8-no-unused-deps.patch;striplevel=0 \
     file://openjdk8-find-compiler-fix-env-respect.patch;striplevel=0 \
     file://openjdk8-prevent-debuginfo-in-favour-of-openembedded-package-split.patch;striplevel=0 \
+    file://0001-jdk-comparison-between-pointer-and-integer.patch \
 "
 # some patches extracted from http://cr.openjdk.java.net/~rkennke/shark-build-hotspot/webrev.01/hotspot.patch
 # reported via http://mail.openjdk.java.net/pipermail/build-dev/2015-January/013972.html

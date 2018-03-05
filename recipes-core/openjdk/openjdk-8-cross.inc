@@ -19,7 +19,7 @@ PACKAGECONFIG ??= " \
     repack \
     ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'x11 cups', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'alsa', 'alsa', '', d)} \
-    gif jpeg png zip \
+    gif jpeg png zlib \
 "
 PACKAGECONFIG[x11] = "--with-x,,libx11 xproto libxt libxext libxrender libxtst"
 PACKAGECONFIG[cups] = "--with-cups,,cups"
@@ -27,10 +27,10 @@ PACKAGECONFIG[alsa] = "--with-alsa,,alsa-lib"
 
 PACKAGECONFIG[jce] = "--enable-unlimited-crypto,,"
 
-PACKAGECONFIG[zip] = "--with-zlib=system,--with-zlib=bundled,zlib,"
 PACKAGECONFIG[gif] = "--with-giflib=system,--with-giflib=bundled,giflib,"
 PACKAGECONFIG[jpeg] = "--with-libjpeg=system,--with-libjpeg=bundled,jpeg,"
 PACKAGECONFIG[png] = "--with-libpng=system,--with-libpng=bundled,libpng,"
+PACKAGECONFIG[zlib] = "--with-zlib=system,--with-zlib=bundled,zlib,"
 
 export WANT_LLVM_RELEASE = "3.5.2"
 PACKAGECONFIG[zero] = "--with-jvm-variants=zero,,,"

@@ -39,6 +39,10 @@ do_unpack_extract_submodules () {
     tar xjf ${WORKDIR}/${NASHORN_FILE} --transform "s,-${NASHORN_CHANGESET},,g"
 }
 
+do_unpack_remove_X11_wrappers() {
+    find ${S}/jdk/src/solaris/classes/sun/awt/X11 -maxdepth 1 -name '*.java' -delete
+}
+
 def package_config_option_cleanup(d):
     distro_x11 = bb.utils.contains('DISTRO_FEATURES', 'x11', True, False, d)
     distro_alsa = bb.utils.contains('DISTRO_FEATURES', 'alsa', True, False, d)
@@ -149,13 +153,11 @@ def jdk_configure_options(d):
     return options[3]
 
 do_unpack[postfuncs] += "do_unpack_extract_submodules"
-
-POST_CONFIGURE_CLEAN_X11 = "${@bb.utils.contains('PACKAGECONFIG', 'x11', '', 'rm -f jdk/src/solaris/classes/sun/awt/X11/*.java', d)}"
+do_unpack[postfuncs] += "${@bb.utils.contains('PACKAGECONFIG', 'x11', '', 'do_unpack_remove_X11_wrappers', d)}"
 
 do_patch_openjdk8() {
         olddir=`pwd`
         cd "${S}"
-        ${POST_CONFIGURE_CLEAN_X11}
         for OJ8P in ${WORKDIR}/openjdk8-*.patch; do
                 patch -p0 < ${OJ8P}
         done

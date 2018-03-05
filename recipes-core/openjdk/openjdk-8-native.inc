@@ -2,22 +2,22 @@ JDK_DIR = "openjdk-8-native"
 DEPENDS = "\
     icedtea7-native ant-native \
     libxslt-native attr-native \
-    giflib-native \
     glib-2.0-native freetype-native fontconfig-native \
-    zlib-native zip-native \
-    unzip-native make-native \
+    zip-native unzip-native make-native \
     ca-certificates-native openssl-native coreutils-native \
 "
 
 SRC_URI_append += "file://handle_extra_output.patch"
 
-PACKAGECONFIG ??= "jpeg png"
+PACKAGECONFIG ??= "gif jpeg png zlib"
 PACKAGECONFIG[x11] = "--with-x,,libx11-native xproto-native libxt-native libxext-native libxrender-native"
 PACKAGECONFIG[cups] = "--with-cups,,cups"
 PACKAGECONFIG[alsa] = "--with-alsa,,alsa-lib-native"
+PACKAGECONFIG[gif] = "--with-giflib=system,--with-giflib=bundled,giflib-native"
 PACKAGECONFIG[jce] = "--enable-unlimited-crypto,,"
 PACKAGECONFIG[jpeg] = "--with-libjpeg=system,--with-libjpeg=bundled,jpeg-native"
 PACKAGECONFIG[png] = "--with-libpng=system,--with-libpng=bundled,libpng-native"
+PACKAGECONFIG[zlib] = "--with-zlib=system,--with-zlib=bundled,zlib-native"
 
 EXTRA_OECONF_append = "\
     --with-jobs=${@java_get_parallel_make(d)} \

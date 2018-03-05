@@ -155,16 +155,6 @@ def jdk_configure_options(d):
 do_unpack[postfuncs] += "do_unpack_extract_submodules"
 do_unpack[postfuncs] += "${@bb.utils.contains('PACKAGECONFIG', 'x11', '', 'do_unpack_remove_X11_wrappers', d)}"
 
-do_patch_openjdk8() {
-        olddir=`pwd`
-        cd "${S}"
-        for OJ8P in ${WORKDIR}/openjdk8-*.patch; do
-                patch -p0 < ${OJ8P}
-        done
-}
-
-do_patch[postfuncs] += "do_patch_openjdk8"
-
 do_configure_prepend() {
         export ${@jdk_environment_options(d)}
 }

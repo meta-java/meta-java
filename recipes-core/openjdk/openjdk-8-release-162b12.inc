@@ -1,11 +1,24 @@
-PATCHES_URI="\
+PATCHES_URI = "\
     file://remove-shell-variables-from-autoheader.patch;striplevel=0 \
     file://filter-aclocal-copy-too.patch;striplevel=0 \
     file://dont-expect-fqpn-for-make.patch;striplevel=0 \
-    file://openjdk8-no-genx11-in-headless.patch;apply=no \
-    file://openjdk8-no-unused-deps.patch;apply=no \
-    file://openjdk8-find-compiler-fix-env-respect.patch;apply=no \
-    file://openjdk8-prevent-debuginfo-in-favour-of-openembedded-package-split.patch;apply=no \
+    file://openjdk8-no-genx11-in-headless.patch;striplevel=0 \
+    file://openjdk8-no-unused-deps.patch;striplevel=0 \
+    file://openjdk8-find-compiler-fix-env-respect.patch;striplevel=0 \
+    file://openjdk8-prevent-debuginfo-in-favour-of-openembedded-package-split.patch;striplevel=0 \
+"
+# some patches extracted from http://cr.openjdk.java.net/~rkennke/shark-build-hotspot/webrev.01/hotspot.patch
+# reported via http://mail.openjdk.java.net/pipermail/build-dev/2015-January/013972.html
+# by Roman Kennke (rkennke at redhat.com)
+PATCHES_URI_append_class-target = "\
+    file://openjdk8-restrict-to-staging-dir.patch;striplevel=0 \
+    file://openjdk8-fix-shark-build.patch;striplevel=0 \
+    file://openjdk8-fix-shark-stdc++11.patch;striplevel=0 \
+    file://openjdk8-fix-assembler-flag-handling-in-makefile.patch;striplevel=0 \
+    file://openjdk8-fix-adlc-flags.patch;striplevel=0 \
+    file://openjdk8-silence-d_fortify_source-warning.patch;striplevel=0 \
+    file://openjdk8-add-missing-linker-flags.patch;striplevel=0 \
+    file://openjdk8-fix-libpng-neon-build.patch;striplevel=0 \
 "
 
 # Name of the directory containing the compiled output

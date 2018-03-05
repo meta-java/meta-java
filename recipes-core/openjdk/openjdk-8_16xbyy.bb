@@ -1,3 +1,6 @@
+PV = "162b12"
+PV_aarch64 = "161b15"
+
 require openjdk-8-release-${PV}.inc
 require openjdk-8-cross.inc
 

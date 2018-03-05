@@ -199,8 +199,6 @@ def get_jdk_arch(d):
     return jdk_arch
 
 JDK_ARCH = "${@get_jdk_arch(d)}"
-# We do not yet work for aarch64.
-COMPATIBLE_HOST = "^(?!aarch64).*"
 
 export DEBUG_BINARIES = "true"
 

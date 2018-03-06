@@ -7,6 +7,7 @@ PATCHES_URI = "\
     file://openjdk8-find-compiler-fix-env-respect.patch;striplevel=0 \
     file://openjdk8-prevent-debuginfo-in-favour-of-openembedded-package-split.patch;striplevel=0 \
     file://0001-jdk-comparison-between-pointer-and-integer.patch \
+    file://0002-hotspot-fix-compilation-with-security-flags-enabled.patch \
 "
 # some patches extracted from http://cr.openjdk.java.net/~rkennke/shark-build-hotspot/webrev.01/hotspot.patch
 # reported via http://mail.openjdk.java.net/pipermail/build-dev/2015-January/013972.html
@@ -17,7 +18,6 @@ PATCHES_URI_append_class-target = "\
     file://openjdk8-fix-shark-stdc++11.patch;striplevel=0 \
     file://openjdk8-fix-assembler-flag-handling-in-makefile.patch;striplevel=0 \
     file://openjdk8-fix-adlc-flags.patch;striplevel=0 \
-    file://openjdk8-silence-d_fortify_source-warning.patch;striplevel=0 \
     file://openjdk8-add-missing-linker-flags.patch;striplevel=0 \
     file://openjdk8-fix-libpng-neon-build.patch;striplevel=0 \
 "

@@ -1,7 +1,7 @@
 From bdea8cf299313388ec41ea20281deca6dc4f764d Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
 Date: Tue, 27 Feb 2018 14:41:06 +0000
-Subject: [PATCH 2/8] hotspot: fix compilation with security flags enabled
+Subject: [PATCH 2/9] hotspot: fix compilation with security flags enabled
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit

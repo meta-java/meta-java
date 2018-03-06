@@ -1,0 +1,69 @@
+From ec37e9e5663611e49c7c976d34450ea6b90d0f24 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+Date: Fri, 2 Mar 2018 13:37:20 +0000
+Subject: [PATCH 8/9] jdk: musl build fix (use SIGRTMAX rather than __SIGRTMAX)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+__SIGRTMAX is a private glibc symbol, which isn't provided
+by musl, thus failing compilation.
+
+From https://sourceware.org/ml/rda/2005-q4/msg00011.html
+    On a GNU(ish) system, [SIGRTMIN / SIGRTMAX] these macros are defined
+    to call functions which compute the actual minimum and maximum
+    realtime signal numbers.  In particular, this computation will exclude
+    any signals used by the C library for its own purposes.  These signals
+    could include signals related to thread debugging or, more
+    importantly, for thread cancellation.
+[...]
+    [The __SIGRTMIN and __SIGRTMAX] constants represent a hard minumum
+    and maximum.
+
+Patch taken from Alpine Linux:
+    https://git.alpinelinux.org/cgit/aports/tree/community/openjdk8/icedtea-jdk-musl.patch?id=4d34f29dddd3934358df7a9607706d09ae0433c3
+
+Upstream-Status: Inappropriate [musl specific]
+Signed-off-by: André Draszik <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+---
+ jdk/src/solaris/native/java/net/linux_close.c    | 3 ++-
+ jdk/src/solaris/native/sun/nio/ch/NativeThread.c | 2 +-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/jdk/src/solaris/native/java/net/linux_close.c b/jdk/src/solaris/native/java/net/linux_close.c
+index 85fba135..e635dafd 100644
+--- a/jdk/src/solaris/native/java/net/linux_close.c
++++ b/jdk/src/solaris/native/java/net/linux_close.c
+@@ -56,7 +56,7 @@ typedef struct {
+ /*
+  * Signal to unblock thread
+  */
+-static int sigWakeup = (__SIGRTMAX - 2);
++static int sigWakeup;
+ 
+ /*
+  * The fd table and the number of file descriptors
+@@ -95,6 +95,7 @@ static void __attribute((constructor)) init() {
+     /*
+      * Setup the signal handler
+      */
++    sigWakeup = SIGRTMAX - 2;
+     sa.sa_handler = sig_wakeup;
+     sa.sa_flags   = 0;
+     sigemptyset(&sa.sa_mask);
+diff --git a/jdk/src/solaris/native/sun/nio/ch/NativeThread.c b/jdk/src/solaris/native/sun/nio/ch/NativeThread.c
+index 204f0441..f5483bbd 100644
+--- a/jdk/src/solaris/native/sun/nio/ch/NativeThread.c
++++ b/jdk/src/solaris/native/sun/nio/ch/NativeThread.c
+@@ -36,7 +36,7 @@
+   #include <pthread.h>
+   #include <signal.h>
+   /* Also defined in net/linux_close.c */
+-  #define INTERRUPT_SIGNAL (__SIGRTMAX - 2)
++  #define INTERRUPT_SIGNAL (SIGRTMAX - 2)
+ #elif __solaris__
+   #include <thread.h>
+   #include <signal.h>
+-- 
+2.16.2
+

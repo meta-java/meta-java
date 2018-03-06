@@ -1,0 +1,88 @@
+From 19b1d6b4dc64a1c44a8f90776a489eee5c76463d Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+Date: Tue, 27 Feb 2018 15:12:08 +0000
+Subject: [PATCH 5/9] hotspot: disable agent build
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+the agent needs thread_db, which doesn't exist in musl
+
+Upstream-Status: Inappropriate [musl specific]
+Signed-off-by: André Draszik <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+---
+ common/autoconf/jdk-options.m4           | 2 +-
+ hotspot/make/linux/makefiles/defs.make   | 4 ++++
+ hotspot/make/linux/makefiles/sa.make     | 2 +-
+ hotspot/make/linux/makefiles/saproc.make | 2 ++
+ 4 files changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/common/autoconf/jdk-options.m4 b/common/autoconf/jdk-options.m4
+index a8f71705..036963ac 100644
+--- a/common/autoconf/jdk-options.m4
++++ b/common/autoconf/jdk-options.m4
+@@ -151,7 +151,7 @@ AC_DEFUN_ONCE([JDKOPT_SETUP_JVM_VARIANTS],
+   AC_SUBST(JVM_VARIANT_ZEROSHARK)
+   AC_SUBST(JVM_VARIANT_CORE)
+ 
+-  INCLUDE_SA=true
++  INCLUDE_SA=false
+   if test "x$JVM_VARIANT_ZERO" = xtrue ; then
+     INCLUDE_SA=false
+   fi
+diff --git a/hotspot/make/linux/makefiles/defs.make b/hotspot/make/linux/makefiles/defs.make
+index 3af5878a..d10bab95 100644
+--- a/hotspot/make/linux/makefiles/defs.make
++++ b/hotspot/make/linux/makefiles/defs.make
+@@ -286,6 +286,7 @@ ifeq ($(JVM_VARIANT_MINIMAL1),true)
+   endif
+ endif
+ 
++ifeq (0,1)
+ # Serviceability Binaries
+ # No SA Support for PPC, IA64, ARM or zero
+ ADD_SA_BINARIES/x86   = $(EXPORT_JRE_LIB_ARCH_DIR)/libsaproc.$(LIBRARY_SUFFIX) \
+@@ -305,6 +306,9 @@ ADD_SA_BINARIES/ppc   =
+ ADD_SA_BINARIES/ia64  =
+ ADD_SA_BINARIES/arm   =
+ ADD_SA_BINARIES/zero  =
++else
++ADD_SA_BINARIES/$(HS_ARCH) =
++endif
+ 
+ -include $(HS_ALT_MAKE)/linux/makefiles/defs.make
+ 
+diff --git a/hotspot/make/linux/makefiles/sa.make b/hotspot/make/linux/makefiles/sa.make
+index 66a7b945..61cc7244 100644
+--- a/hotspot/make/linux/makefiles/sa.make
++++ b/hotspot/make/linux/makefiles/sa.make
+@@ -62,7 +62,7 @@ SA_PROPERTIES = $(SA_CLASSDIR)/sa.properties
+ 
+ all: 
+ 	if [ -d $(AGENT_DIR) -a "$(SRCARCH)" != "ia64" \
+-             -a "$(SRCARCH)" != "zero" ] ; then \
++             -a "$(SRCARCH)" != "zero" ] && [ 0 -eq 1 ] ; then \
+ 	   $(MAKE) -f sa.make $(GENERATED)/sa-jdi.jar; \
+ 	fi
+ 
+diff --git a/hotspot/make/linux/makefiles/saproc.make b/hotspot/make/linux/makefiles/saproc.make
+index 6579c8e1..8f29004c 100644
+--- a/hotspot/make/linux/makefiles/saproc.make
++++ b/hotspot/make/linux/makefiles/saproc.make
+@@ -62,11 +62,13 @@ endif
+ # if $(AGENT_DIR) does not exist, we don't build SA
+ # also, we don't build SA on Itanium or zero.
+ 
++ifeq (0,1)
+ ifneq ($(wildcard $(AGENT_DIR)),)
+ ifneq ($(filter-out ia64 zero,$(SRCARCH)),)
+   BUILDLIBSAPROC = $(LIBSAPROC)
+ endif
+ endif
++endif
+ 
+ ifneq ($(ALT_SASRCDIR),)
+ ALT_SAINCDIR=-I$(ALT_SASRCDIR) -DALT_SASRCDIR
+-- 
+2.16.2
+

@@ -10,6 +10,11 @@ PATCHES_URI = "\
     file://0002-hotspot-fix-compilation-with-security-flags-enabled.patch \
     file://0003-jdk-Allow-using-a-system-installed-libjpeg.patch \
     file://0004-jdk-Allow-using-a-system-installed-libpng.patch \
+    file://0005-hotspot-use-correct-include-for-poll.patch \
+    file://0006-hotspot-don-t-rely-on-old-SysV-SIGCLD.patch \
+    file://0007-jdk-use-correct-include-for-poll.patch \
+    file://0008-jdk-use-correct-include-for-signal.patch \
+    file://0009-jdk-disable-backtrace-musl-build-fix.patch \
 "
 # some patches extracted from http://cr.openjdk.java.net/~rkennke/shark-build-hotspot/webrev.01/hotspot.patch
 # reported via http://mail.openjdk.java.net/pipermail/build-dev/2015-January/013972.html
@@ -22,6 +27,17 @@ PATCHES_URI_append_class-target = "\
     file://openjdk8-fix-adlc-flags.patch;striplevel=0 \
     file://openjdk8-add-missing-linker-flags.patch;striplevel=0 \
     file://openjdk8-fix-libpng-neon-build.patch;striplevel=0 \
+"
+PATCHES_URI_append_libc-musl = "\
+    file://musl-0001-hotspot-stop-using-obsolete-isnanf.patch \
+    file://musl-0002-jdk-give-a-much-bigger-buffer-to-getmntent_r.patch \
+    file://musl-0003-jdk-fix-libjvm-load-on-musl-set-LD_LIBRARY_PATH.patch \
+    file://musl-0004-jdk-remove-sysctl.h-include-musl-build-fix.patch \
+    file://musl-0005-hotspot-disable-agent-build.patch \
+    file://musl-0006-hotspot-os_linux-remove-glibc-dependencies.patch \
+    file://musl-0007-hotspot-os_linux_x86-remove-glibc-dependencies-fpu_c.patch \
+    file://musl-0008-jdk-musl-build-fix-use-SIGRTMAX-rather-than-__SIGRTM.patch \
+    file://musl-0009-jdk-musl-has-gethostby_r.patch \
 "
 
 # Name of the directory containing the compiled output

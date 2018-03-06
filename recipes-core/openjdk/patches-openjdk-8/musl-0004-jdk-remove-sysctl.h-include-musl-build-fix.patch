@@ -1,0 +1,90 @@
+From 86945e6df4dc15d5c2402a656d1d9d1b25945fb2 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+Date: Tue, 27 Feb 2018 09:28:06 +0000
+Subject: [PATCH 4/9] jdk: remove sysctl.h include (musl build fix)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Compiling against musl-libc gives the following warning (which is
+treated as error due to -Werror:
+| jdk/src/solaris/native/java/net/PlainDatagramSocketImpl.c:44:10: fatal error: sys/sysctl.h: No such file or directory
+|  #include <sys/sysctl.h>
+|           ^~~~~~~~~~~~~~
+etc.
+
+Remove it, at things seem to work without as well.
+
+Upstream-Status: Inappropriate [musl specific]
+Signed-off-by: André Draszik <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+---
+ jdk/src/solaris/native/java/net/PlainDatagramSocketImpl.c   | 1 -
+ jdk/src/solaris/native/java/net/PlainSocketImpl.c           | 1 -
+ jdk/src/solaris/native/java/net/net_util_md.c               | 1 -
+ jdk/src/solaris/native/sun/management/OperatingSystemImpl.c | 1 -
+ jdk/src/solaris/native/sun/net/portconfig.c                 | 1 -
+ 5 files changed, 5 deletions(-)
+
+diff --git a/jdk/src/solaris/native/java/net/PlainDatagramSocketImpl.c b/jdk/src/solaris/native/java/net/PlainDatagramSocketImpl.c
+index c48d1153..e3519774 100644
+--- a/jdk/src/solaris/native/java/net/PlainDatagramSocketImpl.c
++++ b/jdk/src/solaris/native/java/net/PlainDatagramSocketImpl.c
+@@ -41,7 +41,6 @@
+ #endif
+ #ifdef __linux__
+ #include <unistd.h>
+-#include <sys/sysctl.h>
+ #include <sys/utsname.h>
+ #include <netinet/ip.h>
+ 
+diff --git a/jdk/src/solaris/native/java/net/PlainSocketImpl.c b/jdk/src/solaris/native/java/net/PlainSocketImpl.c
+index 170957e7..9aafbc09 100644
+--- a/jdk/src/solaris/native/java/net/PlainSocketImpl.c
++++ b/jdk/src/solaris/native/java/net/PlainSocketImpl.c
+@@ -43,7 +43,6 @@
+ #endif
+ #ifdef __linux__
+ #include <unistd.h>
+-#include <sys/sysctl.h>
+ #endif
+ 
+ #include "jvm.h"
+diff --git a/jdk/src/solaris/native/java/net/net_util_md.c b/jdk/src/solaris/native/java/net/net_util_md.c
+index eae347cf..a0ba6be0 100644
+--- a/jdk/src/solaris/native/java/net/net_util_md.c
++++ b/jdk/src/solaris/native/java/net/net_util_md.c
+@@ -40,7 +40,6 @@
+ #else
+ #include <limits.h>
+ #include <sys/param.h>
+-#include <sys/sysctl.h>
+ #ifndef MAXINT
+ #define MAXINT INT_MAX
+ #endif
+diff --git a/jdk/src/solaris/native/sun/management/OperatingSystemImpl.c b/jdk/src/solaris/native/sun/management/OperatingSystemImpl.c
+index aa21f019..0b895569 100644
+--- a/jdk/src/solaris/native/sun/management/OperatingSystemImpl.c
++++ b/jdk/src/solaris/native/sun/management/OperatingSystemImpl.c
+@@ -33,7 +33,6 @@
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #if defined(_ALLBSD_SOURCE)
+-#include <sys/sysctl.h>
+ #ifdef __APPLE__
+ #include <sys/param.h>
+ #include <sys/mount.h>
+diff --git a/jdk/src/solaris/native/sun/net/portconfig.c b/jdk/src/solaris/native/sun/net/portconfig.c
+index 56730f0f..5209c828 100644
+--- a/jdk/src/solaris/native/sun/net/portconfig.c
++++ b/jdk/src/solaris/native/sun/net/portconfig.c
+@@ -29,7 +29,6 @@
+ #include <errno.h>
+ 
+ #if defined(_ALLBSD_SOURCE)
+-#include <sys/sysctl.h>
+ #endif
+ 
+ #include "jni.h"
+-- 
+2.16.2
+

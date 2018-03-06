@@ -1,0 +1,46 @@
+From dc0217d20e3c96203c81acda1c02652755bfcefb Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+Date: Fri, 2 Mar 2018 10:24:11 +0000
+Subject: [PATCH 7/9] hotspot: os_linux_x86: remove glibc dependencies
+ (fpu_control.h)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+musl doesn't provide fpu_control.h, open-code the relevant
+bits instead.
+
+Patch adopted from Alpine linux:
+    https://git.alpinelinux.org/cgit/aports/tree/community/openjdk8/icedtea-hotspot-musl.patch?id=4d34f29dddd3934358df7a9607706d09ae0433c3
+
+Upstream-Status: Inappropriate [musl specific]
+Signed-off-by: André Draszik <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+---
+ hotspot/src/os_cpu/linux_x86/vm/os_linux_x86.cpp | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/hotspot/src/os_cpu/linux_x86/vm/os_linux_x86.cpp b/hotspot/src/os_cpu/linux_x86/vm/os_linux_x86.cpp
+index fb96738a..982ce84d 100644
+--- a/hotspot/src/os_cpu/linux_x86/vm/os_linux_x86.cpp
++++ b/hotspot/src/os_cpu/linux_x86/vm/os_linux_x86.cpp
+@@ -72,7 +72,6 @@
+ # include <pwd.h>
+ # include <poll.h>
+ # include <ucontext.h>
+-# include <fpu_control.h>
+ 
+ #ifdef AMD64
+ #define REG_SP REG_RSP
+@@ -543,6 +542,9 @@ JVM_handle_linux_signal(int sig,
+   ShouldNotReachHere();
+ }
+ 
++#define _FPU_GETCW(cw) __asm__ __volatile__ ("fnstcw %0" : "=m" (*&cw))
++#define _FPU_SETCW(cw) __asm__ __volatile__ ("fldcw %0" : : "m" (*&cw))
++
+ void os::Linux::init_thread_fpu_state(void) {
+ #ifndef AMD64
+   // set fpu to 53 bit precision
+-- 
+2.16.2
+

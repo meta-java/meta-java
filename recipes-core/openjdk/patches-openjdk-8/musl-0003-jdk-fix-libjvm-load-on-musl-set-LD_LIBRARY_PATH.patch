@@ -1,0 +1,37 @@
+From 4429d73853b3938a53a6058cc0dcaac08d191995 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+Date: Tue, 27 Feb 2018 16:01:54 +0000
+Subject: [PATCH 3/9] jdk: fix libjvm load on musl (set LD_LIBRARY_PATH)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+musl needs LD_LIBRARY_PATH set because when .so is opened
+with dlopen(/abs/path) it does not qualify for providing
+symbols for NEEDED dependency.
+
+Patch taken from Alpine Linux:
+    https://git.alpinelinux.org/cgit/aports/tree/community/openjdk8/icedtea-jdk-fix-libjvm-load.patch?id=4d34f29dddd3934358df7a9607706d09ae0433c3
+
+Upstream-Status: Inappropriate [musl specific]
+Signed-off-by: André Draszik <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+---
+ jdk/src/solaris/bin/java_md_solinux.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/jdk/src/solaris/bin/java_md_solinux.c b/jdk/src/solaris/bin/java_md_solinux.c
+index 6d977109..e9a0a1eb 100644
+--- a/jdk/src/solaris/bin/java_md_solinux.c
++++ b/jdk/src/solaris/bin/java_md_solinux.c
+@@ -291,6 +291,8 @@ RequiresSetenv(int wanted, const char *jvmpath) {
+     char *dmllp = NULL;
+     char *p; /* a utility pointer */
+ 
++    return JNI_TRUE;
++
+ #ifdef AIX
+     /* We always have to set the LIBPATH on AIX because ld doesn't support $ORIGIN. */
+     return JNI_TRUE;
+-- 
+2.16.2
+

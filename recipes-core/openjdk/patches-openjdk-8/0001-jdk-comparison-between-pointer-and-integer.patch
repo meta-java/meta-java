@@ -1,7 +1,7 @@
 From 97d6911fb581f9e44785db29abbf97ce77713f50 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Fri, 2 Mar 2018 11:13:08 +0000
-Subject: [PATCH 1/8] jdk: comparison between pointer and integer
+Subject: [PATCH 1/9] jdk: comparison between pointer and integer
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit

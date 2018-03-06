@@ -1,7 +1,7 @@
 From a6746c1ee43a63e79b5405e40c463d00160bc02e Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 13:36:53 +0000
-Subject: [PATCH 3/8] jdk: Allow using a system-installed libjpeg
+Subject: [PATCH 3/9] jdk: Allow using a system-installed libjpeg
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit

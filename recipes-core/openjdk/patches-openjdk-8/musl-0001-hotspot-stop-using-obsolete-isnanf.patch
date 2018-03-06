@@ -1,0 +1,42 @@
+From 1624e2dd3739fe208efa13b31abf4bc53ae2e5c1 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+Date: Tue, 27 Feb 2018 11:24:44 +0000
+Subject: [PATCH 1/9] hotspot: stop using obsolete isnanf()
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Compiling against musl-libc gives the following error:
+| hotspot/src/share/vm/utilities/globalDefinitions_gcc.hpp: In function 'int g_isnan(float)':
+| hotspot/src/share/vm/utilities/globalDefinitions_gcc.hpp:238:39: error: 'isnanf' was not declared in this scope
+|  inline int g_isnan(float  f) { return isnanf(f); }
+|                                        ^~~~~~
+
+isnanf() is obsolete, and musl doesn't implement it. isnan()
+is the right thing to use for all types (float and double),
+replacing isnanf(), even on glibc.
+
+Do so.
+
+Upstream-Status: Pending
+Signed-off-by: André Draszik <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+---
+ hotspot/src/share/vm/utilities/globalDefinitions_gcc.hpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/hotspot/src/share/vm/utilities/globalDefinitions_gcc.hpp b/hotspot/src/share/vm/utilities/globalDefinitions_gcc.hpp
+index efa0b4e1..6df2302e 100644
+--- a/hotspot/src/share/vm/utilities/globalDefinitions_gcc.hpp
++++ b/hotspot/src/share/vm/utilities/globalDefinitions_gcc.hpp
+@@ -235,7 +235,7 @@ inline int g_isnan(double f) { return isnand(f); }
+ #elif defined(__APPLE__)
+ inline int g_isnan(double f) { return isnan(f); }
+ #elif defined(LINUX) || defined(_ALLBSD_SOURCE)
+-inline int g_isnan(float  f) { return isnanf(f); }
++inline int g_isnan(float  f) { return isnan(f); }
+ inline int g_isnan(double f) { return isnan(f); }
+ #else
+ #error "missing platform-specific definition here"
+-- 
+2.16.2
+

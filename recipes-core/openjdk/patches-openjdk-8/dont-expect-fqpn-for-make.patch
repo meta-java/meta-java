@@ -6,7 +6,7 @@
      # User has supplied a make, test it.
 -    if test ! -f "$MAKE"; then
 -      AC_MSG_ERROR([The specified make (by MAKE=$MAKE) is not found.])
-+    if test -a `dirname "$MAKE"` = "." -a ! -f "$MAKE"; then
++    if test `dirname "$MAKE"` = "." && ! test -f "$MAKE"; then
 +      AC_PATH_PROGS(CHECK_MAKE, $MAKE)
 +    else
 +      CHECK_MAKE="${MAKE}"

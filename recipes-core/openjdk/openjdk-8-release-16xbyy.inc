@@ -15,6 +15,7 @@ PATCHES_URI = "\
     file://0007-jdk-use-correct-include-for-poll.patch \
     file://0008-jdk-use-correct-include-for-signal.patch \
     file://0009-jdk-disable-backtrace-musl-build-fix.patch \
+    file://0010-build-fix-build-on-as-needed-toolchains-generic.patch \
 "
 # some patches extracted from http://cr.openjdk.java.net/~rkennke/shark-build-hotspot/webrev.01/hotspot.patch
 # reported via http://mail.openjdk.java.net/pipermail/build-dev/2015-January/013972.html

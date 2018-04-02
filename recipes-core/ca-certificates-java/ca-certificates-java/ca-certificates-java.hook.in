@@ -1,0 +1,64 @@
+#!/bin/sh -eu
+
+# As per the debian package, three cases when we can be called:
+#   1) as part of update-ca-certificates -> add / remove certs as instructed
+#   2) if first time install -> add all certs
+#   3) package update -> do nothing
+# We have no way to easily distinguish between first time install
+# and package update in OE, so the distinction between cases 2)
+# and 3) isn't perfect.
+
+self=$(basename $0)
+jvm_libdir="@@libdir_jvm@@"
+
+if [ -n "${D:-}" ] ; then
+    # called from postinst as part of image build on host
+    if [ -z "${JVM_LIBDIR:-}" ] ; then
+        # should never happen, this is supposed to be passed in
+        echo "$0: no JVM_LIBDIR specified" >&2
+        false
+    fi
+fi
+if [ -n "${JVM_LIBDIR:-}" ] ; then
+    jvm_libdir="${JVM_LIBDIR}"
+fi
+
+for JAVA in icedtea7-native/bin/java \
+            openjdk-8-native/bin/java openjdk-8/bin/java openjre-8/bin/java \
+         ; do
+    if [ -x "${jvm_libdir}/${JAVA}" ] ; then
+        JAVA="${jvm_libdir}/${JAVA}"
+        break
+    fi
+done
+
+if [ ! -x "${JAVA}" ] ; then
+    # shouldn't really happen, as we RDEPEND on java
+    echo "$0: JAVA not found" >&2
+    false
+fi
+
+if [ "${self}" = "ca-certificates-java-hook" ] ; then
+    # case 1) from above
+    # the list of (changed) files is passed via stdin
+    while read input ; do
+        echo "${input}"
+    done
+elif [ -s $D${sysconfdir}/ssl/certs/java/cacerts ] ; then
+    # we were executed explicitly (not via ca-cacertificates hook)
+    # case 3) from above
+    # do nothing, as the trustStore exists already
+    return
+else
+    # we were executed explicitly (not via ca-cacertificates hook)
+    # case 2) from above
+    # the trustStore doesn't exist yet, create it as this is
+    # a first time install (e.g. during image build)
+    find $D${sysconfdir}/ssl/certs -name '*.pem' | \
+    while read filename ; do
+        echo "+${filename}"
+    done
+fi | SYSROOT="${D:-}" ${JAVA} -Xmx64m \
+                              -jar ${D:-}@@datadir_java@@/@@JARFILENAME@@ \
+                              -storepass changeit
+

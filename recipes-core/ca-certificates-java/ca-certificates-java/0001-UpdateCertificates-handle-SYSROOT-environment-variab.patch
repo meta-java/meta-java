@@ -1,0 +1,43 @@
+From 70cd9999d3c139230aa05816e98cdc3e50ead713 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
+Date: Tue, 27 Mar 2018 16:50:39 +0100
+Subject: [PATCH] UpdateCertificates: handle SYSROOT environment variable for
+ cacerts
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+We can now pass in the sysroot, so that the trustStore
+is written to /etc/ssl/certs/java/cacerts below $SYSROOT.
+
+Upstream-Status: Inappropriate [OE specific]
+Signed-off-by: André Draszik <andre.draszik@jci.com>
+---
+ src/main/java/org/debian/security/UpdateCertificates.java | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/src/main/java/org/debian/security/UpdateCertificates.java b/src/main/java/org/debian/security/UpdateCertificates.java
+index e4f8205..dba9a7b 100644
+--- a/src/main/java/org/debian/security/UpdateCertificates.java
++++ b/src/main/java/org/debian/security/UpdateCertificates.java
+@@ -40,15 +40,19 @@ public class UpdateCertificates {
+ 
+     public static void main(String[] args) throws IOException, GeneralSecurityException {
+         String passwordString = "changeit";
++        String sysroot;
+         if (args.length == 2 && args[0].equals("-storepass")) {
+             passwordString = args[1];
+         } else if (args.length > 0) {
+             System.err.println("Usage: java org.debian.security.UpdateCertificates [-storepass <password>]");
+             System.exit(1);
+         }
++        sysroot = System.getenv("SYSROOT");
++        if (sysroot == null)
++            sysroot = "";
+ 
+         try {
+-            UpdateCertificates uc = new UpdateCertificates("/etc/ssl/certs/java/cacerts", passwordString);
++            UpdateCertificates uc = new UpdateCertificates(sysroot + "/etc/ssl/certs/java/cacerts", passwordString);
+             // Force reading of inputstream in UTF-8
+             uc.processChanges(new InputStreamReader(System.in, "UTF8"));
+             uc.finish();

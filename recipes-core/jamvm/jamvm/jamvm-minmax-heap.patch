@@ -1,5 +1,13 @@
+From 2409bdf5de64f1a6f2d8d3c738b06d394b47c198 Mon Sep 17 00:00:00 2001
+From: Jan Luebbe <jlu@pengutronix.de>
+Date: Tue, 15 May 2012 09:56:31 +0000
+
+---
+ src/jam.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
 diff --git a/src/jam.c b/src/jam.c
-index b76ce8b..dc5eac3 100644
+index 052f84a..460e4d3 100644
 --- a/src/jam.c
 +++ b/src/jam.c
 @@ -133,9 +133,7 @@ int parseCommandLine(int argc, char *argv[], InitArgs *args) {

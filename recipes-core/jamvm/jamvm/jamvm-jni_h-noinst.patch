@@ -1,9 +1,17 @@
-Index: jamvm-1.5.3/src/Makefile.am
-===================================================================
---- jamvm-1.5.3.orig/src/Makefile.am	2009-09-29 09:29:13.386565473 +0200
-+++ jamvm-1.5.3/src/Makefile.am	2009-09-29 09:33:47.702565852 +0200
-@@ -23,7 +23,7 @@
- DIST_SUBDIRS = os arch interp
+From a0169a5569a0373558bd99143a02ba3ebe80b81b Mon Sep 17 00:00:00 2001
+From: Henning Heinold <heinold@inf.fu-berlin.de>
+Date: Sat, 12 Nov 2011 20:58:34 +0100
+
+---
+ src/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/Makefile.am b/src/Makefile.am
+index 1cf2e87..1f06fed 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -23,7 +23,7 @@ SUBDIRS = os interp classlib
+ DIST_SUBDIRS = os arch interp classlib
  
  bin_PROGRAMS = jamvm
 -include_HEADERS = jni.h

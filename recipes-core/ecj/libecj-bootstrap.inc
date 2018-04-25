@@ -17,13 +17,8 @@ JAR = "ecj-bootstrap-${PV}.jar"
 
 do_unpackpost[dirs] = "${B}"
 do_unpackpost() {
-  if [ ! -d source ]; then
-    mkdir source
-  fi
-
-  if [ ! -d build ]; then
-    mkdir build
-  fi
+  mkdir -p source
+  mkdir -p build
 
   # Remove crap.
   rm -f about.html build.xml
@@ -44,24 +39,18 @@ do_unpackpost() {
   cp -R source/org build/
 
   # Remove source code and other stuff.
-  find build -name '*.java' -exec rm -f {} \;
-  find build -name '*.html' -exec rm -f {} \;
+  find build -depth \( -name '*.java' -o -name '*.html' \) -delete
 }
 
 addtask unpackpost after do_unpack before do_patch
 
 do_compile() {
-  find source -name '*.java' | LC_ALL=C sort > sourcefiles
-  split -l 25 sourcefiles ecj-sources.
-
   # Compiling in place is done because the sources contain
   # property files which need to be available at runtime.
-  for list in `find . -name 'ecj-sources.*'`; do
-      echo "building files in $list ...";
-      echo jikes-initial -d build -source 1.4 -sourcepath source `cat $list`;
-      jikes-initial \
-				-d build -source 1.4 -sourcepath source `cat $list`;
-  done
+  find source -name '*.java' -print0 \
+    | LC_ALL=C sort -z \
+    | xargs -0 -n25 -P ${BB_NUMBER_THREADS} \
+        jikes-initial -d build -source 1.4 -sourcepath source
 
   fastjar -c -C build . -f ${JAR}
 }

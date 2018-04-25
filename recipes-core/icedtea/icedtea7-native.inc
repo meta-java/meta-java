@@ -1,4 +1,4 @@
-DESCRIPTION = "Harness to build the source code from OpenJDK using Free Software build tools"
+SUMMARY = "Harness to build the source code from OpenJDK using Free Software build tools"
 HOMEPAGE = "http://icedtea.classpath.org"
 LICENSE  = "GPL-2.0-with-classpath-exception"
 INC_PR = "r1"

@@ -1,4 +1,4 @@
-DESCRIPTION = "Lightweight 100% Java SQL Database Engine"
+SUMMARY = "Lightweight 100% Java SQL Database Engine"
 # BSD-like
 LICENSE = "HypersonicSQL"
 LIC_FILES_CHKSUM = "file://doc/hypersonic_lic.txt;md5=778452795343df6f459b725185966888"

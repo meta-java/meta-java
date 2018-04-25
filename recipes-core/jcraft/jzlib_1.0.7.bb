@@ -1,4 +1,4 @@
-DESCRIPTION = "zlib implementation in Java"
+SUMMARY = "zlib implementation in Java"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=a2b2e5b95bf768dd5c4ca097c9cde9e9"
 

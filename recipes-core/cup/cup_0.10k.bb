@@ -1,4 +1,4 @@
-DESCRIPTION = "Lexical analyzer generator for Java"
+SUMMARY = "Lexical analyzer generator for Java"
 AUTHOR = "Elliot Berk, A. Appel, C. Scott Ananian"
 LICENSE = "CUP"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;md5=2c9db91c00f38e52cfc8e67bafaa7c33"

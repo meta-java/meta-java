@@ -1,4 +1,4 @@
-DESCRIPTION = "SSH implementation in Java"
+SUMMARY = "SSH implementation in Java"
 HOMEPAGE = "http://www.jcraft.com/jsch"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=55e3b6a0987ccd0c34530f3df2d206ae"

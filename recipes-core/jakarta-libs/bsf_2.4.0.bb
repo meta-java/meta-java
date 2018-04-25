@@ -1,4 +1,4 @@
-DESCRIPTION = "Bean Scripting Framework package"
+SUMMARY = "Bean Scripting Framework package"
 AUTHOR = "Apache Software Foundation"
 LICENSE = "Apache-2.0"
 PR = "r1"

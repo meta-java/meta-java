@@ -1,4 +1,4 @@
-DESCRIPTION = "Java XSLT processor"
+SUMMARY = "Java XSLT processor"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = " \
                     file://${WORKDIR}/bsf-2.4.0/LICENSE.txt;md5=b1e01b26bacfc2232046c90a330332b3 \

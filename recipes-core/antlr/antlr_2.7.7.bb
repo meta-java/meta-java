@@ -1,4 +1,4 @@
-DESCRIPTION = "Framework for constructing recognizers, interpreters, compilers, and translators"
+SUMMARY = "Framework for constructing recognizers, interpreters, compilers, and translators"
 HOMEPAGE = "http://www.antlr2.org"
 # see http://www.antlr2.org/license.html
 LICENSE = "PD"

@@ -1,4 +1,4 @@
-DESCRIPTION = "GNU Classpath standard Java libraries - For native Java-dependent programs"
+SUMMARY = "GNU Classpath standard Java libraries - For native Java-dependent programs"
 HOMEPAGE = "http://www.gnu.org/software/classpath/"
 LICENSE = "GPL-2.0 & SAX-PD"
 

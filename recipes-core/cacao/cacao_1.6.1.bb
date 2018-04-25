@@ -1,4 +1,4 @@
-DESCRIPTION = "CacaoVM for use as OpenEmbedded's Java VM"
+SUMMARY = "CacaoVM for use as OpenEmbedded's Java VM"
 HOMEPAGE = "http://www.cacaojvm.org/"
 LICENSE  = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://COPYING;md5=59530bdf33659b29e73d4adb9f9f6552"

@@ -1,4 +1,4 @@
-DESCRIPTION = "Java runtime based upon the OpenJDK- and Icedtea Project"
+SUMMARY = "Java runtime based upon the OpenJDK- and Icedtea Project"
 HOMEPAGE = "http://icedtea.classpath.org"
 LICENSE  = "GPL-2.0-with-classpath-exception"
 PRIORITY = "optional"

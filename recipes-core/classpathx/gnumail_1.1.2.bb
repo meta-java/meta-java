@@ -1,4 +1,4 @@
-DESCRIPTION = "GNU's free implementation of the JavaMail API specification"
+SUMMARY = "GNU's free implementation of the JavaMail API specification"
 AUTHOR = "GNU ClasspathX"
 LICENSE = "GPL-2.0-with-GCC-exception"
 PR = "r1"

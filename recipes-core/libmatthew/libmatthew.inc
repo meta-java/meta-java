@@ -1,4 +1,4 @@
-DESCRIPTION = "Unix socket, debug and hexdump JAVA libraries"
+SUMMARY = "Unix socket, debug and hexdump JAVA libraries"
 AUTHOR = "Matthew Johnson <web@matthew.ath.cx>"
 HOMEPAGE = "http://www.matthew.ath.cx/projects/java"
 SECTION = "libs"

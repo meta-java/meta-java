@@ -1,6 +1,6 @@
-# This package compiles and stages only the Jar.
+# This package compiles and stages only the Jar
 
-DESCRIPTION = "JDT Core Batch Compiler - Jar only"
+SUMMARY = "JDT Core Batch Compiler - Jar only"
 HOMEPAGE = "http://www.eclipse.org/"
 LICENSE = "EPL-1.0"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/EPL-1.0;md5=57f8d5e2b3e98ac6e088986c12bf94e6"

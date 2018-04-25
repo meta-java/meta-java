@@ -1,4 +1,4 @@
-DESCRIPTION = "Another Neat Tool - build system for Java"
+SUMMARY = "Another Neat Tool - build system for Java"
 AUTHOR = "Apache Software Foundation"
 HOMEPAGE = "http://ant.apache.org"
 LICENSE = "Apache-2.0"

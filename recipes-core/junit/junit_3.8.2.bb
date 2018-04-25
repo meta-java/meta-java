@@ -1,4 +1,4 @@
-DESCRIPTION = "JUnit is a testing framework for Java"
+SUMMARY = "JUnit is a testing framework for Java"
 AUTHOR = "junit.org"
 HOMEPAGE = "http://www.junit.org"
 LICENSE = "CPL-1.0"

@@ -1,4 +1,4 @@
-DESCRIPTION = "GNU Classpath standard Java libraries"
+SUMMARY = "GNU Classpath standard Java libraries"
 HOMEPAGE = "http://www.gnu.org/software/classpath/"
 SECTION = "libs"
 

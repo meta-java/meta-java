@@ -1,4 +1,4 @@
-DESCRIPTION = "Java runtime based upon the OpenJDK Project"
+SUMMARY = "Java runtime based upon the OpenJDK Project"
 HOMEPAGE = "http://http://openjdk.java.net/"
 LICENSE  = "GPL-2.0-with-classpath-exception"
 

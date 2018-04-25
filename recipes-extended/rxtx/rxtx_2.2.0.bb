@@ -1,4 +1,4 @@
-DESCRIPTION = "Full Java CommAPI implementation"
+SUMMARY = "Full Java CommAPI implementation"
 DEPENDS = "virtual/javac-native"
 LICENSE = "RXTXv2.1"
 LIC_FILES_CHKSUM = "file://COPYING;md5=32303a23463f90b12a7d1dafb8deabf4"

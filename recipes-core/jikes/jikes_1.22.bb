@@ -1,4 +1,4 @@
-DESCRIPTION = "Java compiler adhering to language and VM specifications"
+SUMMARY = "Java compiler adhering to language and VM specifications"
 HOMEPAGE = "http://jikes.sourceforge.net/"
 PRIORITY = "optional"
 SECTION = "devel"

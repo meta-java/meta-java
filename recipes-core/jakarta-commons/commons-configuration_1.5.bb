@@ -2,7 +2,7 @@ require jakarta-commons.inc
 
 PR = "${INC_PR}.1"
 
-DESCRIPTION = "Generic configuration interface for Java applications"
+SUMMARY = "Generic configuration interface for Java applications"
 
 SRC_URI = " \
 	   http://archive.apache.org/dist/commons/configuration/source/${BP}-src.tar.gz;name=archive \

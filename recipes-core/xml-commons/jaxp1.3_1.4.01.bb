@@ -1,4 +1,4 @@
-DESCRIPTION = "Java XML parser and transformer APIs (DOM, SAX, JAXP, TrAX)"
+SUMMARY = "Java XML parser and transformer APIs (DOM, SAX, JAXP, TrAX)"
 AUTHOR = "Apache Software Foundation"
 LICENSE = "Apache-2.0 & W3C & PD"
 LIC_FILES_CHKSUM = " \

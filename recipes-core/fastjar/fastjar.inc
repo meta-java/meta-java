@@ -1,4 +1,4 @@
-DESCRIPTION = "jar replacement written in C."
+SUMMARY = "jar replacement written in C."
 HOMEPAGE = "http://savannah.nongnu.org/projects/fastjar/"
 SECTION = "devel"
 PRIORITY = "optional"

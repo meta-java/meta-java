@@ -3,7 +3,7 @@ LICENSE = "Apache-1.1"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=9147d939b3f3f97692e4441bf20bd1cd"
 PR = "${INC_PR}.1"
 
-DESCRIPTION = "Implementation of the JSP2.0 Expression Language API"
+SUMMARY = "Implementation of the JSP2.0 Expression Language API"
 
 SRC_URI = "http://archive.apache.org/dist/commons/el/source/${BP}-src.tar.gz"
 

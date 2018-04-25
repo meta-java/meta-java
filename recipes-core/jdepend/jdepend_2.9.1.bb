@@ -1,4 +1,4 @@
-DESCRIPTION = "Design quality metrics generator for each Java"
+SUMMARY = "Design quality metrics generator for each Java"
 
 # see https://github.com/clarkware/jdepend/blob/master/LICENSE
 LICENSE = "BSD"

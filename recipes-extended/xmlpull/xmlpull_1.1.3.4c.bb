@@ -1,4 +1,4 @@
-DESCRIPTION = "XML pull parser API"
+SUMMARY = "XML pull parser API"
 HOMEPAGE = "http://www.xmlpull.org"
 PRIORITY = "optional"
 SECTION = "libs"

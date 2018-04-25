@@ -3,7 +3,7 @@
 #
 # This recipe uses the jar created by libecj-bootstrap.
 
-DESCRIPTION = "JDT Core Batch Compiler - Bootstrap variant"
+SUMMARY = "JDT Core Batch Compiler - Bootstrap variant"
 HOMEPAGE = "http://www.eclipse.org/"
 SECTION = "devel"
 LICENSE = "MIT"

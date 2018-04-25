@@ -1,4 +1,4 @@
-DESCRIPTION = "Java Bytecode manipulation library"
+SUMMARY = "Java Bytecode manipulation library"
 AUTHOR = "Apache Software Foundation"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=44030f19e8bad73725f39d16fd05ff12"

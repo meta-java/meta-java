@@ -1,4 +1,4 @@
-DESCRIPTION = "Tcl interpreter for Java"
+SUMMARY = "Tcl interpreter for Java"
 LICENSE = "UCB & SUN & AMD & CDS"
 LIC_FILES_CHKSUM = " \
                     file://license.ucb;md5=997c6617d2f2a747e39945c0f2d1a264 \

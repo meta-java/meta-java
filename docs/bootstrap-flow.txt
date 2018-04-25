@@ -1,0 +1,37 @@
+* first jikes-native is compiled
+  * a Java 1.4-capable compiler that does not need a runtime or
+    (strictly) a class library to work
+* jikes-initial-native is a wrapper around it
+
+* with this compiler we compile the initial (preliminary)
+  runtime (package virtual/java-initial-native)
+  * virtual/java-initial-native can be: cacao-initial-native (0.98)
+    or jamvm-initial-native (1.4.5)
+    * cacao is preferred, as it has a JIT, but doesn't compile
+      on all hosts
+    * cacao-initial-native and jamvm-initial-native both need
+      classpath-initial-native (0.93) and jikes-initial-native
+
+* now libecj-bootstrap-native is built
+  * this needs jikes-initial-native virtual/java-initial-native
+* now ecj-initial is built
+  * this needs libecj-bootstrap-native and
+    virtual/java-initial-native during runtime
+  * at that point we have a 1.5-capable compiler (ecj-initial)
+    running on a Java 1.4 compatible VM (cacao-inital-native
+    or jamvm-initial-native)
+
+* with this compiler (ecj-initial), we compile the final runtime
+  and compiler (virtual/java-native and virtual/javac-native)
+  * virtual/java-native can be: cacao-native (1.6.1) or
+    jamvm-native (2.0.0~pre)
+    * cacao vs jamvm as above
+    * cacao-native and jamvm-native both need
+      classpath-initial-native (0.93) and classpath-native (0.99)
+      and ecj-initial-native and virtual/java-initial-native
+  * virtual/javac-native can be: ecj-bootstrap-native
+    * ecj-bootstrap-native needs libecj-bootstrap-native
+      and virtual/java-native
+  * at that point we have a 1.5-capable compiler (ecj-bootstrap-native)
+    running on a Java 1.5 compatible VN (cacao-native or
+    jamvm-native)

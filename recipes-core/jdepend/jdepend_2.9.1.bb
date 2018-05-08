@@ -6,7 +6,9 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=f5777d32a7709d558c2877d4a6616230"
 
 HOMEPAGE = "https://github.com/clarkware/jdepend"
 
-SRC_URI = "https://github.com/clarkware/jdepend/archive/${PV}.zip;downloadfilename=${BP}.zip"
+SRC_URI = "git://github.com/clarkware/jdepend"
+SRCREV = "57980590313a5dbde236a3eb2c8958e9e53e6a10"
+S = "${WORKDIR}/git"
 
 inherit java-library
 
@@ -17,8 +19,5 @@ do_compile() {
 
   fastjar cf ${JARFILENAME} -C build .
 }
-
-SRC_URI[md5sum] = "9b91efe1d770e023893f89f4dde8434e"
-SRC_URI[sha256sum] = "536b5082d64e4f4dddd514ce30178f36c7a31b34d969275f278f72e522e7f7c9"
 
 BBCLASSEXTEND = "native"

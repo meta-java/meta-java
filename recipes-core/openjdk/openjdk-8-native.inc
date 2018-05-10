@@ -10,7 +10,7 @@ DEPENDS = "\
 SRC_URI_append += "file://handle_extra_output.patch"
 
 PACKAGECONFIG ??= "gif jpeg png zlib"
-PACKAGECONFIG[x11] = "--with-x,,libx11-native xproto-native libxt-native libxext-native libxrender-native"
+PACKAGECONFIG[x11] = "--with-x,,libx11-native xorgproto-native libxt-native libxext-native libxrender-native"
 PACKAGECONFIG[cups] = "--with-cups,,cups"
 PACKAGECONFIG[alsa] = "--with-alsa,,alsa-lib-native"
 PACKAGECONFIG[gif] = "--with-giflib=system,--with-giflib=bundled,giflib-native"

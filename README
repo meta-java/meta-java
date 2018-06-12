@@ -7,12 +7,15 @@ Yocto Project build systems.
 This layer depends on:
 
 URI: git://git.openembedded.org/openembedded-core
-branch: krogoth (or master)
+branch: master
 revision: HEAD
 
 URI: git://git.openembedded.org/meta-openembedded
-branch: krogoth (or master)
+branch: master
 revision: HEAD
+
+For use with a specific Yocto Project release please refer to the corresponding
+git branches.
 
 Contributing
 ------------

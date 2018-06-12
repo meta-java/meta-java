@@ -37,13 +37,18 @@ Source code:
     git://git.yoctoproject.org/meta-java
     http://git.yoctoproject.org/git/meta-java
 
-When creating patches, please use something like:
+When creating single patches, please use something like:
 
-    git format-patch -M -s --subject-prefix='meta-java][PATCH' origin
+    git format-patch -M -s --subject-prefix='meta-java][PATCH' -1
+
+When creating a patch series, please add a cover letter describing it shortly.
+Therefore use something like:
+
+    git format-patch -M -s --cover-letter --subject-prefix='meta-java][PATCH' origin
 
 When sending patches, please use something like:
 
-    git send-email --to openembedded-devel@lists.openembedded.org <generated patch>
+    git send-email --to openembedded-devel@lists.openembedded.org <generated patch(es)>
 
 Main layer maintainers:
 

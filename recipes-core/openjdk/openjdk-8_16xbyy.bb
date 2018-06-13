@@ -14,7 +14,6 @@ do_install() {
 }
 
 PACKAGES_append = " \
-    ${PN}-demo-dbg \
     ${PN}-demo \
     ${PN}-source \
 "
@@ -33,36 +32,8 @@ FILES_${PN}-dev_append = "\
     ${JDK_HOME}/include \
 "
 
-FILES_${PN}-dbg_append = "\
-    ${JDK_HOME}/bin/.debug/ \
-    ${JDK_HOME}/lib/.debug/ \
-    ${JDK_HOME}/lib/${JDK_ARCH}/.debug/ \
-    ${JDK_HOME}/lib/${JDK_ARCH}/jli/.debug/ \
-    ${JDK_HOME}/jre/bin/.debug/ \
-    ${JDK_HOME}/jre/lib/.debug/ \
-    ${JDK_HOME}/jre/lib/${JDK_ARCH}/.debug/ \
-    ${JDK_HOME}/jre/lib/${JDK_ARCH}/jli/.debug/ \
-    ${JDK_HOME}/jre/lib/${JDK_ARCH}/native_threads/.debug/ \
-    ${JDK_HOME}/jre/lib/${JDK_ARCH}/server/.debug/ \
-    ${JDK_HOME}/jre/lib/${JDK_ARCH}/headless/.debug/ \
-    ${JDK_HOME}/jre/lib/${JDK_ARCH}/xawt/.debug/ \
-    ${JDK_HOME}/jre/lib/${JDK_ARCH}/client/.debug/ \
-"
-
 FILES_${PN}-demo = " ${JDK_HOME}/demo ${JDK_HOME}/sample "
 RDEPENDS_${PN}-demo = " ${PN} "
-
-FILES_${PN}-demo-dbg = "\
-    ${JDK_HOME}/demo/jvmti/gctest/lib/.debug/ \
-    ${JDK_HOME}/demo/jvmti/heapTracker/lib/.debug/ \
-    ${JDK_HOME}/demo/jvmti/heapViewer/lib/.debug/ \
-    ${JDK_HOME}/demo/jvmti/hprof/lib/.debug/ \
-    ${JDK_HOME}/demo/jvmti/minst/lib/.debug/ \
-    ${JDK_HOME}/demo/jvmti/mtrace/lib/.debug/ \
-    ${JDK_HOME}/demo/jvmti/versionCheck/lib/.debug/ \
-    ${JDK_HOME}/demo/jvmti/waiters/lib/.debug/ \
-    ${JDK_HOME}/demo/jvmti/compiledMethodLoad/lib/.debug/ \
-"
 
 FILES_${PN}-doc_append = "\
     ${JDK_HOME}/man \

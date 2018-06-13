@@ -105,5 +105,21 @@ EXTRA_OEMAKE_append = '\
     images \
 '
 
+python remove_debuglink() {
+    dvar = d.getVar('PKGD', True)
+    objcopy = d.getVar("OBJCOPY", True)
+
+    # Remove the previous debuglink if it has existed, because it has a different file name with that we will add.
+    if d.getVar('PN', True).find("jre") != -1:
+        file = dvar + d.getVar("JRE_HOME", True) + "/lib/" + d.getVar("JDK_ARCH", True) + "/server/libjvm.so"
+    else:
+        file = dvar + d.getVar("JDK_HOME", True) + "/jre/lib/" + d.getVar("JDK_ARCH", True) + "/server/libjvm.so"
+
+    cmd = "'%s' --remove-section .gnu_debuglink '%s'" % (objcopy, file)
+    oe.utils.getstatusoutput(cmd)
+}
+
+PACKAGE_PREPROCESS_FUNCS += "remove_debuglink"
+
 # There is a symlink to a .so but this one is valid.
 INSANE_SKIP_${PN} = "dev-so"

@@ -17,7 +17,7 @@ DEPENDS = "virtual/javac-native fastjar-native"
 PACKAGE_WRITE_DEPS += "openjdk-8-native"
 
 SRC_URI = "\
-	git://anonscm.debian.org/pkg-java/ca-certificates-java.git \
+	git://salsa.debian.org/java-team/ca-certificates-java.git \
 	file://0001-UpdateCertificates-handle-SYSROOT-environment-variab.patch \
 	file://${BPN}.hook.in \
 "

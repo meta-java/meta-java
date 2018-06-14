@@ -1,0 +1,21 @@
+From: Richard Leitner <richard.leitner@skidata.com>
+Date: Thu, 14 Jun 2018 23:42:11 +0200
+Subject: [PATCH] openjdk-8: hotspot: fix gcc8 compilation
+
+As oe-core/yocto-project master migrated to gcc8.x we need to support this.
+Therefore disable following gcc warnings/errors which caused the build to fail:
+  + stringop-overflow
+  + return-type
+---
+
+--- a/hotspot/make/linux/makefiles/gcc.make
++++ b/hotspot/make/linux/makefiles/gcc.make
+@@ -197,7 +197,7 @@
+ endif
+ 
+ # Compiler warnings are treated as errors
+-WARNINGS_ARE_ERRORS = -Werror
++WARNINGS_ARE_ERRORS = -Werror -Wno-stringop-overflow -Wno-error=return-type
+ 
+ ifeq ($(USE_CLANG), true)
+   # However we need to clean the code up before we can unrestrictedly enable this option with Clang

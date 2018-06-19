@@ -57,6 +57,22 @@ Main layer maintainers:
   Otavio Salvador <otavio@ossystems.com.br>
   Richard Leitner <richard.leitner@skidata.com>
 
+Testing
+-------
+
+The meta-java layer may be tested using oeqa's runtime image tests. The easiest
+way is to add the following configuration to your local.conf:
+
+SANITY_TESTED_DISTROS=""
+TEST_IMAGE = "1"
+
+Then you should be able to use the open{jre,jdk}-{7,8}-test-image recipes.
+Furthermore you could also include the tests provided in lib/oeqa/runtime/cases
+into your test image. More information on image testing is available at:
+
+	https://wiki.yoctoproject.org/wiki/Image_tests
+
+
 Usage instructions
 ------------------
 

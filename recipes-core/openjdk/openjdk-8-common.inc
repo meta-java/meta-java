@@ -39,7 +39,7 @@ do_unpack_extract_submodules () {
     tar xjf ${WORKDIR}/${NASHORN_FILE_LOCAL} --transform "s,-${NASHORN_CHANGESET},,g"
 }
 
-do_unpack_remove_X11_wrappers() {
+do_unpack_delete_X11_wrappers() {
     find ${S}/jdk/src/solaris/classes/sun/awt/X11 -maxdepth 1 -name '*.java' -delete
 }
 
@@ -153,7 +153,7 @@ def jdk_configure_options(d):
     return options[3]
 
 do_unpack[postfuncs] += "do_unpack_extract_submodules"
-do_unpack[postfuncs] += "${@bb.utils.contains('PACKAGECONFIG', 'x11', '', 'do_unpack_remove_X11_wrappers', d)}"
+do_unpack[postfuncs] += "${@bb.utils.contains('PACKAGECONFIG', 'x11', '', 'do_unpack_delete_X11_wrappers', d)}"
 
 do_configure_prepend() {
         export ${@jdk_environment_options(d)}

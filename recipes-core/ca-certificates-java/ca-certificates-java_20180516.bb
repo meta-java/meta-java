@@ -22,7 +22,7 @@ SRC_URI = "\
 	file://${BPN}.hook.in \
 "
 
-SRCREV = "53651f7939e6f35694ee31e5ef0376f1bfce7e55"
+SRCREV = "793b846dcd4e79371bbe8069e4125ec2fd462e57"
 
 inherit java allarch
 

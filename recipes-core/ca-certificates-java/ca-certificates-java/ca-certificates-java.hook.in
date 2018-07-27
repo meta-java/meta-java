@@ -61,4 +61,3 @@ else
 fi | SYSROOT="${D:-}" ${JAVA} -Xmx64m \
                               -jar ${D:-}@@datadir_java@@/@@JARFILENAME@@ \
                               -storepass changeit
-

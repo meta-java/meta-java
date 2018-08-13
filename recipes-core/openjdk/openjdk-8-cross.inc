@@ -77,13 +77,13 @@ do_install_append() {
     if ${@bb.utils.contains('PACKAGECONFIG', 'repack', 'true', 'false', d)} ; then
       if [ -d ${D}${JDK_HOME} ] ; then
         find ${D}${JDK_HOME} -name "*.jar" -print0 | \
-          xargs -0 -n1 -P ${@java_get_parallel_make(d)} sh -c ' \
+          xargs -0 -n1 -P ${BB_NUMBER_THREADS} sh -c ' \
               echo "Repacking" "$0" ; \
               pack200 --repack --effort=9 --segment-limit=-1 --modification-time=latest --strip-debug "$0"'
       fi
       if [ -d ${D}${JRE_HOME} ] ; then
         find ${D}${JRE_HOME} -name "*.jar" -print0 | \
-          xargs -0 -n1 -P ${@java_get_parallel_make(d)} sh -c ' \
+          xargs -0 -n1 -P ${BB_NUMBER_THREADS} sh -c ' \
               echo "Repacking" "$0" ; \
               pack200 --repack --effort=9 --segment-limit=-1 --modification-time=latest --strip-debug "$0"'
       fi

@@ -3,6 +3,7 @@ import os
 from oeqa.runtime.case import OERuntimeTestCase
 from oeqa.core.decorator.depends import OETestDepends
 from oeqa.core.decorator.oeid import OETestID
+from oeqa.core.decorator.data import skipIfDataVar
 from oeqa.runtime.decorator.package import OEHasPackage
 
 class JavaTest(OERuntimeTestCase):
@@ -50,8 +51,27 @@ class JavaTest(OERuntimeTestCase):
         msg = 'Incorrect mode: %s' % output
         self.assertIn(', interpreted mode)', output, msg=msg)
 
+    # As OpenJDK-7 doesn't support compiled mode (JIT) for all architectures yet
+    # we skip these tests for now.
+    @OEHasPackage(["openjdk-7-jre", "openjdk-7"])
     @OETestDepends(['java.JavaTest.test_java_exists'])
-    def test_java_jar_comp_mode(self):
+    @skipIfDataVar('ARCH', 'arm64', 'OpenJDK 7 compiled mode not yet supported for aarch64')
+    @skipIfDataVar('ARCH', 'x86', 'OpenJDK 7 compiled mode not yet supported for x86')
+    @skipIfDataVar('ARCH', 'x86-64', 'OpenJDK 7 compiled mode not yet supported for x86-64')
+    def test_java7_jar_comp_mode(self):
+        status, output = self.target.run('java -showversion -Xcomp -jar /tmp/test.jar')
+        msg = 'Exit status was not 0. Output: %s' % output
+        self.assertEqual(status, 0, msg=msg)
+
+        msg = 'Incorrect mode: %s' % output
+        self.assertIn(', compiled mode)', output, msg=msg)
+
+    # As OpenJDK-8 doesn't support compiled mode (JIT) for arm yet we skip this
+    # test for now.
+    @OEHasPackage(["openjre-8", "openjdk-8"])
+    @OETestDepends(['java.JavaTest.test_java_exists'])
+    @skipIfDataVar('ARCH', 'arm', 'OpenJDK 8 compiled mode not yet supported for arm')
+    def test_java8_jar_comp_mode(self):
         status, output = self.target.run('java -showversion -Xcomp -jar /tmp/test.jar')
         msg = 'Exit status was not 0. Output: %s' % output
         self.assertEqual(status, 0, msg=msg)

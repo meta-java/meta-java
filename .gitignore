@@ -1,4 +1,5 @@
 *.bak
 *.orig
+*.pyc
 *.rej
 *.swp

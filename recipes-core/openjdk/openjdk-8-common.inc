@@ -253,4 +253,3 @@ def version_specific_cflags(d):
 
 CFLAGS_append = " ${@version_specific_cflags(d)}"
 CXXFLAGS_append = " ${@version_specific_cflags(d)}"
-CXX_append = " -std=gnu++98"

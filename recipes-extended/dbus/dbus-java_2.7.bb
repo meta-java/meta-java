@@ -6,7 +6,7 @@ HOMEPAGE = "http://dbus.freedesktop.org/doc/dbus-java"
 SECTION = "libs"
 LICENSE = "LGPL-2.1 & AFL-2.1"
 
-DEPENDS = "libmatthew docbook-utils-native docbook-sgml-dtd-4.1-native fastjar-native"
+DEPENDS = "libmatthew gettext-native fastjar-native"
 RDEPENDS_${PN}-viewer = "java2-runtime libunixsocket-java ${PN}-bin libmatthew-debug-java ${JPN}"
 RDEPENDS_${PN}-bin = "java2-runtime libunixsocket-java libmatthew-debug-java ${JPN}"
 RSUGGESTS_${JPN} = "libunixsocket-java"
@@ -49,15 +49,6 @@ do_compile () {
 		JAVAUNIXJARDIR=${datadir_java} \
 		JAVAUNIXLIBDIR=${libdir_jni} \
 		bin
-
-	# Generate man pages.
-	oe_runmake \
-		JAVAC="oefatal \"No Java compilation expected here.\"" \
-		JAR="oefatal \"No jar invocation expected here.\"" \
-		JARPREFIX=${datadir_java} \
-		JAVAUNIXJARDIR=${datadir_java} \
-		JAVAUNIXLIBDIR=${libdir_jni} \
-		man
 }
 
 JARFILENAME = "${JPN}-${PV}.jar"
@@ -73,20 +64,11 @@ do_install () {
   install bin/CreateInterface ${D}${bindir}
   install bin/ListDBus ${D}${bindir}
   install bin/DBusDaemon ${D}${bindir}
-
-	oe_runmake \
-		JAVAC="oefatal \"No Java compilation expected here.\"" \
-		JAR="oefatal \"No jar invocation expected here.\"" \
-		MANPREFIX=${D}${mandir} \
-		DOCPREFIX=${D}${docdir}/${JPN} \
-		install-man
 }
 
 # ${JPN} must be last otherwise it would pick up dbus-viewer*.jar
 # and dbus-bin*.jar
-PACKAGES = "${PN}-viewer ${PN}-viewer-doc ${PN}-bin ${PN}-bin-doc ${JPN}"
+PACKAGES = "${PN}-viewer ${PN}-bin ${JPN}"
 
 FILES_${PN}-viewer = "${datadir}/java/dbus-java-viewer*.jar ${bindir}/DBusViewer"
-FILES_${PN}-viewer-doc = "${mandir}/DBusViewer*"
 FILES_${PN}-bin = "${datadir}/java/dbus-java-bin*.jar ${bindir}"
-FILES_${PN}-bin-doc = "${mandir} ${docdir}/${JPN}"

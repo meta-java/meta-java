@@ -1,7 +1,6 @@
-PV = "162b12"
-PV_aarch64 = "161b15"
-
-require openjdk-8-release-${PV}.inc
+INC_FILE_SUFFIX = ""
+INC_FILE_SUFFIX_aarch64 = "-aarch64"
+require openjdk-8-release-${PV}${INC_FILE_SUFFIX}.inc
 require openjdk-8-cross.inc
 
 do_install() {

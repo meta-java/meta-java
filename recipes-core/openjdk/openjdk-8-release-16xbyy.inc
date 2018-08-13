@@ -54,7 +54,8 @@ ARM_INSTRUCTION_SET_armv4t = "ARM"
 
 # readdir_r was deprecated in glibc-2.24. Ignore the error for now
 # NOTE: When updating the recipe, please check if this is still needed
-CFLAGS_append = " -Wno-error=deprecated-declarations"
+BUILD_CFLAGS_append = " -Wno-error=deprecated-declarations"
+TARGET_CFLAGS_append = " -Wno-error=deprecated-declarations"
 
 # Enable zero mode for arm based builds, as normal hotspot fails to build
 PACKAGECONFIG_append_arm = " zero"

@@ -224,32 +224,39 @@ FLAGS_GCC7 = "-fno-lifetime-dse -fno-delete-null-pointer-checks"
 # version is and only add the flags that are appropriate for that GCC
 # version.
 
-def version_specific_cflags(d):
-    import re
-
-    extraflags = None
-    version = None
-
-    if bb.data.inherits_class('native', d):
-        from subprocess import Popen, PIPE
-
-        cmd = d.expand('${CC} -dumpversion').split()
-        cc = Popen(cmd, stdout=PIPE, stderr=PIPE)
-        version = cc.communicate()[0].decode('utf-8')[0]
-    else:
-        # in the cross case, trust that GCCVERSION is correct. This won't
-        # work if the native toolchain is Clang, but as of this writing that
-        # doesn't work anyway.
-        version = d.getVar('GCCVERSION', expand=True)[0]
-        # skip non digit characters at the beginning, e.g. from "linaro-6.2%"
-        match = re.search("\d", version)
-        if match:
-            version = version[match.start():]
-
+def get_cflags_by_cc_version(d, version):
     if version.isdigit():
-        extraflags = d.getVar('FLAGS_GCC%d' % int(version), True) or ''
-        return extraflags
+        return d.getVar('FLAGS_GCC%d' % int(version)) or ''
     return ''
 
-CFLAGS_append = " ${@version_specific_cflags(d)}"
-CXXFLAGS_append = " ${@version_specific_cflags(d)}"
+def get_build_cflags(d):
+    def get_build_cc_version(build_cc):
+        from subprocess import Popen, PIPE
+        cmd = d.expand('%s -dumpversion' % build_cc).split()
+        cc = Popen(cmd, stdout=PIPE, stderr=PIPE)
+        return cc.communicate()[0].decode('utf-8')[0]
+
+    build_cc = d.getVar('BUILD_CC')
+    version = get_build_cc_version(build_cc)
+    return get_cflags_by_cc_version(d, version)
+
+def get_target_cflags(d):
+    import re
+
+    # in the cross case, trust that GCCVERSION is correct. This won't
+    # work if the native toolchain is Clang, but as of this writing that
+    # doesn't work anyway.
+    version = d.getVar('GCCVERSION')[0]
+    # skip non digit characters at the beginning, e.g. from "linaro-6.2%"
+    match = re.search("\d", version)
+    if match:
+        version = version[match.start():]
+    return get_cflags_by_cc_version(d, version)
+
+
+# flags for -native, and for bits that need a host-tool during -cross
+BUILD_CFLAGS_append = " ${@get_build_cflags(d)}"
+BUILD_CXXFLAGS_append = " ${@get_build_cflags(d)}"
+# flags for -cross
+TARGET_CFLAGS_append = " ${@get_target_cflags(d)}"
+TARGET_CXXFLAGS_append = " ${@get_target_cflags(d)}"

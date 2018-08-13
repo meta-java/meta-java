@@ -52,7 +52,7 @@ SRC_URI_append = "\
 "
 
 EXTRA_OECONF_append = "\
-    --with-jobs=${@java_get_parallel_make(d)} \
+    --with-jobs=${@openjdk_build_helper_get_parallel_make(d)} \
     \
     --with-sys-root=${STAGING_DIR_HOST} \
     --with-tools-dir=${STAGING_DIR_NATIVE} \

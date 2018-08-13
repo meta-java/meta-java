@@ -20,7 +20,7 @@ PACKAGECONFIG[png] = "--with-libpng=system,--with-libpng=bundled,libpng-native"
 PACKAGECONFIG[zlib] = "--with-zlib=system,--with-zlib=bundled,zlib-native"
 
 EXTRA_OECONF_append = "\
-    --with-jobs=${@java_get_parallel_make(d)} \
+    --with-jobs=${@openjdk_build_helper_get_parallel_make(d)} \
     \
     --with-sys-root=${STAGING_DIR_NATIVE} \
     --with-tools-dir=${STAGING_DIR_NATIVE} \

@@ -25,6 +25,7 @@ CXXFLAGS_append = " -fno-tree-dse"
 CXX_append = " -std=gnu++98"
 
 inherit native java autotools pkgconfig
+inherit openjdk-build-helper
 
 JAVA_HOME[unexport] = "1"
 
@@ -58,7 +59,7 @@ export ALT_FREETYPE_LIB_PATH = "${STAGING_LIBDIR}"
 INSANE_SKIP_${PN} = "already-stripped"
 
 EXTRA_OECONF = "\
-	--with-parallel-jobs=${@java_get_parallel_make(d)} \
+	--with-parallel-jobs=${@openjdk_build_helper_get_parallel_make(d)} \
 	\
         --disable-tests \
         --disable-hotspot-tests \

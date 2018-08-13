@@ -5,6 +5,7 @@ LICENSE  = "GPL-2.0-with-classpath-exception"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3e0b59f8fac05c3c03d4a26bbda13f8f"
 
 inherit java autotools gettext qemu pkgconfig
+inherit openjdk-build-helper
 
 AUTOTOOLS_SCRIPT_PATH = "${S}/common/autoconf/"
 export AUTOCONF_DIR="${AUTOTOOLS_SCRIPT_PATH}"

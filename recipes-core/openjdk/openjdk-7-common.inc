@@ -84,7 +84,7 @@ EXTRA_OECONF = " \
     --with-jdk-src-zip=${WORKDIR}/${JDK_FILE} \
     --with-langtools-src-zip=${WORKDIR}/${LANGTOOLS_FILE} \
     \
-    --with-parallel-jobs=${@java_get_parallel_make(d)} \
+    --with-parallel-jobs=${@openjdk_build_helper_get_parallel_make(d)} \
     \
     --with-pkgversion=${PV} \
     --with-cc-for-build=${BUILD_CC} \

@@ -17,6 +17,7 @@ DEPENDS_append_libc-uclibc = " virtual/libiconv "
 DEPENDS_append = " qemu-native "
 
 inherit java autotools gettext qemu pkgconfig
+inherit openjdk-build-helper
 
 B = "${S}/build"
 

@@ -32,7 +32,7 @@ index fb96738a..982ce84d 100644
  #ifdef AMD64
  #define REG_SP REG_RSP
 @@ -543,6 +542,9 @@ JVM_handle_linux_signal(int sig,
-   ShouldNotReachHere();
+   return true; // Mute compiler
  }
  
 +#define _FPU_GETCW(cw) __asm__ __volatile__ ("fnstcw %0" : "=m" (*&cw))

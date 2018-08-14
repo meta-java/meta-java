@@ -1,0 +1,41 @@
+From 1fa1097d45afa2fe2bfd989fbd90578f5c5fc540 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
+Date: Mon, 13 Aug 2018 12:14:21 +0100
+Subject: [PATCH] hotspot/aarch64: fix undefined behaviour (gcc v8 fix)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Backport patch from
+  http://hg.openjdk.java.net/aarch64-port/jdk8u/hotspot/rev/253b0c304db6
+to address segfaults due to undefined behaviour.
+
+|# HG changeset patch
+|# User shade
+|# Date 1526068247 -7200
+|# Node ID 253b0c304db6d31be3d3d7cf7cf1b3561a16dc3a
+|# Parent  1ced2ae00e35e6f855175fc44500b37fbac9e314
+UB in os_linux_aarch64.cpp SpinPause
+Reviewed-by: aph, shade, adinn
+
+Signed-off-by: André Draszik <andre.draszik@jci.com>
+Upstream-Status: Backport [http://hg.openjdk.java.net/jdk8u/jdk8u/hotspot/rev/ca4663e58916]
+---
+ hotspot/src/os_cpu/linux_aarch64/vm/os_linux_aarch64.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/hotspot/src/os_cpu/linux_aarch64/vm/os_linux_aarch64.cpp b/hotspot/src/os_cpu/linux_aarch64/vm/os_linux_aarch64.cpp
+index 8b985693..f536817e 100644
+--- a/hotspot/src/os_cpu/linux_aarch64/vm/os_linux_aarch64.cpp
++++ b/hotspot/src/os_cpu/linux_aarch64/vm/os_linux_aarch64.cpp
+@@ -699,6 +699,7 @@ void os::verify_stack_alignment() {
+ 
+ extern "C" {
+   int SpinPause() {
++    return 0;
+   }
+ 
+   void _Copy_conjoint_jshorts_atomic(jshort* from, jshort* to, size_t count) {
+-- 
+2.18.0
+

@@ -17,6 +17,19 @@ PATCHES_URI = "\
     file://0009-jdk-disable-backtrace-musl-build-fix.patch \
     file://0010-build-fix-build-on-as-needed-toolchains-generic.patch \
     file://0011-hotspot-backport-patch-to-fix-misuses-of-strncpy-str.patch \
+    ${HOTSPOT_UB_PATCH} \
+"
+HOTSPOT_UB_PATCH = "\
+    file://0014-hotspot-zero-fix-undefined-behaviour-gcc-v8-fix.patch \
+    file://0015-hotspot-fix-Wreturn-type-issues-introduced-by-806165.patch \
+    file://0016-hotspot-Zero-build-requires-disabled-warnings.patch \
+    file://0017-hotspot-Missing-return-statement-in-__sync_val_compa.patch \
+    file://0018-hotspot-Fix-debug-build-after-8062808-Turn-on-the-Wr.patch \
+    file://0019-hotspot-Turn-on-the-Wreturn-type-warning.patch \
+"
+HOTSPOT_UB_PATCH_prepend_aarch64 = "\
+    file://0012-hotspot-aarch64-fix-undefined-behaviour-gcc-v8-fix.patch \
+    file://0013-hotspot-aarch64-Fix-further-functions-with-a-missing.patch \
 "
 # some patches extracted from http://cr.openjdk.java.net/~rkennke/shark-build-hotspot/webrev.01/hotspot.patch
 # reported via http://mail.openjdk.java.net/pipermail/build-dev/2015-January/013972.html

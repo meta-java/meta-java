@@ -175,22 +175,8 @@ do_compile() {
 	# in order to start java when the amount of RAM is limited for the user.
 	export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS}"
 
-	# OpenJDK uses slightly different names for certain arches. We need to know
-	#	this to create some files which are expected by the build.
-	case "${TRANSLATED_TARGET_ARCH}" in
-		x86-64)
-			arch=amd64
-			libarch=amd64
-		;;
-		i386|i486|i586|i686)
-			arch=x86
-			libarch=x86
-		;;
-		*)
-			arch=${TARGET_ARCH}
-			libarch=${TARGET_ARCH}
-		;;
-	esac
+	arch="${@openjdk_build_helper_get_icedtea_arch(d)}"
+	libarch="${@openjdk_build_helper_get_icedtea_arch(d)}"
 
         install -d openjdk-boot/control/build/linux-$arch/hotspot/import/jre/lib
         if [ $libarch != $arch ]; then
@@ -217,30 +203,8 @@ do_compile() {
         oe_runmake icedtea
 }
 
-def jdk_arch(d):
-        import bb
-
-        target_arch = d.getVar('TRANSLATED_TARGET_ARCH', True)
-
-        if target_arch in ['i386', 'i486', 'i586', 'i686']:
-            return "x86"
-        elif target_arch in ['x86-64']:
-            return "amd64"
-
-        return target_arch
-
 do_install() {
-	case "${TRANSLATED_TARGET_ARCH}" in
-		x86-64)
-			JDK_ARCH=amd64
-		;;
-		i386|i486|i586|i686)
-			JDK_ARCH=x86
-		;;
-		*)
-			JDK_ARCH=${TARGET_ARCH}
-		;;
-	esac
+	JDK_ARCH="${@openjdk_build_helper_get_icedtea_arch(d)}"
 
 	install -d ${JDK_INSTALL_DIR}
 

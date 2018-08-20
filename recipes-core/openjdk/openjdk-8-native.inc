@@ -7,8 +7,6 @@ DEPENDS = "\
     ca-certificates-native openssl-native coreutils-native \
 "
 
-SRC_URI_append += "file://handle_extra_output.patch"
-
 PACKAGECONFIG ??= "gif jpeg png zlib"
 PACKAGECONFIG[x11] = "--with-x,,libx11-native xorgproto-native libxt-native libxext-native libxrender-native"
 PACKAGECONFIG[cups] = "--with-cups,,cups"

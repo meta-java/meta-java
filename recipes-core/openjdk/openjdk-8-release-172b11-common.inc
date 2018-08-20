@@ -18,6 +18,8 @@ PATCHES_URI = "\
     file://0010-build-fix-build-on-as-needed-toolchains-generic.patch \
     file://0011-hotspot-backport-patch-to-fix-misuses-of-strncpy-str.patch \
     ${HOTSPOT_UB_PATCH} \
+    ${LIBPNG_NEON_PATCH} \
+    file://handle_extra_output.patch \
 "
 HOTSPOT_UB_PATCH = "\
     file://0014-hotspot-zero-fix-undefined-behaviour-gcc-v8-fix.patch \
@@ -43,7 +45,6 @@ PATCHES_URI_append_class-target = "\
     file://openjdk8-fix-assembler-flag-handling-in-makefile.patch;striplevel=0 \
     file://openjdk8-fix-adlc-flags.patch;striplevel=0 \
     file://openjdk8-add-missing-linker-flags.patch;striplevel=0 \
-    ${LIBPNG_NEON_PATCH} \
 "
 PATCHES_URI_append_libc-musl = "\
     file://musl-0001-hotspot-stop-using-obsolete-isnanf.patch \

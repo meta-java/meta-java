@@ -72,6 +72,25 @@ into your test image. More information on image testing is available at:
 
 	https://wiki.yoctoproject.org/wiki/Image_tests
 
+Known Limitations/Bugs
+----------------------
+
+OpenJDK:
+	The following OpenJDK version/target-architecture combinations currently
+	only support "interpreted mode":
+		openjdk-8 on arm
+		openjdk-7 on aarch64
+		openjdk-7 on x86
+		openjdk-7 on x86-64
+
+	The following target-architectures currently fail building
+	openjdk-7-jre, openjdk-7, openjdk-8 and openjre-8:
+		mips (tested with qemumips)
+		mips64 (tested with qemumips64)
+		ppc (tested with qemuppc)
+
+If you encounter any other problems or bugs please report them to our mailing
+list at openembedded-devel@lists.openembedded.org.
 
 Usage instructions
 ------------------

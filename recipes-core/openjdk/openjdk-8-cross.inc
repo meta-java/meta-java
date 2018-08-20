@@ -32,7 +32,9 @@ PACKAGECONFIG[jpeg] = "--with-libjpeg=system,--with-libjpeg=bundled,jpeg,"
 PACKAGECONFIG[png] = "--with-libpng=system,--with-libpng=bundled,libpng,"
 PACKAGECONFIG[zlib] = "--with-zlib=system,--with-zlib=bundled,zlib,"
 
+# JVM variants
 export WANT_LLVM_RELEASE = "3.5.2"
+PACKAGECONFIG[client] = "--with-jvm-variants=client,,,"
 PACKAGECONFIG[zero] = "--with-jvm-variants=zero,,,"
 PACKAGECONFIG[shark] = "--with-jvm-variants=zeroshark,,llvm3.5,"
 

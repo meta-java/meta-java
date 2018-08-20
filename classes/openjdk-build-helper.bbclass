@@ -49,3 +49,54 @@ def openjdk_build_helper_get_target_cflags(d):
     if match:
         version = version[match.start():]
     return openjdk_build_helper_get_cflags_by_cc_version(d, version)
+
+# OpenJDK uses slightly different names for certain arches. We need to know
+# this to create some files which are expected by the build.
+def openjdk_build_helper_get_jdk_arch(d):
+    import bb
+
+    jdk_arch = d.getVar('TRANSLATED_TARGET_ARCH', True)
+    if jdk_arch == "x86-64":
+        jdk_arch = "amd64"
+    elif jdk_arch == "powerpc":
+        jdk_arch = "ppc"
+    elif jdk_arch == "powerpc64":
+        jdk_arch = "ppc64"
+    elif jdk_arch in ['i486', 'i586', 'i686']:
+        jdk_arch = "i386"
+
+    return jdk_arch
+
+# Shark also needs slightly different names for certain arches. Due to the fact
+# these differ from the "normal" OpenJDK arch names we have a separate function
+# for Shark here. Furthermore we warn if we think Shark doesn't support the arch
+def openjdk_build_helper_get_llvm_configure_arch(d):
+    import bb;
+
+    arch = d.getVar('TRANSLATED_TARGET_ARCH', True)
+    if arch in ['i386', 'i486', 'i586', 'i686', 'x86-64']:
+        arch = "x86"
+    elif arch in ['mipsel', 'mips']:
+        arch = "mips"
+    elif arch in ['powerpc', 'powerpc64']:
+        arch = "powerpc"
+    elif arch == "arm":
+        arch = "arm"
+    else:
+        if 'shark' in d.getVar('PACKAGECONFIG').split():
+            bb.warn("%s does not support %s in Shark builds yet" % (d.getVar('PN', True), arch) );
+
+    return arch
+
+# Again it seems IcedTea native also needs slightly different names for certain
+# arches. Therefore provide the translation.
+def openjdk_build_helper_get_icedtea_arch(d):
+    import bb;
+
+    arch = d.getVar('TRANSLATED_TARGET_ARCH', True)
+    if arch == "x86-64":
+        arch = "amd64"
+    elif arch in ['i386', 'i486', 'i586', 'i686']:
+        arch = "x86"
+
+    return arch

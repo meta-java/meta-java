@@ -4,8 +4,7 @@ LICENSE  = "GPL-2.0-with-classpath-exception"
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3e0b59f8fac05c3c03d4a26bbda13f8f"
 
-inherit java autotools gettext qemu pkgconfig
-inherit openjdk-build-helper
+require openjdk-common.inc
 
 AUTOTOOLS_SCRIPT_PATH = "${S}/common/autoconf/"
 export AUTOCONF_DIR="${AUTOTOOLS_SCRIPT_PATH}"
@@ -159,10 +158,6 @@ do_unpack[postfuncs] += "${@bb.utils.contains('PACKAGECONFIG', 'x11', '', 'do_un
 do_configure_prepend() {
         export ${@jdk_environment_options(d)}
 }
-
-# Provide the translated target architectures
-export LLVM_CONFIGURE_ARCH="${@openjdk_build_helper_get_llvm_configure_arch(d)}"
-JDK_ARCH = "${@openjdk_build_helper_get_jdk_arch(d)}"
 
 export DEBUG_BINARIES = "true"
 

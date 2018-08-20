@@ -126,9 +126,6 @@ EXTRA_OEMAKE += ' \
     UNZIP_BIN="${STAGING_BINDIR_NATIVE}/unzip" \
 '
 
-# Provides the target architecture to the configure script.
-export LLVM_CONFIGURE_ARCH="${@get_llvm_configure_arch(d)}"
-
 OE_LAUNCHER_LDFLAGS = "-Wl,-rpath-link,${STAGING_LIBDIR}/llvm${WANT_LLVM_RELEASE} -Wl,-rpath,${libdir}/llvm${WANT_LLVM_RELEASE}"
 
 OE_LAUNCHER_LDFLAGS_arm = ""

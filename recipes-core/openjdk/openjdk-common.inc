@@ -21,45 +21,9 @@ inherit openjdk-build-helper
 
 B = "${S}/build"
 
-# OpenJDK uses slightly different names for certain arches. We need to know
-#	this to create some files which are expected by the build.
-def get_jdk_arch(d):
-    import bb
-
-    jdk_arch = d.getVar('TRANSLATED_TARGET_ARCH', True)
-    if jdk_arch == "x86-64":
-        jdk_arch = "amd64"
-    elif jdk_arch == "powerpc":
-        jdk_arch = "ppc"
-    elif jdk_arch == "powerpc64":
-        jdk_arch = "ppc64"
-    elif (jdk_arch == "i486" or jdk_arch == "i586" or jdk_arch == "i686"):
-        jdk_arch = "i386"
-
-    return jdk_arch
-
-JDK_ARCH = "${@get_jdk_arch(d)}"
+JDK_ARCH = "${@openjdk_build_helper_get_jdk_arch(d)}"
 JDK_HOME = "${libdir_jvm}/${JDK_DIR}"
 JDK_FAKE = "${WORKDIR}/fake-jdk"
-
-# A function that is needed in the Shark builds.
-def get_llvm_configure_arch(d):
-    import bb;
-
-    arch = d.getVar('TRANSLATED_TARGET_ARCH', True)
-    if arch == "x86-64" or arch == "i486" or arch == "i586" or arch == "i686":
-        arch = "x86"
-    elif arch == "arm":
-        arch = "arm"
-    elif arch == "mipsel" or arch == "mips":
-        arch = "mips"
-    elif arch == "powerpc" or arch == "powerpc64":
-        arch = "powerpc"
-    else:
-        if 'shark' in d.getVar('PACKAGECONFIG').split():
-            bb.warn("%s does not support %s in Shark builds yet" % (d.getVar('PN', True), arch) );
-
-    return arch
 
 # Puts an OE specific string into the binary making it possible for the user
 # to know where it comes from (and blame the right people ...).
@@ -72,7 +36,7 @@ EXTRA_OEMAKE = 'DIST_NAME="${DIST_NAME}" DIST_ID="${DIST_ID}"'
 export WANT_LLVM_RELEASE = "2.8"
 
 # Provides the target architecture to the configure script.
-export LLVM_CONFIGURE_ARCH="${@get_llvm_configure_arch(d)}"
+export LLVM_CONFIGURE_ARCH="${@openjdk_build_helper_get_llvm_configure_arch(d)}"
 
 # Large stack is required at least on x86_64 host, otherwise random segfaults appear:
 QEMU = "${@qemu_target_binary(d)} ${QEMU_OPTIONS} -s 2097152"

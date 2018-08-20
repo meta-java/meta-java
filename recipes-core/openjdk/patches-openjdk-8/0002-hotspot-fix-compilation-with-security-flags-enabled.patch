@@ -1,5 +1,5 @@
 From bdea8cf299313388ec41ea20281deca6dc4f764d Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 14:41:06 +0000
 Subject: [PATCH 2/9] hotspot: fix compilation with security flags enabled
 MIME-Version: 1.0
@@ -18,7 +18,7 @@ Content-Transfer-Encoding: 8bit
 Backport a patch to fix this.
 
 Upstream-Status: Backport [http://hg.openjdk.java.net/jdk10/jdk10/hotspot/rev/eb11b3f0ae65]
-Signed-off-by: André Draszik <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+Signed-off-by: AndrÃ© Draszik <andre.draszik@jci.com>
 ---
  hotspot/src/share/vm/code/dependencies.cpp | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)

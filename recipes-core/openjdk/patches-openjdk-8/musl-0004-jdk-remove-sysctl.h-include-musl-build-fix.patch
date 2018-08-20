@@ -1,5 +1,5 @@
 From 86945e6df4dc15d5c2402a656d1d9d1b25945fb2 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 09:28:06 +0000
 Subject: [PATCH 4/9] jdk: remove sysctl.h include (musl build fix)
 MIME-Version: 1.0
@@ -16,7 +16,7 @@ etc.
 Remove it, at things seem to work without as well.
 
 Upstream-Status: Inappropriate [musl specific]
-Signed-off-by: André Draszik <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+Signed-off-by: AndrÃ© Draszik <andre.draszik@jci.com>
 ---
  jdk/src/solaris/native/java/net/PlainDatagramSocketImpl.c   | 1 -
  jdk/src/solaris/native/java/net/PlainSocketImpl.c           | 1 -

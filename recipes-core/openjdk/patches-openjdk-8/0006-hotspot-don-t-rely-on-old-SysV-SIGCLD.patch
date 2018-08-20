@@ -1,5 +1,5 @@
 From 4ed4b58270dcd3d897adef605893c104944c4f3a Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 15:00:55 +0000
 Subject: [PATCH 6/9] hotspot: don't rely on old SysV SIGCLD
 MIME-Version: 1.0
@@ -17,7 +17,7 @@ leads to the following compilation error:
 Just make it conditional, so the code compiles everywhere.
 
 Upstream-Status: Pending
-Signed-off-by: André Draszik <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+Signed-off-by: AndrÃ© Draszik <andre.draszik@jci.com>
 ---
  hotspot/src/os/linux/vm/jvm_linux.cpp | 2 ++
  1 file changed, 2 insertions(+)

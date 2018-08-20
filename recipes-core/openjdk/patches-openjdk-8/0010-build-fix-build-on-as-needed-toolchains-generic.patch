@@ -1,5 +1,5 @@
 From 84bcdb9cdab0e0be9cdfededfb518d3cea9009e3 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik at jci.com>
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Mon, 12 Mar 2018 15:40:58 +0000
 Subject: [PATCH] build: fix build on --as-needed toolchains (generic)
 MIME-Version: 1.0
@@ -64,7 +64,7 @@ place the $EXPECTED_OBJS early in the command line, before
 any additional libraries, so as to fix this once and for
 all.
 
-Signed-off-by: André Draszik <andre.draszik at jci.com>
+Signed-off-by: André Draszik <andre.draszik@jci.com>
 ---
 Upstream-Status: Pending
  make/common/NativeCompilation.gmk | 5 ++---

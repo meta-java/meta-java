@@ -1,5 +1,5 @@
 From 8ef989f82b29655e8d4532f14d5aa12a2999d850 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Fri, 2 Mar 2018 13:58:07 +0000
 Subject: [PATCH 10/10] jdk: disable backtrace() (musl build fix)
 MIME-Version: 1.0
@@ -13,7 +13,7 @@ Use appropriate #ifdef to disable their use on musl and thus
 to fix the build on musl.
 
 Upstream-Status: Pending
-Signed-off-by: André Draszik <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+Signed-off-by: AndrÃ© Draszik <andre.draszik@jci.com>
 ---
  jdk/src/solaris/native/sun/xawt/XToolkit.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)

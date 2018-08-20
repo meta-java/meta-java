@@ -1,5 +1,5 @@
 From 79e35bd203b40979e1d241a04d6d9df373327bef Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 09:28:06 +0000
 Subject: [PATCH 5/9] hotspot: use correct include for poll
 MIME-Version: 1.0
@@ -20,7 +20,7 @@ the following command:
     done
 
 Upstream-Status: Pending
-Signed-off-by: André Draszik <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+Signed-off-by: AndrÃ© Draszik <andre.draszik@jci.com>
 ---
  hotspot/src/os/aix/vm/os_aix.inline.hpp         | 2 +-
  hotspot/src/os/bsd/vm/os_bsd.inline.hpp         | 2 +-

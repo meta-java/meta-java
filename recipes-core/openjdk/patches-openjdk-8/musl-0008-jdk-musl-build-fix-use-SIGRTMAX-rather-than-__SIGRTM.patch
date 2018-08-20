@@ -1,5 +1,5 @@
 From ec37e9e5663611e49c7c976d34450ea6b90d0f24 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Fri, 2 Mar 2018 13:37:20 +0000
 Subject: [PATCH 8/9] jdk: musl build fix (use SIGRTMAX rather than __SIGRTMAX)
 MIME-Version: 1.0
@@ -24,7 +24,7 @@ Patch taken from Alpine Linux:
     https://git.alpinelinux.org/cgit/aports/tree/community/openjdk8/icedtea-jdk-musl.patch?id=4d34f29dddd3934358df7a9607706d09ae0433c3
 
 Upstream-Status: Inappropriate [musl specific]
-Signed-off-by: André Draszik <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+Signed-off-by: AndrÃ© Draszik <andre.draszik@jci.com>
 ---
  jdk/src/solaris/native/java/net/linux_close.c    | 3 ++-
  jdk/src/solaris/native/sun/nio/ch/NativeThread.c | 2 +-

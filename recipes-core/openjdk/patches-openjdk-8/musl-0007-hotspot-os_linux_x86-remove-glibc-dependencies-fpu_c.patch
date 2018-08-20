@@ -1,5 +1,5 @@
 From dc0217d20e3c96203c81acda1c02652755bfcefb Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Fri, 2 Mar 2018 10:24:11 +0000
 Subject: [PATCH 7/9] hotspot: os_linux_x86: remove glibc dependencies
  (fpu_control.h)
@@ -14,7 +14,7 @@ Patch adopted from Alpine linux:
     https://git.alpinelinux.org/cgit/aports/tree/community/openjdk8/icedtea-hotspot-musl.patch?id=4d34f29dddd3934358df7a9607706d09ae0433c3
 
 Upstream-Status: Inappropriate [musl specific]
-Signed-off-by: André Draszik <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+Signed-off-by: AndrÃ© Draszik <andre.draszik@jci.com>
 ---
  hotspot/src/os_cpu/linux_x86/vm/os_linux_x86.cpp | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)

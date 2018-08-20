@@ -1,5 +1,5 @@
 From 2ba0f3fae90f2d2c310663e4b39e90f969116241 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 15:59:09 +0000
 Subject: [PATCH 2/9] jdk: give a much bigger buffer to getmntent_r()
 MIME-Version: 1.0
@@ -9,7 +9,7 @@ Content-Transfer-Encoding: 8bit
 https://bugs.alpinelinux.org/issues/7093
 
 Upstream-Status: Inappropriate [musl specific]
-Signed-off-by: André Draszik <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+Signed-off-by: AndrÃ© Draszik <andre.draszik@jci.com>
 ---
  .../native/sun/nio/fs/LinuxNativeDispatcher.c      | 29 +++++++++++++++-------
  1 file changed, 20 insertions(+), 9 deletions(-)

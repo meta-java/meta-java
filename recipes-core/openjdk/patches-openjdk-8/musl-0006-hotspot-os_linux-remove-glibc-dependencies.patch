@@ -1,5 +1,5 @@
 From a02a9fbc3f1fed181504bdb5b0a16863247f92fc Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Fri, 2 Mar 2018 10:11:51 +0000
 Subject: [PATCH 6/9] hotspot: os_linux: remove glibc dependencies
 MIME-Version: 1.0
@@ -21,7 +21,7 @@ Content-Transfer-Encoding: 8bit
     |              dlsym
 
 Upstream-Status: Inappropriate [musl specific]
-Signed-off-by: André Draszik <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+Signed-off-by: AndrÃ© Draszik <andre.draszik@jci.com>
 ---
  hotspot/src/os/linux/vm/os_linux.cpp | 12 +++++++++++-
  1 file changed, 11 insertions(+), 1 deletion(-)

@@ -1,5 +1,5 @@
 From a063ee68bc0dd7dbf9737df4ee191e98796f2f6a Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 09:28:06 +0000
 Subject: [PATCH 8/9] jdk: use correct include for signal
 MIME-Version: 1.0
@@ -24,7 +24,7 @@ the following command:
     done
 
 Upstream-Status: Pending
-Signed-off-by: André Draszik <andre.draszik at jci.com <https://lists.yoctoproject.org/listinfo/yocto>>
+Signed-off-by: AndrÃ© Draszik <andre.draszik@jci.com>
 ---
  jdk/src/aix/native/sun/nio/ch/AixNativeThread.c  | 2 +-
  jdk/src/macosx/javavm/export/jvm_md.h            | 2 +-

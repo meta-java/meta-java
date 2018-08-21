@@ -78,7 +78,7 @@ Known Limitations/Bugs
 OpenJDK:
 	The following OpenJDK version/target-architecture combinations currently
 	only support "interpreted mode":
-		openjdk-8 on arm
+		openjdk-8 on arm except armv7
 		openjdk-7 on aarch64
 		openjdk-7 on x86
 		openjdk-7 on x86-64

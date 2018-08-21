@@ -3,7 +3,7 @@ import os
 from oeqa.runtime.case import OERuntimeTestCase
 from oeqa.core.decorator.depends import OETestDepends
 from oeqa.core.decorator.oeid import OETestID
-from oeqa.core.decorator.data import skipIfDataVar
+from oeqa.core.decorator.data import skipIfDataVar, skipIfInDataVar
 from oeqa.runtime.decorator.package import OEHasPackage
 
 class JavaTest(OERuntimeTestCase):
@@ -70,7 +70,9 @@ class JavaTest(OERuntimeTestCase):
     # test for now.
     @OEHasPackage(["openjre-8", "openjdk-8"])
     @OETestDepends(['java.JavaTest.test_java_exists'])
-    @skipIfDataVar('ARCH', 'arm', 'OpenJDK 8 compiled mode not yet supported for arm')
+    @skipIfInDataVar('TUNE_FEATURES', 'armv4', 'OpenJDK 8 compiled mode not yet supported for armv4')
+    @skipIfInDataVar('TUNE_FEATURES', 'armv5', 'OpenJDK 8 compiled mode not yet supported for armv5')
+    @skipIfInDataVar('TUNE_FEATURES', 'armv6', 'OpenJDK 8 compiled mode not yet supported for armv6')
     def test_java8_jar_comp_mode(self):
         status, output = self.target.run('java -showversion -Xcomp -jar /tmp/test.jar')
         msg = 'Exit status was not 0. Output: %s' % output

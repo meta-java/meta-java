@@ -1,0 +1,53 @@
+From 658adc5b6567e9a6df56beabb8d226a9b4d8e762 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
+Date: Thu, 16 Aug 2018 02:27:44 +0100
+Subject: [PATCH] hotspot/aarch32: fix missing return values
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: André Draszik <andre.draszik@jci.com>
+---
+ hotspot/src/cpu/aarch32/vm/c1_LIRAssembler_aarch32.cpp | 3 +++
+ hotspot/src/cpu/aarch32/vm/relocInfo_aarch32.cpp       | 1 +
+ 2 files changed, 4 insertions(+)
+
+diff --git a/hotspot/src/cpu/aarch32/vm/c1_LIRAssembler_aarch32.cpp b/hotspot/src/cpu/aarch32/vm/c1_LIRAssembler_aarch32.cpp
+index cd291bf2..4ba98c68 100644
+--- a/hotspot/src/cpu/aarch32/vm/c1_LIRAssembler_aarch32.cpp
++++ b/hotspot/src/cpu/aarch32/vm/c1_LIRAssembler_aarch32.cpp
+@@ -158,16 +158,19 @@ static Register as_reg(LIR_Opr op) {
+ Address LIR_Assembler::as_Address(LIR_Address* addr) {
+   // as_Address(LIR_Address*, Address::InsnDataType) should be used instead
+   ShouldNotCallThis();
++  return Address();
+ }
+ 
+ Address LIR_Assembler::as_Address_hi(LIR_Address* addr) {
+   // as_Address_hi(LIR_Address*, Address::InsnDataType) should be used instead
+   ShouldNotCallThis();
++  return Address();
+ }
+ 
+ Address LIR_Assembler::as_Address_lo(LIR_Address* addr) {
+   // as_Address_lo(LIR_Address*, Address::InsnDataType) should be used instead
+   ShouldNotCallThis();
++  return Address();
+ }
+ 
+ Address LIR_Assembler::as_Address(LIR_Address* addr, Register tmp, Address::InsnDataType type) {
+diff --git a/hotspot/src/cpu/aarch32/vm/relocInfo_aarch32.cpp b/hotspot/src/cpu/aarch32/vm/relocInfo_aarch32.cpp
+index 979d53c9..c0b1a4c7 100644
+--- a/hotspot/src/cpu/aarch32/vm/relocInfo_aarch32.cpp
++++ b/hotspot/src/cpu/aarch32/vm/relocInfo_aarch32.cpp
+@@ -87,6 +87,7 @@ address Relocation::pd_call_destination(address orig_addr) {
+   }
+ 
+   ShouldNotReachHere();
++  return NULL;
+ }
+ 
+ void Relocation::pd_set_call_destination(address x) {
+-- 
+2.18.0
+

@@ -1,0 +1,51 @@
+From 5fa42493fd2dafb3bf9cf5a8a2be57e743eeafb8 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
+Date: Wed, 15 Aug 2018 13:50:04 +0100
+Subject: [PATCH] hotspot: disable agent build (pt2: aarch32)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+the agent needs thread_db, which doesn't exist in musl
+
+Upstream-Status: Inappropriate [musl specific]
+Signed-off-by: André Draszik <andre.draszik@jci.com>
+---
+ common/autoconf/jdk-options.m4           | 2 +-
+ hotspot/make/linux/makefiles/saproc.make | 2 ++
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/common/autoconf/jdk-options.m4 b/common/autoconf/jdk-options.m4
+index 56fa4198..4675f0b5 100644
+--- a/common/autoconf/jdk-options.m4
++++ b/common/autoconf/jdk-options.m4
+@@ -151,7 +151,7 @@ AC_DEFUN_ONCE([JDKOPT_SETUP_JVM_VARIANTS],
+   AC_SUBST(JVM_VARIANT_ZEROSHARK)
+   AC_SUBST(JVM_VARIANT_CORE)
+ 
+-  INCLUDE_SA=true
++  INCLUDE_SA=false
+   if test "x$JVM_VARIANT_ZERO" = xtrue; then
+     INCLUDE_SA=false
+   fi
+diff --git a/hotspot/make/linux/makefiles/saproc.make b/hotspot/make/linux/makefiles/saproc.make
+index ea52011e..f87d2cdb 100644
+--- a/hotspot/make/linux/makefiles/saproc.make
++++ b/hotspot/make/linux/makefiles/saproc.make
+@@ -62,11 +62,13 @@ endif
+ # if $(AGENT_DIR) does not exist, we don't build SA
+ # also, we don't build SA on Itanium or zero.
+ 
++ifeq (0,1)
+ ifneq ($(wildcard $(AGENT_DIR)),)
+ ifneq ($(filter-out aarch32 ia64 zero,$(SRCARCH)),)
+   BUILDLIBSAPROC = $(LIBSAPROC)
+ endif
+ endif
++endif
+ 
+ ifneq ($(ALT_SASRCDIR),)
+ ALT_SAINCDIR=-I$(ALT_SASRCDIR) -DALT_SASRCDIR
+-- 
+2.18.0
+

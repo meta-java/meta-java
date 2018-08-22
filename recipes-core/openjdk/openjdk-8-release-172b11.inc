@@ -1,7 +1,10 @@
 require openjdk-8-release-172b11-common.inc
 
-# We do not yet work for aarch64.
-COMPATIBLE_HOST = "^(?!aarch64).*"
+# We do not yet work for aarch64, and we make sure
+# to use the aarch32 port for ARMv7.
+COMPATIBLE_HOST = "^(?!(aarch64)).*$"
+COMPATIBLE_HOST_armv7a = "^$"
+COMPATIBLE_HOST_armv7ve = "^$"
 
 CORBA_CHANGESET = "875a75c440cd"
 SRC_URI[corba.md5sum] = "66242dd6e749f39a5ef6add34f5ecb2f"

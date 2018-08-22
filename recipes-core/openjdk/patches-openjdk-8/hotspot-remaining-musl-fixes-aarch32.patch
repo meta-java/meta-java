@@ -1,0 +1,35 @@
+From 4bab4a4468a59e303e8d05a409a07a24c2342452 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
+Date: Mon, 20 Aug 2018 12:38:38 +0100
+Subject: [PATCH] hotspot: remaining musl fixes (aarch32)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+* fpu_control.h doesn't exist in musl
+| hotspot/src/os_cpu/linux_aarch32/vm/os_linux_aarch32.cpp:78:11: fatal error: fpu_control.h: No such file or directory
+|  # include <fpu_control.h>
+|            ^~~~~~~~~~~~~~~
+| compilation terminated.
+
+Upstream-Status: Inappropriate [OE specific]
+Signed-off-by: André Draszik <andre.draszik@jci.com>
+---
+ hotspot/src/os_cpu/linux_aarch32/vm/os_linux_aarch32.cpp | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/hotspot/src/os_cpu/linux_aarch32/vm/os_linux_aarch32.cpp b/hotspot/src/os_cpu/linux_aarch32/vm/os_linux_aarch32.cpp
+index 052a423c..93a315e4 100644
+--- a/hotspot/src/os_cpu/linux_aarch32/vm/os_linux_aarch32.cpp
++++ b/hotspot/src/os_cpu/linux_aarch32/vm/os_linux_aarch32.cpp
+@@ -75,7 +75,6 @@
+ # include <pwd.h>
+ # include <poll.h>
+ # include <ucontext.h>
+-# include <fpu_control.h>
+ 
+ #define REG_FP 29
+ #define SPELL_REG_SP "sp"
+-- 
+2.11.0
+

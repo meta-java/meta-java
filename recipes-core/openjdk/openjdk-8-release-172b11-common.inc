@@ -33,30 +33,52 @@ HOTSPOT_UB_PATCH_prepend_aarch64 = "\
     file://0012-hotspot-aarch64-fix-undefined-behaviour-gcc-v8-fix.patch \
     file://0013-hotspot-aarch64-Fix-further-functions-with-a-missing.patch \
 "
+HOTSPOT_UB_PATCH_append_armv7a = " file://0001-hotspot-aarch32-fix-missing-return-values.patch"
+HOTSPOT_UB_PATCH_append_armv7ve = " file://0001-hotspot-aarch32-fix-missing-return-values.patch"
 # some patches extracted from http://cr.openjdk.java.net/~rkennke/shark-build-hotspot/webrev.01/hotspot.patch
 # reported via http://mail.openjdk.java.net/pipermail/build-dev/2015-January/013972.html
 # by Roman Kennke (rkennke at redhat.com)
 LIBPNG_NEON_PATCH = "file://openjdk8-fix-libpng-neon-build.patch;striplevel=0"
 LIBPNG_NEON_PATCH_aarch64 = ""
+
 PATCHES_URI_append_class-target = "\
     file://openjdk8-restrict-to-staging-dir.patch;striplevel=0 \
-    file://openjdk8-fix-shark-build.patch;striplevel=0 \
+    file://openjdk8-fix-shark-build-common.patch;striplevel=0 \
+    ${FIX_SHARK_BUILD_PT2_PATCH} \
     file://openjdk8-fix-shark-stdc++11.patch;striplevel=0 \
     file://openjdk8-fix-assembler-flag-handling-in-makefile.patch;striplevel=0 \
     file://openjdk8-fix-adlc-flags.patch;striplevel=0 \
     file://openjdk8-add-missing-linker-flags.patch;striplevel=0 \
 "
+FIX_SHARK_BUILD_PT2_PATCH = "file://openjdk8-fix-shark-build-pt2.patch;striplevel=0"
+FIX_SHARK_BUILD_PT2_PATCH_armv7a = "file://openjdk8-fix-shark-build-pt2-aarch32.patch;striplevel=0"
+FIX_SHARK_BUILD_PT2_PATCH_armv7ve = "file://openjdk8-fix-shark-build-pt2-aarch32.patch;striplevel=0"
+
 PATCHES_URI_append_libc-musl = "\
-    file://musl-0001-hotspot-stop-using-obsolete-isnanf.patch \
+    ${OBSOLETE_ISNANF_PATCH} \
     file://musl-0002-jdk-give-a-much-bigger-buffer-to-getmntent_r.patch \
     file://musl-0003-jdk-fix-libjvm-load-on-musl-set-LD_LIBRARY_PATH.patch \
     file://musl-0004-jdk-remove-sysctl.h-include-musl-build-fix.patch \
-    file://musl-0005-hotspot-disable-agent-build.patch \
-    file://musl-0006-hotspot-os_linux-remove-glibc-dependencies.patch \
+    file://musl-0005-hotspot-disable-agent-build-common.patch \
+    ${DISABLE_AGENT_BUILD_PT2} \
+    file://musl-0006-hotspot-os_linux-remove-glibc-dependencies-common.patch \
+    ${REMOVE_GLIBC_DEPENDENCIES_PT2} \
     file://musl-0007-hotspot-os_linux_x86-remove-glibc-dependencies-fpu_c.patch \
     file://musl-0008-jdk-musl-build-fix-use-SIGRTMAX-rather-than-__SIGRTM.patch \
     file://musl-0009-jdk-musl-has-gethostby_r.patch \
 "
+OBSOLETE_ISNANF_PATCH = "file://musl-0001-hotspot-stop-using-obsolete-isnanf.patch"
+OBSOLETE_ISNANF_PATCH_armv7a = ""
+OBSOLETE_ISNANF_PATCH_armv7ve = ""
+DISABLE_AGENT_BUILD_PT2 = "file://musl-0005-hotspot-disable-agent-build-pt2.patch"
+DISABLE_AGENT_BUILD_PT2_armv7a = "file://musl-0005-hotspot-disable-agent-build-pt2-aarch32.patch"
+DISABLE_AGENT_BUILD_PT2_armv7ve = "file://musl-0005-hotspot-disable-agent-build-pt2-aarch32.patch"
+REMOVE_GLIBC_DEPENDENCIES_PT2 = "file://musl-0006-hotspot-os_linux-remove-glibc-dependencies-pt2.patch"
+REMOVE_GLIBC_DEPENDENCIES_PT2_armv7a = "file://musl-0006-hotspot-os_linux-remove-glibc-dependencies-pt2-aarch.patch"
+REMOVE_GLIBC_DEPENDENCIES_PT2_armv7ve = "file://musl-0006-hotspot-os_linux-remove-glibc-dependencies-pt2-aarch.patch"
+
+PATCHES_URI_append_libc-musl_armv7a = " file://hotspot-remaining-musl-fixes-aarch32.patch"
+PATCHES_URI_append_libc-musl_armv7ve = " file://hotspot-remaining-musl-fixes-aarch32.patch"
 PATCHES_URI_append_libc-musl_aarch64 = " file://hotspot-remaining-musl-fixes-aarch64.patch"
 
 # Name of the directory containing the compiled output
@@ -72,10 +94,14 @@ BUILD_CFLAGS_append = " -Wno-error=deprecated-declarations"
 TARGET_CFLAGS_append = " -Wno-error=deprecated-declarations"
 
 # Enable zero mode for arm based builds, as normal hotspot fails to build
-PACKAGECONFIG_append_arm = " zero"
+PACKAGECONFIG_append_armv4 = " zero"
+PACKAGECONFIG_append_armv5 = " zero"
+PACKAGECONFIG_append_armv6 = " zero"
 
 OPENJDK_ARCH_PORT = "jdk8u"
 OPENJDK_ARCH_PORT_aarch64 = "aarch64-port"
+OPENJDK_ARCH_PORT_armv7a = "aarch32-port"
+OPENJDK_ARCH_PORT_armv7ve = "aarch32-port"
 OPENJDK_HG_U = "jdk8u"
 OPENJDK_HG_URL = "http://hg.openjdk.java.net/${OPENJDK_ARCH_PORT}/${OPENJDK_HG_U}"
 

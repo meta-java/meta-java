@@ -1,0 +1,55 @@
+From 19b1d6b4dc64a1c44a8f90776a489eee5c76463d Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
+Date: Tue, 27 Feb 2018 15:12:08 +0000
+Subject: [PATCH] hotspot: disable agent build (common)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+the agent needs thread_db, which doesn't exist in musl
+
+Upstream-Status: Inappropriate [musl specific]
+Signed-off-by: André Draszik <andre.draszik@jci.com>
+---
+ hotspot/make/linux/makefiles/defs.make | 4 ++++
+ hotspot/make/linux/makefiles/sa.make   | 2 +-
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/hotspot/make/linux/makefiles/defs.make b/hotspot/make/linux/makefiles/defs.make
+index 3af5878a..d10bab95 100644
+--- a/hotspot/make/linux/makefiles/defs.make
++++ b/hotspot/make/linux/makefiles/defs.make
+@@ -286,6 +286,7 @@ ifeq ($(JVM_VARIANT_MINIMAL1),true)
+   endif
+ endif
+ 
++ifeq (0,1)
+ # Serviceability Binaries
+ # No SA Support for PPC, IA64, ARM or zero
+ ADD_SA_BINARIES/x86   = $(EXPORT_JRE_LIB_ARCH_DIR)/libsaproc.$(LIBRARY_SUFFIX) \
+@@ -305,6 +306,9 @@ ADD_SA_BINARIES/ppc   =
+ ADD_SA_BINARIES/ia64  =
+ ADD_SA_BINARIES/arm   =
+ ADD_SA_BINARIES/zero  =
++else
++ADD_SA_BINARIES/$(HS_ARCH) =
++endif
+ 
+ -include $(HS_ALT_MAKE)/linux/makefiles/defs.make
+ 
+diff --git a/hotspot/make/linux/makefiles/sa.make b/hotspot/make/linux/makefiles/sa.make
+index 66a7b945..61cc7244 100644
+--- a/hotspot/make/linux/makefiles/sa.make
++++ b/hotspot/make/linux/makefiles/sa.make
+@@ -62,7 +62,7 @@ SA_PROPERTIES = $(SA_CLASSDIR)/sa.properties
+ 
+ all: 
+ 	if [ -d $(AGENT_DIR) -a "$(SRCARCH)" != "ia64" \
+-             -a "$(SRCARCH)" != "zero" ] ; then \
++             -a "$(SRCARCH)" != "zero" ] && [ 0 -eq 1 ] ; then \
+ 	   $(MAKE) -f sa.make $(GENERATED)/sa-jdi.jar; \
+ 	fi
+ 
+-- 
+2.16.2
+

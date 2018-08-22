@@ -1,0 +1,36 @@
+From 2915f7f56b99fa130942acb4289c9b5310075adc Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
+Date: Fri, 2 Mar 2018 10:11:51 +0000
+Subject: [PATCH] hotspot: os_linux: remove glibc dependencies (pt2: aarch32)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+* gnu/libc-version.h doesn't exist in musl
+    | hotspot/src/os/linux/vm/os_linux.cpp:97:11: fatal error: gnu/libc-version.h: No such file or directory
+    |  # include <gnu/libc-version.h>
+    |            ^~~~~~~~~~~~~~~~~~~~
+
+Upstream-Status: Inappropriate [musl specific]
+Signed-off-by: André Draszik <andre.draszik@jci.com>
+---
+ hotspot/src/os/linux/vm/os_linux.cpp | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/hotspot/src/os/linux/vm/os_linux.cpp b/hotspot/src/os/linux/vm/os_linux.cpp
+index 8656357d..555b3a15 100644
+--- a/hotspot/src/os/linux/vm/os_linux.cpp
++++ b/hotspot/src/os/linux/vm/os_linux.cpp
+@@ -94,9 +94,6 @@
+ # include <string.h>
+ # include <syscall.h>
+ # include <sys/sysinfo.h>
+-#ifndef __UCLIBC__
+-# include <gnu/libc-version.h>
+-#endif
+ # include <sys/ipc.h>
+ # include <sys/shm.h>
+ # include <link.h>
+-- 
+2.18.0
+

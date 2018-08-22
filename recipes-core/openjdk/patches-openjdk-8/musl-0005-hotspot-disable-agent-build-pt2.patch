@@ -1,7 +1,7 @@
 From 19b1d6b4dc64a1c44a8f90776a489eee5c76463d Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 15:12:08 +0000
-Subject: [PATCH 5/9] hotspot: disable agent build
+Subject: [PATCH] hotspot: disable agent build (pt2)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -12,10 +12,8 @@ Upstream-Status: Inappropriate [musl specific]
 Signed-off-by: André Draszik <andre.draszik@jci.com>
 ---
  common/autoconf/jdk-options.m4           | 2 +-
- hotspot/make/linux/makefiles/defs.make   | 4 ++++
- hotspot/make/linux/makefiles/sa.make     | 2 +-
  hotspot/make/linux/makefiles/saproc.make | 2 ++
- 4 files changed, 8 insertions(+), 2 deletions(-)
+ 2 files changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/common/autoconf/jdk-options.m4 b/common/autoconf/jdk-options.m4
 index a8f71705..036963ac 100644
@@ -30,41 +28,6 @@ index a8f71705..036963ac 100644
    if test "x$JVM_VARIANT_ZERO" = xtrue ; then
      INCLUDE_SA=false
    fi
-diff --git a/hotspot/make/linux/makefiles/defs.make b/hotspot/make/linux/makefiles/defs.make
-index 3af5878a..d10bab95 100644
---- a/hotspot/make/linux/makefiles/defs.make
-+++ b/hotspot/make/linux/makefiles/defs.make
-@@ -286,6 +286,7 @@ ifeq ($(JVM_VARIANT_MINIMAL1),true)
-   endif
- endif
- 
-+ifeq (0,1)
- # Serviceability Binaries
- # No SA Support for PPC, IA64, ARM or zero
- ADD_SA_BINARIES/x86   = $(EXPORT_JRE_LIB_ARCH_DIR)/libsaproc.$(LIBRARY_SUFFIX) \
-@@ -305,6 +306,9 @@ ADD_SA_BINARIES/ppc   =
- ADD_SA_BINARIES/ia64  =
- ADD_SA_BINARIES/arm   =
- ADD_SA_BINARIES/zero  =
-+else
-+ADD_SA_BINARIES/$(HS_ARCH) =
-+endif
- 
- -include $(HS_ALT_MAKE)/linux/makefiles/defs.make
- 
-diff --git a/hotspot/make/linux/makefiles/sa.make b/hotspot/make/linux/makefiles/sa.make
-index 66a7b945..61cc7244 100644
---- a/hotspot/make/linux/makefiles/sa.make
-+++ b/hotspot/make/linux/makefiles/sa.make
-@@ -62,7 +62,7 @@ SA_PROPERTIES = $(SA_CLASSDIR)/sa.properties
- 
- all: 
- 	if [ -d $(AGENT_DIR) -a "$(SRCARCH)" != "ia64" \
--             -a "$(SRCARCH)" != "zero" ] ; then \
-+             -a "$(SRCARCH)" != "zero" ] && [ 0 -eq 1 ] ; then \
- 	   $(MAKE) -f sa.make $(GENERATED)/sa-jdi.jar; \
- 	fi
- 
 diff --git a/hotspot/make/linux/makefiles/saproc.make b/hotspot/make/linux/makefiles/saproc.make
 index 6579c8e1..8f29004c 100644
 --- a/hotspot/make/linux/makefiles/saproc.make

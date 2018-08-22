@@ -1,5 +1,7 @@
 require openjdk-8-release-172b11-common.inc
 
+COMPATIBLE_HOST = "aarch64"
+
 CORBA_CHANGESET_aarch64 = "3a04a7c080af"
 SRC_URI[corba.md5sum] = "758b29d6cf714fd894df8674afd78e17"
 SRC_URI[corba.sha256sum] = "564113dbeadc57ac5831ccc056e0b920adbd3b74558cf750aa899f5de25ceb5e"

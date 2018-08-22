@@ -89,6 +89,7 @@ OPENJDK_PATCHES = " \
 	file://icedtea-x11_extension_cleanup.patch;apply=no \
 	file://icedtea-CVE-2014-1876-unpack.patch;apply=no \
 	file://icedtea-jdk-unzip.patch;apply=no \
+	file://icedtea-hotspot-handle-gcc7-format-overflow.patch;apply=no \
         "
 
 OPENJDK_HEADLESS_PATCHES = " \
@@ -111,6 +112,7 @@ export DISTRIBUTION_PATCHES = " \
 	patches/icedtea-x11_extension_cleanup.patch \
 	patches/icedtea-CVE-2014-1876-unpack.patch \
 	patches/icedtea-jdk-unzip.patch \
+	patches/icedtea-hotspot-handle-gcc7-format-overflow.patch \
 	${CLEAN_X11_DISTRIBUTION_PATCH} \
         "
 

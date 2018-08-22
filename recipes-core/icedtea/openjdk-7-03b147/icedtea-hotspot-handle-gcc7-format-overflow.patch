@@ -1,0 +1,41 @@
+# HG changeset patch
+# User Andreas Obergschwandtner <andreas.obergschwandtner@skidata.com>
+# Date 1534928526 -7200
+#      Wed Aug 22 11:02:06 2018 +0200
+# Node ID 96d06a5c27f84a4d48cff0d927cf377866db894e
+# Parent  a456d0771ba0f6604b172f05f0b594178f7cc49c
+Handle format-overflow warning for GCC >= 7
+
+diff --git openjdk/hotspot/src/share/vm/adlc/output_c.cpp openjdk/hotspot/src/share/vm/adlc/output_c.cpp
+--- openjdk/hotspot/src/share/vm/adlc/output_c.cpp
++++ openjdk/hotspot/src/share/vm/adlc/output_c.cpp
+@@ -462,9 +462,11 @@
+   for (i = maxcycleused; i > 0; i /= 10)
+     cycledigit++;
+ 
+-  int maskdigit = 0;
+-  for (i = rescount; i > 0; i /= 10)
++  int maskdigit = 1;
++  for (i = rescount / 10; i > 0; i /= 10)
+     maskdigit++;
++  if (maskdigit > 10)
++    maskdigit = 10;
+ 
+   static const char * pipeline_use_cycle_mask = "Pipeline_Use_Cycle_Mask";
+   static const char * pipeline_use_element    = "Pipeline_Use_Element";
+diff --git openjdk/hotspot/src/share/vm/code/dependencies.cpp openjdk/hotspot/src/share/vm/code/dependencies.cpp
+--- openjdk/hotspot/src/share/vm/code/dependencies.cpp
++++ openjdk/hotspot/src/share/vm/code/dependencies.cpp
+@@ -429,6 +429,12 @@
+   Dependencies::write_dependency_to(log, dept, nargs, ciargs, witness);
+ }
+ 
++// disable format overflow checking for GCC versions > 7 because the lead to
++// a false positive in this case.
++// See https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
++#if defined (__GNUC__) && __GNUC__ >= 7
++#pragma GCC diagnostic ignored "-Wformat-overflow"
++#endif
+ void Dependencies::write_dependency_to(CompileLog* log,
+                                        DepType dept,
+                                        int nargs, ciObject* args[],

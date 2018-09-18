@@ -47,10 +47,7 @@ FILES_${PN}-doc_append = "\
 
 FILES_${PN}-source = " ${JDK_HOME}/src.zip "
 
-RPROVIDES_${PN} = "java2-vm"
-PROVIDES_${PN} = "java2-vm"
 RPROVIDES_${PN} = "java2-runtime"
-PROVIDES_${PN} = "java2-runtime"
 
 inherit update-alternatives
 

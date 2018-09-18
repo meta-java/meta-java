@@ -35,10 +35,7 @@ FILES_${PN}-doc_append = "\
     ${JRE_HOME}/THIRD_PARTY_README \
 "
 
-RPROVIDES_${PN} = "java2-vm"
-PROVIDES_${PN} = "java2-vm"
 RPROVIDES_${PN} = "java2-runtime"
-PROVIDES_${PN} = "java2-runtime"
 
 inherit update-alternatives
 

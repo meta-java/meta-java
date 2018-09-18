@@ -55,6 +55,7 @@ do_configure_prepend() {
 
 do_compile_prepend() {
     export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS}"
+    rm -f "${B}/images/j2sdk-image/jre/lib/security/cacerts"
 }
 
 do_compile_append() {

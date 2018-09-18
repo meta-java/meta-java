@@ -75,19 +75,25 @@ into your test image. More information on image testing is available at:
 Known Limitations/Bugs
 ----------------------
 
-OpenJDK:
-	The following OpenJDK version/target-architecture combinations currently
-	only support "interpreted mode":
-		openjdk-8 on arm except armv7
-		openjdk-7 on aarch64
-		openjdk-7 on x86
-		openjdk-7 on x86-64
-
-	The following target-architectures currently fail building
-	openjdk-7-jre, openjdk-7, openjdk-8 and openjre-8:
-		mips (tested with qemumips)
-		mips64 (tested with qemumips64)
-		ppc (tested with qemuppc)
+ + OpenJDK-7 doesn't support musl based images
+ + Both, OpenJDK-7 and 8 doesn't support mips and mips64 machines
+ + Further limitations are shown in the OpenJDK version/libc/target architecture
+   support matrix below:
+   +--------+-----------------+-----------------+-----------------+
+   |        | OpenJDK-7/glibc | OpenJDK-8/glibc | OpenJDK-8/musl  |
+   +--------+-----------------+-----------------+-----------------+
+   | arm    |       O K       |    int. mode    |    int. mode    |
+   +--------+-----------------+-----------------+-----------------+
+   | armv7  |       O K       |       O K       |       O K       |
+   +--------+-----------------+-----------------+-----------------+
+   | arm64  |    int. mode    |       O K       |       O K       |
+   +--------+-----------------+-----------------+-----------------+
+   | x86    |    int. mode    |       O K       |  build failure  |
+   +--------+-----------------+-----------------+-----------------+
+   | x86-64 |    int. mode    |       O K       |       O K       |
+   +--------+-----------------+-----------------+-----------------+
+   | ppc    |    int. mode    |  build failure  |  build failure  |
+   +--------+-----------------+-----------------+-----------------+
 
 If you encounter any other problems or bugs please report them to our mailing
 list at openembedded-devel@lists.openembedded.org.

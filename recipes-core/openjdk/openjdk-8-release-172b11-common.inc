@@ -20,6 +20,7 @@ PATCHES_URI = "\
     ${HOTSPOT_UB_PATCH} \
     ${LIBPNG_NEON_PATCH} \
     file://handle_extra_output.patch \
+    file://hotspot-handle-gcc7-format-overflow.patch \
 "
 HOTSPOT_UB_PATCH = "\
     file://0014-hotspot-zero-fix-undefined-behaviour-gcc-v8-fix.patch \

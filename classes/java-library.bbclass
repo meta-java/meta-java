@@ -10,9 +10,13 @@
 #
 # package archs are set to all, if the recipe builds also packages which
 # can not be used for all archs, then set the PACKAGE_ARCH of that package
-# manually, see rxtx_xx.bb for an example.
+# manually *before* inheriting the class, see rxtx_xx.bb for an example.
 
-inherit java allarch
+inherit java
+PACKAGE_ARCH ?= "all"
+# Fully expanded - so it applies the overrides as well
+PACKAGE_ARCH_EXPANDED := "${PACKAGE_ARCH}"
+inherit ${@oe.utils.ifelse(d.getVar('PACKAGE_ARCH_EXPANDED') == 'all', 'allarch', '')}
 
 # use java_stage for native packages
 JAVA_NATIVE_STAGE_INSTALL = "1"

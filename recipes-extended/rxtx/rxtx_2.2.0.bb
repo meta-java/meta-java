@@ -28,8 +28,8 @@ S = "${WORKDIR}/rxtx-2.2pre2"
 
 INSANE_SKIP_${JPN} += "dev-so"
 
-inherit autotools-brokensep java-library remove-libtool
 PACKAGE_ARCH = "${TUNE_PKGARCH}"
+inherit autotools-brokensep java-library remove-libtool
 
 JARFILENAME = "RXTXcomm.jar"
 EXTRA_OEMAKE += "RXTX_PATH=${D}${libdir_jni} \

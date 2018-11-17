@@ -7,8 +7,8 @@ DEPENDS = "virtual/java-native classpath-native classpath"
 
 S = "${WORKDIR}/libmatthew-java-${PV}"
 
-inherit java-library
 PACKAGE_ARCH = "${TUNE_PKGARCH}"
+inherit java-library
 
 # Some internal version numbers which change from time to time.
 # Allowing to override them makes this include file more

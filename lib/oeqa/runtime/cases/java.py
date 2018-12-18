@@ -59,6 +59,7 @@ class JavaTest(OERuntimeTestCase):
     @skipIfDataVar('ARCH', 'x86', 'OpenJDK 7 compiled mode not yet supported for x86')
     @skipIfDataVar('ARCH', 'x86-64', 'OpenJDK 7 compiled mode not yet supported for x86-64')
     @skipIfDataVar('ARCH', 'ppc', 'OpenJDK 7 compiled mode not yet supported for ppc')
+    @skipIfDataVar('ARCH', 'powerpc', 'OpenJDK 7 compiled mode not yet supported for powerpc')
     def test_java7_jar_comp_mode(self):
         status, output = self.target.run('java -showversion -Xcomp -jar /tmp/test.jar')
         msg = 'Exit status was not 0. Output: %s' % output

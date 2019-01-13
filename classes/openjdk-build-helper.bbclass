@@ -9,7 +9,7 @@ EXTRA_OEMAKE_remove_task-install = "${PARALLEL_MAKEINST}"
 # In OE we have PARALLEL_MAKE which is the actual option passed to make,
 # e.g. "-j 4".
 def openjdk_build_helper_get_parallel_make(d):
-    pm = d.getVar('PARALLEL_MAKE', True);
+    pm = d.getVar('PARALLEL_MAKE');
     if not pm or '-j' not in pm:
         return 1
 
@@ -55,7 +55,7 @@ def openjdk_build_helper_get_target_cflags(d):
 def openjdk_build_helper_get_jdk_arch(d):
     import bb
 
-    jdk_arch = d.getVar('TRANSLATED_TARGET_ARCH', True)
+    jdk_arch = d.getVar('TRANSLATED_TARGET_ARCH')
     if jdk_arch == "x86-64":
         jdk_arch = "amd64"
     elif jdk_arch == "powerpc":
@@ -73,7 +73,7 @@ def openjdk_build_helper_get_jdk_arch(d):
 def openjdk_build_helper_get_llvm_configure_arch(d):
     import bb;
 
-    arch = d.getVar('TRANSLATED_TARGET_ARCH', True)
+    arch = d.getVar('TRANSLATED_TARGET_ARCH')
     if arch in ['i386', 'i486', 'i586', 'i686', 'x86-64']:
         arch = "x86"
     elif arch in ['mipsel', 'mips']:
@@ -84,7 +84,7 @@ def openjdk_build_helper_get_llvm_configure_arch(d):
         arch = "arm"
     else:
         if 'shark' in d.getVar('PACKAGECONFIG').split():
-            bb.warn("%s does not support %s in Shark builds yet" % (d.getVar('PN', True), arch) );
+            bb.warn("%s does not support %s in Shark builds yet" % (d.getVar('PN'), arch) );
 
     return arch
 
@@ -93,7 +93,7 @@ def openjdk_build_helper_get_llvm_configure_arch(d):
 def openjdk_build_helper_get_icedtea_arch(d):
     import bb;
 
-    arch = d.getVar('TRANSLATED_TARGET_ARCH', True)
+    arch = d.getVar('TRANSLATED_TARGET_ARCH')
     if arch == "x86-64":
         arch = "amd64"
     elif arch in ['i386', 'i486', 'i586', 'i686']:

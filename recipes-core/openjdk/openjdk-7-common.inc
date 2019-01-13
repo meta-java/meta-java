@@ -93,7 +93,7 @@ export ALT_CUPS_HEADERS_PATH = "${STAGING_INCDIR}"
 export ALT_FREETYPE_HEADERS_PATH = "${STAGING_INCDIR}/freetype2"
 export ALT_FREETYPE_LIB_PATH = "${STAGING_LIBDIR}"
 export CACAO_CONFIGURE_ARGS = " \
-    ${@['','--enable-softfloat'][d.getVar('TARGET_FPU', True) == 'soft']}"
+    ${@['','--enable-softfloat'][d.getVar('TARGET_FPU') == 'soft']}"
 
 JAVA_HOME[unexport] = "1"
 

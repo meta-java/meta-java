@@ -110,14 +110,14 @@ EXTRA_OEMAKE_append = '\
 '
 
 python remove_debuglink() {
-    dvar = d.getVar('PKGD', True)
-    objcopy = d.getVar("OBJCOPY", True)
+    dvar = d.getVar('PKGD')
+    objcopy = d.getVar("OBJCOPY")
 
     # Remove the previous debuglink if it has existed, because it has a different file name with that we will add.
-    if d.getVar('PN', True).find("jre") != -1:
-        file = dvar + d.getVar("JRE_HOME", True) + "/lib/" + d.getVar("JDK_ARCH", True) + "/server/libjvm.so"
+    if d.getVar('PN').find("jre") != -1:
+        file = dvar + d.getVar("JRE_HOME") + "/lib/" + d.getVar("JDK_ARCH") + "/server/libjvm.so"
     else:
-        file = dvar + d.getVar("JDK_HOME", True) + "/jre/lib/" + d.getVar("JDK_ARCH", True) + "/server/libjvm.so"
+        file = dvar + d.getVar("JDK_HOME") + "/jre/lib/" + d.getVar("JDK_ARCH") + "/server/libjvm.so"
 
     cmd = "'%s' --remove-section .gnu_debuglink '%s'" % (objcopy, file)
     oe.utils.getstatusoutput(cmd)

@@ -163,8 +163,8 @@ export DEBUG_BINARIES = "true"
 
 ALTERNATIVE_PRIORITY = "50"
 
-OPENJDK_UPDATE_VERSION = "${@d.getVar('PV', True).split('b')[0]}"
-OPENJDK_BUILD_NUMBER = "b${@d.getVar('PV', True).split('b')[1]}"
+OPENJDK_UPDATE_VERSION = "${@d.getVar('PV').split('b')[0]}"
+OPENJDK_BUILD_NUMBER = "b${@d.getVar('PV').split('b')[1]}"
 EXTRA_OECONF_append = "\
         --with-build-number=${OPENJDK_BUILD_NUMBER} \
         --with-update-version=${OPENJDK_UPDATE_VERSION} \

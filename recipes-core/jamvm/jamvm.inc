@@ -29,7 +29,7 @@ do_configure_append_class-native() {
 }
 
 
-EXTRA_OECONF = "--with-classpath-install-dir=${prefix} --libdir=${libdir}/jamvm --enable-ffi"
+EXTRA_OECONF = "--with-classpath-install-dir=${prefix} --libdir=${libdir}/jamvm --enable-ffi --disable-int-inlining"
 
 # Needed for big compilation targets like OpenJDK
 CFLAGS_append_class-native = " -DDEFAULT_MAX_HEAP=1024*MB"

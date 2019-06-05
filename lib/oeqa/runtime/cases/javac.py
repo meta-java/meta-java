@@ -2,7 +2,6 @@ import os
 
 from oeqa.runtime.case import OERuntimeTestCase
 from oeqa.core.decorator.depends import OETestDepends
-from oeqa.core.decorator.oeid import OETestID
 from oeqa.runtime.decorator.package import OEHasPackage
 
 class JavacTest(OERuntimeTestCase):

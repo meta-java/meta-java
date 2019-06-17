@@ -29,6 +29,7 @@ HOTSPOT_UB_PATCH = "\
     file://0017-hotspot-Missing-return-statement-in-__sync_val_compa.patch \
     file://0018-hotspot-Fix-debug-build-after-8062808-Turn-on-the-Wr.patch \
     file://0019-hotspot-Turn-on-the-Wreturn-type-warning.patch \
+    file://0020-Enable-HotSpot-builds-on-5.x-Linux-kernels.patch \
 "
 HOTSPOT_UB_PATCH_prepend_aarch64 = "\
     file://0012-hotspot-aarch64-fix-undefined-behaviour-gcc-v8-fix.patch \

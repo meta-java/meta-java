@@ -24,6 +24,9 @@ CFLAGS_append = " -fno-tree-dse"
 CXXFLAGS_append = " -fno-tree-dse"
 CXX_append = " -std=gnu++98"
 
+# WORKAROUND: ignore errors from new compilers
+CFLAGS_append = " -Wno-error=stringop-overflow -Wno-error=return-type"
+
 inherit native java autotools pkgconfig
 inherit openjdk-build-helper
 

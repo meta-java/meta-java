@@ -94,6 +94,11 @@ ARM_INSTRUCTION_SET_armv4t = "ARM"
 BUILD_CFLAGS_append = " -Wno-error=deprecated-declarations"
 TARGET_CFLAGS_append = " -Wno-error=deprecated-declarations"
 
+# WORKAROUND: disable the "specified bound depends on the length of the source argument"
+# compiler error until we update openjdk8 to a fixed version
+BUILD_CFLAGS_append = " -Wno-error=stringop-overflow"
+TARGET_CFLAGS_append = " -Wno-error=stringop-overflow"
+
 # Enable zero mode for arm based builds, as normal hotspot fails to build
 PACKAGECONFIG_append_armv4 = " zero"
 PACKAGECONFIG_append_armv5 = " zero"

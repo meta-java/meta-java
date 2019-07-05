@@ -6,6 +6,8 @@ DEPENDS_class-native += "classpath-native"
 
 BBCLASSEXTEND = "native"
 
+PACKAGE_ARCH = "${TUNE_PKGARCH}"
+
 inherit java-library
 
 SRC_URI = "\

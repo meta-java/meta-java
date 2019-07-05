@@ -15,3 +15,4 @@ SRC_URI = "git://git.code.sf.net/p/jamvm/code;protocol=git \
 
 S = "${WORKDIR}/git"
 
+COMPATIBLE_MACHINE_aarch64 = "-"

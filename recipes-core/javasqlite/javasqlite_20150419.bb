@@ -7,7 +7,7 @@ That API is wrapped by methods in the SQLite.Database class."
 
 LICENSE = "BSD"
 SECTION = "application"
-PR = "r0"
+PR = "r1"
 SRC_URI =  " \
     http://www.ch-werner.de/javasqlite/${BPN}-${PV}.tar.gz \
     file://0001-fix-errors-during-cross-compile.patch \
@@ -39,4 +39,10 @@ INSANE_SKIP_${PN}-dev = "dev-elf"
 
 do_configure_append (){
 	cp ${S}/*-libtool ${S}/libtool
+}
+
+do_compile_prepend (){
+	echo '#!/bin/sh' > ${STAGING_BINDIR_NATIVE}/cc
+	echo '${BUILD_CC} $@' >> ${STAGING_BINDIR_NATIVE}/cc
+	chmod a+x ${STAGING_BINDIR_NATIVE}/cc
 }

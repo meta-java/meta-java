@@ -1,0 +1,23 @@
+Upstream-Status: Inappropriate
+
+Signed-off-by: Ricardo Ribalda <ricardo@ribalda.com>
+
+diff --git a/configure.in b/configure.in
+index 1778a52..344f5ac 100644
+--- a/configure.in
++++ b/configure.in
+@@ -484,10 +484,10 @@ if test "$CC" = "gcc" || test "$CC"="egcs"; then
+ 		;;
+ 	*)
+ 		find_java_native_include jni_md.h
+-		JAVAH="\$(JPATH)/bin/javah -classpath \$(CLASSPATH) -d \$(DEST) -jni"
+-		JAVAC="\$(JPATH)/bin/javac -classpath \$(CLASSPATH) -d \$(TOP)/ -O -source 1.3 -target 1.3"
+-		JAR="\$(JPATH)/bin/jar"
+-		JAVADOC="\$(JPATH)/bin/javadoc"
++		JAVAH="gjavah -classpath \$(CLASSPATH) -d \$(DEST) -jni"
++		JAVAC="javac -classpath \$(CLASSPATH) -d \$(TOP)/ -O -source 1.3 -target 1.3"
++		JAR="fastjar"
++		JAVADOC="javadoc"
+ 		CFLAGS=$CFLAGS" -D_BSD_SOURCE"
+ 		;;
+ 	esac

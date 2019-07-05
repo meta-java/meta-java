@@ -2,7 +2,7 @@ SUMMARY = "Full Java CommAPI implementation"
 DEPENDS = "virtual/javac-native"
 LICENSE = "RXTXv2.1"
 LIC_FILES_CHKSUM = "file://COPYING;md5=32303a23463f90b12a7d1dafb8deabf4"
-PR = "r2"
+PR = "r3"
 
 SRC_URI = "http://rxtx.qbang.org/pub/rxtx/rxtx-2.2pre2.zip \
            file://zsystem_init_exception.patch \
@@ -19,7 +19,8 @@ SRC_URI = "http://rxtx.qbang.org/pub/rxtx/rxtx-2.2pre2.zip \
            file://usb_38400.patch \
            file://fix_snprintf.patch \
            file://format_security.patch \
-           file://0001-Support-Freescale-i.MX-serial-ports.patch"
+           file://0001-Support-Freescale-i.MX-serial-ports.patch \
+           file://javapath.patch"
 
 SRC_URI[md5sum] = "7eedb18e3f33a427e2b0e9be8ce3f94c"
 SRC_URI[sha256sum] = "3c30373e760f444def3650c76c5a00ae12fb1d860ec008750d084f4880495b03"

@@ -11,7 +11,10 @@ RDEPENDS_${PN}-viewer = "java2-runtime libunixsocket-java ${PN}-bin libmatthew-d
 RDEPENDS_${PN}-bin = "java2-runtime libunixsocket-java libmatthew-debug-java ${JPN}"
 RSUGGESTS_${JPN} = "libunixsocket-java"
 
-PR = "r0"
+PR = "r1"
+
+PACKAGE_ARCH = "${TUNE_PKGARCH}"
+
 LIC_FILES_CHKSUM = "file://COPYING;md5=72cc739fb93ae32741edbae802490e92"
 SRC_URI = "http://dbus.freedesktop.org/releases/dbus-java/dbus-java-${PV}.tar.gz"
 

@@ -23,6 +23,8 @@ SRC_URI[jdom.sha256sum] = "a13549087141be24ad176b659afdc2c675f1ffa5288ff999a193d
 
 S = "${WORKDIR}/git/jaxen"
 
+PACKAGE_ARCH = "${TUNE_PKGARCH}"
+
 inherit java-library
 
 do_compile() {

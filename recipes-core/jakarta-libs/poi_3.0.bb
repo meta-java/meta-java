@@ -7,6 +7,8 @@ SRC_URI = "http://archive.apache.org/dist/jakarta/poi/release/src/${BPN}-src-${P
 
 S = "${WORKDIR}/${BPN}-3.0-rc4"
 
+PACKAGE_ARCH = "${TUNE_PKGARCH}"
+
 inherit java-library
 
 DEPENDS = "fastjar-native commons-collections3 commons-logging commons-lang commons-beanutils log4j1.2 xalan-j"

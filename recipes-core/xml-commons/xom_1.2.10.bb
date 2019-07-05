@@ -22,6 +22,8 @@ SRC_URI[archive.sha256sum] = "39985c2debb8044005fd07b09cb06f10e75652b3c048c9b443
 
 S = "${WORKDIR}/XOM"
 
+PACKAGE_ARCH = "${TUNE_PKGARCH}"
+
 inherit java-library
 
 DEPENDS = "fastjar-native virtual/javac-native xerces-j xalan-j"

@@ -3,7 +3,7 @@ JRE_HOME = "${libdir_jvm}/openjre-8"
 
 DEPENDS = "\
     openjdk-8-native zip-native ant-native libxslt \
-    krb5 libffi fontconfig freetype \
+    libffi fontconfig freetype \
 "
 
 PRIVATE_LIBS = "\
@@ -39,6 +39,8 @@ PACKAGECONFIG[zero] = "--with-jvm-variants=zero,,,"
 PACKAGECONFIG[shark] = "--with-jvm-variants=zeroshark,,llvm3.5,"
 
 PACKAGECONFIG[repack] = ",,,"
+
+PACKAGECONFIG[kerberos] = ",,krb5"
 
 CACHED_CONFIGUREVARS = " \
     ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'ac_x_includes=${STAGING_INCDIR}', '', d)} \

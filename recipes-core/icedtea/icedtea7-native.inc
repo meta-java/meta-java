@@ -8,7 +8,8 @@ DEPENDS = "virtual/javac-native virtual/java-native classpath-native \
            giflib-native jpeg-native libpng-native \
            glib-2.0-native freetype-native zlib-native \
            fontconfig-native zip-native \
-	   unzip-native make-native util-linux-native\
+	   unzip-native make-native util-linux-native \
+	   xorgproto-native libx11-native \
           "
 
 PACKAGECONFIG ??= ""

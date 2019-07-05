@@ -64,3 +64,5 @@ FILES_${PN}-dbg += "${bindir}/.debug ${libdir}/.debug/lib*.so*"
 FILES_${PN}-doc += "${datadir}/gc"
 
 BBCLASSEXTEND = "native"
+
+COMPATIBLE_MACHINE_aarch64 = "-"

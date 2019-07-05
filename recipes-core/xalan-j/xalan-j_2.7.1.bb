@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = " \
 AUTHOR = "Apache Software Foundation"
 HOMEPAGE = "http://xml.apache.org/xalan-j"
 
-PR = "r1"
+PR = "r2"
 
 DEPENDS = "xerces-j regexp jlex cup jaxp1.3 bcel"
 
@@ -17,6 +17,8 @@ SRC_URI = "\
 	"
 
 S = "${WORKDIR}/${BPN}_2_7_1"
+
+PACKAGE_ARCH = "${TUNE_PKGARCH}"
 
 inherit java-library
 

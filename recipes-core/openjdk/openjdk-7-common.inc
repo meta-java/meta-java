@@ -67,7 +67,7 @@ DEPENDS = " \
     jpeg libpng giflib \
     gtk+ glib-2.0 \
     cups fontconfig \
-    rhino krb5 \
+    rhino \
     libxt libxinerama libxrender libxtst libxi \
     freetype alsa-lib libffi \
     attr \
@@ -96,6 +96,8 @@ export CACAO_CONFIGURE_ARGS = " \
     ${@['','--enable-softfloat'][d.getVar('TARGET_FPU', True) == 'soft']}"
 
 JAVA_HOME[unexport] = "1"
+
+PACKAGECONFIG[kerberos] = "--enable-system-kerberos,--disable-system-kerberos,krb5"
 
 EXTRA_OECONF = " \
     --enable-downloading=no \

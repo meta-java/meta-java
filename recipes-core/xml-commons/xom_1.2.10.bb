@@ -28,14 +28,22 @@ inherit java-library
 
 DEPENDS = "fastjar-native virtual/javac-native xerces-j xalan-j"
 
+do_move_jaxen() {
+    if [ -d ${WORKDIR}/git ] ; then
+        mv ${WORKDIR}/git/jaxen ${WORKDIR}/jaxen-${PV_jaxen}
+        rm -rf ${WORKDIR}/git
+    fi
+
+}
+
+addtask move_jaxen after do_removebinaries before do_patch
+
 do_compile() {
     mkdir -p build
 
     oe_makeclasspath cp -s xercesImpl xalan2
     cp=build:$cp
 
-    mv ${WORKDIR}/git/jaxen ${WORKDIR}/jaxen-${PV_jaxen}
-    rm -rf ${WORKDIR}/git
     scp="${WORKDIR}/jaxen-${PV_jaxen}/src/java/main"
 
     javac -sourcepath src:$scp -cp $cp -d build `find src -name "*.java" -and -not \( -wholename "*tests*" -or -wholename "*samples*" -or -wholename "*tools*" \)`

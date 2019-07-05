@@ -18,6 +18,7 @@ SRC_URI[archive.sha256sum] = "01b4abf86bce337a2a900bf121b3107320ba63b4c0f352e192
 SRC_URI[jaxme.md5sum] = "084ebfe4a816058f8ff6bd731fa70df4"
 SRC_URI[jaxme.sha256sum] = "0415d721259acf95c564fb84606bb17f6227c1cc444e89b78d1cd9903c1c88dc"
 
+PACKAGE_ARCH = "${TUNE_PKGARCH}"
 inherit java-library
 
 do_compile() {

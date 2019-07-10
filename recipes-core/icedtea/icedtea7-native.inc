@@ -94,18 +94,8 @@ JDK_DIR = "icedtea7-native"
 JDK_INSTALL_DIR = "${D}/${libdir_jvm}/${JDK_DIR}"
 
 do_configure_prepend() {
-        case "${TRANSLATED_TARGET_ARCH}" in
-                x86-64)
-                        libarch=amd64
-                ;;
-                i386|i486|i586|i686)
-                        libarch=x86
-                ;;
-                *)
-                        arch=${TARGET_ARCH}
-                        libarch=${TARGET_ARCH}
-                ;;
-        esac
+	arch="${@openjdk_build_helper_get_icedtea_arch(d)}"
+	libarch="${@openjdk_build_helper_get_icedtea_arch(d)}"
 
 	# Automatically copy everything that starts with "icedtea" and ends with
 	# ".patch" into the patches directory.

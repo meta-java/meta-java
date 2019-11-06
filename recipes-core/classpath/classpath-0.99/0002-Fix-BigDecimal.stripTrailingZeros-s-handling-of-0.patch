@@ -1,0 +1,51 @@
+From 14fa6fc320eb84d0adb9ae00dd66ddb1caaae2a6 Mon Sep 17 00:00:00 2001
+From: Chris Laplante <chris.laplante@agilent.com>
+Date: Wed, 2 Oct 2019 21:46:01 -0400
+Subject: [PATCH 2/2] Fix BigDecimal.stripTrailingZeros()'s handling of 0.
+
+Previously, 'new BigDecimal("0").stripTrailingZeros()' would blow up:
+
+Caused by: java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+   at java.lang.String.charAt
+   at java.math.BigDecimal.stripTrailingZeros
+
+Fixes https://sourceforge.net/p/saxon/mailman/message/27204592/
+
+Upstream-Status: Inappropriate [dead project]
+
+Signed-off-by: Chris Laplante <chris.laplante@agilent.com>
+---
+ java/math/BigDecimal.java | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/java/math/BigDecimal.java b/java/math/BigDecimal.java
+index e14d894..5e30f1c 100644
+--- a/java/math/BigDecimal.java
++++ b/java/math/BigDecimal.java
+@@ -1335,17 +1335,22 @@ public class BigDecimal extends Number implements Comparable<BigDecimal>
+    */
+   public BigDecimal stripTrailingZeros()
+   {
++    if (intVal.intValue() == 0)
++      return ZERO;
++
+     String intValStr = intVal.toString();
+     int newScale = scale;
+     int pointer = intValStr.length() - 1;
++
+     // This loop adjusts pointer which will be used to give us the substring
+     // of intValStr to use in our new BigDecimal, and also accordingly
+     // adjusts the scale of our new BigDecimal.
+-    while (intValStr.charAt(pointer) == '0')
++    while (pointer >= 0 && intValStr.charAt(pointer) == '0')
+       {
+         pointer --;
+         newScale --;
+       }
++
+     // Create a new BigDecimal with the appropriate substring and then
+     // set its scale.
+     BigDecimal result = new BigDecimal(intValStr.substring(0, pointer + 1));
+-- 
+2.7.4
+

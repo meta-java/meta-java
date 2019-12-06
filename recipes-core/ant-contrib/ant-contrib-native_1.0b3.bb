@@ -12,7 +12,7 @@ DEPENDS = "ant-native commons-cli-native commons-codec-native \
            oro-native bcel-native xerces-j-native \
           "
 
-inherit java-library java-native
+inherit java-library native
 
 SRC_URI = "${SOURCEFORGE_MIRROR}/ant-contrib/ant-contrib-${PV}-src.zip"
 

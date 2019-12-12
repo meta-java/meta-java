@@ -27,8 +27,8 @@ index 0790f02..2118de7 100644
 +
 +# if this shell script is invoked through symlink, we get invalid paths. As getting the real path to this file is
 +# very painful using only /bin/sh, python is used instead.
-+PYTHON_STR="import os; print os.path.dirname(os.path.realpath(os.readlink(\"${CURRENT_DIR}/java\"))) if os.path.islink(\"${CURRENT_DIR}/java\") else \"${CURRENT_DIR}\""
-+REAL_DIR=`python -c "${PYTHON_STR}"`
++PYTHON_STR="import os; print(os.path.dirname(os.path.realpath(os.readlink(\"${CURRENT_DIR}/java\"))) if os.path.islink(\"${CURRENT_DIR}/java\") else \"${CURRENT_DIR}\")"
++REAL_DIR=`python3 -c "${PYTHON_STR}"`
 +
 +PARENT_DIR=`dirname ${REAL_DIR}`
 +

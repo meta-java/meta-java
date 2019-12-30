@@ -1,0 +1,43 @@
+diff --git a/common/autoconf/toolchain.m4 b/common/autoconf/toolchain.m4
+index e3a82c8..705e3e7 100644
+--- a/common/autoconf/toolchain.m4
++++ b/common/autoconf/toolchain.m4
+@@ -478,23 +478,30 @@ AC_DEFUN([TOOLCHAIN_FIND_COMPILER],
+   SEARCH_LIST="$3"
+ 
+   if test "x[$]$1" != x; then
++    # split compiler program and arguments
++    CBIN=`cut -d ' ' -f1 <<<"[$]$1"`
++    CARGS=`cut -d ' ' -f2- <<<"[$]$1"`
++
+     # User has supplied compiler name already, always let that override.
+-    AC_MSG_NOTICE([Will use user supplied compiler $1=[$]$1])
+-    if test "x`basename [$]$1`" = "x[$]$1"; then
++    AC_MSG_NOTICE([Will use user supplied compiler ($CBIN) $1=[$]$1])
++    if test "x`basename $CBIN`" = "x$CBIN"; then
+       # A command without a complete path is provided, search $PATH.
+       
+-      AC_PATH_PROGS(POTENTIAL_$1, [$]$1)
+-      if test "x$POTENTIAL_$1" != x; then
+-        $1=$POTENTIAL_$1
++      AC_PATH_PROGS(POTENTIAL_CBIN, $CBIN)
++      if test "x$POTENTIAL_CBIN" != x; then
++        CBIN=$POTENTIAL_CBIN
+       else
+-        AC_MSG_ERROR([User supplied compiler $1=[$]$1 could not be found])
++        AC_MSG_ERROR([User supplied compiler $1=$CBIN could not be found])
+       fi
+     else
+       # Otherwise it might already be a complete path
+-      if test ! -x "[$]$1"; then
+-        AC_MSG_ERROR([User supplied compiler $1=[$]$1 does not exist])
++      if test ! -x "$CBIN"; then
++        AC_MSG_ERROR([User supplied compiler $1=$CBIN does not exist])
+       fi
+     fi
++
++    $1="$CBIN $CARGS"
++    AC_MSG_NOTICE([Mapped user supplied compiler to $1=[$]$1])
+   else
+     # No user supplied value. Locate compiler ourselves.
+ 

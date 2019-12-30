@@ -13,6 +13,7 @@ PRIVATE_LIBS = "\
     libjdwp.so libjli.so libjpeg.so libjsdt.so libjsig.so libjvm.so liblcms.so \
     libmanagement.so libmlib_image.so libnet.so libnio.so libnpt.so libsaproc.so \
     libsctp.so libsplashscreen.so libsunec.so libunpack.so libverify.so libzip.so \
+    libfreetype.so.6 \
 "
 
 PACKAGECONFIG ??= " \
@@ -42,23 +43,22 @@ PACKAGECONFIG[repack] = ",,,"
 
 PACKAGECONFIG[kerberos] = ",,krb5"
 
-CACHED_CONFIGUREVARS = " \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'ac_x_includes=${STAGING_INCDIR}', '', d)} \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'ac_x_libraries=${STAGING_LIBDIR}', '', d)} \
-"
-
 require openjdk-8-common.inc
 
 JAVA_HOME[unexport] = "1"
 
 SRC_URI_append = "\
     file://jvm.cfg \
+    file://0011-autoconf-fix-CC-with-arguments-detection.patch \
+    file://0012-autoconf-NativeCompilation-remove-sysroot.patch \
 "
+
+BUILD_CFLAGS_append = " -Wno-stringop-overflow -Wno-error"
+TARGET_CFLAGS_append = " -Wno-stringop-overflow -Wno-error"
 
 EXTRA_OECONF_append = "\
     --with-jobs=${@openjdk_build_helper_get_parallel_make(d)} \
     \
-    --with-sys-root=${STAGING_DIR_HOST} \
     --with-tools-dir=${STAGING_DIR_NATIVE} \
     --with-boot-jdk=${STAGING_LIBDIR_NATIVE}/jvm/openjdk-8-native \
     --with-cacerts-file=${STAGING_LIBDIR_NATIVE}/jvm/openjdk-8-native/jre/lib/security/cacerts \
@@ -66,12 +66,20 @@ EXTRA_OECONF_append = "\
     --disable-precompiled-headers \
     --disable-zip-debug-info \
     \
+    --with-sys-root=${STAGING_DIR_HOST} \
     --with-extra-cflags='${CFLAGS}' \
     --with-extra-cxxflags='${CXXFLAGS}' \
     --with-extra-ldflags='${LDFLAGS}' \
+    --with-freetype-include=${STAGING_INCDIR}/freetype2 \
+    --with-freetype-lib=${STAGING_LIBDIR} \
     \
     ${@jdk_configure_options(d)} \
 "
+
+do_configure_prepend() {
+    export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS}"
+    export ${@jdk_environment_options(d)}
+}
 
 do_configure_append() {
     sed -i -e 's,POST_STRIP_CMD:=.*,POST_STRIP_CMD:=,g' ${B}/spec.gmk
@@ -96,8 +104,6 @@ do_install_append() {
 
 export MAKE_VERBOSE = "y"
 export MFLAGS="${@jdk_make_options(d)} MAKE_VERBOSE=y QUIETLY= VERBOSE=-s LOG_LEVEL=trace STRIP_POLICY=no_strip"
-
-BUILD_LD="${BUILD_CCLD}"
 
 EXTRA_OEMAKE_append = '\
     ${@jdk_make_options(d)} \
@@ -125,5 +131,6 @@ python remove_debuglink() {
 
 PACKAGE_PREPROCESS_FUNCS += "remove_debuglink"
 
-# There is a symlink to a .so but this one is valid.
-INSANE_SKIP_${PN} = "dev-so"
+# FIXME libjsig.so is a symlink to a .so but this one is valid
+# FIXME libfreetype.so.6 is copied from STAGING_LIBDIR which is already stripped
+INSANE_SKIP_${PN} = "dev-so already-stripped"

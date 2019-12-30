@@ -1,0 +1,59 @@
+From bce7b39095a839b8e77fe068e87150e855224705 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
+Date: Mon, 13 Aug 2018 16:40:34 +0100
+Subject: [PATCH 1005/1012] hotspot: fix -Wreturn-type issues introduced by
+ 8061651
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+|# HG changeset patch
+|# User andrew
+|# Date 1529475043 -3600
+|#      Wed Jun 20 07:10:43 2018 +0100
+|# Node ID f6341f4635dacb56678264d29a88cd052b74036b
+|# Parent  30520d5018b509b0ae68f5fcc9a5c540e3e5b2de
+PR3601: Fix additional -Wreturn-type issues introduced by 8061651
+
+Upstream-Status: Backport
+
+Signed-off-by: André Draszik <andre.draszik@jci.com>
+Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+---
+ src/share/vm/prims/jvm.cpp | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/hotspot/src/share/vm/prims/jvm.cpp b/hotspot/src/share/vm/prims/jvm.cpp
+index f43dc5ed7..8d7523c55 100644
+--- a/hotspot/src/share/vm/prims/jvm.cpp
++++ b/hotspot/src/share/vm/prims/jvm.cpp
+@@ -908,7 +908,7 @@ JVM_END
+ JVM_ENTRY(jboolean, JVM_KnownToNotExist(JNIEnv *env, jobject loader, const char *classname))
+   JVMWrapper("JVM_KnownToNotExist");
+ #if INCLUDE_CDS
+-  return ClassLoaderExt::known_to_not_exist(env, loader, classname, CHECK_(false));
++  return ClassLoaderExt::known_to_not_exist(env, loader, classname, THREAD);
+ #else
+   return false;
+ #endif
+@@ -918,7 +918,7 @@ JVM_END
+ JVM_ENTRY(jobjectArray, JVM_GetResourceLookupCacheURLs(JNIEnv *env, jobject loader))
+   JVMWrapper("JVM_GetResourceLookupCacheURLs");
+ #if INCLUDE_CDS
+-  return ClassLoaderExt::get_lookup_cache_urls(env, loader, CHECK_NULL);
++  return ClassLoaderExt::get_lookup_cache_urls(env, loader, THREAD);
+ #else
+   return NULL;
+ #endif
+@@ -928,7 +928,7 @@ JVM_END
+ JVM_ENTRY(jintArray, JVM_GetResourceLookupCache(JNIEnv *env, jobject loader, const char *resource_name))
+   JVMWrapper("JVM_GetResourceLookupCache");
+ #if INCLUDE_CDS
+-  return ClassLoaderExt::get_lookup_cache(env, loader, resource_name, CHECK_NULL);
++  return ClassLoaderExt::get_lookup_cache(env, loader, resource_name, THREAD);
+ #else
+   return NULL;
+ #endif
+-- 
+2.24.1
+

@@ -20,12 +20,13 @@ PACKAGECONFIG[zlib] = "--with-zlib=system,--with-zlib=bundled,zlib-native"
 EXTRA_OECONF_append = "\
     --with-jobs=${@openjdk_build_helper_get_parallel_make(d)} \
     \
-    --with-sys-root=${STAGING_DIR_NATIVE} \
     --with-tools-dir=${STAGING_DIR_NATIVE} \
     --with-boot-jdk=${STAGING_LIBDIR_NATIVE}/jvm/icedtea7-native \
     --with-extra-cflags='${CFLAGS}' \
     --with-extra-cxxflags='${CXXFLAGS}' \
     --with-extra-ldflags='${LDFLAGS}' \
+    --with-freetype-include=${STAGING_INCDIR_NATIVE}/freetype2 \
+    --with-freetype-lib=${STAGING_LIBDIR_NATIVE} \
     --with-stdc++lib=dynamic \
     ${@jdk_configure_options(d)} \
 "
@@ -51,6 +52,8 @@ EXTRA_OEMAKE_append = ' \
 
 do_configure_prepend() {
     export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS}"
+    export ${@jdk_environment_options(d)}
+    unset CC CXX
 }
 
 do_compile_prepend() {

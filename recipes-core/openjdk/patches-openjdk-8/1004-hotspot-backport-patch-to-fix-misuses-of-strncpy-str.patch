@@ -1,0 +1,172 @@
+From 3a6eef99b27b7dd750e7a02eb3ada71db99d9345 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
+Date: Fri, 10 Aug 2018 14:54:45 +0100
+Subject: [PATCH 1004/1012] hotspot: backport patch to fix misuses of
+ strncpy/strncat
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Various small fixes around strncpy and strncat
+
+Compilation using gcc >= 8 fails because of errors regarding
+misuse of string functions.
+Fix them using a backport from openjdk-10
+
+Modelled after http://hg.openjdk.java.net/jdk-updates/jdk10u/rev/b1608535e50f
+
+Signed-off-by: André Draszik <andre.draszik@jci.com>
+Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+---
+ agent/src/os/linux/libproc_impl.c       |  7 ++++++-
+ src/share/tools/hsdis/hsdis.c           |  1 +
+ src/share/vm/compiler/compileBroker.hpp |  3 ++-
+ src/share/vm/compiler/disassembler.cpp  |  1 +
+ src/share/vm/runtime/arguments.cpp      | 13 ++++++-------
+ src/share/vm/utilities/ostream.cpp      | 12 ++++++++----
+ src/share/vm/utilities/vmError.cpp      |  9 +--------
+ 7 files changed, 25 insertions(+), 21 deletions(-)
+
+diff --git a/hotspot/agent/src/os/linux/libproc_impl.c b/hotspot/agent/src/os/linux/libproc_impl.c
+index ca791c95d..73a15ce35 100644
+--- a/hotspot/agent/src/os/linux/libproc_impl.c
++++ b/hotspot/agent/src/os/linux/libproc_impl.c
+@@ -159,7 +159,12 @@ lib_info* add_lib_info_fd(struct ps_prochandle* ph, const char* libname, int fd,
+       return NULL;
+    }
+ 
+-   strncpy(newlib->name, libname, sizeof(newlib->name));
++   if (strlen(libname) >= sizeof(newlib->name)) {
++     print_debug("libname %s too long\n", libname);
++     return NULL;
++   }
++   strcpy(newlib->name, libname);
++
+    newlib->base = base;
+ 
+    if (fd == -1) {
+diff --git a/hotspot/src/share/tools/hsdis/hsdis.c b/hotspot/src/share/tools/hsdis/hsdis.c
+index 7bef1040f..1907d479e 100644
+--- a/hotspot/src/share/tools/hsdis/hsdis.c
++++ b/hotspot/src/share/tools/hsdis/hsdis.c
+@@ -438,6 +438,7 @@ static void parse_caller_options(struct hsdis_app_data* app_data, const char* ca
+     }
+     p = q;
+   }
++  *iop = '\0';
+ }
+ 
+ static void print_help(struct hsdis_app_data* app_data,
+diff --git a/hotspot/src/share/vm/compiler/compileBroker.hpp b/hotspot/src/share/vm/compiler/compileBroker.hpp
+index ad37ff173..16e0ba3aa 100644
+--- a/hotspot/src/share/vm/compiler/compileBroker.hpp
++++ b/hotspot/src/share/vm/compiler/compileBroker.hpp
+@@ -173,7 +173,8 @@ class CompilerCounters : public CHeapObj<mtCompiler> {
+     // these methods should be called in a thread safe context
+ 
+     void set_current_method(const char* method) {
+-      strncpy(_current_method, method, (size_t)cmname_buffer_length);
++      strncpy(_current_method, method, (size_t)cmname_buffer_length-1);
++      _current_method[cmname_buffer_length-1] = '\0';
+       if (UsePerfData) _perf_current_method->set_value(method);
+     }
+ 
+diff --git a/hotspot/src/share/vm/compiler/disassembler.cpp b/hotspot/src/share/vm/compiler/disassembler.cpp
+index 93cd9e854..e7b32cd6b 100644
+--- a/hotspot/src/share/vm/compiler/disassembler.cpp
++++ b/hotspot/src/share/vm/compiler/disassembler.cpp
+@@ -295,6 +295,7 @@ address decode_env::handle_event(const char* event, address arg) {
+         strlen((const char*)arg) > sizeof(buffer) - 1) {
+       // Only print this when the mach changes
+       strncpy(buffer, (const char*)arg, sizeof(buffer) - 1);
++      buffer[sizeof(buffer) - 1] = '\0';
+       output()->print_cr("[Disassembling for mach='%s']", arg);
+     }
+   } else if (match(event, "format bytes-per-line")) {
+diff --git a/hotspot/src/share/vm/runtime/arguments.cpp b/hotspot/src/share/vm/runtime/arguments.cpp
+index 2665b6b8c..5a9294677 100644
+--- a/hotspot/src/share/vm/runtime/arguments.cpp
++++ b/hotspot/src/share/vm/runtime/arguments.cpp
+@@ -3455,7 +3455,7 @@ void Arguments::fix_appclasspath() {
+     }
+ 
+     char* copy = AllocateHeap(strlen(src) + 1, mtInternal);
+-    strncpy(copy, src, strlen(src) + 1);
++    strcpy(copy, src);
+ 
+     // trim all trailing empty paths
+     for (char* tail = copy + strlen(copy) - 1; tail >= copy && *tail == separator; tail--) {
+@@ -3834,17 +3834,16 @@ static char* get_shared_archive_path() {
+     if (end != NULL) *end = '\0';
+     size_t jvm_path_len = strlen(jvm_path);
+     size_t file_sep_len = strlen(os::file_separator());
+-    shared_archive_path = NEW_C_HEAP_ARRAY(char, jvm_path_len +
+-        file_sep_len + 20, mtInternal);
++    const size_t len = jvm_path_len + file_sep_len + 20;
++    shared_archive_path = NEW_C_HEAP_ARRAY(char, len, mtInternal);
+     if (shared_archive_path != NULL) {
+-      strncpy(shared_archive_path, jvm_path, jvm_path_len + 1);
+-      strncat(shared_archive_path, os::file_separator(), file_sep_len);
+-      strncat(shared_archive_path, "classes.jsa", 11);
++      jio_snprintf(shared_archive_path, len, "%s%sclasses.jsa",
++        jvm_path, os::file_separator());
+     }
+   } else {
+     shared_archive_path = NEW_C_HEAP_ARRAY(char, strlen(SharedArchiveFile) + 1, mtInternal);
+     if (shared_archive_path != NULL) {
+-      strncpy(shared_archive_path, SharedArchiveFile, strlen(SharedArchiveFile) + 1);
++      strcpy(shared_archive_path, SharedArchiveFile);
+     }
+   }
+   return shared_archive_path;
+diff --git a/hotspot/src/share/vm/utilities/ostream.cpp b/hotspot/src/share/vm/utilities/ostream.cpp
+index 1b00f829a..4daea2b7e 100644
+--- a/hotspot/src/share/vm/utilities/ostream.cpp
++++ b/hotspot/src/share/vm/utilities/ostream.cpp
+@@ -342,15 +342,19 @@ void stringStream::write(const char* s, size_t len) {
+       assert(rm == NULL || Thread::current()->current_resource_mark() == rm,
+              "stringStream is re-allocated with a different ResourceMark");
+       buffer = NEW_RESOURCE_ARRAY(char, end);
+-      strncpy(buffer, oldbuf, buffer_pos);
++      if (buffer_pos > 0) {
++        memcpy(buffer, oldbuf, buffer_pos);
++      }
+       buffer_length = end;
+     }
+   }
+   // invariant: buffer is always null-terminated
+   guarantee(buffer_pos + write_len + 1 <= buffer_length, "stringStream oob");
+-  buffer[buffer_pos + write_len] = 0;
+-  strncpy(buffer + buffer_pos, s, write_len);
+-  buffer_pos += write_len;
++  if (write_len > 0) {
++    buffer[buffer_pos + write_len] = 0;
++    memcpy(buffer + buffer_pos, s, write_len);
++    buffer_pos += write_len;
++  }
+ 
+   // Note that the following does not depend on write_len.
+   // This means that position and count get updated
+diff --git a/hotspot/src/share/vm/utilities/vmError.cpp b/hotspot/src/share/vm/utilities/vmError.cpp
+index ef3bb5cee..c11fef472 100644
+--- a/hotspot/src/share/vm/utilities/vmError.cpp
++++ b/hotspot/src/share/vm/utilities/vmError.cpp
+@@ -450,14 +450,7 @@ void VMError::report(outputStream* st) {
+ #else
+          const char *file = _filename;
+ #endif
+-         size_t len = strlen(file);
+-         size_t buflen = sizeof(buf);
+-
+-         strncpy(buf, file, buflen);
+-         if (len + 10 < buflen) {
+-           sprintf(buf + len, ":%d", _lineno);
+-         }
+-         st->print(" (%s)", buf);
++         st->print(" (%s:%d)", file, _lineno);
+        } else {
+          st->print(" (0x%x)", _id);
+        }
+-- 
+2.24.1
+

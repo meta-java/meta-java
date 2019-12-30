@@ -8,13 +8,13 @@ require openjdk-common.inc
 
 AUTOTOOLS_SCRIPT_PATH = "${S}/common/autoconf/"
 export AUTOCONF_DIR="${AUTOTOOLS_SCRIPT_PATH}"
-
 FILESPATH =. "${FILE_DIRNAME}/patches-openjdk-8:"
 
 # for weird openjdk-common.inc
 S = "${WORKDIR}/${OPENJDK_HG_U}-${OPENJDK_CHANGESET}"
+export TOPDIR="${S}"
 
-SRC_URI = " \
+SRC_URI = "\
     ${OPENJDK_URI} \
     ${HOTSPOT_URI} \
     ${CORBA_URI} \
@@ -155,16 +155,12 @@ def jdk_configure_options(d):
 do_unpack[postfuncs] += "do_unpack_extract_submodules"
 do_unpack[postfuncs] += "${@bb.utils.contains('PACKAGECONFIG', 'x11', '', 'do_unpack_delete_X11_wrappers', d)}"
 
-do_configure_prepend() {
-        export ${@jdk_environment_options(d)}
-}
-
 export DEBUG_BINARIES = "true"
 
 ALTERNATIVE_PRIORITY = "50"
 
-OPENJDK_UPDATE_VERSION = "${@d.getVar('PV').split('b')[0]}"
-OPENJDK_BUILD_NUMBER = "b${@d.getVar('PV').split('b')[1]}"
+OPENJDK_UPDATE_VERSION = "${PV}"
+OPENJDK_BUILD_NUMBER = "ga"
 EXTRA_OECONF_append = "\
         --with-build-number=${OPENJDK_BUILD_NUMBER} \
         --with-update-version=${OPENJDK_UPDATE_VERSION} \
@@ -176,6 +172,7 @@ EXTRA_OECONF_append = "\
 FLAGS_GCC6 = "-fno-lifetime-dse -fno-delete-null-pointer-checks"
 FLAGS_GCC7 = "-fno-lifetime-dse -fno-delete-null-pointer-checks"
 FLAGS_GCC8 = "-fno-lifetime-dse -fno-delete-null-pointer-checks"
+FLAGS_GCC9 = "-fno-lifetime-dse -fno-delete-null-pointer-checks"
 
 # flags for -native, and for bits that need a host-tool during -cross
 BUILD_CFLAGS_append = " ${@openjdk_build_helper_get_build_cflags(d)}"

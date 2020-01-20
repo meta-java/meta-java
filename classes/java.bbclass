@@ -80,8 +80,6 @@ oe_makeclasspath() {
   # in variable "bootcp".
   # 
   # Provide the -s at the beginning otherwise strange things happen.
-  # If -s is given the function checks whether the requested jar file exists
-  # and exits with an error message if it cannot be found.
   #
   # Note: In order to encourage usage of the DEPENDS variable, the function
   # can accept recipe names. If a recipe has no corresponding Jar file it
@@ -91,6 +89,7 @@ oe_makeclasspath() {
   classpath=
   delimiter=
   retval=$1
+  staging=false
 
   shift
 
@@ -106,6 +105,7 @@ oe_makeclasspath() {
                   dir=${STAGING_DATADIR_JAVA}
                   ;;
               esac
+              staging=true
               ;;
           -*)
               bbfatal "oe_makeclasspath: unknown option: $1"
@@ -113,9 +113,9 @@ oe_makeclasspath() {
           *)
               file=$dir/$1.jar
 
-              if [ -e $file ]; then
-                  classpath=$classpath$delimiter$file
-                  delimiter=":"
+              if [ $staging == false ] || [ -e $file ]; then
+                classpath=$classpath$delimiter$file
+                delimiter=":"
               fi
 
           ;;

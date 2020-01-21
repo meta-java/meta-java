@@ -11,6 +11,14 @@ branch: master
 revision: HEAD
 
 URI: git://git.openembedded.org/meta-openembedded
+sub-layer: meta-oe
+branch: master
+revision: HEAD
+
+Furthermoe for oeqa runtime testing this layer depends on:
+
+URI: git://git.yoctoproject.org/poky
+sub-layer: meta-poky
 branch: master
 revision: HEAD
 
@@ -64,6 +72,7 @@ The meta-java layer may be tested using oeqa's runtime image tests. The easiest
 way is to add the following configuration to your local.conf:
 
 SANITY_TESTED_DISTROS = ""
+INHERIT += "testimage"
 TESTIMAGE_AUTO = "1"
 
 Then you should be able to use the open{jre,jdk}-{7,8}-test-image recipes.

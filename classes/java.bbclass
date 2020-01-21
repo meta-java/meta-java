@@ -113,7 +113,7 @@ oe_makeclasspath() {
           *)
               file=$dir/$1.jar
 
-              if [ $staging == false ] || [ -e $file ]; then
+              if [ $staging = false ] || [ -e $file ]; then
                 classpath=$classpath$delimiter$file
                 delimiter=":"
               fi

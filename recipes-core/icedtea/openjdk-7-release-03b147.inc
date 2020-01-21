@@ -72,6 +72,7 @@ ICEDTEA_PATCHES = " \
         file://icedtea-sane-x86-arch-name.patch \
 	file://fix-checksums.patch \
 	file://icedtea-makefile-unzip.patch \
+	file://icedtea-m4-fix-xattr-include-path.patch \
         "
 
 OPENJDK_PATCHES = " \
@@ -80,6 +81,7 @@ OPENJDK_PATCHES = " \
 	file://icedtea-corba-parallel-make.patch;apply=no \
         file://icedtea-hotspot-make-arch-sane-for-x86.patch;apply=no \
         file://icedtea-jdk-sane-x86-arch.patch;apply=no \
+        file://icedtea-jdk-fix-xattr-include.patch;apply=no \
 	file://icedtea-flags.patch;apply=no \
 	file://icedtea-openjdk-remove-currency-data-generation-expi.patch;apply=no \
 	file://icedtea-change-to-gdb-debug-format.patch;apply=no \
@@ -106,6 +108,7 @@ export DISTRIBUTION_PATCHES = " \
 	patches/icedtea-corba-parallel-make.patch \
         patches/icedtea-hotspot-make-arch-sane-for-x86.patch \
         patches/icedtea-jdk-sane-x86-arch.patch \
+        patches/icedtea-jdk-fix-xattr-include.patch \
 	patches/icedtea-flags.patch \
 	patches/icedtea-openjdk-remove-currency-data-generation-expi.patch \
 	patches/icedtea-change-to-gdb-debug-format.patch \

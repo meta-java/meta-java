@@ -1,0 +1,11 @@
+--- openjdk/jdk/src/solaris/native/sun/nio/fs/LinuxNativeDispatcher.c
++++ openjdk/jdk/src/solaris/native/sun/nio/fs/LinuxNativeDispatcher.c
+@@ -38,7 +38,7 @@
+ 
+ #ifdef COMPILE_AGAINST_SYSCALLS
+ #include <sys/types.h>
+-#include <attr/xattr.h>
++#include <sys/xattr.h>
+ #else
+ #include <syscalls_fp.h>
+ #endif

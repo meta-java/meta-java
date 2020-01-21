@@ -41,6 +41,7 @@ OEPATCHES = "\
     file://build-hacks.patch \
     file://fix_hotspot_crosscompile.patch \
     file://icedtea-makefile-unzip.patch \
+    file://icedtea-m4-fix-xattr-include-path.patch \
 "
 
 ICEDTEAPATCHES = "\
@@ -50,6 +51,7 @@ ICEDTEAPATCHES = "\
     file://icedtea-crosscompile-fix.patch;apply=no \
     file://icedtea-xawt-crosscompile-fix.patch;apply=no \
     file://icedtea-jdk-unzip.patch;apply=no \
+    file://icedtea-jdk-fix-xattr-include.patch;apply=no \
     file://icedtea-dtrace-std_h.patch;apply=no \
     file://icedtea-hotspot-fix-string-literal-marcos.patch;apply=no \
     file://icedtea-flags-to-compile-with-GCC-6.patch;apply=no \
@@ -63,6 +65,7 @@ DISTRIBUTION_PATCHES = "\
     patches/icedtea-crosscompile-fix.patch \
     patches/icedtea-xawt-crosscompile-fix.patch \
     patches/icedtea-jdk-unzip.patch \
+    patches/icedtea-jdk-fix-xattr-include.patch \
     patches/icedtea-dtrace-std_h.patch \
     patches/icedtea-hotspot-fix-string-literal-marcos.patch \
     patches/icedtea-flags-to-compile-with-GCC-6.patch \

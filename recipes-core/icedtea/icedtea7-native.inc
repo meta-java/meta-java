@@ -30,6 +30,7 @@ CFLAGS_append = " -Wno-error=stringop-overflow -Wno-error=return-type"
 
 inherit native java autotools pkgconfig
 inherit openjdk-build-helper
+inherit python3native
 
 JAVA_HOME[unexport] = "1"
 

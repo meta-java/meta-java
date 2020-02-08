@@ -12,7 +12,6 @@ FILESPATH =. "${FILE_DIRNAME}/patches-openjdk-8:"
 
 # for weird openjdk-common.inc
 S = "${WORKDIR}/${OPENJDK_HG_U}-${OPENJDK_CHANGESET}"
-export TOPDIR="${S}"
 
 SRC_URI = "\
     ${OPENJDK_URI} \
@@ -26,6 +25,10 @@ SRC_URI = "\
     file://LICENSE \
     ${PATCHES_URI} \
 "
+
+do_configure_prepend () {
+    export TOPDIR=${S}
+}
 
 do_unpack_extract_submodules () {
     cd "${S}"

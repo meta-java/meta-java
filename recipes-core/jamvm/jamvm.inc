@@ -15,7 +15,7 @@ RPROVIDES_${PN}_class-native = ""
 
 BBCLASSEXTEND = "native"
 
-inherit java autotools update-alternatives pkgconfig relative_symlinks features_check
+inherit java autotools update-alternatives pkgconfig relative_symlinks distro_features_check
 
 REQUIRED_DISTRO_FEATURES_class-target = "x11"
 

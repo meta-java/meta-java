@@ -1,6 +1,6 @@
 require classpath.inc
 
-inherit features_check
+inherit distro_features_check
 
 REQUIRED_DISTRO_FEATURES = "x11"
 

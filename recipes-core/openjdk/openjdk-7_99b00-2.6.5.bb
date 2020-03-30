@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=59530bdf33659b29e73d4adb9f9f6552"
 
 FILESPATH =. "${FILE_DIRNAME}/patches-openjdk-7:"
 
-inherit features_check
+inherit distro_features_check
 
 REQUIRED_DISTRO_FEATURES = "x11"
 

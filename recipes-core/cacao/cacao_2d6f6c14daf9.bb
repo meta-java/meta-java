@@ -19,7 +19,7 @@ S = "${WORKDIR}/cacaovm-cacao-staging-${PV}"
 SRC_URI[md5sum] = "5157d0bb9eb1332f7a6b6186eaac01aa"
 SRC_URI[sha256sum] = "34b51d660d69c2a83225fd75eab5e1fac002fb5974cb4a74b7478baf923a76cd"
 
-inherit java autotools-brokensep update-alternatives pkgconfig features_check
+inherit java autotools-brokensep update-alternatives pkgconfig distro_features_check
 
 REQUIRED_DISTRO_FEATURES = "x11"
 REQUIRED_DISTRO_FEATURES_class-native := ""

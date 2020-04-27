@@ -4,9 +4,9 @@
      curl -s "https://hg.openjdk.java.net/jdk8u/jdk8u/tags" | grep -m 1 "jdk8u.*ga" | sed 's/-ga$//g'
 2. Rename OpenJDK/OpenJRE bb files to the matching release version
 3. Adapt the CHANGESET_ID for aarch32 based on:
-     curl -s https://hg.openjdk.java.net/aarch32-port/jdk8u/tags | grep "jdk8u.*ga-aarch32-"
+     curl -s https://hg.openjdk.java.net/aarch32-port/jdk8u/tags | grep "jdk8u.*ga-aarch32-" | head
 4. Adapt the CHANGESET_ID for aarch64 based on:
-     curl -s https://hg.openjdk.java.net/aarch64-port/jdk8u-shenandoah/tags | grep "aarch64-shenandoah-jdk8u.*-"
+     curl -s https://hg.openjdk.java.net/aarch64-port/jdk8u-shenandoah/tags | grep "aarch64-shenandoah-jdk8u.*-" | head
 5. Adapt source archive checksums by executing the script
      ./docs/update8checksums.sh
 6. Check if any patch got upstreamed (and remove if so)

@@ -1,0 +1,211 @@
+# HG changeset patch
+# User Richard Leitner <richard.leitner@skidata.com>
+# Date 1588148111 -7200
+#      Wed Apr 29 10:15:11 2020 +0200
+# Node ID e063bb17c5fb8edfbad1bfb5237b69350645ed0b
+# Parent  041cb274be1207a991e05b041f57a800e8132cff
+autoconf: remove Werror
+
+We don't want to mess around with disabling warnings on new
+compiler versions therefore we remove Werror.
+
+diff -r 041cb274be12 -r e063bb17c5fb common/autoconf/flags.m4
+--- a/common/autoconf/flags.m4	Fri Apr 24 04:22:43 2020 +0100
++++ b/common/autoconf/flags.m4	Wed Apr 29 10:15:11 2020 +0200
+@@ -399,7 +399,7 @@
+       LEGACY_EXTRA_LDFLAGS="$LEGACY_EXTRA_LDFLAGS -Wl,-z,relro"
+     fi
+     $2CXXSTD_CXXFLAG="-std=gnu++98"
+-    FLAGS_CXX_COMPILER_CHECK_ARGUMENTS([[$]$2CXXSTD_CXXFLAG -Werror],
++    FLAGS_CXX_COMPILER_CHECK_ARGUMENTS([[$]$2CXXSTD_CXXFLAG],
+                                        [], [$2CXXSTD_CXXFLAG=""])
+     $2CXXFLAGS_JDK="${$2CXXFLAGS_JDK} ${$2CXXSTD_CXXFLAG}"
+     $2JVM_CFLAGS="${$2JVM_CFLAGS} ${$2CXXSTD_CXXFLAG}"
+@@ -489,17 +489,17 @@
+     # Notably, -ffp-contract=off needs to be added for GCC >= 4.6,
+     #          -mno-fused-madd -fno-strict-aliasing for GCC < 4.6
+     COMPILER_FP_CONTRACT_OFF_FLAG="-ffp-contract=off"
+-    FLAGS_CXX_COMPILER_CHECK_ARGUMENTS([[$]COMPILER_FP_CONTRACT_OFF_FLAG -Werror],
++    FLAGS_CXX_COMPILER_CHECK_ARGUMENTS([[$]COMPILER_FP_CONTRACT_OFF_FLAG],
+                                        [], [COMPILER_FP_CONTRACT_OFF_FLAG=""])
+     if test "x$COMPILER_FP_CONTRACT_OFF_FLAG" = x; then
+       if test "$OPENJDK_TARGET_CPU_ARCH" = "x86" ||
+          test "$OPENJDK_TARGET_CPU_ARCH" = "x86_64" ||
+          test "$OPENJDK_TARGET_CPU_ARCH" = "ppc"; then
+         M_NO_FUSED_ADD_FLAG="-mno-fused-madd"
+-        FLAGS_CXX_COMPILER_CHECK_ARGUMENTS([[$]M_NO_FUSED_ADD_FLAG -Werror],
++        FLAGS_CXX_COMPILER_CHECK_ARGUMENTS([[$]M_NO_FUSED_ADD_FLAG],
+                                            [], [M_NO_FUSED_ADD_FLAG=""])
+         NO_STRICT_ALIASING_FLAG="-fno-strict-aliasing"
+-        FLAGS_CXX_COMPILER_CHECK_ARGUMENTS([[$]NO_STRICT_ALIASING_FLAG -Werror],
++        FLAGS_CXX_COMPILER_CHECK_ARGUMENTS([[$]NO_STRICT_ALIASING_FLAG],
+                                            [], [NO_STRICT_ALIASING_FLAG=""])
+         if test "x$M_NO_FUSED_ADD_FLAG" != "x" && test "x$NO_STRICT_ALIASING_FLAG" != "x"; then
+           FDLIBM_CFLAGS="$M_NO_FUSED_ADD_FLAG $NO_STRICT_ALIASING_FLAG"
+@@ -866,11 +866,11 @@
+   # Notably, value range propagation now assumes that the this pointer of C++
+   # member functions is non-null.
+   NO_DELETE_NULL_POINTER_CHECKS_CFLAG="-fno-delete-null-pointer-checks"
+-  FLAGS_COMPILER_CHECK_ARGUMENTS([$NO_DELETE_NULL_POINTER_CHECKS_CFLAG -Werror],
++  FLAGS_COMPILER_CHECK_ARGUMENTS([$NO_DELETE_NULL_POINTER_CHECKS_CFLAG],
+                                      [], [NO_DELETE_NULL_POINTER_CHECKS_CFLAG=""])
+   AC_SUBST([NO_DELETE_NULL_POINTER_CHECKS_CFLAG])
+   NO_LIFETIME_DSE_CFLAG="-fno-lifetime-dse"
+-  FLAGS_COMPILER_CHECK_ARGUMENTS([$NO_LIFETIME_DSE_CFLAG -Werror],
++  FLAGS_COMPILER_CHECK_ARGUMENTS([$NO_LIFETIME_DSE_CFLAG],
+                                      [], [NO_LIFETIME_DSE_CFLAG=""])
+   CFLAGS_JDK="${CFLAGS_JDK} ${NO_DELETE_NULL_POINTER_CHECKS_CFLAG} ${NO_LIFETIME_DSE_CFLAG}"
+   AC_SUBST([NO_LIFETIME_DSE_CFLAG])
+diff -r 041cb274be12 -r e063bb17c5fb common/autoconf/generated-configure.sh
+--- a/common/autoconf/generated-configure.sh	Fri Apr 24 04:22:43 2020 +0100
++++ b/common/autoconf/generated-configure.sh	Wed Apr 29 10:15:11 2020 +0200
+@@ -41490,12 +41490,12 @@
+     fi
+     CXXSTD_CXXFLAG="-std=gnu++98"
+ 
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C++ compiler supports \"$CXXSTD_CXXFLAG -Werror\"" >&5
+-$as_echo_n "checking if the C++ compiler supports \"$CXXSTD_CXXFLAG -Werror\"... " >&6; }
++  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C++ compiler supports \"$CXXSTD_CXXFLAG\"" >&5
++$as_echo_n "checking if the C++ compiler supports \"$CXXSTD_CXXFLAG\"... " >&6; }
+   supports=yes
+ 
+   saved_cxxflags="$CXXFLAGS"
+-  CXXFLAGS="$CXXFLAG $CXXSTD_CXXFLAG -Werror"
++  CXXFLAGS="$CXXFLAG $CXXSTD_CXXFLAG"
+   ac_ext=cpp
+ ac_cpp='$CXXCPP $CPPFLAGS'
+ ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+@@ -41646,12 +41646,12 @@
+   NO_DELETE_NULL_POINTER_CHECKS_CFLAG="-fno-delete-null-pointer-checks"
+ 
+ 
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C compiler supports \"$NO_DELETE_NULL_POINTER_CHECKS_CFLAG -Werror\"" >&5
+-$as_echo_n "checking if the C compiler supports \"$NO_DELETE_NULL_POINTER_CHECKS_CFLAG -Werror\"... " >&6; }
++  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C compiler supports \"$NO_DELETE_NULL_POINTER_CHECKS_CFLAG\"" >&5
++$as_echo_n "checking if the C compiler supports \"$NO_DELETE_NULL_POINTER_CHECKS_CFLAG\"... " >&6; }
+   supports=yes
+ 
+   saved_cflags="$CFLAGS"
+-  CFLAGS="$CFLAGS $NO_DELETE_NULL_POINTER_CHECKS_CFLAG -Werror"
++  CFLAGS="$CFLAGS $NO_DELETE_NULL_POINTER_CHECKS_CFLAG"
+   ac_ext=c
+ ac_cpp='$CPP $CPPFLAGS'
+ ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+@@ -41686,12 +41686,12 @@
+   fi
+ 
+ 
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C++ compiler supports \"$NO_DELETE_NULL_POINTER_CHECKS_CFLAG -Werror\"" >&5
+-$as_echo_n "checking if the C++ compiler supports \"$NO_DELETE_NULL_POINTER_CHECKS_CFLAG -Werror\"... " >&6; }
++  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C++ compiler supports \"$NO_DELETE_NULL_POINTER_CHECKS_CFLAG\"" >&5
++$as_echo_n "checking if the C++ compiler supports \"$NO_DELETE_NULL_POINTER_CHECKS_CFLAG\"... " >&6; }
+   supports=yes
+ 
+   saved_cxxflags="$CXXFLAGS"
+-  CXXFLAGS="$CXXFLAG $NO_DELETE_NULL_POINTER_CHECKS_CFLAG -Werror"
++  CXXFLAGS="$CXXFLAG $NO_DELETE_NULL_POINTER_CHECKS_CFLAG"
+   ac_ext=cpp
+ ac_cpp='$CXXCPP $CPPFLAGS'
+ ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+@@ -41725,8 +41725,8 @@
+   fi
+ 
+ 
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if both compilers support \"$NO_DELETE_NULL_POINTER_CHECKS_CFLAG -Werror\"" >&5
+-$as_echo_n "checking if both compilers support \"$NO_DELETE_NULL_POINTER_CHECKS_CFLAG -Werror\"... " >&6; }
++  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if both compilers support \"$NO_DELETE_NULL_POINTER_CHECKS_CFLAG\"" >&5
++$as_echo_n "checking if both compilers support \"$NO_DELETE_NULL_POINTER_CHECKS_CFLAG\"... " >&6; }
+   supports=no
+   if test "x$C_COMP_SUPPORTS" = "xyes" -a "x$CXX_COMP_SUPPORTS" = "xyes"; then supports=yes; fi
+ 
+@@ -41742,12 +41742,12 @@
+   NO_LIFETIME_DSE_CFLAG="-fno-lifetime-dse"
+ 
+ 
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C compiler supports \"$NO_LIFETIME_DSE_CFLAG -Werror\"" >&5
+-$as_echo_n "checking if the C compiler supports \"$NO_LIFETIME_DSE_CFLAG -Werror\"... " >&6; }
++  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C compiler supports \"$NO_LIFETIME_DSE_CFLAG\"" >&5
++$as_echo_n "checking if the C compiler supports \"$NO_LIFETIME_DSE_CFLAG\"... " >&6; }
+   supports=yes
+ 
+   saved_cflags="$CFLAGS"
+-  CFLAGS="$CFLAGS $NO_LIFETIME_DSE_CFLAG -Werror"
++  CFLAGS="$CFLAGS $NO_LIFETIME_DSE_CFLAG"
+   ac_ext=c
+ ac_cpp='$CPP $CPPFLAGS'
+ ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+@@ -41781,12 +41781,12 @@
+   fi
+ 
+ 
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C++ compiler supports \"$NO_LIFETIME_DSE_CFLAG -Werror\"" >&5
+-$as_echo_n "checking if the C++ compiler supports \"$NO_LIFETIME_DSE_CFLAG -Werror\"... " >&6; }
++  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C++ compiler supports \"$NO_LIFETIME_DSE_CFLAG\"" >&5
++$as_echo_n "checking if the C++ compiler supports \"$NO_LIFETIME_DSE_CFLAG\"... " >&6; }
+   supports=yes
+ 
+   saved_cxxflags="$CXXFLAGS"
+-  CXXFLAGS="$CXXFLAG $NO_LIFETIME_DSE_CFLAG -Werror"
++  CXXFLAGS="$CXXFLAG $NO_LIFETIME_DSE_CFLAG"
+   ac_ext=cpp
+ ac_cpp='$CXXCPP $CPPFLAGS'
+ ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+@@ -41820,8 +41820,8 @@
+   fi
+ 
+ 
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if both compilers support \"$NO_LIFETIME_DSE_CFLAG -Werror\"" >&5
+-$as_echo_n "checking if both compilers support \"$NO_LIFETIME_DSE_CFLAG -Werror\"... " >&6; }
++  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if both compilers support \"$NO_LIFETIME_DSE_CFLAG\"" >&5
++$as_echo_n "checking if both compilers support \"$NO_LIFETIME_DSE_CFLAG\"... " >&6; }
+   supports=no
+   if test "x$C_COMP_SUPPORTS" = "xyes" -a "x$CXX_COMP_SUPPORTS" = "xyes"; then supports=yes; fi
+ 
+@@ -41854,12 +41854,12 @@
+     #          -mno-fused-madd -fno-strict-aliasing for GCC < 4.6
+     COMPILER_FP_CONTRACT_OFF_FLAG="-ffp-contract=off"
+ 
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C++ compiler supports \"$COMPILER_FP_CONTRACT_OFF_FLAG -Werror\"" >&5
+-$as_echo_n "checking if the C++ compiler supports \"$COMPILER_FP_CONTRACT_OFF_FLAG -Werror\"... " >&6; }
++  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C++ compiler supports \"$COMPILER_FP_CONTRACT_OFF_FLAG\"" >&5
++$as_echo_n "checking if the C++ compiler supports \"$COMPILER_FP_CONTRACT_OFF_FLAG\"... " >&6; }
+   supports=yes
+ 
+   saved_cxxflags="$CXXFLAGS"
+-  CXXFLAGS="$CXXFLAG $COMPILER_FP_CONTRACT_OFF_FLAG -Werror"
++  CXXFLAGS="$CXXFLAG $COMPILER_FP_CONTRACT_OFF_FLAG"
+   ac_ext=cpp
+ ac_cpp='$CXXCPP $CPPFLAGS'
+ ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+@@ -41898,12 +41898,12 @@
+          test "$OPENJDK_TARGET_CPU_ARCH" = "ppc"; then
+         M_NO_FUSED_ADD_FLAG="-mno-fused-madd"
+ 
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C++ compiler supports \"$M_NO_FUSED_ADD_FLAG -Werror\"" >&5
+-$as_echo_n "checking if the C++ compiler supports \"$M_NO_FUSED_ADD_FLAG -Werror\"... " >&6; }
++  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C++ compiler supports \"$M_NO_FUSED_ADD_FLAG\"" >&5
++$as_echo_n "checking if the C++ compiler supports \"$M_NO_FUSED_ADD_FLAG\"... " >&6; }
+   supports=yes
+ 
+   saved_cxxflags="$CXXFLAGS"
+-  CXXFLAGS="$CXXFLAG $M_NO_FUSED_ADD_FLAG -Werror"
++  CXXFLAGS="$CXXFLAG $M_NO_FUSED_ADD_FLAG"
+   ac_ext=cpp
+ ac_cpp='$CXXCPP $CPPFLAGS'
+ ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+@@ -41938,12 +41938,12 @@
+ 
+         NO_STRICT_ALIASING_FLAG="-fno-strict-aliasing"
+ 
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C++ compiler supports \"$NO_STRICT_ALIASING_FLAG -Werror\"" >&5
+-$as_echo_n "checking if the C++ compiler supports \"$NO_STRICT_ALIASING_FLAG -Werror\"... " >&6; }
++  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if the C++ compiler supports \"$NO_STRICT_ALIASING_FLAG\"" >&5
++$as_echo_n "checking if the C++ compiler supports \"$NO_STRICT_ALIASING_FLAG\"... " >&6; }
+   supports=yes
+ 
+   saved_cxxflags="$CXXFLAGS"
+-  CXXFLAGS="$CXXFLAG $NO_STRICT_ALIASING_FLAG -Werror"
++  CXXFLAGS="$CXXFLAG $NO_STRICT_ALIASING_FLAG"
+   ac_ext=cpp
+ ac_cpp='$CXXCPP $CPPFLAGS'
+ ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'

@@ -1,0 +1,14 @@
+diff -r 12177d88b89c hotspot/make/linux/makefiles/gcc.make
+--- a/hotspot/make/linux/makefiles/gcc.make	Thu Sep 26 07:17:41 2019 +0100
++++ b/hotspot/make/linux/makefiles/gcc.make	Wed Apr 29 10:56:10 2020 +0200
+@@ -200,8 +200,8 @@
+   CFLAGS += -pipe
+ endif
+ 
+-# Compiler warnings are treated as errors
+-WARNINGS_ARE_ERRORS = -Werror
++# Compiler warnings are not treated as errors
++WARNINGS_ARE_ERRORS = -Wno-error
+ 
+ ifeq ($(USE_CLANG), true)
+   # However we need to clean the code up before we can unrestrictedly enable this option with Clang

@@ -133,5 +133,5 @@ BBLAYERS ?= " \
 
 Build host dependencies
 -----------------------
- - gcc with c++14 support
+ - gcc >= v6
  - libstdc++ static

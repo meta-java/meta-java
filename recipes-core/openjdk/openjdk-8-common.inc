@@ -170,20 +170,14 @@ EXTRA_OECONF_append = "\
 "
 
 # Since v6, GCC sets the default C++ standard to C++14 and introduces
-# dead store elimination by default. OpenJDK 8 is not ready for either
-# of these changes.
-FLAGS_GCC6 = "-fno-lifetime-dse -fno-delete-null-pointer-checks"
-FLAGS_GCC7 = "-fno-lifetime-dse -fno-delete-null-pointer-checks"
-FLAGS_GCC8 = "-fno-lifetime-dse -fno-delete-null-pointer-checks"
-FLAGS_GCC9 = "-fno-lifetime-dse -fno-delete-null-pointer-checks"
-FLAGS_GCC10 = "-fno-lifetime-dse -fno-delete-null-pointer-checks"
-
-# GCC 10 defaults to -fno-common, but OpenJDK 8 is not ready for this.
-FLAGS_GCC10_append = " -fcommon"
+# dead store elimination by default.
+# Since v10, GCC defaults to -fno-common.
+# OpenJDK 8 is not ready for either of these changes.
+GLOBAL_FLAGS = "-fno-lifetime-dse -fno-delete-null-pointer-checks -fcommon"
 
 # flags for -native, and for bits that need a host-tool during -cross
-BUILD_CFLAGS_append = " ${@openjdk_build_helper_get_build_cflags(d)}"
-BUILD_CXXFLAGS_append = " ${@openjdk_build_helper_get_build_cflags(d)}"
+BUILD_CFLAGS_append = " ${GLOBAL_FLAGS}"
+BUILD_CXXFLAGS_append = " ${GLOBAL_FLAGS}"
 # flags for -cross
-TARGET_CFLAGS_append = " ${@openjdk_build_helper_get_target_cflags(d)}"
-TARGET_CXXFLAGS_append = " ${@openjdk_build_helper_get_target_cflags(d)}"
+TARGET_CFLAGS_append = " ${GLOBAL_FLAGS}"
+TARGET_CXXFLAGS_append = " ${GLOBAL_FLAGS}"

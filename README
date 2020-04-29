@@ -122,7 +122,7 @@ BBLAYERS ?= " \
   path_to_source/sources/meta-java \
   "
 
-Please note that libstdc++ static is needed on your host to compile icedtea7-native
-(install libstdc++-static on a Fedora).
-
-For debian-based distributions you need the libstdc++6-$compilerversion-dev package.
+Build host dependencies
+-----------------------
+ - gcc >= v6
+ - libstdc++ static

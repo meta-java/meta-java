@@ -9,6 +9,7 @@ PATCHES_URI = "\
     file://0008-autoconf-fix-shark-build-common.patch \
     file://0009-prevent-debuginfo-in-favour-of-openembedded-package-.patch \
     file://0010-autoconf-remove-shell-variables-from-autoheader.patch \
+    file://0013-autoconf-remove-Werror.patch \
     ${HOTSPOT_UB_PATCH} \
     file://2001-jdk-comparison-between-pointer-and-integer.patch \
     file://2002-jdk-Allow-using-a-system-installed-libjpeg.patch \
@@ -30,6 +31,7 @@ HOTSPOT_UB_PATCH = "\
     file://1007-hotspot-Missing-return-statement-in-__sync_val_compa.patch \
     file://1008-hotspot-Turn-on-the-Wreturn-type-warning.patch \
     file://1009-hotspot-handle-format-error-for-GCC-7.patch \
+    file://1013-hotspot-make-disable-Werror.patch \
 "
 HOTSPOT_UB_PATCH_append_class-target = "\
     file://1010-hotspot-fix-adlc-flags.patch \
@@ -87,16 +89,6 @@ BUILD_DIR_ECJ = "openjdk.build-ecj"
 
 # Force arm mode for now
 ARM_INSTRUCTION_SET_armv4t = "ARM"
-
-# readdir_r was deprecated in glibc-2.24. Ignore the error for now
-# NOTE: When updating the recipe, please check if this is still needed
-BUILD_CFLAGS_append = " -Wno-error=deprecated-declarations"
-TARGET_CFLAGS_append = " -Wno-error=deprecated-declarations"
-
-# WORKAROUND: disable the "specified bound depends on the length of the source argument"
-# compiler error until we update openjdk8 to a fixed version
-BUILD_CFLAGS_append = " -Wno-error=stringop-overflow"
-TARGET_CFLAGS_append = " -Wno-error=stringop-overflow"
 
 # Enable zero mode for arm based builds, as normal hotspot fails to build
 PACKAGECONFIG_append_armv4 = " zero"

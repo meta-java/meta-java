@@ -53,9 +53,6 @@ SRC_URI_append = "\
     file://0012-autoconf-NativeCompilation-remove-sysroot.patch \
 "
 
-BUILD_CFLAGS_append = " -Wno-stringop-overflow -Wno-error"
-TARGET_CFLAGS_append = " -Wno-stringop-overflow -Wno-error"
-
 EXTRA_OECONF_append = "\
     --with-jobs=${@openjdk_build_helper_get_parallel_make(d)} \
     \

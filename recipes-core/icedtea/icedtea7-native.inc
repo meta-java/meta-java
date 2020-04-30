@@ -28,6 +28,9 @@ CXX_append = " -std=gnu++98"
 # WORKAROUND: ignore errors from new compilers
 CFLAGS_append = " -Wno-error=stringop-overflow -Wno-error=return-type"
 
+# Explicitly pass -fcommon since GCC 10 defaults to -fno-common for C sources
+CFLAGS_append = " -fcommon"
+
 inherit native java autotools pkgconfig
 inherit openjdk-build-helper
 inherit python3native

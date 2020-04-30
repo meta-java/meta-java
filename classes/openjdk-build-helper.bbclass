@@ -31,7 +31,7 @@ def openjdk_build_helper_get_build_cflags(d):
         from subprocess import Popen, PIPE
         cmd = d.expand('%s -dumpversion' % build_cc).split()
         cc = Popen(cmd, stdout=PIPE, stderr=PIPE)
-        return cc.communicate()[0].decode('utf-8')[0]
+        return cc.communicate()[0].decode('utf-8').split()[0]
 
     build_cc = d.getVar('BUILD_CC')
     version = get_build_cc_version(build_cc)

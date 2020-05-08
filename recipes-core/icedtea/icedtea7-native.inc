@@ -28,6 +28,11 @@ CXX_append = " -std=gnu++98"
 # WORKAROUND: ignore errors from new compilers
 CFLAGS_append = " -Wno-error=stringop-overflow -Wno-error=return-type"
 
+# oe.utils.get_host_compiler_version returns "gcc, 9.2" and we want -> "9"
+HOST_COMPILER_MAJOR="${@oe.utils.get_host_compiler_version(d)[1].split(".", 2)[0]}"
+# if compiler version 9 detected, add more CFLAGS
+CFLAGS_append = " ${@oe.utils.conditional('HOST_COMPILER_MAJOR', '9', '-Wno-error=format-overflow', '', d)}"
+
 # Explicitly pass -fcommon since GCC 10 defaults to -fno-common for C sources
 CFLAGS_append = " -fcommon"
 

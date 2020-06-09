@@ -8,8 +8,8 @@ DEPENDS = "\
 "
 
 PACKAGECONFIG ??= "gif jpeg png zlib"
-PACKAGECONFIG[cups] = "--with-cups,,cups"
 PACKAGECONFIG[x11] = "--with-x,,libx11-native xorgproto-native libxt-native libxext-native libxrender-native libxtst-native"
+PACKAGECONFIG[cups] = "--with-cups,,cups-native"
 PACKAGECONFIG[alsa] = "--with-alsa,,alsa-lib-native"
 PACKAGECONFIG[gif] = "--with-giflib=system,--with-giflib=bundled,giflib-native"
 PACKAGECONFIG[jce] = "--enable-unlimited-crypto,,"

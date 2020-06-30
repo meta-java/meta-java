@@ -66,6 +66,7 @@ B = "${S}/build"
 # openjdk looks in /usr/include and /usr/lib for freetype by default.
 export ALT_FREETYPE_HEADERS_PATH = "${STAGING_INCDIR}/freetype2"
 export ALT_FREETYPE_LIB_PATH = "${STAGING_LIBDIR}"
+export ALT_CUPS_HEADERS_PATH = "${STAGING_INCDIR}"
 
 # libfreetype.so.6 is copied from STAGING_LIBDIR
 # which is already stripped.

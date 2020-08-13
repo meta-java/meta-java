@@ -20,6 +20,7 @@ PATCHES_URI = "\
     file://2007-jdk-no-genx11-in-headless.patch \
     file://2008-jdk-no-unused-deps.patch \
     file://2009-jdk-use-gcc-instead-of-ld-to-link-genSocketOptionRegistry.patch \
+    file://2010-Remove-usage-of-sys-sysctl.h.patch \
 "
 HOTSPOT_UB_PATCH = "\
     file://1001-hotspot-fix-crash-on-JNI_CreateJavaVM.patch \

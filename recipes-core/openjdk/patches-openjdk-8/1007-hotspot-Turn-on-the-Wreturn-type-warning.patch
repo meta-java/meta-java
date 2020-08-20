@@ -1,7 +1,7 @@
-From b9273263a4ddc38c61bf0e59819bc9503495b5a1 Mon Sep 17 00:00:00 2001
+From d7256ea11ba0c2160df59d40eea247c1a83ce1fb Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Mon, 13 Aug 2018 16:48:32 +0100
-Subject: [PATCH 1008/1013] hotspot: Turn on the -Wreturn-type warning
+Subject: [PATCH 1007/1013] hotspot: Turn on the -Wreturn-type warning
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -61,7 +61,7 @@ index f42d1a288..c8f4ee161 100644
  
  #ifndef PRODUCT
 diff --git a/hotspot/src/os_cpu/linux_x86/vm/os_linux_x86.cpp b/hotspot/src/os_cpu/linux_x86/vm/os_linux_x86.cpp
-index 1a7375afc..fbf51b040 100644
+index c35d8677f..65c3165ca 100644
 --- a/hotspot/src/os_cpu/linux_x86/vm/os_linux_x86.cpp
 +++ b/hotspot/src/os_cpu/linux_x86/vm/os_linux_x86.cpp
 @@ -541,6 +541,7 @@ JVM_handle_linux_signal(int sig,
@@ -117,10 +117,10 @@ index ec97077b7..2621a7d62 100644
  
  Symbol* SymbolTable::lookup_only(const char* name, int len,
 diff --git a/hotspot/src/share/vm/classfile/systemDictionary.cpp b/hotspot/src/share/vm/classfile/systemDictionary.cpp
-index da2717d36..5253afc22 100644
+index 05b196aeb..7f8ab9143 100644
 --- a/hotspot/src/share/vm/classfile/systemDictionary.cpp
 +++ b/hotspot/src/share/vm/classfile/systemDictionary.cpp
-@@ -229,15 +229,15 @@ Klass* SystemDictionary::resolve_or_null(Symbol* class_name, Handle class_loader
+@@ -234,15 +234,15 @@ Klass* SystemDictionary::resolve_or_null(Symbol* class_name, Handle class_loader
                   class_name->as_C_string(),
                   class_loader.is_null() ? "null" : class_loader->klass()->name()->as_C_string()));
    if (FieldType::is_array(class_name)) {
@@ -179,10 +179,10 @@ index 0698eb40e..354293924 100644
  
    Symbol* klass_name_at(int which);  // Returns the name, w/o resolving.
 diff --git a/hotspot/src/share/vm/prims/jvm.cpp b/hotspot/src/share/vm/prims/jvm.cpp
-index 8d7523c55..4034a8589 100644
+index 29532ab11..8ba488e15 100644
 --- a/hotspot/src/share/vm/prims/jvm.cpp
 +++ b/hotspot/src/share/vm/prims/jvm.cpp
-@@ -4343,7 +4343,7 @@ JVM_ENTRY(jlong,JVM_DTraceActivate(
+@@ -4357,7 +4357,7 @@ JVM_ENTRY(jlong,JVM_DTraceActivate(
      JVM_DTraceProvider* providers))
    JVMWrapper("JVM_DTraceActivate");
    return DTraceJSDT::activate(
@@ -218,7 +218,7 @@ index d5bea29c3..50578ad63 100644
  
  
 diff --git a/hotspot/src/share/vm/services/memTracker.hpp b/hotspot/src/share/vm/services/memTracker.hpp
-index 7ad2b71f4..182084373 100644
+index 8ea859ddb..535147f8c 100644
 --- a/hotspot/src/share/vm/services/memTracker.hpp
 +++ b/hotspot/src/share/vm/services/memTracker.hpp
 @@ -64,7 +64,7 @@ class MemTracker : AllStatic {

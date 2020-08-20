@@ -1,4 +1,4 @@
-From ec3aa8ae1159ff5ef37fae1ba470cf1886aa8d79 Mon Sep 17 00:00:00 2001
+From 4ba108476c0756ab567235d692c80acf477c310e Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Erkka=20K=C3=A4=C3=A4ri=C3=A4?= <erkka.kaaria@intel.com>
 Date: Thu, 2 Jan 2020 13:49:02 +0100
 Subject: [PATCH 07/10] fix assembler flag handling in makefile
@@ -32,5 +32,5 @@ index 92f8033..46a1be9 100644
    # On windows we need to create a resource file
    ifeq ($(OPENJDK_TARGET_OS), windows)
 -- 
-2.24.1
+2.26.2
 

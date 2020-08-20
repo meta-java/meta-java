@@ -1,7 +1,7 @@
-From aef9a3f955f6e189b2a24b9f79ccb396275d4fa3 Mon Sep 17 00:00:00 2001
+From bd5665d4aa962107eb3d51d20d8b8971d9fca044 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 13:36:53 +0000
-Subject: [PATCH 2002/2008] jdk: Allow using a system-installed libjpeg
+Subject: [PATCH 2002/2009] jdk: Allow using a system-installed libjpeg
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -30,10 +30,10 @@ Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
  5 files changed, 51 insertions(+), 26 deletions(-)
 
 diff --git a/jdk/make/lib/Awt2dLibraries.gmk b/jdk/make/lib/Awt2dLibraries.gmk
-index a06bfd6db..12b9da11d 100644
+index 9368a9d508..7fffcafc70 100644
 --- a/jdk/make/lib/Awt2dLibraries.gmk
 +++ b/jdk/make/lib/Awt2dLibraries.gmk
-@@ -695,21 +695,24 @@ $(BUILD_LIBLCMS): $(BUILD_LIBAWT)
+@@ -702,21 +702,24 @@ $(BUILD_LIBLCMS): $(BUILD_LIBAWT)
  
  ##########################################################################################
  
@@ -64,7 +64,7 @@ index a06bfd6db..12b9da11d 100644
  # Suppress gcc warnings like "variable might be clobbered by 'longjmp'
  # or 'vfork'": this warning indicates that some variable is placed to
  # a register by optimized compiler and it's value might be lost on longjmp().
-@@ -721,37 +724,50 @@ endif
+@@ -728,37 +731,50 @@ endif
  #      $(shell $(EXPR) $(CC_MAJORVER) \> 4 \| \
  #          \( $(CC_MAJORVER) = 4 \& $(CC_MINORVER) \>= 3 \) )
  #  ifeq ($(CC_43_OR_NEWER), 1)
@@ -129,7 +129,7 @@ index a06bfd6db..12b9da11d 100644
  
  ##########################################################################################
  
-@@ -1142,6 +1158,13 @@ ifndef BUILD_HEADLESS_ONLY
+@@ -1149,6 +1165,13 @@ ifndef BUILD_HEADLESS_ONLY
      GIFLIB_CFLAGS := -I$(JDK_TOPDIR)/src/share/native/sun/awt/giflib
    endif
  
@@ -143,7 +143,7 @@ index a06bfd6db..12b9da11d 100644
    ifneq ($(OPENJDK_TARGET_OS), macosx)
      LIBSPLASHSCREEN_DIRS += $(JDK_TOPDIR)/src/$(OPENJDK_TARGET_OS_API_DIR)/native/sun/awt/splashscreen
    else
-@@ -1198,11 +1221,13 @@ ifndef BUILD_HEADLESS_ONLY
+@@ -1205,11 +1228,13 @@ ifndef BUILD_HEADLESS_ONLY
        EXCLUDE_FILES := imageioJPEG.c jpegdecoder.c pngtest.c, \
        LANG := C, \
        OPTIMIZATION := LOW, \
@@ -160,7 +160,7 @@ index a06bfd6db..12b9da11d 100644
        VERSIONINFO_RESOURCE := $(JDK_TOPDIR)/src/windows/resource/version.rc, \
        RC_FLAGS := $(RC_FLAGS) \
 diff --git a/jdk/src/share/classes/com/sun/imageio/plugins/jpeg/JPEGImageReader.java b/jdk/src/share/classes/com/sun/imageio/plugins/jpeg/JPEGImageReader.java
-index 8f58f5b3e..fcbab8260 100644
+index 8f58f5b3e6..fcbab82602 100644
 --- a/jdk/src/share/classes/com/sun/imageio/plugins/jpeg/JPEGImageReader.java
 +++ b/jdk/src/share/classes/com/sun/imageio/plugins/jpeg/JPEGImageReader.java
 @@ -89,7 +89,7 @@ public class JPEGImageReader extends ImageReader {
@@ -173,7 +173,7 @@ index 8f58f5b3e..fcbab8260 100644
                  }
              });
 diff --git a/jdk/src/share/classes/com/sun/imageio/plugins/jpeg/JPEGImageWriter.java b/jdk/src/share/classes/com/sun/imageio/plugins/jpeg/JPEGImageWriter.java
-index 6a33bd5a1..dca189ed8 100644
+index 6a33bd5a15..dca189ed85 100644
 --- a/jdk/src/share/classes/com/sun/imageio/plugins/jpeg/JPEGImageWriter.java
 +++ b/jdk/src/share/classes/com/sun/imageio/plugins/jpeg/JPEGImageWriter.java
 @@ -177,7 +177,7 @@ public class JPEGImageWriter extends ImageWriter {
@@ -186,7 +186,7 @@ index 6a33bd5a1..dca189ed8 100644
                  }
              });
 diff --git a/jdk/src/share/classes/sun/awt/image/JPEGImageDecoder.java b/jdk/src/share/classes/sun/awt/image/JPEGImageDecoder.java
-index 872ffc019..5965a186b 100644
+index 872ffc0197..5965a186b9 100644
 --- a/jdk/src/share/classes/sun/awt/image/JPEGImageDecoder.java
 +++ b/jdk/src/share/classes/sun/awt/image/JPEGImageDecoder.java
 @@ -56,7 +56,7 @@ public class JPEGImageDecoder extends ImageDecoder {
@@ -199,7 +199,7 @@ index 872ffc019..5965a186b 100644
                  }
              });
 diff --git a/jdk/src/share/native/sun/awt/image/jpeg/imageioJPEG.c b/jdk/src/share/native/sun/awt/image/jpeg/imageioJPEG.c
-index 7e1d8c99d..8cac61da3 100644
+index 7e1d8c99d7..8cac61da32 100644
 --- a/jdk/src/share/native/sun/awt/image/jpeg/imageioJPEG.c
 +++ b/jdk/src/share/native/sun/awt/image/jpeg/imageioJPEG.c
 @@ -51,7 +51,7 @@
@@ -212,5 +212,5 @@ index 7e1d8c99d..8cac61da3 100644
  #undef MAX
  #define MAX(a,b)        ((a) > (b) ? (a) : (b))
 -- 
-2.24.1
+2.26.2
 

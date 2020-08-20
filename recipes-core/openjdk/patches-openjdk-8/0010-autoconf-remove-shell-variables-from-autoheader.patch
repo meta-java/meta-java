@@ -1,4 +1,4 @@
-From 0d22dccb4de73d274b90e2647702b92958374bc1 Mon Sep 17 00:00:00 2001
+From 13a668aa69c201cc740400174c4be3c58fdc4df5 Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 13:55:29 +0100
 Subject: [PATCH 10/10] autoconf: remove shell variables from autoheader
@@ -42,5 +42,5 @@ index 8e06cd2..c220bba 100644
  
  AC_DEFUN_ONCE([BASIC_SETUP_LOGGING],
 -- 
-2.24.1
+2.26.2
 

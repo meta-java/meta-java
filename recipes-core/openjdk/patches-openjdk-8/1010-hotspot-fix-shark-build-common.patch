@@ -1,7 +1,7 @@
-From 2a9fddfb3370278f021858f28524dd83f1d6d1aa Mon Sep 17 00:00:00 2001
+From cfc5c9089f82bc94fca2407aae6b1ffc4b60955f Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 10:22:19 +0100
-Subject: [PATCH 1011/1013] hotspot: fix shark build (common)
+Subject: [PATCH 1010/1013] hotspot: fix shark build (common)
 
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
 ---
@@ -22,7 +22,7 @@ Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
  14 files changed, 123 insertions(+), 12 deletions(-)
 
 diff --git a/hotspot/make/Makefile b/hotspot/make/Makefile
-index 5765f1e36..f8ff9ecd9 100644
+index ad195763b..53b5ea046 100644
 --- a/hotspot/make/Makefile
 +++ b/hotspot/make/Makefile
 @@ -525,7 +525,7 @@ $(EXPORT_INCLUDE_DIR)/%:			$(SHARK_BUILD_DIR)/../generated/jvmtifiles/%
@@ -79,10 +79,10 @@ index 4707cc96e..a2b297ca0 100644
          flow_block(blk, temp_vector, temp_set);
          if (failing()) return; // Watch for bailouts.
 diff --git a/hotspot/src/share/vm/classfile/systemDictionary.cpp b/hotspot/src/share/vm/classfile/systemDictionary.cpp
-index 5253afc22..ecb30cdef 100644
+index 7f8ab9143..91818bf25 100644
 --- a/hotspot/src/share/vm/classfile/systemDictionary.cpp
 +++ b/hotspot/src/share/vm/classfile/systemDictionary.cpp
-@@ -2300,6 +2300,7 @@ methodHandle SystemDictionary::find_method_handle_intrinsic(vmIntrinsics::ID iid
+@@ -2362,6 +2362,7 @@ methodHandle SystemDictionary::find_method_handle_intrinsic(vmIntrinsics::ID iid
      spe = NULL;
      // Must create lots of stuff here, but outside of the SystemDictionary lock.
      m = Method::make_method_handle_intrinsic(iid, signature, CHECK_(empty));
@@ -90,7 +90,7 @@ index 5253afc22..ecb30cdef 100644
      if (!Arguments::is_interpreter_only()) {
        // Generate a compiled form of the MH intrinsic.
        AdapterHandlerLibrary::create_native_wrapper(m);
-@@ -2309,6 +2310,7 @@ methodHandle SystemDictionary::find_method_handle_intrinsic(vmIntrinsics::ID iid
+@@ -2371,6 +2372,7 @@ methodHandle SystemDictionary::find_method_handle_intrinsic(vmIntrinsics::ID iid
                     "out of space in CodeCache for method handle intrinsic", empty);
        }
      }
@@ -98,7 +98,7 @@ index 5253afc22..ecb30cdef 100644
      // Now grab the lock.  We might have to throw away the new method,
      // if a racing thread has managed to install one at the same time.
      {
-@@ -2322,9 +2324,11 @@ methodHandle SystemDictionary::find_method_handle_intrinsic(vmIntrinsics::ID iid
+@@ -2384,9 +2386,11 @@ methodHandle SystemDictionary::find_method_handle_intrinsic(vmIntrinsics::ID iid
    }
  
    assert(spe != NULL && spe->method() != NULL, "");

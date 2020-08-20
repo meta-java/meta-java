@@ -1,4 +1,4 @@
-From f4c93547119c7550626e1b2ae2b750ea4f83b3fe Mon Sep 17 00:00:00 2001
+From 5eab9b7dfef9c906f7543ef2fcb2dceeef8b8628 Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 13:42:43 +0100
 Subject: [PATCH 04/10] don't expect fqpn for make
@@ -29,5 +29,5 @@ index 4ee9cdd..c20ea76 100644
        AC_MSG_ERROR([The specified make (by MAKE=$MAKE) is not GNU make 3.81 or newer.])
      fi
 -- 
-2.24.1
+2.26.2
 

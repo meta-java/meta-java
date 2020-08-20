@@ -1,7 +1,7 @@
-From beeb3ed0855f1a2a6075da0ff2f93dc5654ab1d5 Mon Sep 17 00:00:00 2001
+From c36d56682baeab713038d9050a3abf6c1af3e92d Mon Sep 17 00:00:00 2001
 From: Richard Leitner <richard.leitner@skidata.com>
 Date: Thu, 20 Aug 2020 09:39:23 +0200
-Subject: [PATCH 1013/1013] hotspot: enable -Wno-error
+Subject: [PATCH 1012/1013] hotspot: enable -Wno-error
 
 As we don't want to deal with compiler warnings in OpenEmbedded disable
 them for now.

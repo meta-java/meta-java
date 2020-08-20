@@ -1,4 +1,4 @@
-From c530da1c0269d1e9a875670943446876227fdb71 Mon Sep 17 00:00:00 2001
+From e945d20be2b7b12d234ff467d3d988c9811d3cad Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 13:51:40 +0100
 Subject: [PATCH 08/10] autoconf: fix shark build (common)
@@ -33,5 +33,5 @@ index 727f018..91d2b5c 100644
          if test "${LLVM_LIBS}" != ""; then
            LLVM_LIBS="${LLVM_LIBS} "
 -- 
-2.24.1
+2.26.2
 

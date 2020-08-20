@@ -1,7 +1,7 @@
-From 0ba0fdd1596b31af69abc2fc1a9d96e77ab61a0c Mon Sep 17 00:00:00 2001
+From de5bf18a604e8213fe5a6510a37783c134af90c6 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Mon, 13 Aug 2018 16:40:34 +0100
-Subject: [PATCH 1005/1013] hotspot: fix -Wreturn-type issues introduced by
+Subject: [PATCH 1004/1013] hotspot: fix -Wreturn-type issues introduced by
  8061651
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -24,10 +24,10 @@ Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/hotspot/src/share/vm/prims/jvm.cpp b/hotspot/src/share/vm/prims/jvm.cpp
-index f43dc5ed7..8d7523c55 100644
+index bc3ff540d..29532ab11 100644
 --- a/hotspot/src/share/vm/prims/jvm.cpp
 +++ b/hotspot/src/share/vm/prims/jvm.cpp
-@@ -908,7 +908,7 @@ JVM_END
+@@ -918,7 +918,7 @@ JVM_END
  JVM_ENTRY(jboolean, JVM_KnownToNotExist(JNIEnv *env, jobject loader, const char *classname))
    JVMWrapper("JVM_KnownToNotExist");
  #if INCLUDE_CDS
@@ -36,7 +36,7 @@ index f43dc5ed7..8d7523c55 100644
  #else
    return false;
  #endif
-@@ -918,7 +918,7 @@ JVM_END
+@@ -928,7 +928,7 @@ JVM_END
  JVM_ENTRY(jobjectArray, JVM_GetResourceLookupCacheURLs(JNIEnv *env, jobject loader))
    JVMWrapper("JVM_GetResourceLookupCacheURLs");
  #if INCLUDE_CDS
@@ -45,7 +45,7 @@ index f43dc5ed7..8d7523c55 100644
  #else
    return NULL;
  #endif
-@@ -928,7 +928,7 @@ JVM_END
+@@ -938,7 +938,7 @@ JVM_END
  JVM_ENTRY(jintArray, JVM_GetResourceLookupCache(JNIEnv *env, jobject loader, const char *resource_name))
    JVMWrapper("JVM_GetResourceLookupCache");
  #if INCLUDE_CDS

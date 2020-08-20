@@ -1,7 +1,7 @@
-From 69d92c4763bd8c1545fb29af7fc54f6f58b87a65 Mon Sep 17 00:00:00 2001
+From 90d017563e2d030a8fbeb31eca294d342a8559de Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Mon, 13 Aug 2018 16:45:24 +0100
-Subject: [PATCH 1006/1013] hotspot: Zero build requires disabled warnings
+Subject: [PATCH 1005/1013] hotspot: Zero build requires disabled warnings
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -119,7 +119,7 @@ index d22ea1141..cbee43baa 100644
  
  void os::Linux::set_fpu_control_word(int fpu) {
 diff --git a/hotspot/src/os_cpu/linux_zero/vm/thread_linux_zero.hpp b/hotspot/src/os_cpu/linux_zero/vm/thread_linux_zero.hpp
-index 39f77f858..b9c73dc48 100644
+index 94bc83a30..b3ba526f2 100644
 --- a/hotspot/src/os_cpu/linux_zero/vm/thread_linux_zero.hpp
 +++ b/hotspot/src/os_cpu/linux_zero/vm/thread_linux_zero.hpp
 @@ -1,5 +1,5 @@
@@ -136,7 +136,7 @@ index 39f77f858..b9c73dc48 100644
 +    return false; // silence compile warning
    }
  
-   // These routines are only used on cpu architectures that
+   bool pd_get_top_frame_for_profiling(frame* fr_addr,
 -- 
 2.26.2
 

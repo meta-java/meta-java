@@ -1,7 +1,7 @@
-From 3c9da574b8610a0a1f4bdd8a2cb44a6aee8e3a89 Mon Sep 17 00:00:00 2001
+From b620c78bbe2b10b952d8f291f345bab12cfe4b5e Mon Sep 17 00:00:00 2001
 From: Andreas Obergschwandtner <andreas.obergschwandtner@skidata.com>
 Date: Fri, 21 Sep 2018 10:44:06 +0200
-Subject: [PATCH 1009/1013] hotspot: handle format error for GCC >= 7
+Subject: [PATCH 1008/1013] hotspot: handle format error for GCC >= 7
 
 Upstream-Status: Pending
 

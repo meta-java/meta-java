@@ -1,4 +1,4 @@
-From cf40c00dfd6d2299055c0e8415525d2da5e7cd4a Mon Sep 17 00:00:00 2001
+From a861d45b40ed3b08dad9aef86dc8ba21fdc4e324 Mon Sep 17 00:00:00 2001
 From: Haiqing Bai <Haiqing.Bai@windriver.com>
 Date: Thu, 2 Jan 2020 13:45:42 +0100
 Subject: [PATCH 06/10] autoconf: handle extra output
@@ -26,5 +26,5 @@ index 5be15b8..0d1a6e1 100644
              # Extra M4 quote needed to protect [] in grep expression.
              [FOUND_VERSION_78=`echo $BOOT_JDK_VERSION | grep  '\"1\.[78]\.'`]
 -- 
-2.24.1
+2.26.2
 

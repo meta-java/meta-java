@@ -1,4 +1,4 @@
-From d01c03bb68692365f1cf8c8e79c42b7452b83928 Mon Sep 17 00:00:00 2001
+From ca63ab55217cbef6aea495139f766922c61e50b2 Mon Sep 17 00:00:00 2001
 From: Wenlin Kang <wenlin.kang@windriver.com>
 Date: Sun, 17 Feb 2019 22:38:33 -0800
 Subject: [PATCH 1001/1013] hotspot: fix crash on JNI_CreateJavaVM
@@ -19,10 +19,10 @@ Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/hotspot/src/os/linux/vm/os_linux.cpp b/hotspot/src/os/linux/vm/os_linux.cpp
-index 03cabfefb..4f28cc1fb 100644
+index c477851c1..47eef1e7c 100644
 --- a/hotspot/src/os/linux/vm/os_linux.cpp
 +++ b/hotspot/src/os/linux/vm/os_linux.cpp
-@@ -3192,7 +3192,8 @@ bool os::pd_create_stack_guard_pages(char* addr, size_t size) {
+@@ -3227,7 +3227,8 @@ bool os::pd_create_stack_guard_pages(char* addr, size_t size) {
      uintptr_t stack_extent = (uintptr_t) os::Linux::initial_thread_stack_bottom();
      unsigned char vec[1];
  

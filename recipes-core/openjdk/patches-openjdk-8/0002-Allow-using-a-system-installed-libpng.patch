@@ -1,4 +1,4 @@
-From ed79dc49323cc08e81b3699817825f66b1af0ce2 Mon Sep 17 00:00:00 2001
+From 36bb38c31724a3d24ba215ee2de76985fc09bead Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Thu, 2 Jan 2020 13:40:50 +0100
 Subject: [PATCH 02/10] Allow using a system-installed libpng
@@ -76,5 +76,5 @@ index d2732eb..727f018 100644
    #
    # Check for the zlib library
 -- 
-2.24.1
+2.26.2
 

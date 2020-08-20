@@ -1,4 +1,4 @@
-From a5f2646a9dd0f7191e9e0aa5eba5fdd9d70d1671 Mon Sep 17 00:00:00 2001
+From ff6e6f4ea3a782e499a872f5de6f80335b9bafb5 Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 13:53:50 +0100
 Subject: [PATCH 09/10] prevent debuginfo in favour of openembedded package
@@ -150,5 +150,5 @@ index 46a1be9..b4ea2c6 100644
      endif
  
 -- 
-2.24.1
+2.26.2
 

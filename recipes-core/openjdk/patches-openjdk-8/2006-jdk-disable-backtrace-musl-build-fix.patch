@@ -1,7 +1,7 @@
-From 86de5eb9d031e7f8d241725d5eeaa7030cf2ce2b Mon Sep 17 00:00:00 2001
+From 3848e70f0394c8f633dac1d3ccb7f029fc21fdb2 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Fri, 2 Mar 2018 13:58:07 +0000
-Subject: [PATCH 2006/2008] jdk: disable backtrace() (musl build fix)
+Subject: [PATCH 2006/2009] jdk: disable backtrace() (musl build fix)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -20,7 +20,7 @@ Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/jdk/src/solaris/native/sun/xawt/XToolkit.c b/jdk/src/solaris/native/sun/xawt/XToolkit.c
-index 2425bf43a..1c8ebdb42 100644
+index 2425bf43ae..1c8ebdb42a 100644
 --- a/jdk/src/solaris/native/sun/xawt/XToolkit.c
 +++ b/jdk/src/solaris/native/sun/xawt/XToolkit.c
 @@ -27,7 +27,7 @@
@@ -42,5 +42,5 @@ index 2425bf43a..1c8ebdb42 100644
  {
    void *array[10];
 -- 
-2.24.1
+2.26.2
 

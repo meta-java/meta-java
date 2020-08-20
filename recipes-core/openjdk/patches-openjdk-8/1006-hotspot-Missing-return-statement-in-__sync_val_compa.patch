@@ -1,7 +1,7 @@
-From 8f0a48544832278f9b6503dae1a03b05da41b8fc Mon Sep 17 00:00:00 2001
+From 253f6cc9ca4f2cd9564028fa24b9306d9258a8fa Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Mon, 13 Aug 2018 16:46:33 +0100
-Subject: [PATCH 1007/1013] hotspot: Missing return statement in
+Subject: [PATCH 1006/1013] hotspot: Missing return statement in
  __sync_val_compare_and_swap_8
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8

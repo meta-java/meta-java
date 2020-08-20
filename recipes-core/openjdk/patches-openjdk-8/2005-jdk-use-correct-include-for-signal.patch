@@ -1,7 +1,7 @@
-From 606c807be8e01a4cc99a02b50717d9bce141e8a2 Mon Sep 17 00:00:00 2001
+From 7a4979357c2efadda572162c097c5c8a19d27543 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 09:28:06 +0000
-Subject: [PATCH 2005/2008] jdk: use correct include for signal
+Subject: [PATCH 2005/2009] jdk: use correct include for signal
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -34,7 +34,7 @@ Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
  4 files changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/jdk/src/aix/native/sun/nio/ch/AixNativeThread.c b/jdk/src/aix/native/sun/nio/ch/AixNativeThread.c
-index c0d585796..c4abb7ae5 100644
+index c0d5857962..c4abb7ae5d 100644
 --- a/jdk/src/aix/native/sun/nio/ch/AixNativeThread.c
 +++ b/jdk/src/aix/native/sun/nio/ch/AixNativeThread.c
 @@ -32,7 +32,7 @@
@@ -47,7 +47,7 @@ index c0d585796..c4abb7ae5 100644
  /* Also defined in src/aix/native/java/net/aix_close.c */
  #define INTERRUPT_SIGNAL (SIGRTMAX - 1)
 diff --git a/jdk/src/macosx/javavm/export/jvm_md.h b/jdk/src/macosx/javavm/export/jvm_md.h
-index 012bb1bab..0b5757683 100644
+index 012bb1babe..0b57576833 100644
 --- a/jdk/src/macosx/javavm/export/jvm_md.h
 +++ b/jdk/src/macosx/javavm/export/jvm_md.h
 @@ -60,7 +60,7 @@
@@ -60,7 +60,7 @@ index 012bb1bab..0b5757683 100644
  /* O Flags */
  
 diff --git a/jdk/src/solaris/javavm/export/jvm_md.h b/jdk/src/solaris/javavm/export/jvm_md.h
-index 5c681914b..62415ee25 100644
+index 5c681914bb..62415ee255 100644
 --- a/jdk/src/solaris/javavm/export/jvm_md.h
 +++ b/jdk/src/solaris/javavm/export/jvm_md.h
 @@ -65,7 +65,7 @@
@@ -73,7 +73,7 @@ index 5c681914b..62415ee25 100644
  /* O Flags */
  
 diff --git a/jdk/src/solaris/native/sun/nio/ch/NativeThread.c b/jdk/src/solaris/native/sun/nio/ch/NativeThread.c
-index 5e2a78b7a..204f0441a 100644
+index 5e2a78b7af..204f0441a9 100644
 --- a/jdk/src/solaris/native/sun/nio/ch/NativeThread.c
 +++ b/jdk/src/solaris/native/sun/nio/ch/NativeThread.c
 @@ -34,7 +34,7 @@
@@ -86,5 +86,5 @@ index 5e2a78b7a..204f0441a 100644
    #define INTERRUPT_SIGNAL (__SIGRTMAX - 2)
  #elif __solaris__
 -- 
-2.24.1
+2.26.2
 

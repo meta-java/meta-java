@@ -1,7 +1,7 @@
-From 4bab4a4468a59e303e8d05a409a07a24c2342452 Mon Sep 17 00:00:00 2001
+From 4726119a39e937ab1a70335a6bc89645742d44fd Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Mon, 20 Aug 2018 12:38:38 +0100
-Subject: [PATCH] hotspot: remaining musl fixes (aarch32)
+Subject: [PATCH 1202/1202] hotspot/aarch32: remaining musl fixes
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -14,12 +14,13 @@ Content-Transfer-Encoding: 8bit
 
 Upstream-Status: Inappropriate [OE specific]
 Signed-off-by: André Draszik <andre.draszik@jci.com>
+Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
 ---
- hotspot/src/os_cpu/linux_aarch32/vm/os_linux_aarch32.cpp | 1 -
+ src/os_cpu/linux_aarch32/vm/os_linux_aarch32.cpp | 1 -
  1 file changed, 1 deletion(-)
 
 diff --git a/hotspot/src/os_cpu/linux_aarch32/vm/os_linux_aarch32.cpp b/hotspot/src/os_cpu/linux_aarch32/vm/os_linux_aarch32.cpp
-index 052a423c..93a315e4 100644
+index 2883fc17f..162504301 100644
 --- a/hotspot/src/os_cpu/linux_aarch32/vm/os_linux_aarch32.cpp
 +++ b/hotspot/src/os_cpu/linux_aarch32/vm/os_linux_aarch32.cpp
 @@ -75,7 +75,6 @@
@@ -31,5 +32,5 @@ index 052a423c..93a315e4 100644
  #define REG_FP 29
  #define SPELL_REG_SP "sp"
 -- 
-2.11.0
+2.26.2
 

@@ -1,4 +1,4 @@
-From 4cde9ea2adf8c57168a299f11625083d1822b0de Mon Sep 17 00:00:00 2001
+From 862b38ca47d0fa1b953d11f245c44cf176ce9104 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Mon, 12 Mar 2018 15:40:58 +0000
 Subject: [PATCH 03/10] build: fix build on --as-needed toolchains (generic)
@@ -87,5 +87,5 @@ index d961cf3..92f8033 100644
  	  $(MT) -nologo -manifest $$($1_GEN_MANIFEST) -outputresource:$$@;#1
          endif
 -- 
-2.24.1
+2.26.2
 

@@ -4,31 +4,31 @@ COMPATIBLE_HOST = "^$"
 COMPATIBLE_HOST_armv7a = "arm"
 COMPATIBLE_HOST_armv7ve = "arm"
 
-CHANGESET_ID="20200415"
+CHANGESET_ID="20200729"
 
 CORBA_CHANGESET_arm = "jdk8u${PV}-ga-aarch32-${CHANGESET_ID}"
-SRC_URI[corba.sha256sum] = "e8dab3ffbc39fec724604b8c65408f32dcca1682769077c5b4f71b571938fe26"
+SRC_URI[corba.sha256sum] = "ade9cc2019f274efa8192a10b5ff5ca689671862c93b167f64fbac0673b1ee14"
 
 HOTSPOT_CHANGESET_arm = "jdk8u${PV}-ga-aarch32-${CHANGESET_ID}"
-SRC_URI[hotspot.sha256sum] = "7aebf690a05746e4fbcdcd75ac4e67acb2f0b087bba3bcb064675468626f5822"
+SRC_URI[hotspot.sha256sum] = "2ce8c243c25f1607273fab7261203485926144b240a9a2f3298e7eaaad502f35"
 
 JAXP_CHANGESET_arm = "jdk8u${PV}-ga-aarch32-${CHANGESET_ID}"
-SRC_URI[jaxp.sha256sum] = "44883e0e836ee5fa2fcb4df936bafcfad69c57d05876d44ecefc5b3cb6b085c0"
+SRC_URI[jaxp.sha256sum] = "d318addf2fbab69c588c61bf86b128d491271c9c27bebbb69cab6bfbf0967990"
 
 JAXWS_CHANGESET_arm = "jdk8u${PV}-ga-aarch32-${CHANGESET_ID}"
-SRC_URI[jaxws.sha256sum] = "34f6cf3eb34c0c310e0cc31b876b189fd6b2e2c2dcc1066af5347f3a0873d2d3"
+SRC_URI[jaxws.sha256sum] = "452bd7be71bc7da65554da97c35470fb3c2f18228cbbf2ae01dd7ccdfeb55394"
 
 JDK_CHANGESET_arm = "jdk8u${PV}-ga-aarch32-${CHANGESET_ID}"
-SRC_URI[jdk.sha256sum] = "f89688b5673ed75b1bebfd530a979788a4cbe942ce39eb38784f8c9e1303012b"
+SRC_URI[jdk.sha256sum] = "b7068f3d21b060b4ffd9951eb07d9e24e6415d5ad49d1cc20c897f7d88349212"
 
 LANGTOOLS_CHANGESET_arm = "jdk8u${PV}-ga-aarch32-${CHANGESET_ID}"
-SRC_URI[langtools.sha256sum] = "18357720e3b924dea2f171235ae06e753aeef7958a3ce7a2a8d41fa6e2c90454"
+SRC_URI[langtools.sha256sum] = "9ff01c83c40acedfb87ce566d88d135a5c92f5cc7ca110d5f5895305346f7968"
 
 NASHORN_CHANGESET_arm = "jdk8u${PV}-ga-aarch32-${CHANGESET_ID}"
-SRC_URI[nashorn.sha256sum] = "abd6ccf28278ce5775eebada339228fe2e3380d57d009179acdd7026adb21448"
+SRC_URI[nashorn.sha256sum] = "a752ebdeea4382f0d0c005861eea59c8b90a3488497974c2abc8915d4673cd0f"
 
 OPENJDK_CHANGESET_arm = "jdk8u${PV}-ga-aarch32-${CHANGESET_ID}"
-SRC_URI[openjdk.sha256sum] = "06d141aa01b80aa0c167167081e2139b3edf5af764cf17bbe9e1b57bf4f585ab"
+SRC_URI[openjdk.sha256sum] = "f42a7536ea7c76711e5b7caa0f42c8797145e68f0881f8fa9b8517ff48d0d747"
 
 PACKAGECONFIG_append_armv7a = " client"
 PACKAGECONFIG_append_armv7ve = " client"

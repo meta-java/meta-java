@@ -19,38 +19,33 @@ PATCHES_URI = "\
     file://2006-jdk-disable-backtrace-musl-build-fix.patch \
     file://2007-jdk-no-genx11-in-headless.patch \
     file://2008-jdk-no-unused-deps.patch \
-    file://2009-jdk-use-gcc-instead-of-ld-to-link-genSocketOptionRegistry.patch \
-    file://2010-Remove-usage-of-sys-sysctl.h.patch \
+    file://2009-jdk-make-use-gcc-instead-of-ld-for-genSocketOptionRe.patch \
 "
 HOTSPOT_UB_PATCH = "\
     file://1001-hotspot-fix-crash-on-JNI_CreateJavaVM.patch \
     file://1002-hotspot-use-correct-include-for-poll.patch \
     file://1003-hotspot-don-t-rely-on-old-SysV-SIGCLD.patch \
-    file://1004-hotspot-backport-patch-to-fix-misuses-of-strncpy-str.patch \
-    file://1005-hotspot-fix-Wreturn-type-issues-introduced-by-806165.patch \
-    file://1006-hotspot-Zero-build-requires-disabled-warnings.patch \
-    file://1007-hotspot-Missing-return-statement-in-__sync_val_compa.patch \
-    file://1008-hotspot-Turn-on-the-Wreturn-type-warning.patch \
-    file://1009-hotspot-handle-format-error-for-GCC-7.patch \
-    file://1013-hotspot-enable-Wno-error.patch \
+    file://1004-hotspot-fix-Wreturn-type-issues-introduced-by-806165.patch \
+    file://1005-hotspot-Zero-build-requires-disabled-warnings.patch \
+    file://1006-hotspot-Missing-return-statement-in-__sync_val_compa.patch \
+    file://1007-hotspot-Turn-on-the-Wreturn-type-warning.patch \
+    file://1008-hotspot-handle-format-error-for-GCC-7.patch \
+    file://1012-hotspot-enable-Wno-error.patch \
 "
 HOTSPOT_UB_PATCH_append_class-target = "\
-    file://1010-hotspot-fix-adlc-flags.patch \
-    file://1011-hotspot-fix-shark-build-common.patch \
-    file://1012-hotspot-restrict-to-staging-dir.patch \
+    file://1009-hotspot-fix-adlc-flags.patch \
+    file://1010-hotspot-fix-shark-build-common.patch \
+    file://1011-hotspot-restrict-to-staging-dir.patch \
 "
 HOTSPOT_UB_PATCH_prepend_aarch64 = "\
-    file://aarch64-hotspot-Fix-further-functions-with-a-missing.patch \
+    file://1401-hotspot-aarch64-Add-missing-return-value-to-LIR_Asse.patch \
 "
-HOTSPOT_UB_PATCH_append_armv7a = " file://aarch32-hotspot-fix-missing-return-values.patch"
-HOTSPOT_UB_PATCH_append_armv7ve = " file://aarch32-hotspot-fix-missing-return-values.patch"
+HOTSPOT_UB_PATCH_append_armv7a = " file://1201-hotspot-aarch32-fix-missing-return-values.patch"
+HOTSPOT_UB_PATCH_append_armv7ve = " file://1201-hotspot-aarch32-fix-missing-return-values.patch"
 
 PATCHES_URI_append_class-target = "\
-    ${FIX_SHARK_BUILD_PT2_PATCH} \
+    file://1013-hotspot-add-missing-includes-for-shark-build-pt2.patch \
 "
-FIX_SHARK_BUILD_PT2_PATCH = "file://openjdk8-fix-shark-build-pt2.patch;striplevel=0"
-FIX_SHARK_BUILD_PT2_PATCH_armv7a = "file://aarch32-hotspot-fix-shark-build-pt2.patch;striplevel=0"
-FIX_SHARK_BUILD_PT2_PATCH_armv7ve = "file://aarch32-hotspot-fix-shark-build-pt2.patch;striplevel=0"
 
 PATCHES_URI_append_libc-musl = "\
     ${OBSOLETE_ISNANF_PATCH} \
@@ -75,14 +70,14 @@ REMOVE_GLIBC_DEPENDENCIES_PT2 = "file://musl-0006-hotspot-os_linux-remove-glibc-
 REMOVE_GLIBC_DEPENDENCIES_PT2_armv7a = "file://musl-0006-hotspot-os_linux-remove-glibc-dependencies-pt2-aarch.patch"
 REMOVE_GLIBC_DEPENDENCIES_PT2_armv7ve = "file://musl-0006-hotspot-os_linux-remove-glibc-dependencies-pt2-aarch.patch"
 
-PATCHES_URI_append_libc-musl_armv7a = " file://aarch32-hotspot-remaining-musl-fixes.patch"
-PATCHES_URI_append_libc-musl_armv7ve = " file://aarch32-hotspot-remaining-musl-fixes.patch"
-PATCHES_URI_append_libc-musl_aarch64 = " file://aarch64-hotspot-remaining-musl-fixes.patch"
+PATCHES_URI_append_libc-musl_armv7a = " file://1202-hotspot-aarch32-remaining-musl-fixes.patch"
+PATCHES_URI_append_libc-musl_armv7ve = " file://1202-hotspot-aarch32-remaining-musl-fixes.patch"
+PATCHES_URI_append_libc-musl_aarch64 = " file://1402-hotspot-aarch64-remaining-musl-fixes.patch"
 
 # remove aarch32 & aarch64 mainlined patches
-PATCHES_URI_remove_armv7a = "file://2009-jdk-use-gcc-instead-of-ld-to-link-genSocketOptionRegistry.patch"
-PATCHES_URI_remove_armv7ve = "file://2009-jdk-use-gcc-instead-of-ld-to-link-genSocketOptionRegistry.patch"
-PATCHES_URI_remove_aarch64 = "file://2009-jdk-use-gcc-instead-of-ld-to-link-genSocketOptionRegistry.patch"
+PATCHES_URI_remove_armv7a = "file://2009-jdk-make-use-gcc-instead-of-ld-for-genSocketOptionRe.patch"
+PATCHES_URI_remove_armv7ve = "file://2009-jdk-make-use-gcc-instead-of-ld-for-genSocketOptionRe.patch"
+PATCHES_URI_remove_aarch64 = "file://2009-jdk-make-use-gcc-instead-of-ld-for-genSocketOptionRe.patch"
 
 # Name of the directory containing the compiled output
 BUILD_DIR = "openjdk.build"

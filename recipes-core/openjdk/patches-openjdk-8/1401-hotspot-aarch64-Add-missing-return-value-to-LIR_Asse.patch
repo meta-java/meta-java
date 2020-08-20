@@ -1,8 +1,8 @@
-From 3dffe06da016a959f1d8c3afc292ab92a9d4d137 Mon Sep 17 00:00:00 2001
+From 2e611155c42352c1a0c15078681c6712711f6c01 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Mon, 13 Aug 2018 17:03:56 +0100
-Subject: [PATCH] hotspot/aarch64: Fix further functions with a missing return
- value.
+Subject: [PATCH 1401/1402] hotspot/aarch64: Add missing return value to
+ LIR_Assembler::as_Address
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -15,17 +15,19 @@ Content-Transfer-Encoding: 8bit
 |# Parent  3ade0115344b77e6d00462044e0cf68722685bfe
 PR3519: Fix further functions with a missing return value.
 
-Signed-off-by: André Draszik <andre.draszik@jci.com>
 Upstream-Status: Backport
+
+Signed-off-by: André Draszik <andre.draszik@jci.com>
+Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
 ---
- hotspot/src/cpu/aarch64/vm/c1_LIRAssembler_aarch64.cpp | 1 +
+ src/cpu/aarch64/vm/c1_LIRAssembler_aarch64.cpp | 1 +
  1 file changed, 1 insertion(+)
 
 diff --git a/hotspot/src/cpu/aarch64/vm/c1_LIRAssembler_aarch64.cpp b/hotspot/src/cpu/aarch64/vm/c1_LIRAssembler_aarch64.cpp
-index 4e98cb39..bbc81b4a 100644
+index 7b85119c3..074e71a7d 100644
 --- a/hotspot/src/cpu/aarch64/vm/c1_LIRAssembler_aarch64.cpp
 +++ b/hotspot/src/cpu/aarch64/vm/c1_LIRAssembler_aarch64.cpp
-@@ -205,6 +205,7 @@ Address LIR_Assembler::as_Address(LIR_Address* addr, Register tmp) {
+@@ -207,6 +207,7 @@ Address LIR_Assembler::as_Address(LIR_Address* addr, Register tmp) {
        return Address(base, tmp, Address::lsl(addr->scale()));
      }
    }
@@ -34,5 +36,5 @@ index 4e98cb39..bbc81b4a 100644
  
  Address LIR_Assembler::as_Address_hi(LIR_Address* addr) {
 -- 
-2.18.0
+2.26.2
 

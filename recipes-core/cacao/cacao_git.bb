@@ -10,14 +10,12 @@ PROVIDES_class-native = "virtual/java-native"
 DEPENDS = "zlib libtool classpath virtual/javac-native bdwgc"
 RPROVIDES_${PN} = "java2-runtime"
 
-SRC_URI = "https://bitbucket.org/cacaovm/cacao-staging/get/${PV}.zip \
-           file://system-boehm-gc.patch \
-           file://cacao-1.6.1-do-not-rely-on-absolute-paths.patch \
+SRCREV = "6c4694f9bd175386a8c451531e9a5ad97aa23b6f"
+SRC_URI = "git://bitbucket.org/cacaovm/cacao.git;protocol=https \
+           file://0001-java.in-Do-not-use-hardcode-paths.patch \
+           file://0002-cacao-use-system-s-boehm-garbage-collector.patch \
 "
-S = "${WORKDIR}/cacaovm-cacao-staging-${PV}"
-
-SRC_URI[md5sum] = "5157d0bb9eb1332f7a6b6186eaac01aa"
-SRC_URI[sha256sum] = "34b51d660d69c2a83225fd75eab5e1fac002fb5974cb4a74b7478baf923a76cd"
+S = "${WORKDIR}/git"
 
 inherit java autotools-brokensep update-alternatives pkgconfig distro_features_check
 

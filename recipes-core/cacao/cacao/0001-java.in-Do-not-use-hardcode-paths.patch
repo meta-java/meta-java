@@ -1,25 +1,31 @@
-java.in: Do not use hardcode paths
+From 51a63cdac93caf69d1b6ace40f73f6147ba37de5 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Erkka=20K=C3=A4=C3=A4ri=C3=A4?= <erkka.kaaria@intel.com>
+Date: Thu, 20 Aug 2020 13:48:38 +0200
+Subject: [PATCH 1/2] java.in: Do not use hardcode paths
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 Cacao uses hardcoded paths to various files, if these paths are not
 provided. This causes issues when sharing sstate with otherwise
 identical workers, if build time paths are not identical.
 
-Signed-off-by: Erkka Kääriä <erkka.kaaria@intel.com>
-
 Upstream-Status: Inappropriate [Yocto-specific fixes]
 
+Signed-off-by: Erkka Kääriä <erkka.kaaria@intel.com>
+Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
 ---
- cacao-1.6.1/src/scripts/java.in | 16 ++++++++++++++--
- 1 file changed, 14 insertions(+), 2 deletions(-)
+ src/scripts/java.in | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
 
-diff --git cacao-1.6.1/src/scripts/java.in cacao-1.6.1/src/scripts/java.in
-index 0790f02..2118de7 100644
---- cacao-1.6.1/src/scripts/java.in
-+++ cacao-1.6.1/src/scripts/java.in
-@@ -22,5 +22,17 @@
+diff --git a/src/scripts/java.in b/src/scripts/java.in
+index 0790f0255..a4f16ecdc 100644
+--- a/src/scripts/java.in
++++ b/src/scripts/java.in
+@@ -22,5 +22,16 @@
  ## Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  ## 02110-1301, USA.
-
+ 
 -IFS=""
 -exec $(dirname ${0})/cacao ${1+"$@"}
 +SH_DIR=`dirname "$0"`
@@ -35,7 +41,6 @@ index 0790f02..2118de7 100644
 +export BOOTCLASSPATH="${PARENT_DIR}/share/cacao/vm.zip:${PARENT_DIR}/share/classpath/glibj.zip"
 +LIBRARY_PATH="-Djava.library.path=${PARENT_DIR}/lib/classpath"
 +exec ${REAL_DIR}/cacao ${LIBRARY_PATH} ${1+"$@"}
-+
---
-2.7.4
+-- 
+2.28.0
 

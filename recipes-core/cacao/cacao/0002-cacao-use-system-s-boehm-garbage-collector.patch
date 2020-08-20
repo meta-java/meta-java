@@ -1,4 +1,7 @@
-cacao: use system's boehm garbage collector
+From 7833101c8c8938d58a32e355b9af1b56e4229a87 Mon Sep 17 00:00:00 2001
+From: Hugo Vasconcelos Saldanha <hugo.saldanha@aker.com.br>
+Date: Thu, 20 Aug 2020 13:50:47 +0200
+Subject: [PATCH 2/2] cacao: use system's boehm garbage collector
 
 This is a Gentoo's patch [1] to force the use of system's bdwgc.
 
@@ -10,11 +13,17 @@ with the system's version.
 Upstream-Status: Inappropriate [not author]
 
 Signed-off-by: Hugo Vasconcelos Saldanha <hugo.saldanha@aker.com.br>
+Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+---
+ configure.ac       | 8 ++------
+ src/mm/Makefile.am | 9 ++++-----
+ 2 files changed, 6 insertions(+), 11 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
+index aceb2033b..db8a9770e 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -691,6 +691,8 @@
+@@ -738,6 +738,8 @@ AC_CHECK_ENABLE_GCC_PR40134
  
  AC_CHECK_ENABLE_PIC_ASM
  
@@ -23,7 +32,7 @@ diff --git a/configure.ac b/configure.ac
  dnl Define version numbers.
  AC_VERSION_DETAIL
  AC_VERSION_CONFIG
-@@ -793,12 +795,6 @@
+@@ -855,12 +857,6 @@ AC_CONFIG_FILES([Makefile]
  )
  
  
@@ -37,9 +46,10 @@ diff --git a/configure.ac b/configure.ac
  
  
 diff --git a/src/mm/Makefile.am b/src/mm/Makefile.am
+index 9d0945a29..cbd7dc963 100644
 --- a/src/mm/Makefile.am
 +++ b/src/mm/Makefile.am
-@@ -35,14 +35,13 @@
+@@ -35,14 +35,13 @@ GC_FILE = \
  endif
  
  if ENABLE_GC_BOEHM
@@ -58,3 +68,6 @@ diff --git a/src/mm/Makefile.am b/src/mm/Makefile.am
  endif
  
  if ENABLE_GC_CACAO
+-- 
+2.28.0
+

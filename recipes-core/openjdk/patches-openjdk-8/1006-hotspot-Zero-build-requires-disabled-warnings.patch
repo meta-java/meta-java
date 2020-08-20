@@ -1,7 +1,7 @@
-From 84fc6448f44cd45a5448d0e88df8ccabfa10dcc5 Mon Sep 17 00:00:00 2001
+From 69d92c4763bd8c1545fb29af7fc54f6f58b87a65 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Mon, 13 Aug 2018 16:45:24 +0100
-Subject: [PATCH 1006/1012] hotspot: Zero build requires disabled warnings
+Subject: [PATCH 1006/1013] hotspot: Zero build requires disabled warnings
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -138,5 +138,5 @@ index 39f77f858..b9c73dc48 100644
  
    // These routines are only used on cpu architectures that
 -- 
-2.24.1
+2.26.2
 

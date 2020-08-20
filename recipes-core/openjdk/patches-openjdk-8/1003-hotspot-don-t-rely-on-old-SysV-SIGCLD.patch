@@ -1,7 +1,7 @@
-From e5bf672f4e10997789f2a447fd95a88703dbd332 Mon Sep 17 00:00:00 2001
+From 43292d7d298432228ef270696921af7a5d73a833 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 15:00:55 +0000
-Subject: [PATCH 1003/1012] hotspot: don't rely on old SysV SIGCLD
+Subject: [PATCH 1003/1013] hotspot: don't rely on old SysV SIGCLD
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -39,5 +39,5 @@ index ba84788a1..c22281f7c 100644
    "CONT",       SIGCONT,        /* Continue (POSIX).  */
    "STOP",       SIGSTOP,        /* Stop, unblockable (POSIX).  */
 -- 
-2.24.1
+2.26.2
 

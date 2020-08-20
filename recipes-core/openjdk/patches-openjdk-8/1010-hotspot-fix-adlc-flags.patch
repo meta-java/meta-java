@@ -1,7 +1,7 @@
-From 89408e465d92657de8c54d4622f1810c28c3d700 Mon Sep 17 00:00:00 2001
+From 7f0202182455d5705501dda97e86aa99506b13b4 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Erkka=20K=C3=A4=C3=A4ri=C3=A4?= <erkka.kaaria@intel.com>
 Date: Thu, 2 Jan 2020 10:19:29 +0100
-Subject: [PATCH 1010/1012] hotspot: fix adlc flags
+Subject: [PATCH 1010/1013] hotspot: fix adlc flags
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -39,5 +39,5 @@ index 92b8b9b39..ae0aa0082 100644
  
  # OUTDIR must be the same as AD_Dir = $(GENERATED)/adfiles in top.make:
 -- 
-2.24.1
+2.26.2
 

@@ -1,7 +1,7 @@
-From e4c080e29afa3f93383c1e046273cd20ec835ca3 Mon Sep 17 00:00:00 2001
+From 1f9bb32ae75517a7ce53a5e3bf4395f8826cec48 Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 10:23:38 +0100
-Subject: [PATCH 1012/1012] hotspot: restrict to staging dir
+Subject: [PATCH 1012/1013] hotspot: restrict to staging dir
 
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
 ---
@@ -22,5 +22,5 @@ index 386e94b1f..7642a67f8 100644
  DTRACE_ENABLED = $(shell test -f $(SDT_H_FILE) && echo $(SDT_H_FILE))
  REASON = "$(SDT_H_FILE) not found"
 -- 
-2.24.1
+2.26.2
 

@@ -1,7 +1,7 @@
-From 1015cc718ba25cabf613b96fd58baa8dfb8492fe Mon Sep 17 00:00:00 2001
+From 2a9fddfb3370278f021858f28524dd83f1d6d1aa Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 10:22:19 +0100
-Subject: [PATCH 1011/1012] hotspot: fix shark build (common)
+Subject: [PATCH 1011/1013] hotspot: fix shark build (common)
 
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
 ---
@@ -444,5 +444,5 @@ index 243183c07..601ca7925 100644
      builder()->CreateICmpEQ(lock, check),
      released_fast, slow_path);
 -- 
-2.24.1
+2.26.2
 

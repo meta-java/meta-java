@@ -1,7 +1,7 @@
-From df566df123c8af8252c0e113c41c32482834923e Mon Sep 17 00:00:00 2001
+From 0fdafd1b0cf7c9abc956d0dbe611f7aa7186c70b Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 09:28:06 +0000
-Subject: [PATCH 1002/1012] hotspot: use correct include for poll
+Subject: [PATCH 1002/1013] hotspot: use correct include for poll
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -83,5 +83,5 @@ index 8e095ab69..ce37e9a12 100644
  #include <unistd.h>
  #include <netdb.h>
 -- 
-2.24.1
+2.26.2
 

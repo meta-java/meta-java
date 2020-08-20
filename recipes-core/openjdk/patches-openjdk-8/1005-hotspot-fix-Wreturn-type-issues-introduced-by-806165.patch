@@ -1,7 +1,7 @@
-From bce7b39095a839b8e77fe068e87150e855224705 Mon Sep 17 00:00:00 2001
+From 0ba0fdd1596b31af69abc2fc1a9d96e77ab61a0c Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Mon, 13 Aug 2018 16:40:34 +0100
-Subject: [PATCH 1005/1012] hotspot: fix -Wreturn-type issues introduced by
+Subject: [PATCH 1005/1013] hotspot: fix -Wreturn-type issues introduced by
  8061651
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -55,5 +55,5 @@ index f43dc5ed7..8d7523c55 100644
    return NULL;
  #endif
 -- 
-2.24.1
+2.26.2
 

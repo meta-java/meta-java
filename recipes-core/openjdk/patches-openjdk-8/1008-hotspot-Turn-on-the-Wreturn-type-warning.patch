@@ -1,7 +1,7 @@
-From 2cce90259f9de7b5fba7f3380cdc90b3a586aa75 Mon Sep 17 00:00:00 2001
+From b9273263a4ddc38c61bf0e59819bc9503495b5a1 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Mon, 13 Aug 2018 16:48:32 +0100
-Subject: [PATCH 1008/1012] hotspot: Turn on the -Wreturn-type warning
+Subject: [PATCH 1008/1013] hotspot: Turn on the -Wreturn-type warning
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -231,5 +231,5 @@ index 7ad2b71f4..182084373 100644
    static inline void record_thread_stack(void* addr, size_t size) { }
    static inline void release_thread_stack(void* addr, size_t size) { }
 -- 
-2.24.1
+2.26.2
 

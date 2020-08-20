@@ -31,7 +31,7 @@ HOTSPOT_UB_PATCH = "\
     file://1007-hotspot-Missing-return-statement-in-__sync_val_compa.patch \
     file://1008-hotspot-Turn-on-the-Wreturn-type-warning.patch \
     file://1009-hotspot-handle-format-error-for-GCC-7.patch \
-    file://1013-hotspot-make-disable-Werror.patch \
+    file://1013-hotspot-enable-Wno-error.patch \
 "
 HOTSPOT_UB_PATCH_append_class-target = "\
     file://1010-hotspot-fix-adlc-flags.patch \

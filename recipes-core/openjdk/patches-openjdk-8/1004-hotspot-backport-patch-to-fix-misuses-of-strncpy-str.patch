@@ -1,7 +1,7 @@
-From 3a6eef99b27b7dd750e7a02eb3ada71db99d9345 Mon Sep 17 00:00:00 2001
+From 1beb42da8445e9ca6c8560f8c78cac185fffb64d Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Fri, 10 Aug 2018 14:54:45 +0100
-Subject: [PATCH 1004/1012] hotspot: backport patch to fix misuses of
+Subject: [PATCH 1004/1013] hotspot: backport patch to fix misuses of
  strncpy/strncat
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -84,10 +84,10 @@ index 93cd9e854..e7b32cd6b 100644
      }
    } else if (match(event, "format bytes-per-line")) {
 diff --git a/hotspot/src/share/vm/runtime/arguments.cpp b/hotspot/src/share/vm/runtime/arguments.cpp
-index 2665b6b8c..5a9294677 100644
+index 7c85a0da8..ea4026b98 100644
 --- a/hotspot/src/share/vm/runtime/arguments.cpp
 +++ b/hotspot/src/share/vm/runtime/arguments.cpp
-@@ -3455,7 +3455,7 @@ void Arguments::fix_appclasspath() {
+@@ -3456,7 +3456,7 @@ void Arguments::fix_appclasspath() {
      }
  
      char* copy = AllocateHeap(strlen(src) + 1, mtInternal);
@@ -96,7 +96,7 @@ index 2665b6b8c..5a9294677 100644
  
      // trim all trailing empty paths
      for (char* tail = copy + strlen(copy) - 1; tail >= copy && *tail == separator; tail--) {
-@@ -3834,17 +3834,16 @@ static char* get_shared_archive_path() {
+@@ -3835,17 +3835,16 @@ static char* get_shared_archive_path() {
      if (end != NULL) *end = '\0';
      size_t jvm_path_len = strlen(jvm_path);
      size_t file_sep_len = strlen(os::file_separator());
@@ -148,7 +148,7 @@ index 1b00f829a..4daea2b7e 100644
    // Note that the following does not depend on write_len.
    // This means that position and count get updated
 diff --git a/hotspot/src/share/vm/utilities/vmError.cpp b/hotspot/src/share/vm/utilities/vmError.cpp
-index ef3bb5cee..c11fef472 100644
+index 49b978a02..97c5e33f2 100644
 --- a/hotspot/src/share/vm/utilities/vmError.cpp
 +++ b/hotspot/src/share/vm/utilities/vmError.cpp
 @@ -450,14 +450,7 @@ void VMError::report(outputStream* st) {
@@ -168,5 +168,5 @@ index ef3bb5cee..c11fef472 100644
           st->print(" (0x%x)", _id);
         }
 -- 
-2.24.1
+2.26.2
 

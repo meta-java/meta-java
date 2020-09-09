@@ -38,7 +38,11 @@ RPROVIDES_${PN} = "java2-runtime"
 
 inherit update-alternatives
 
-ALTERNATIVE_${PN} = "java"
+ALTERNATIVE_PRIORITY = "100"
+
+ALTERNATIVE_${PN} = "java keytool"
 ALTERNATIVE_LINK_NAME[java] = "${bindir}/java"
 ALTERNATIVE_TARGET[java] = "${JRE_HOME}/bin/java"
-ALTERNATIVE_PRIORITY[java] = "100"
+
+ALTERNATIVE_LINK_NAME[keytool] = "${bindir}/keytool"
+ALTERNATIVE_TARGET[keytool] = "${JRE_HOME}/bin/keytool"

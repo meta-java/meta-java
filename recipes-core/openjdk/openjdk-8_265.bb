@@ -53,9 +53,12 @@ inherit update-alternatives
 
 ALTERNATIVE_PRIORITY = "100"
 
-ALTERNATIVE_${PN} = "java javac"
+ALTERNATIVE_${PN} = "java javac keytool"
 ALTERNATIVE_LINK_NAME[java] = "${bindir}/java"
 ALTERNATIVE_TARGET[java] = "${JDK_HOME}/bin/java"
 
 ALTERNATIVE_LINK_NAME[javac] = "${bindir}/javac"
 ALTERNATIVE_TARGET[javac] = "${JDK_HOME}/bin/javac"
+
+ALTERNATIVE_LINK_NAME[keytool] = "${bindir}/keytool"
+ALTERNATIVE_TARGET[keytool] = "${JDK_HOME}/bin/keytool"

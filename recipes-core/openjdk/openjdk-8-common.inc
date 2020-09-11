@@ -96,10 +96,7 @@ def package_config_option_cleanup(d):
     if not option_headless and not with_cups:
         option_headless = True
 
-    if not option_soundless and not with_alsa:
-        option_soundless = True
-
-    if not option_soundless and not with_pulseaudio:
+    if not option_soundless and not with_pulseaudio and not with_alsa:
         option_soundless = True
 
     options = {'make': [], 'cpp': [], 'env': [], 'configure': ["--disable-ccache"] }

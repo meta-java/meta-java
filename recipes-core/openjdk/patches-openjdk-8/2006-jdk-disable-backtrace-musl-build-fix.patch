@@ -1,4 +1,4 @@
-From 3848e70f0394c8f633dac1d3ccb7f029fc21fdb2 Mon Sep 17 00:00:00 2001
+From 80a07db16d9de0cd875b9c8e86678a51b6e75dbf Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Fri, 2 Mar 2018 13:58:07 +0000
 Subject: [PATCH 2006/2009] jdk: disable backtrace() (musl build fix)
@@ -20,7 +20,7 @@ Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/jdk/src/solaris/native/sun/xawt/XToolkit.c b/jdk/src/solaris/native/sun/xawt/XToolkit.c
-index 2425bf43ae..1c8ebdb42a 100644
+index 95d2baff5b..41dfa992a7 100644
 --- a/jdk/src/solaris/native/sun/xawt/XToolkit.c
 +++ b/jdk/src/solaris/native/sun/xawt/XToolkit.c
 @@ -27,7 +27,7 @@
@@ -32,7 +32,7 @@ index 2425bf43ae..1c8ebdb42a 100644
  #include <execinfo.h>
  #endif
  
-@@ -803,7 +803,7 @@ JNIEXPORT jstring JNICALL Java_sun_awt_X11_XToolkit_getEnv
+@@ -796,7 +796,7 @@ JNIEXPORT jstring JNICALL Java_sun_awt_X11_XToolkit_getEnv
      return ret;
  }
  

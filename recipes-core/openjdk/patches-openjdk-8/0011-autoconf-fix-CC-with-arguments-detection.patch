@@ -1,5 +1,20 @@
+From e878eea93b95d82d3ea13f4122f4f74cd2f8f3df Mon Sep 17 00:00:00 2001
+From: Richard Leitner <richard.leitner@skidata.com>
+Date: Thu, 22 Oct 2020 09:23:06 +0200
+Subject: [PATCH 11/13] autoconf: fix CC with arguments detection
+
+Fix the compiler binary detection for exported CC variables with
+arguments in them.
+
+Upstream-Status: Pending
+
+Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+---
+ common/autoconf/toolchain.m4 | 23 +++++++++++++++--------
+ 1 file changed, 15 insertions(+), 8 deletions(-)
+
 diff --git a/common/autoconf/toolchain.m4 b/common/autoconf/toolchain.m4
-index e3a82c8..705e3e7 100644
+index c0a4af5..28da6ea 100644
 --- a/common/autoconf/toolchain.m4
 +++ b/common/autoconf/toolchain.m4
 @@ -478,23 +478,30 @@ AC_DEFUN([TOOLCHAIN_FIND_COMPILER],
@@ -41,3 +56,6 @@ index e3a82c8..705e3e7 100644
    else
      # No user supplied value. Locate compiler ourselves.
  
+-- 
+2.26.2
+

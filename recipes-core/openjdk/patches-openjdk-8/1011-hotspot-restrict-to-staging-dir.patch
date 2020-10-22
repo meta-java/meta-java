@@ -1,4 +1,4 @@
-From 5588f79a4a625591589e28eb73acaf4b49f48b62 Mon Sep 17 00:00:00 2001
+From 364b8a715b96f069bf455894b0ae290c52d3ab19 Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 10:23:38 +0100
 Subject: [PATCH 1011/1013] hotspot: restrict to staging dir

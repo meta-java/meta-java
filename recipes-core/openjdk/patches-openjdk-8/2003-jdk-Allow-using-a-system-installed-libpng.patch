@@ -1,4 +1,4 @@
-From f74002f805b000df6565418d9e8416edbe86be25 Mon Sep 17 00:00:00 2001
+From c7fb1d599ba66116fb132537b4696092e9c48331 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 13:43:04 +0000
 Subject: [PATCH 2003/2009] jdk: Allow using a system-installed libpng

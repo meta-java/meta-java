@@ -1,7 +1,7 @@
-From 4ba108476c0756ab567235d692c80acf477c310e Mon Sep 17 00:00:00 2001
+From b8d48149b05fcd1a12dce25ffc345b43aaa76f32 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Erkka=20K=C3=A4=C3=A4ri=C3=A4?= <erkka.kaaria@intel.com>
 Date: Thu, 2 Jan 2020 13:49:02 +0100
-Subject: [PATCH 07/10] fix assembler flag handling in makefile
+Subject: [PATCH 07/13] fix assembler flag handling in makefile
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit

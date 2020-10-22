@@ -1,7 +1,7 @@
-From e945d20be2b7b12d234ff467d3d988c9811d3cad Mon Sep 17 00:00:00 2001
+From c03f916a8a49a3c83f72f28fefa6eab6377b909c Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 13:51:40 +0100
-Subject: [PATCH 08/10] autoconf: fix shark build (common)
+Subject: [PATCH 08/13] autoconf: fix shark build (common)
 
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
 ---

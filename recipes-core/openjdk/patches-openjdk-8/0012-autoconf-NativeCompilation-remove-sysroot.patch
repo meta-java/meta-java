@@ -1,5 +1,17 @@
+From 03052435dc7f1146ddd7ebe6f510a89448d33aca Mon Sep 17 00:00:00 2001
+From: Richard Leitner <richard.leitner@skidata.com>
+Date: Thu, 22 Oct 2020 09:24:50 +0200
+Subject: [PATCH 12/13] autoconf: NativeCompilation: remove sysroot
+
+Upstream-Status: Pending
+
+Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+---
+ make/common/NativeCompilation.gmk | 6 ------
+ 1 file changed, 6 deletions(-)
+
 diff --git a/make/common/NativeCompilation.gmk b/make/common/NativeCompilation.gmk
-index d961cf3..9679f97 100644
+index b4ea2c6..01082f5 100644
 --- a/make/common/NativeCompilation.gmk
 +++ b/make/common/NativeCompilation.gmk
 @@ -383,10 +383,6 @@ define SetupNativeCompilation
@@ -22,3 +34,6 @@ index d961cf3..9679f97 100644
    $1 := $$($1_TARGET)
    ifneq (,$$($1_LIBRARY))
      # Generating a dynamic library.
+-- 
+2.26.2
+

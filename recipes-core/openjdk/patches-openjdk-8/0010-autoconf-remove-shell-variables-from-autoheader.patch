@@ -1,7 +1,7 @@
-From 13a668aa69c201cc740400174c4be3c58fdc4df5 Mon Sep 17 00:00:00 2001
+From 8864d47290e9d5563fb8f3ea92639c4accc46fe8 Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 13:55:29 +0100
-Subject: [PATCH 10/10] autoconf: remove shell variables from autoheader
+Subject: [PATCH 10/13] autoconf: remove shell variables from autoheader
 
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
 ---

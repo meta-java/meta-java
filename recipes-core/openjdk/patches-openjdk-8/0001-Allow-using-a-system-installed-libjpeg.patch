@@ -1,7 +1,7 @@
-From 7f505a0a0b34580fbb9c1f0d6a06e8ae486088c6 Mon Sep 17 00:00:00 2001
+From 21c555306afcc4cab2819adc550f1546f3390d15 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 13:36:53 +0000
-Subject: [PATCH 01/10] Allow using a system-installed libjpeg
+Subject: [PATCH 01/13] Allow using a system-installed libjpeg
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit

@@ -1,4 +1,4 @@
-From 90d017563e2d030a8fbeb31eca294d342a8559de Mon Sep 17 00:00:00 2001
+From f8a3f19fa4fabaf57b0c2c77e966d9896399b3f8 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Mon, 13 Aug 2018 16:45:24 +0100
 Subject: [PATCH 1005/1013] hotspot: Zero build requires disabled warnings

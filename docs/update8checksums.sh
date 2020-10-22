@@ -31,7 +31,7 @@ COMMON_TAG="jdk8u${OPENJDK_UPDATE}-ga"
 
 AARCH32_BASEURL="https://hg.openjdk.java.net/aarch32-port/jdk8u"
 AARCH32_CHANGESET_ID="$(grep "^CHANGESET_ID" recipes-core/openjdk/openjdk-8-release-aarch32.inc | cut -d= -f2 | tr -d \")"
-AARCH32_TAG="jdk8u${OPENJDK_UPDATE}-ga-aarch32-${AARCH32_CHANGESET_ID}"
+AARCH32_TAG="jdk8u${OPENJDK_UPDATE}-${AARCH32_CHANGESET_ID}"
 
 AARCH64_BASEURL="https://hg.openjdk.java.net/aarch64-port/jdk8u-shenandoah"
 AARCH64_CHANGESET_ID="$(grep "^CHANGESET_ID" recipes-core/openjdk/openjdk-8-release-aarch64.inc | cut -d= -f2 | tr -d \")"

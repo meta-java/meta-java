@@ -1,4 +1,4 @@
-From 6eaec84f02a76005d631fad45cfa82620cfec56d Mon Sep 17 00:00:00 2001
+From 6f76fb04370713bdae2485261d987448c9350179 Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 13:25:12 +0100
 Subject: [PATCH 2007/2009] jdk: no genx11 in headless

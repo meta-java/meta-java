@@ -1,7 +1,7 @@
-From ff6e6f4ea3a782e499a872f5de6f80335b9bafb5 Mon Sep 17 00:00:00 2001
+From a2a8f8df244efca22da633b676a45d62b2fbb580 Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 13:53:50 +0100
-Subject: [PATCH 09/10] prevent debuginfo in favour of openembedded package
+Subject: [PATCH 09/13] prevent debuginfo in favour of openembedded package
  split
 
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>

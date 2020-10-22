@@ -1,7 +1,7 @@
-From 862b38ca47d0fa1b953d11f245c44cf176ce9104 Mon Sep 17 00:00:00 2001
+From 770123c9fcc4ab8c8ce8f37cde5afe9c44c7176c Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Mon, 12 Mar 2018 15:40:58 +0000
-Subject: [PATCH 03/10] build: fix build on --as-needed toolchains (generic)
+Subject: [PATCH 03/13] build: fix build on --as-needed toolchains (generic)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit

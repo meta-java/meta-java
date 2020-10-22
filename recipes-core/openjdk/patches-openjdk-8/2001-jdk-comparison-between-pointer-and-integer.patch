@@ -1,4 +1,4 @@
-From d2942510d891c58bd095a57bdd903145d3d95955 Mon Sep 17 00:00:00 2001
+From b4e7774c35cf29aaca2bd04d115afc3ea3c77d7a Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Fri, 2 Mar 2018 11:13:08 +0000
 Subject: [PATCH 2001/2009] jdk: comparison between pointer and integer

@@ -1,4 +1,4 @@
-From cfc5c9089f82bc94fca2407aae6b1ffc4b60955f Mon Sep 17 00:00:00 2001
+From 3028795037c3440415f3e8904e8015fbd480ab15 Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 10:22:19 +0100
 Subject: [PATCH 1010/1013] hotspot: fix shark build (common)
@@ -79,10 +79,10 @@ index 4707cc96e..a2b297ca0 100644
          flow_block(blk, temp_vector, temp_set);
          if (failing()) return; // Watch for bailouts.
 diff --git a/hotspot/src/share/vm/classfile/systemDictionary.cpp b/hotspot/src/share/vm/classfile/systemDictionary.cpp
-index 7f8ab9143..91818bf25 100644
+index 98412e1e1..f62731c43 100644
 --- a/hotspot/src/share/vm/classfile/systemDictionary.cpp
 +++ b/hotspot/src/share/vm/classfile/systemDictionary.cpp
-@@ -2362,6 +2362,7 @@ methodHandle SystemDictionary::find_method_handle_intrinsic(vmIntrinsics::ID iid
+@@ -2392,6 +2392,7 @@ methodHandle SystemDictionary::find_method_handle_intrinsic(vmIntrinsics::ID iid
      spe = NULL;
      // Must create lots of stuff here, but outside of the SystemDictionary lock.
      m = Method::make_method_handle_intrinsic(iid, signature, CHECK_(empty));
@@ -90,7 +90,7 @@ index 7f8ab9143..91818bf25 100644
      if (!Arguments::is_interpreter_only()) {
        // Generate a compiled form of the MH intrinsic.
        AdapterHandlerLibrary::create_native_wrapper(m);
-@@ -2371,6 +2372,7 @@ methodHandle SystemDictionary::find_method_handle_intrinsic(vmIntrinsics::ID iid
+@@ -2401,6 +2402,7 @@ methodHandle SystemDictionary::find_method_handle_intrinsic(vmIntrinsics::ID iid
                     "out of space in CodeCache for method handle intrinsic", empty);
        }
      }
@@ -98,7 +98,7 @@ index 7f8ab9143..91818bf25 100644
      // Now grab the lock.  We might have to throw away the new method,
      // if a racing thread has managed to install one at the same time.
      {
-@@ -2384,9 +2386,11 @@ methodHandle SystemDictionary::find_method_handle_intrinsic(vmIntrinsics::ID iid
+@@ -2414,9 +2416,11 @@ methodHandle SystemDictionary::find_method_handle_intrinsic(vmIntrinsics::ID iid
    }
  
    assert(spe != NULL && spe->method() != NULL, "");

@@ -1,18 +1,24 @@
-# HG changeset patch
-# User Richard Leitner <richard.leitner@skidata.com>
-# Date 1588148111 -7200
-#      Wed Apr 29 10:15:11 2020 +0200
-# Node ID e063bb17c5fb8edfbad1bfb5237b69350645ed0b
-# Parent  041cb274be1207a991e05b041f57a800e8132cff
-autoconf: remove Werror
+From 3d7493808f435b70101003534d98e249bf7e734c Mon Sep 17 00:00:00 2001
+From: Richard Leitner <richard.leitner@skidata.com>
+Date: Wed, 29 Apr 2020 10:15:11 +0200
+Subject: [PATCH 13/13] autoconf: remove Werror
 
 We don't want to mess around with disabling warnings on new
 compiler versions therefore we remove Werror.
 
-diff -r 041cb274be12 -r e063bb17c5fb common/autoconf/flags.m4
---- a/common/autoconf/flags.m4	Fri Apr 24 04:22:43 2020 +0100
-+++ b/common/autoconf/flags.m4	Wed Apr 29 10:15:11 2020 +0200
-@@ -399,7 +399,7 @@
+Upstream-Status: Invalid
+
+Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+---
+ common/autoconf/flags.m4               | 12 +++---
+ common/autoconf/generated-configure.sh | 56 +++++++++++++-------------
+ 2 files changed, 34 insertions(+), 34 deletions(-)
+
+diff --git a/common/autoconf/flags.m4 b/common/autoconf/flags.m4
+index 077efa2..b98575a 100644
+--- a/common/autoconf/flags.m4
++++ b/common/autoconf/flags.m4
+@@ -399,7 +399,7 @@ AC_DEFUN_ONCE([FLAGS_SETUP_COMPILER_FLAGS_FOR_JDK],
        LEGACY_EXTRA_LDFLAGS="$LEGACY_EXTRA_LDFLAGS -Wl,-z,relro"
      fi
      $2CXXSTD_CXXFLAG="-std=gnu++98"
@@ -21,7 +27,7 @@ diff -r 041cb274be12 -r e063bb17c5fb common/autoconf/flags.m4
                                         [], [$2CXXSTD_CXXFLAG=""])
      $2CXXFLAGS_JDK="${$2CXXFLAGS_JDK} ${$2CXXSTD_CXXFLAG}"
      $2JVM_CFLAGS="${$2JVM_CFLAGS} ${$2CXXSTD_CXXFLAG}"
-@@ -489,17 +489,17 @@
+@@ -489,17 +489,17 @@ AC_DEFUN_ONCE([FLAGS_SETUP_COMPILER_FLAGS_FOR_JDK],
      # Notably, -ffp-contract=off needs to be added for GCC >= 4.6,
      #          -mno-fused-madd -fno-strict-aliasing for GCC < 4.6
      COMPILER_FP_CONTRACT_OFF_FLAG="-ffp-contract=off"
@@ -42,7 +48,7 @@ diff -r 041cb274be12 -r e063bb17c5fb common/autoconf/flags.m4
                                             [], [NO_STRICT_ALIASING_FLAG=""])
          if test "x$M_NO_FUSED_ADD_FLAG" != "x" && test "x$NO_STRICT_ALIASING_FLAG" != "x"; then
            FDLIBM_CFLAGS="$M_NO_FUSED_ADD_FLAG $NO_STRICT_ALIASING_FLAG"
-@@ -866,11 +866,11 @@
+@@ -866,11 +866,11 @@ AC_DEFUN_ONCE([FLAGS_SETUP_GCC6_COMPILER_FLAGS],
    # Notably, value range propagation now assumes that the this pointer of C++
    # member functions is non-null.
    NO_DELETE_NULL_POINTER_CHECKS_CFLAG="-fno-delete-null-pointer-checks"
@@ -56,10 +62,11 @@ diff -r 041cb274be12 -r e063bb17c5fb common/autoconf/flags.m4
                                       [], [NO_LIFETIME_DSE_CFLAG=""])
    CFLAGS_JDK="${CFLAGS_JDK} ${NO_DELETE_NULL_POINTER_CHECKS_CFLAG} ${NO_LIFETIME_DSE_CFLAG}"
    AC_SUBST([NO_LIFETIME_DSE_CFLAG])
-diff -r 041cb274be12 -r e063bb17c5fb common/autoconf/generated-configure.sh
---- a/common/autoconf/generated-configure.sh	Fri Apr 24 04:22:43 2020 +0100
-+++ b/common/autoconf/generated-configure.sh	Wed Apr 29 10:15:11 2020 +0200
-@@ -41490,12 +41490,12 @@
+diff --git a/common/autoconf/generated-configure.sh b/common/autoconf/generated-configure.sh
+index d57035b..1953dc4 100644
+--- a/common/autoconf/generated-configure.sh
++++ b/common/autoconf/generated-configure.sh
+@@ -41498,12 +41498,12 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
      fi
      CXXSTD_CXXFLAG="-std=gnu++98"
  
@@ -75,7 +82,7 @@ diff -r 041cb274be12 -r e063bb17c5fb common/autoconf/generated-configure.sh
    ac_ext=cpp
  ac_cpp='$CXXCPP $CPPFLAGS'
  ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-@@ -41646,12 +41646,12 @@
+@@ -41654,12 +41654,12 @@ fi
    NO_DELETE_NULL_POINTER_CHECKS_CFLAG="-fno-delete-null-pointer-checks"
  
  
@@ -91,7 +98,7 @@ diff -r 041cb274be12 -r e063bb17c5fb common/autoconf/generated-configure.sh
    ac_ext=c
  ac_cpp='$CPP $CPPFLAGS'
  ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-@@ -41686,12 +41686,12 @@
+@@ -41694,12 +41694,12 @@ $as_echo "$supports" >&6; }
    fi
  
  
@@ -107,7 +114,7 @@ diff -r 041cb274be12 -r e063bb17c5fb common/autoconf/generated-configure.sh
    ac_ext=cpp
  ac_cpp='$CXXCPP $CPPFLAGS'
  ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-@@ -41725,8 +41725,8 @@
+@@ -41733,8 +41733,8 @@ $as_echo "$supports" >&6; }
    fi
  
  
@@ -118,7 +125,7 @@ diff -r 041cb274be12 -r e063bb17c5fb common/autoconf/generated-configure.sh
    supports=no
    if test "x$C_COMP_SUPPORTS" = "xyes" -a "x$CXX_COMP_SUPPORTS" = "xyes"; then supports=yes; fi
  
-@@ -41742,12 +41742,12 @@
+@@ -41750,12 +41750,12 @@ $as_echo "$supports" >&6; }
    NO_LIFETIME_DSE_CFLAG="-fno-lifetime-dse"
  
  
@@ -134,7 +141,7 @@ diff -r 041cb274be12 -r e063bb17c5fb common/autoconf/generated-configure.sh
    ac_ext=c
  ac_cpp='$CPP $CPPFLAGS'
  ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-@@ -41781,12 +41781,12 @@
+@@ -41789,12 +41789,12 @@ $as_echo "$supports" >&6; }
    fi
  
  
@@ -150,7 +157,7 @@ diff -r 041cb274be12 -r e063bb17c5fb common/autoconf/generated-configure.sh
    ac_ext=cpp
  ac_cpp='$CXXCPP $CPPFLAGS'
  ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-@@ -41820,8 +41820,8 @@
+@@ -41828,8 +41828,8 @@ $as_echo "$supports" >&6; }
    fi
  
  
@@ -161,7 +168,7 @@ diff -r 041cb274be12 -r e063bb17c5fb common/autoconf/generated-configure.sh
    supports=no
    if test "x$C_COMP_SUPPORTS" = "xyes" -a "x$CXX_COMP_SUPPORTS" = "xyes"; then supports=yes; fi
  
-@@ -41854,12 +41854,12 @@
+@@ -41862,12 +41862,12 @@ $as_echo "$supports" >&6; }
      #          -mno-fused-madd -fno-strict-aliasing for GCC < 4.6
      COMPILER_FP_CONTRACT_OFF_FLAG="-ffp-contract=off"
  
@@ -177,7 +184,7 @@ diff -r 041cb274be12 -r e063bb17c5fb common/autoconf/generated-configure.sh
    ac_ext=cpp
  ac_cpp='$CXXCPP $CPPFLAGS'
  ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-@@ -41898,12 +41898,12 @@
+@@ -41906,12 +41906,12 @@ $as_echo "$supports" >&6; }
           test "$OPENJDK_TARGET_CPU_ARCH" = "ppc"; then
          M_NO_FUSED_ADD_FLAG="-mno-fused-madd"
  
@@ -193,7 +200,7 @@ diff -r 041cb274be12 -r e063bb17c5fb common/autoconf/generated-configure.sh
    ac_ext=cpp
  ac_cpp='$CXXCPP $CPPFLAGS'
  ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-@@ -41938,12 +41938,12 @@
+@@ -41946,12 +41946,12 @@ $as_echo "$supports" >&6; }
  
          NO_STRICT_ALIASING_FLAG="-fno-strict-aliasing"
  
@@ -209,3 +216,6 @@ diff -r 041cb274be12 -r e063bb17c5fb common/autoconf/generated-configure.sh
    ac_ext=cpp
  ac_cpp='$CXXCPP $CPPFLAGS'
  ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+-- 
+2.26.2
+

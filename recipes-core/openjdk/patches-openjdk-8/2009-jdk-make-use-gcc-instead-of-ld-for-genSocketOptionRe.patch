@@ -1,4 +1,4 @@
-From de3aa0cf20498ce1dc6056f976a4d9aa6f0ddd00 Mon Sep 17 00:00:00 2001
+From 2d5e8ce975fb241a825dbf070923ccbdf8b65ee9 Mon Sep 17 00:00:00 2001
 From: Richard Leitner <richard.leitner@skidata.com>
 Date: Thu, 20 Aug 2020 11:24:40 +0200
 Subject: [PATCH 2009/2009] jdk: make: use gcc instead of ld for

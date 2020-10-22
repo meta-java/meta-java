@@ -1,6 +1,6 @@
-From d7256ea11ba0c2160df59d40eea247c1a83ce1fb Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
-Date: Mon, 13 Aug 2018 16:48:32 +0100
+From 024e0d522f205ca8659fce60ca4be68b9e3e08db Mon Sep 17 00:00:00 2001
+From: Richard Leitner <richard.leitner@skidata.com>
+Date: Thu, 22 Oct 2020 09:41:07 +0200
 Subject: [PATCH 1007/1013] hotspot: Turn on the -Wreturn-type warning
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -95,7 +95,7 @@ index 4b4b4e250..196622aed 100644
  
  
 diff --git a/hotspot/src/share/vm/classfile/symbolTable.cpp b/hotspot/src/share/vm/classfile/symbolTable.cpp
-index ec97077b7..2621a7d62 100644
+index 83369cbcf..8dd4e6b21 100644
 --- a/hotspot/src/share/vm/classfile/symbolTable.cpp
 +++ b/hotspot/src/share/vm/classfile/symbolTable.cpp
 @@ -249,7 +249,7 @@ Symbol* SymbolTable::lookup(const char* name, int len, TRAPS) {
@@ -117,10 +117,10 @@ index ec97077b7..2621a7d62 100644
  
  Symbol* SymbolTable::lookup_only(const char* name, int len,
 diff --git a/hotspot/src/share/vm/classfile/systemDictionary.cpp b/hotspot/src/share/vm/classfile/systemDictionary.cpp
-index 05b196aeb..7f8ab9143 100644
+index 4541e815a..98412e1e1 100644
 --- a/hotspot/src/share/vm/classfile/systemDictionary.cpp
 +++ b/hotspot/src/share/vm/classfile/systemDictionary.cpp
-@@ -234,15 +234,15 @@ Klass* SystemDictionary::resolve_or_null(Symbol* class_name, Handle class_loader
+@@ -236,15 +236,15 @@ Klass* SystemDictionary::resolve_or_null(Symbol* class_name, Handle class_loader
                   class_name->as_C_string(),
                   class_loader.is_null() ? "null" : class_loader->klass()->name()->as_C_string()));
    if (FieldType::is_array(class_name)) {
@@ -166,7 +166,7 @@ index 2f3abae6a..d58ebecb2 100644
    static ReservedSpace* shared_rs() {
      CDS_ONLY(return _shared_rs);
 diff --git a/hotspot/src/share/vm/oops/constantPool.hpp b/hotspot/src/share/vm/oops/constantPool.hpp
-index 0698eb40e..354293924 100644
+index 68435471d..fad4a92cb 100644
 --- a/hotspot/src/share/vm/oops/constantPool.hpp
 +++ b/hotspot/src/share/vm/oops/constantPool.hpp
 @@ -350,7 +350,7 @@ class ConstantPool : public Metadata {
@@ -177,12 +177,12 @@ index 0698eb40e..354293924 100644
 +    return klass_at_impl(h_this, which, THREAD);
    }
  
-   Symbol* klass_name_at(int which);  // Returns the name, w/o resolving.
+   Symbol* klass_name_at(int which) const;  // Returns the name, w/o resolving.
 diff --git a/hotspot/src/share/vm/prims/jvm.cpp b/hotspot/src/share/vm/prims/jvm.cpp
-index 29532ab11..8ba488e15 100644
+index 6f2221c41..daa69f89a 100644
 --- a/hotspot/src/share/vm/prims/jvm.cpp
 +++ b/hotspot/src/share/vm/prims/jvm.cpp
-@@ -4357,7 +4357,7 @@ JVM_ENTRY(jlong,JVM_DTraceActivate(
+@@ -4368,7 +4368,7 @@ JVM_ENTRY(jlong,JVM_DTraceActivate(
      JVM_DTraceProvider* providers))
    JVMWrapper("JVM_DTraceActivate");
    return DTraceJSDT::activate(

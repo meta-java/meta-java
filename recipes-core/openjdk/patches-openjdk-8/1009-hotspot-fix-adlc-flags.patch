@@ -1,4 +1,4 @@
-From 5aba5bcf8fb4c7d7493662dd89689809fb401433 Mon Sep 17 00:00:00 2001
+From 486b1c46d80de99e0820cc6305477ab40ba4e13c Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Erkka=20K=C3=A4=C3=A4ri=C3=A4?= <erkka.kaaria@intel.com>
 Date: Thu, 2 Jan 2020 10:19:29 +0100
 Subject: [PATCH 1009/1013] hotspot: fix adlc flags

@@ -1,4 +1,4 @@
-From 5105a57bbfd463ddd441ac687bd0101c626188ed Mon Sep 17 00:00:00 2001
+From 335f9891be66e1292509d6a9dc18d41fac0a066c Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 13:26:42 +0100
 Subject: [PATCH 2008/2009] jdk: no unused deps

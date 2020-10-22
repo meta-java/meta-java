@@ -1,4 +1,4 @@
-From bd5665d4aa962107eb3d51d20d8b8971d9fca044 Mon Sep 17 00:00:00 2001
+From 1d7ea474a12a12e0e28e1a24f686a7478fe42b8d Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 13:36:53 +0000
 Subject: [PATCH 2002/2009] jdk: Allow using a system-installed libjpeg

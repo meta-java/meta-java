@@ -1,4 +1,4 @@
-From c9ed701f0553f95f90a7a12b773ca580e9034ede Mon Sep 17 00:00:00 2001
+From d497bc0b36be083400d2802019ffdf49f5d5ca94 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Thu, 20 Aug 2020 10:10:55 +0200
 Subject: [PATCH 1013/1013] hotspot: add missing includes for shark build (pt2)

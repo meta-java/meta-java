@@ -1,7 +1,7 @@
-From 36bb38c31724a3d24ba215ee2de76985fc09bead Mon Sep 17 00:00:00 2001
+From 17413a1bca9a6c27e049122d65b0d4fa291a53ec Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Thu, 2 Jan 2020 13:40:50 +0100
-Subject: [PATCH 02/10] Allow using a system-installed libpng
+Subject: [PATCH 02/13] Allow using a system-installed libpng
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit

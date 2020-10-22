@@ -1,7 +1,7 @@
-From 307281e9a66f391c737b03cf8ce021474f5eaabd Mon Sep 17 00:00:00 2001
+From def92aa795271fa3e6fd36009d89e06009d21c6a Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 13:44:25 +0100
-Subject: [PATCH 05/10] autoconf: filter aclocal copy too
+Subject: [PATCH 05/13] autoconf: filter aclocal copy too
 
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
 ---

@@ -1,7 +1,7 @@
-From 5eab9b7dfef9c906f7543ef2fcb2dceeef8b8628 Mon Sep 17 00:00:00 2001
+From 12dbeed90199730ad56ad842ae53e9d8aa477c0c Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 13:42:43 +0100
-Subject: [PATCH 04/10] don't expect fqpn for make
+Subject: [PATCH 04/13] don't expect fqpn for make
 
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
 ---

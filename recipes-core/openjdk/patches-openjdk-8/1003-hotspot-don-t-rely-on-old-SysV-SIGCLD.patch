@@ -1,4 +1,4 @@
-From 0d367dbb17112939f81286f2c600b7e00e226bcb Mon Sep 17 00:00:00 2001
+From 1a4d6458d94bc275a740cab895f8ada303916cd6 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 15:00:55 +0000
 Subject: [PATCH 1003/1013] hotspot: don't rely on old SysV SIGCLD

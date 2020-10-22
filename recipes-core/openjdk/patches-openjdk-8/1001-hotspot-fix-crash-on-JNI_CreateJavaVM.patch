@@ -1,4 +1,4 @@
-From ca63ab55217cbef6aea495139f766922c61e50b2 Mon Sep 17 00:00:00 2001
+From 4d1bd6a65c52564f32761217ded7b9bdde43556b Mon Sep 17 00:00:00 2001
 From: Wenlin Kang <wenlin.kang@windriver.com>
 Date: Sun, 17 Feb 2019 22:38:33 -0800
 Subject: [PATCH 1001/1013] hotspot: fix crash on JNI_CreateJavaVM

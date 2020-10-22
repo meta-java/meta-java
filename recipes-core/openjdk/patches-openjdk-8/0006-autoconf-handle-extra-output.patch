@@ -1,7 +1,7 @@
-From a861d45b40ed3b08dad9aef86dc8ba21fdc4e324 Mon Sep 17 00:00:00 2001
+From ee5e07895570a9ea2ae2490f3b159bde29967238 Mon Sep 17 00:00:00 2001
 From: Haiqing Bai <Haiqing.Bai@windriver.com>
 Date: Thu, 2 Jan 2020 13:45:42 +0100
-Subject: [PATCH 06/10] autoconf: handle extra output
+Subject: [PATCH 06/13] autoconf: handle extra output
 
 When adding the environment variable JAVA_TOOL_OPTIONS an extra line
 in the output from 'java -version' is produced. As this output is

@@ -1,4 +1,4 @@
-From 5f8b64ed6697443f3abb12773e3fb1ac6b545c8a Mon Sep 17 00:00:00 2001
+From e40d948b71ff33d74c6e1595a798f359fb673d8f Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 09:28:06 +0000
 Subject: [PATCH 1002/1013] hotspot: use correct include for poll

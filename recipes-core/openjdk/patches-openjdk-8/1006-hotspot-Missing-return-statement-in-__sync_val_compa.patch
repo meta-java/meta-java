@@ -1,4 +1,4 @@
-From 253f6cc9ca4f2cd9564028fa24b9306d9258a8fa Mon Sep 17 00:00:00 2001
+From 5e21de887d87243b6be03781afb4015c4673851c Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Mon, 13 Aug 2018 16:46:33 +0100
 Subject: [PATCH 1006/1013] hotspot: Missing return statement in

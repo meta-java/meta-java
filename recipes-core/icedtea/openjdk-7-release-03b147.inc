@@ -101,6 +101,7 @@ OPENJDK_PATCHES = " \
 	file://icedtea-jdk-unzip.patch;apply=no \
 	file://icedtea-hotspot-handle-gcc7-format-overflow.patch;apply=no \
 	file://icedtea-hotspot-fix-prefix_relocInfo-declaration.patch;apply=no \
+	file://icedtea-jdk-replace-sys-sysctl.patch;apply=no \
         "
 
 OPENJDK_HEADLESS_PATCHES = " \
@@ -126,6 +127,7 @@ export DISTRIBUTION_PATCHES = " \
 	patches/icedtea-jdk-unzip.patch \
 	patches/icedtea-hotspot-handle-gcc7-format-overflow.patch \
 	patches/icedtea-hotspot-fix-prefix_relocInfo-declaration.patch \
+	patches/icedtea-jdk-replace-sys-sysctl.patch \
 	${CLEAN_X11_DISTRIBUTION_PATCH} \
         "
 

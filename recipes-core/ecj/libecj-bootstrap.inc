@@ -9,7 +9,7 @@ DEPENDS = "classpath-initial-native fastjar-native jikes-initial-native virtual/
 
 INC_PR = "r5"
 
-inherit native java
+inherit java native
 
 S = "${WORKDIR}"
 

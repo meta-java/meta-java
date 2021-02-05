@@ -36,9 +36,10 @@ CFLAGS_append = " ${@oe.utils.conditional('HOST_COMPILER_MAJOR', '9', '-Wno-erro
 # Explicitly pass -fcommon since GCC 10 defaults to -fno-common for C sources
 CFLAGS_append = " -fcommon"
 
-inherit native java autotools pkgconfig
+inherit java autotools pkgconfig
 inherit openjdk-build-helper
 inherit python3native
+inherit native
 
 JAVA_HOME[unexport] = "1"
 

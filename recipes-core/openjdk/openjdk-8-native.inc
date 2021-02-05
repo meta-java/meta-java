@@ -32,9 +32,9 @@ EXTRA_OECONF_append = "\
 "
 # --with-boot-jdk=${WORKDIR}/fake-jdk
 
-inherit native
-
 require openjdk-8-common.inc
+
+inherit native
 
 CFLAGS_append = " ${@jdk_cpp_options(d)}"
 CPPFLAGS_append = "${@jdk_cpp_options(d)}"

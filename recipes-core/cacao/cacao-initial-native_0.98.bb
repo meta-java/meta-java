@@ -6,7 +6,7 @@ SECTION  = "interpreters"
 
 PROVIDES = "virtual/java-initial-native"
 
-inherit native autotools-brokensep
+inherit autotools-brokensep native
 
 DEPENDS = "zlib-native libtool-native fastjar-native classpath-initial-native jikes-initial-native"
 

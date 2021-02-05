@@ -20,7 +20,7 @@ SRC_URI = "${SOURCEFORGE_MIRROR}/jamvm/jamvm-${PV}.tar.gz \
 # This uses 32 bit arm, so force the instruction set to arm, not thumb
 ARM_INSTRUCTION_SET = "arm"
 
-inherit native autotools pkgconfig
+inherit autotools pkgconfig native
 
 # libdir must be modified so that jamvm-initial and -native
 # do not interfere

@@ -20,6 +20,7 @@ class JavaTest(OERuntimeTestCase):
         cls.tc.target.run('rm %s' % dst)
 
     @OETestDepends(['ssh.SSHTest.test_ssh'])
+    @OEHasPackage(["openjdk-7-jre", "openjdk-7", "openjre-8", "openjdk-8"])
     def test_java_exists(self):
         status, output = self.target.run('which java')
         msg = 'java binary not in PATH or not on target.'

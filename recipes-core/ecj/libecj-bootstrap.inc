@@ -54,6 +54,7 @@ do_compile() {
 
   fastjar -c -C build . -f ${JAR}
 }
+do_compile[vardepsexclude] += "BB_NUMBER_THREADS"
 
 do_install() {
   oe_jarinstall ${JAR} ecj-bootstrap.jar

@@ -28,6 +28,7 @@ SRC_URI = "\
 
 do_configure_prepend () {
     export TOPDIR=${S}
+    sed -i 's#\$TOPDIR#${S}#g' ${S}/common/autoconf/configure.ac
 }
 
 do_unpack_extract_submodules () {

@@ -1,3 +1,4 @@
+
 PATCHES_URI = "\
     file://0001-Allow-using-a-system-installed-libjpeg.patch \
     file://0002-Allow-using-a-system-installed-libpng.patch \
@@ -56,7 +57,7 @@ PATCHES_URI:append:libc-musl = "\
     ${DISABLE_AGENT_BUILD_PT2} \
     file://musl-0006-hotspot-os_linux-remove-glibc-dependencies-common.patch \
     ${REMOVE_GLIBC_DEPENDENCIES_PT2} \
-    file://musl-0007-hotspot-os_linux:x86-remove-glibc-dependencies-fpu_c.patch \
+    file://musl-0007-hotspot-os_linux_x86-remove-glibc-dependencies-fpu_c.patch \
     file://musl-0008-jdk-musl-build-fix-use-SIGRTMAX-rather-than-__SIGRTM.patch \
     file://musl-0009-jdk-musl-has-gethostby_r.patch \
 "

@@ -36,7 +36,7 @@ do_move_jaxen() {
 
 }
 
-addtask move_jaxen after do:removebinaries before do_patch
+addtask move_jaxen after do_deletebinraries before do_patch
 
 do_compile() {
     mkdir -p build

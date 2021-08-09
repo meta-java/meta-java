@@ -54,14 +54,14 @@ ALTJARFILENAMES = "${BPN}.jar"
 
 # Java "source" distributions often contain precompiled things
 # we want to delete first.
-do:removebinaries() {
+do_deletebinaries() {
   find ${WORKDIR} ! -path "${RECIPE_SYSROOT}/*" ! -path "${RECIPE_SYSROOT_NATIVE}/*" \
                   -name "*.jar" -exec rm {} \;
   find ${WORKDIR} ! -path "${RECIPE_SYSROOT}/*" ! -path "${RECIPE_SYSROOT_NATIVE}/*" \
                   -name "*.class" -exec rm {} \;
 }
 
-addtask removebinaries after do_unpack before do_patch
+addtask deletebinaries after do_unpack before do_patch
 
 do_install:append() {
   oe_jarinstall ${JARFILENAME} ${ALTJARFILENAMES}

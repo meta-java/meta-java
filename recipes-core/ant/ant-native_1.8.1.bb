@@ -20,7 +20,7 @@ DEPENDS = " \
 	junit-native jdepend-native commons-net-native commons-logging-native \
 	"
 
-do:removecruft() {
+do_deletecruft() {
 	# Removes thing that need proprietary Jar files or are otherwise problematic
 	rm -rf ${S}/src/main/org/apache/tools/ant/taskdefs/optional/image
 	rm -rf ${S}/src/main/org/apache/tools/ant/types/optional/image
@@ -30,7 +30,7 @@ do:removecruft() {
 	rm -rf ${S}/src/main/org/apache/tools/ant/taskdefs/optional/NetRexxC.java
 }
 
-addtask removecruft before do_patch after do:removebinaries
+addtask deletecruft before do_patch after do_deletebinaries
 
 do_compile() {
   mkdir -p build

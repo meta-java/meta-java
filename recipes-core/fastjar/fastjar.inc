@@ -12,15 +12,15 @@ SRC_URI = "http://download.savannah.nongnu.org/releases/fastjar/fastjar-${PV}.ta
 inherit autotools update-alternatives
 
 PACKAGES = "${PN}-grepjar ${PN} ${PN}-dbg ${PN}-doc"
-FILES_${PN}-grepjar = "${bindir}/grepjar"
+FILES:${PN}-grepjar = "${bindir}/grepjar"
 
 PROVIDES = "virtual/jar"
-ALTERNATIVE_${PN} = "jar"
+ALTERNATIVE:${PN} = "jar"
 ALTERNATIVE_LINK = "${bindir}/jar"
 ALTERNATIVE_TARGET = "${bindir}/fastjar"
 
 # update-aternatives does not work for native class
-do_install_append_class-native () {
+do_install:append:class-native () {
 	ln -s fastjar ${D}${bindir}/jar
 }
 

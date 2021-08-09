@@ -47,14 +47,14 @@ do_compile() {
   fastjar cf serializer-${PV}.jar -C build-serializer .
 }
 
-do_install_append() {
+do_install:append() {
   oe_jarinstall serializer-${PV}.jar serializer.jar
 }
 
 
 PACKAGES = "libxalan2-serializer-java ${JPN}"
 
-FILES_libxalan2-serializer-java = "${datadir_java}/serializer*.jar"
+FILES:libxalan2-serializer-java = "${datadir_java}/serializer*.jar"
 
 SRC_URI[archive.md5sum] = "fc805051f0fe505c7a4b1b5c8db9b9e3"
 SRC_URI[archive.sha256sum] = "fa52aa629bb882335d45d67401d270c3f21b5131aaea005ac0d4590f2ce8b043"

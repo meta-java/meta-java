@@ -18,8 +18,8 @@ LIC_FILES_CHKSUM = "file://license.terms;md5=3da0e50feac5f64f08184584a8cad58a"
 inherit autotools-brokensep
 
 DEPENDS += "sqlite3 sqlite3-native icedtea7-native"
-RDEPENDS_${PN} += "sqlite3"
-FILES_${PN} +="/usr/share"
+RDEPENDS:${PN} += "sqlite3"
+FILES:${PN} +="/usr/share"
 
 PARALLEL_MAKE = "-j 1"
 
@@ -35,13 +35,13 @@ EXTRA_OECONF = " \
 EXTRA_OEMAKE = "DESTDIR=${D}"
 
 # This dev package contains an '.so' file used for JNI development
-INSANE_SKIP_${PN}-dev = "dev-elf"
+INSANE_SKIP:${PN}-dev = "dev-elf"
 
-do_configure_append (){
+do_configure:append (){
 	cp ${S}/*-libtool ${S}/libtool
 }
 
-do_compile_prepend (){
+do_compile:prepend (){
 	echo '#!/bin/sh' > ${STAGING_BINDIR_NATIVE}/cc
 	echo '${BUILD_CC} $@' >> ${STAGING_BINDIR_NATIVE}/cc
 	chmod a+x ${STAGING_BINDIR_NATIVE}/cc

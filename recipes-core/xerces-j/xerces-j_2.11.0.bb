@@ -22,8 +22,8 @@ JPN = "libxerces2-java"
 
 DEPENDS = "fastjar-native jaxp1.3 xml-commons-resolver1.1"
 
-RDEPENDS_${PN} = "libjaxp1.3-java libxml-commons-resolver1.1-java"
-RDEPENDS_${PN}_class-native = ""
+RDEPENDS:${PN} = "libjaxp1.3-java libxml-commons-resolver1.1-java"
+RDEPENDS:${PN}:class-native = ""
 
 do_unpackpost[dirs] = "${B}"
 do_unpackpost() {

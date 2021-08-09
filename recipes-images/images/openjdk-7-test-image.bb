@@ -1,3 +1,3 @@
-IMAGE_INSTALL_append = " openjdk-7-jdk "
+IMAGE_INSTALL:append = " openjdk-7-jdk "
 
 inherit openjdk-test-image

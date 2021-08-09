@@ -37,7 +37,7 @@ python () {
         raise bb.parse.SkipRecipe("PREFERRED_RPROVIDER_java2-runtime '%s' unsupported" % runtime)
 }
 
-do_patch_append () {
+do_patch:append () {
     bb.build.exec_func('do_fix_sysconfdir', d)
 }
 
@@ -78,7 +78,7 @@ do_install () {
 	      ${D}${sbindir}/create-ca-certificates-java
 }
 
-pkg_postinst_${PN} () {
+pkg_postinst:${PN} () {
 	if [ -n "$D" ] ; then
 	    # In this case we want to use the Java in the image recipe's
 	    # native sysroot (native Java, not qemu target Java) to
@@ -98,10 +98,10 @@ pkg_postinst_${PN} () {
 	JVM_LIBDIR=$JVM_LIBDIR $D${sbindir}/create-ca-certificates-java
 }
 
-RDEPENDS_${PN} = "ca-certificates"
-RDEPENDS_${PN}_append_class-target = " java2-runtime"
-RDEPENDS_${PN}_append_class-native = " virtual/java-native"
+RDEPENDS:${PN} = "ca-certificates"
+RDEPENDS:${PN}:append:class-target = " java2-runtime"
+RDEPENDS:${PN}:append:class-native = " virtual/java-native"
 
-FILES_${PN} += "${datadir_java}"
+FILES:${PN} += "${datadir_java}"
 
 BBCLASSEXTEND = "native"

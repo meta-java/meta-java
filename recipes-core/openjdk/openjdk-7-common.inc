@@ -8,13 +8,13 @@ ICEDTEA_VERSION = "${@bb.parse.BBHandler.vars_from_file(d.getVar('FILE', False),
 
 S = "${WORKDIR}/${ICEDTEA}"
 
-DEPENDS_append_libc-uclibc = " virtual/libiconv "
+DEPENDS:append_libc-uclibc = " virtual/libiconv "
 
 # The OpenJDK build with interpreter optimizations for ARM depends on a binary
 # that generates constants for an assembler source file. There is no other
 # way than to generate this on a pseudo machine. Cross-compiling would not help
 # because structure sizes and/or alignment may differ.
-DEPENDS_append = " qemu-native "
+DEPENDS:append = " qemu-native "
 
 B = "${S}/build"
 
@@ -138,14 +138,14 @@ EXTRA_OECONF += " \
     --disable-system-sctp \
 "
 
-do_configure_prepend() {
+do_configure:prepend() {
     # Automatically copy everything that starts with "icedtea" (or "cacao") and ends with
     # ".patch" into the patches directory.
     find ${WORKDIR} -maxdepth 1 -name "icedtea*.patch" -exec cp {} ${S}/patches \;
     find ${WORKDIR} -maxdepth 1 -name "cacao*.patch" -exec cp {} ${S}/patches \;
 }
 
-do_configure_append() {
+do_configure:append() {
     oe_runmake patch
 }
 
@@ -168,7 +168,7 @@ EXTRA_OEMAKE += ' \
 
 OE_LAUNCHER_LDFLAGS = "-Wl,-rpath-link,${STAGING_LIBDIR}/llvm${WANT_LLVM_RELEASE} -Wl,-rpath,${libdir}/llvm${WANT_LLVM_RELEASE}"
 
-OE_LAUNCHER_LDFLAGS_arm = ""
+OE_LAUNCHER_LDFLAGS:arm = ""
 
 EXTRA_OEMAKE += 'OE_LAUNCHER_LDFLAGS="${OE_LAUNCHER_LDFLAGS}"'
 
@@ -229,7 +229,7 @@ PACKAGES = " \
     ${JDKPN}-common \
 "
 
-FILES_${JDKPN}-dbg = "\
+FILES:${JDKPN}-dbg = "\
     ${JDK_HOME}/bin/.debug \
     ${JDK_HOME}/lib/.debug \
     ${JDK_HOME}/lib/${JDK_ARCH}/jli/.debug \
@@ -244,9 +244,9 @@ FILES_${JDKPN}-dbg = "\
     ${JDK_HOME}/jre/lib/${JDK_ARCH}/client/.debug \
 "
 
-FILES_${JDKPN}-demo = "${JDK_HOME}/demo ${JDK_HOME}/sample"
-RDEPENDS_${JDKPN}-demo = "${JDKPN}-jre"
-FILES_${JDKPN}-demo-dbg = "\
+FILES:${JDKPN}-demo = "${JDK_HOME}/demo ${JDK_HOME}/sample"
+RDEPENDS:${JDKPN}-demo = "${JDKPN}-jre"
+FILES:${JDKPN}-demo-dbg = "\
     ${JDK_HOME}/demo/jvmti/gctest/lib/.debug \
     ${JDK_HOME}/demo/jvmti/heapTracker/lib/.debug \
     ${JDK_HOME}/demo/jvmti/heapViewer/lib/.debug \
@@ -258,13 +258,13 @@ FILES_${JDKPN}-demo-dbg = "\
     ${JDK_HOME}/demo/jvmti/compiledMethodLoad/lib/.debug \
 "
 
-FILES_${JDKPN}-source = "${JDK_HOME}/src.zip"
+FILES:${JDKPN}-source = "${JDK_HOME}/src.zip"
 
-FILES_${JDKPN}-java = "${JDK_HOME}/jre/bin/java"
+FILES:${JDKPN}-java = "${JDK_HOME}/jre/bin/java"
 
-FILES_${JDKPN}-vm-zero = "${JDK_HOME}/jre/lib/${JDK_ARCH}/server/"
+FILES:${JDKPN}-vm-zero = "${JDK_HOME}/jre/lib/${JDK_ARCH}/server/"
 
-FILES_${JDKPN}-common = "${JDK_HOME}/jre/ASSEMBLY_EXCEPTION \
+FILES:${JDKPN}-common = "${JDK_HOME}/jre/ASSEMBLY_EXCEPTION \
     ${JDK_HOME}/jre/THIRD_PARTY_README \
     ${JDK_HOME}/jre/LICENSE \
     ${JDK_HOME}/ASSEMBLY_EXCEPTION \
@@ -274,7 +274,7 @@ FILES_${JDKPN}-common = "${JDK_HOME}/jre/ASSEMBLY_EXCEPTION \
     ${JDK_HOME}/jre/lib \
 "
 
-FILES_${PN}_append = " \
+FILES:${PN}:append = " \
     ${JDK_HOME}/jre/bin/keytool \
     ${JDK_HOME}/jre/bin/orbd \
     ${JDK_HOME}/jre/bin/pack200 \
@@ -287,9 +287,9 @@ FILES_${PN}_append = " \
     ${JDK_HOME}/jre/bin/javaws \
 "
 
-RDEPENDS_${JDKPN}-common = "librhino-java"
+RDEPENDS:${JDKPN}-common = "librhino-java"
 
-RPROVIDES_${JDKPN}-vm-zero = "java2-vm"
+RPROVIDES:${JDKPN}-vm-zero = "java2-vm"
 
 # Even though a vm is a hard dependency it is set as RRECOMMENDS so a single vm can get uninstalled:
 # root@beaglebone:~/java# opkg remove openjdk-7-vm-shark
@@ -298,39 +298,39 @@ RPROVIDES_${JDKPN}-vm-zero = "java2-vm"
 #  * print_dependents_warning: Package openjdk-7-vm-shark is depended upon by packages:
 #  * print_dependents_warning: 	openjdk-7-java
 #  * print_dependents_warning: These might cease to work if package openjdk-7-vm-shark is removed.
-RRECOMMENDS_${JDKPN}-java = "java2-vm"
+RRECOMMENDS:${JDKPN}-java = "java2-vm"
 
 # For some reason shark and cacao do not automatically depends on -common.
 # So we add that manually.
 
 # There is a symlink to a .so but this one is valid.
-INSANE_SKIP_${JDKPN}-vm-zero = "dev-so"
-INSANE_SKIP_${JDKPN}-common = "dev-so"
+INSANE_SKIP:${JDKPN}-vm-zero = "dev-so"
+INSANE_SKIP:${JDKPN}-common = "dev-so"
 
 # libfreetype.so.6 is copied from STAGING_LIBDIR
 # which is already stripped.
-INSANE_SKIP_${JDKPN}-jre = "already-stripped"
+INSANE_SKIP:${JDKPN}-jre = "already-stripped"
 
-FILES_${JDKPN}-jdk = " \
+FILES:${JDKPN}-jdk = " \
     ${JDK_HOME}/bin \
     ${JDK_HOME}/lib \
     ${JDK_HOME}/include \
     ${JDK_HOME}${libdir}/jvm \
 "
-RDEPENDS_${JDKPN}-jre = "${JDKPN}-java ${JDKPN}-common"
-RDEPENDS_${JDKPN}-java = "${JDKPN}-common"
-RPROVIDES_${JDKPN}-jre = "java2-runtime"
+RDEPENDS:${JDKPN}-jre = "${JDKPN}-java ${JDKPN}-common"
+RDEPENDS:${JDKPN}-java = "${JDKPN}-common"
+RPROVIDES:${JDKPN}-jre = "java2-runtime"
 
-RDEPENDS_${JDKPN}-jdk = "${JDKPN}-jre"
+RDEPENDS:${JDKPN}-jdk = "${JDKPN}-jre"
 
-FILES_${JDKPN}-doc = "${JDK_HOME}/man"
+FILES:${JDKPN}-doc = "${JDK_HOME}/man"
 
 # Name of the directory containing the compiled output
 BUILD_DIR = "openjdk.build"
 BUILD_DIR_ECJ = "openjdk.build-ecj"
 
 # Force arm mode for now
-ARM_INSTRUCTION_SET_armv4t = "ARM"
+ARM_INSTRUCTION_SET:armv4t = "ARM"
 
 ICEDTEA_URI = "http://icedtea.wildebeest.org/download/source/${ICEDTEA}.tar.gz;name=iced"
 
@@ -361,7 +361,7 @@ LANGTOOLS_URI = "${ICEDTEA_DROP_URL}/${LANGTOOLS_FILE};name=langtools;unpack=fal
 # handles all postinst action for openjdk
 # some of the former results in a build error because "ERR" is in the first line.
 
-pkg_postinst_ontarget_${JDKPN}-vm-shark () {
+pkg_postinst_ontarget:${JDKPN}-vm-shark () {
     true
     if grep -q "\-server ERROR" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg && ! grep -q "KNOWN" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg; then
         sed -i -e "/\-shark.*/d" -e "s|\(^\-server*\)|\-shark KNOWN\n\1|" -e "/^$/d" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg
@@ -370,7 +370,7 @@ pkg_postinst_ontarget_${JDKPN}-vm-shark () {
     fi
 }
 
-pkg_prerm_${JDKPN}-vm-shark () {
+pkg_prerm:${JDKPN}-vm-shark () {
     true
     sed -i -e "/^\-shark.*/d" -e "/^$/d" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg
     if grep -q "KNOWN" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg && grep -q "\-server ERROR" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg; then
@@ -381,7 +381,7 @@ pkg_prerm_${JDKPN}-vm-shark () {
     echo "-shark ERROR" >> ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg
 }
 
-pkg_postinst_ontarget_${JDKPN}-vm-cacao () {
+pkg_postinst_ontarget:${JDKPN}-vm-cacao () {
     true
     if grep -q "\-server ERROR" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg && ! grep -q "KNOWN" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg; then
         sed -i -e "/\-cacao.*/d" -e "s|\(^\-server*\)|\-cacao KNOWN\n\1|" -e "/^$/d" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg
@@ -390,7 +390,7 @@ pkg_postinst_ontarget_${JDKPN}-vm-cacao () {
     fi
 }
 
-pkg_prerm_${JDKPN}-vm-cacao () {
+pkg_prerm:${JDKPN}-vm-cacao () {
     true
     sed -i -e "/^\-cacao.*/d" -e "/^$/d" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg
     if grep -q "KNOWN" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg && grep -q "\-server ERROR" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg; then
@@ -401,7 +401,7 @@ pkg_prerm_${JDKPN}-vm-cacao () {
     echo "-cacao ERROR" >> ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg
 }
 
-pkg_postinst_ontarget_${JDKPN}-vm-jamvm () {
+pkg_postinst_ontarget:${JDKPN}-vm-jamvm () {
     true
     if grep -q "\-server ERROR" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg && ! grep -q "KNOWN" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg; then
         sed -i -e "/\-jamvm.*/d" -e "s|\(^\-server*\)|\-jamvm KNOWN\n\1|" -e "/^$/d" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg
@@ -410,7 +410,7 @@ pkg_postinst_ontarget_${JDKPN}-vm-jamvm () {
     fi
 }
 
-pkg_prerm_${JDKPN}-vm-jamvm () {
+pkg_prerm:${JDKPN}-vm-jamvm () {
     true
     sed -i -e "/^\-jamvm.*/d" -e "/^$/d" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg
     if grep -q "KNOWN" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg && grep -q "\-server ERROR" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg; then
@@ -421,7 +421,7 @@ pkg_prerm_${JDKPN}-vm-jamvm () {
     echo "-jamvm ERROR" >> ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg
 }
 
-pkg_postinst_ontarget_${JDKPN}-vm-zero () {
+pkg_postinst_ontarget:${JDKPN}-vm-zero () {
     true
     if grep -q "KNOWN" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg && grep -q "\-server ERROR" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg; then
         FIRST_KNOWN=`grep "KNOWN" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg | head -n 1`
@@ -432,7 +432,7 @@ pkg_postinst_ontarget_${JDKPN}-vm-zero () {
     sed -i -e "s|^\-server.*|\-server KNOWN|" -e "/^$/d" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg
 }
 
-pkg_prerm_${JDKPN}-vm-zero () {
+pkg_prerm:${JDKPN}-vm-zero () {
     true
     sed -i -e "/^\-server.*/\-server ERROR" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg
     if grep -q "KNOWN" ${JDK_HOME}/jre/lib/${JDK_ARCH}/jvm.cfg; then
@@ -441,14 +441,14 @@ pkg_prerm_${JDKPN}-vm-zero () {
     fi
 }
 
-pkg_postinst_${JDKPN}-jre () {
+pkg_postinst:${JDKPN}-jre () {
     ln -s ${JDK_HOME}/jre  $D/${libdir}/jvm/jre
 }
 
 inherit update-alternatives
 
-ALTERNATIVE_${JDKPN}-jre = "java keytool"
-ALTERNATIVE_${JDKPN}-jdk = "javac"
+ALTERNATIVE:${JDKPN}-jre = "java keytool"
+ALTERNATIVE:${JDKPN}-jdk = "javac"
 
 ALTERNATIVE_TARGET[java] = "${JDK_HOME}/jre/bin/java"
 ALTERNATIVE_TARGET[javac] = "${JDK_HOME}/bin/javac"

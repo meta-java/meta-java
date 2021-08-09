@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=59530bdf33659b29e73d4adb9f9f6552"
 FILESPATH =. "${FILE_DIRNAME}/openjdk-7-03b147:"
 
 # Force arm mode for now
-ARM_INSTRUCTION_SET_armv4t = "ARM"
+ARM_INSTRUCTION_SET:armv4t = "ARM"
 
 ICEDTEA_URI = "http://icedtea.wildebeest.org/download/source/${ICEDTEA}.tar.gz;name=iced"
 
@@ -133,4 +133,4 @@ export DISTRIBUTION_PATCHES = " \
 
 # readdir_r was deprecated in glibc-2.24. Ignore the error for now
 # NOTE: When updating the recipe, please check if this is still needed
-CFLAGS_append = " -Wno-error=deprecated-declarations"
+CFLAGS:append = " -Wno-error=deprecated-declarations"

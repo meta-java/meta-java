@@ -4,11 +4,11 @@ LICENSE  = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://COPYING;md5=59530bdf33659b29e73d4adb9f9f6552"
 SECTION  = "interpreters"
 
-DEPENDS_class-native = "zlib-native libtool-native ecj-initial-native fastjar-native classpath-initial-native classpath-native bdwgc-native virtual/java-initial-native"
-PROVIDES_class-native = "virtual/java-native"
+DEPENDS:class-native = "zlib-native libtool-native ecj-initial-native fastjar-native classpath-initial-native classpath-native bdwgc-native virtual/java-initial-native"
+PROVIDES:class-native = "virtual/java-native"
 
 DEPENDS = "zlib libtool classpath virtual/javac-native bdwgc"
-RPROVIDES_${PN} = "java2-runtime"
+RPROVIDES:${PN} = "java2-runtime"
 
 SRCREV = "6c4694f9bd175386a8c451531e9a5ad97aa23b6f"
 SRC_URI = "git://bitbucket.org/cacaovm/cacao.git;protocol=https \
@@ -20,9 +20,9 @@ S = "${WORKDIR}/git"
 inherit java autotools-brokensep update-alternatives pkgconfig features_check
 
 REQUIRED_DISTRO_FEATURES = "x11"
-REQUIRED_DISTRO_FEATURES_class-native := ""
+REQUIRED_DISTRO_FEATURES:class-native := ""
 
-EXTRA_OECONF_class-native = "\
+EXTRA_OECONF:class-native = "\
     --enable-debug \
     --with-vm-zip=${datadir}/cacao/vm.zip \
     --with-java-runtime-library-classes=${datadir}/classpath/glibj.zip \
@@ -33,7 +33,7 @@ EXTRA_OECONF_class-native = "\
     --disable-libjvm  \
 "
 
-CACHED_CONFIGUREVARS_class-native += "ac_cv_prog_JAVAC=${STAGING_BINDIR_NATIVE}/ecj-initial"
+CACHED_CONFIGUREVARS:class-native += "ac_cv_prog_JAVAC=${STAGING_BINDIR_NATIVE}/ecj-initial"
 
 EXTRA_OECONF = "\
     --with-vm-zip=${datadir}/cacao/vm.zip \
@@ -46,21 +46,21 @@ EXTRA_OECONF = "\
     --disable-test-dependency-checks \
 "
 
-do_configure_prepend () {
+do_configure:prepend () {
     # upgrade m4 macros in source tree
     libtoolize --force --copy --install
     rm  -f src/mm/boehm-gc/ltmain.sh
     mkdir -p src/mm/boehm-gc/m4
 }
 
-do_install_append_class-target() {
+do_install:append:class-target() {
     rm ${D}/${bindir}/java
 }
 
-FILES_${PN} = "${bindir}/${PN} ${libdir}/cacao/lib*.so ${libdir}/lib*.so* ${datadir}/${PN}"
-FILES_${PN}-dbg += "${bindir}/.debug ${libdir}/.debug/lib*.so*"
-FILES_${PN}-doc += "${datadir}/gc"
+FILES:${PN} = "${bindir}/${PN} ${libdir}/cacao/lib*.so ${libdir}/lib*.so* ${datadir}/${PN}"
+FILES:${PN}-dbg += "${bindir}/.debug ${libdir}/.debug/lib*.so*"
+FILES:${PN}-doc += "${datadir}/gc"
 
 BBCLASSEXTEND = "native"
 
-COMPATIBLE_MACHINE_aarch64 = "-"
+COMPATIBLE_MACHINE:aarch64 = "-"

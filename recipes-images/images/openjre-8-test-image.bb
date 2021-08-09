@@ -1,3 +1,3 @@
-IMAGE_INSTALL_append = " openjre-8 "
+IMAGE_INSTALL:append = " openjre-8 "
 
 inherit openjre-test-image

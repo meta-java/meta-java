@@ -4,8 +4,8 @@ LICENSE = "CUP"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;md5=2c9db91c00f38e52cfc8e67bafaa7c33"
 
 
-RDEPENDS_${PN} = "java2-runtime"
-RDEPENDS_${PN}_class-native = ""
+RDEPENDS:${PN} = "java2-runtime"
+RDEPENDS:${PN}:class-native = ""
 PACKAGE_ARCH = "${TUNE_PKGARCH}"
 
 inherit java-library
@@ -32,14 +32,14 @@ do_compile() {
 	fastjar cf ${BP}.jar -C build .
 }
 
-do_install_append() {
+do_install:append() {
 	install -d ${D}${bindir}
 	install -m 0755 ${WORKDIR}/cup ${D}${bindir}
 }
 
 PACKAGES = "${PN}"
 
-FILES_${PN} += "${datadir_java}"
+FILES:${PN} += "${datadir_java}"
 
 SRC_URI[md5sum] = "8b11edfec13c590ea443d0f0ae0da479"
 SRC_URI[sha256sum] = "7e6dc5be74ae56c7e86e69ad0ad88dae3b2847afa9e73a76635918a6b1eb75cd"

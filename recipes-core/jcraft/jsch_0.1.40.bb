@@ -9,8 +9,8 @@ inherit java-library
 
 DEPENDS = "jzlib"
 
-RDEPENDS_${PN} = "libjzlib-java"
-RDEPENDS_${PN}_class-native = ""
+RDEPENDS:${PN} = "libjzlib-java"
+RDEPENDS:${PN}:class-native = ""
 
 do_compile() {
   mkdir -p build

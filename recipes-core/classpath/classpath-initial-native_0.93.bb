@@ -28,7 +28,7 @@ EXTRA_OECONF += "\
 # Ensure tools.zip is not installed at same path as classpath-native
 EXTRA_OEMAKE += "pkgdatadir=${STAGING_DATADIR_NATIVE}/classpath-initial"
 
-do_install_append() {
+do_install:append() {
     # remove files clashing with classpath-native in sysroot
     rm \
        ${D}${bindir}/gappletviewer \

@@ -47,13 +47,13 @@ require openjdk-8-common.inc
 
 JAVA_HOME[unexport] = "1"
 
-SRC_URI_append = "\
+SRC_URI:append = "\
     file://jvm.cfg \
     file://0011-autoconf-fix-CC-with-arguments-detection.patch \
     file://0012-autoconf-NativeCompilation-remove-sysroot.patch \
 "
 
-EXTRA_OECONF_append = "\
+EXTRA_OECONF:append = "\
     --with-jobs=${@openjdk_build_helper_get_parallel_make(d)} \
     \
     --with-tools-dir=${STAGING_DIR_NATIVE} \
@@ -73,16 +73,16 @@ EXTRA_OECONF_append = "\
     ${@jdk_configure_options(d)} \
 "
 
-do_configure_prepend() {
+do_configure:prepend() {
     export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS}"
     export ${@jdk_environment_options(d)}
 }
 
-do_configure_append() {
+do_configure:append() {
     sed -i -e 's,POST_STRIP_CMD:=.*,POST_STRIP_CMD:=,g' ${B}/spec.gmk
 }
 
-do_install_append() {
+do_install:append() {
     if ${@bb.utils.contains('PACKAGECONFIG', 'repack', 'true', 'false', d)} ; then
       if [ -d ${D}${JDK_HOME} ] ; then
         find ${D}${JDK_HOME} -name "*.jar" -print0 | \
@@ -104,7 +104,7 @@ do_install[vardepsexclude] += "BB_NUMBER_THREADS"
 export MAKE_VERBOSE = "y"
 export MFLAGS="${@jdk_make_options(d)} MAKE_VERBOSE=y QUIETLY= VERBOSE=-s LOG_LEVEL=trace STRIP_POLICY=no_strip"
 
-EXTRA_OEMAKE_append = '\
+EXTRA_OEMAKE:append = '\
     ${@jdk_make_options(d)} \
     ALT_SDT_H="${STAGING_INCDIR}" \
     ALT_CUPS_HEADERS_PATH="${STAGING_INCDIR}" \
@@ -132,4 +132,4 @@ PACKAGE_PREPROCESS_FUNCS += "remove_debuglink"
 
 # FIXME libjsig.so is a symlink to a .so but this one is valid
 # FIXME libfreetype.so.6 is copied from STAGING_LIBDIR which is already stripped
-INSANE_SKIP_${PN} = "dev-so already-stripped"
+INSANE_SKIP:${PN} = "dev-so already-stripped"

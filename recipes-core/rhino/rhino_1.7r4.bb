@@ -2,7 +2,7 @@ SUMMARY = "Lexical analyzer generator for Java"
 LICENSE = "MPL-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=8e2372bdbf22c99279ae4599a13cc458"
 
-DEPENDS_class-native += "classpath-native"
+DEPENDS:class-native += "classpath-native"
 
 BBCLASSEXTEND = "native"
 
@@ -20,9 +20,9 @@ S = "${WORKDIR}/rhino1_7R4"
 
 PACKAGES = "${JPN} rhino"
 
-FILES_${PN} = "${bindir}/rhino ${bindir}/rhino-jsc"
-RDEPENDS_${PN} = "java2-runtime ${JPN}"
-RDEPENDS_${PN}_class-native = ""
+FILES:${PN} = "${bindir}/rhino ${bindir}/rhino-jsc"
+RDEPENDS:${PN} = "java2-runtime ${JPN}"
+RDEPENDS:${PN}:class-native = ""
 
 do_compile() {
 	mkdir -p build
@@ -39,7 +39,7 @@ do_compile() {
 	fastjar cfm ${JARFILENAME} ${S}/src/manifest -C build .
 }
 
-do_install_append() {
+do_install:append() {
 	install -d ${D}${bindir}
 
 	install -m 0755 ${WORKDIR}/rhino ${D}${bindir}

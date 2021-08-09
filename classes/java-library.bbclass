@@ -40,11 +40,11 @@ def java_package_name(d):
 
 JPN ?= "${@java_package_name(d)}"
 
-DEPENDS_prepend = "virtual/javac-native fastjar-native "
+DEPENDS:prepend = "virtual/javac-native fastjar-native "
 
 PACKAGES += "${JPN}"
 
-FILES_${JPN} = "${datadir_java}"
+FILES:${JPN} = "${datadir_java}"
 
 # File name of the libraries' main Jar file
 JARFILENAME = "${BP}.jar"
@@ -54,7 +54,7 @@ ALTJARFILENAMES = "${BPN}.jar"
 
 # Java "source" distributions often contain precompiled things
 # we want to delete first.
-do_removebinaries() {
+do:removebinaries() {
   find ${WORKDIR} ! -path "${RECIPE_SYSROOT}/*" ! -path "${RECIPE_SYSROOT_NATIVE}/*" \
                   -name "*.jar" -exec rm {} \;
   find ${WORKDIR} ! -path "${RECIPE_SYSROOT}/*" ! -path "${RECIPE_SYSROOT_NATIVE}/*" \
@@ -63,6 +63,6 @@ do_removebinaries() {
 
 addtask removebinaries after do_unpack before do_patch
 
-do_install_append() {
+do_install:append() {
   oe_jarinstall ${JARFILENAME} ${ALTJARFILENAMES}
 }

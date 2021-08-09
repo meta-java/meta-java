@@ -27,7 +27,7 @@ SRC_URI[sha256sum] = "3c30373e760f444def3650c76c5a00ae12fb1d860ec008750d084f4880
 
 S = "${WORKDIR}/rxtx-2.2pre2"
 
-INSANE_SKIP_${JPN} += "dev-so"
+INSANE_SKIP:${JPN} += "dev-so"
 
 PACKAGE_ARCH = "${TUNE_PKGARCH}"
 inherit autotools-brokensep java-library remove-libtool
@@ -36,7 +36,7 @@ JARFILENAME = "RXTXcomm.jar"
 EXTRA_OEMAKE += "RXTX_PATH=${D}${libdir_jni} \
                  JHOME=${D}${datadir_java}/ext"
 
-do_configure_prepend() {
+do_configure:prepend() {
     # Ugly but don't complain to me, but upstream ;-)
     sed -e 's,bin/javah,bin/gjavah,g' \
         -e 's,bin/jar,bin/fastjar,g' \
@@ -47,16 +47,16 @@ do_configure_prepend() {
           ${S}/ltmain.sh
 }
 
-do_install_prepend() {
+do_install:prepend() {
     install -d ${D}${libdir_jni}
     install -d ${D}${datadir_java}/ext
 }
 
-PACKAGES_remove = "${PN}"
+PACKAGES:remove = "${PN}"
 
-FILES_${JPN} += "${libdir_jni}"
-RPROVIDES_${JPN} = "${PN}"
-RCONFLICTS_${JPN} = "${PN}"
-RREPLACES_${JPN} = "${PN}"
+FILES:${JPN} += "${libdir_jni}"
+RPROVIDES:${JPN} = "${PN}"
+RCONFLICTS:${JPN} = "${PN}"
+RREPLACES:${JPN} = "${PN}"
 
-FILES_${PN}-dbg += "${libdir_jni}/.debug"
+FILES:${PN}-dbg += "${libdir_jni}/.debug"

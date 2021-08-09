@@ -10,8 +10,8 @@ SRC_URI = "http://archive.apache.org/dist/httpcomponents/commons-httpclient/sour
 S = "${WORKDIR}/${BP}"
 
 DEPENDS += "commons-logging commons-codec"
-RDEPENDS_${PN} = "libcommons-logging-java libcommons-codec-java"
-RDEPENDS_${PN}_class-native = ""
+RDEPENDS:${PN} = "libcommons-logging-java libcommons-codec-java"
+RDEPENDS:${PN}:class-native = ""
 
 CP = "commons-logging commons-codec"
 

@@ -45,7 +45,7 @@ do_compile() {
 #    jaxme_build src/pm build-pm $cp jaxmepm-${PV}.jar
 }
 
-do_install_append() {
+do_install:append() {
     oe_jarinstall jaxmeapi-${PV}.jar jaxmeapi.jar
     oe_jarinstall jaxmejs-${PV}.jar jaxmejs.jar
     oe_jarinstall jaxmexs-${PV}.jar jaxmexs.jar

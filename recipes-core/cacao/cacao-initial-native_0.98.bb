@@ -35,7 +35,7 @@ export JAVAC="jikes-initial"
 # enforces the usage of fastjar
 export JAR="fastjar"
 
-do_configure_append() {
+do_configure:append() {
   # Fix the executable name in the wrapper script.
   sed -i -e "s|exec cacao \\$|exec cacao-initial \\$|" src/scripts/java.in
 }

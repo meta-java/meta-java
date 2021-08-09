@@ -47,7 +47,7 @@ do_install() {
     oe_libinstall -so libunix-java ${D}${libdir_jni}
 }
 
-do_install_append() {
+do_install:append() {
     rm ${D}${datadir_java}/${PN}.jar
 }
 PACKAGES = "\
@@ -56,17 +56,17 @@ PACKAGES = "\
 	${PN}-io-java ${PN}-debug-java \
 "
 
-FILES_libcgi-java = "${datadir_java}/cgi*.jar"
-FILES_libcgi-jni = "${libdir_jni}/libcgi-java.so"
-FILES_libcgi-jni-dbg = "${libdir_jni}/.debug/libcgi-java.so"
-RDEPENDS_libcgi-java = "libcgi-jni"
+FILES:libcgi-java = "${datadir_java}/cgi*.jar"
+FILES:libcgi-jni = "${libdir_jni}/libcgi-java.so"
+FILES:libcgi-jni-dbg = "${libdir_jni}/.debug/libcgi-java.so"
+RDEPENDS:libcgi-java = "libcgi-jni"
 
-FILES_libunixsocket-java = "${datadir_java}/unix*.jar"
-FILES_libunixsocket-jni = "${libdir_jni}/libunix-java.so"
-FILES_libunixsocket-jni-dbg = "${libdir_jni}/.debug/libunix-java.so"
-RDEPENDS_libunixsocket-java = "libunixsocket-jni"
+FILES:libunixsocket-java = "${datadir_java}/unix*.jar"
+FILES:libunixsocket-jni = "${libdir_jni}/libunix-java.so"
+FILES:libunixsocket-jni-dbg = "${libdir_jni}/.debug/libunix-java.so"
+RDEPENDS:libunixsocket-java = "libunixsocket-jni"
 
-FILES_${PN}-io-java = "${datadir_java}/io*.jar"
+FILES:${PN}-io-java = "${datadir_java}/io*.jar"
 
-FILES_${PN}-debug-java = "${datadir_java}/debug-*.jar ${datadir_java}/hexdump*.jar"
+FILES:${PN}-debug-java = "${datadir_java}/debug-*.jar ${datadir_java}/hexdump*.jar"
 

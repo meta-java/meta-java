@@ -3,8 +3,8 @@ require openjdk-8-release-common.inc
 # We do not yet work for aarch64, and we make sure
 # to use the aarch32 port for ARMv7.
 COMPATIBLE_HOST = "^(?!(aarch64)).*$"
-COMPATIBLE_HOST_armv7a = "^$"
-COMPATIBLE_HOST_armv7ve = "^$"
+COMPATIBLE_HOST:armv7a = "^$"
+COMPATIBLE_HOST:armv7ve = "^$"
 
 CORBA_CHANGESET = "jdk8u${PV}-ga"
 SRC_URI[corba.sha256sum] = "28c487a49546ab1a592eaf229c13e1896b390958ac4e6fa19bf5da34a1977138"

@@ -2,8 +2,8 @@
 # passing a valid ${PARALLEL_MAKE} to it. OTOH OpenJDK's makefiles are
 # parallelizable and we need ${PARALLEL_MAKE} to derive the proper value.
 # The base for this quirk is that GNU Make only considers the last "-j" option.
-EXTRA_OEMAKE_remove_task-compile = "${PARALLEL_MAKE}"
-EXTRA_OEMAKE_remove_task-install = "${PARALLEL_MAKEINST}"
+EXTRA_OEMAKE:remove:task-compile = "${PARALLEL_MAKE}"
+EXTRA_OEMAKE:remove:task-install = "${PARALLEL_MAKEINST}"
 
 # OpenJDK supports parallel compilation but uses a plain number for this.
 # In OE we have PARALLEL_MAKE which is the actual option passed to make,

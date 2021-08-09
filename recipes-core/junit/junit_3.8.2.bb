@@ -16,14 +16,14 @@ inherit java-library
 do_unpackpost[dirs] = "${B}"
 do_unpackpost() {
 	mkdir -p src
-	# Prevent deletion by do_removebinaries.
+	# Prevent deletion by do:removebinaries.
 	if [ -e src.jar ]; then
 		mv src.jar src.zip
 	fi
 	unzip -o src.zip -d src
 }
 
-addtask unpackpost before do_removebinaries after do_unpack
+addtask unpackpost before do:removebinaries after do_unpack
 
 do_compile() {
   mkdir -p build

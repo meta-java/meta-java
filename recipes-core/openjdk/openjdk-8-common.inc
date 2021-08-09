@@ -26,7 +26,7 @@ SRC_URI = "\
     ${PATCHES_URI} \
 "
 
-do_configure_prepend () {
+do_configure:prepend () {
     export TOPDIR=${S}
     sed -i 's#\$TOPDIR#${S}#g' ${S}/common/autoconf/configure.ac
 }
@@ -43,8 +43,8 @@ do_unpack_extract_submodules () {
     tar xjf ${WORKDIR}/${NASHORN_FILE_LOCAL} --transform "s,-${NASHORN_CHANGESET},,g"
 }
 
-do_patch_prepend() {
-    # use do_patch_prepend syntax and not pre/postfuncs to
+do_patch:prepend() {
+    # use do_patch:prepend syntax and not pre/postfuncs to
     # call do_unpack_extract_submodules
     # *) the archiver.bbclass modifies WORKDIR, S, B,...
     #    and those modifications are lost otherwise,
@@ -177,7 +177,7 @@ ALTERNATIVE_PRIORITY = "50"
 
 OPENJDK_UPDATE_VERSION = "${PV}"
 OPENJDK_BUILD_NUMBER = "ga"
-EXTRA_OECONF_append = "\
+EXTRA_OECONF:append = "\
         --with-build-number=${OPENJDK_BUILD_NUMBER} \
         --with-update-version=${OPENJDK_UPDATE_VERSION} \
 "
@@ -189,8 +189,8 @@ EXTRA_OECONF_append = "\
 GLOBAL_FLAGS = "-fno-lifetime-dse -fno-delete-null-pointer-checks -fcommon"
 
 # flags for -native, and for bits that need a host-tool during -cross
-BUILD_CFLAGS_append = " ${GLOBAL_FLAGS}"
-BUILD_CXXFLAGS_append = " ${GLOBAL_FLAGS}"
+BUILD_CFLAGS:append = " ${GLOBAL_FLAGS}"
+BUILD_CXXFLAGS:append = " ${GLOBAL_FLAGS}"
 # flags for -cross
-TARGET_CFLAGS_append = " ${GLOBAL_FLAGS}"
-TARGET_CXXFLAGS_append = " ${GLOBAL_FLAGS}"
+TARGET_CFLAGS:append = " ${GLOBAL_FLAGS}"
+TARGET_CXXFLAGS:append = " ${GLOBAL_FLAGS}"

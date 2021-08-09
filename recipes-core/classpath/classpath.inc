@@ -11,15 +11,15 @@ inherit autotools java gettext
 
 DEPENDS = "virtual/javac-native fastjar-native zip-native gmp antlr-native gtk+ gconf libxtst file"
 
-RPROVIDES_${PN} = ""
+RPROVIDES:${PN} = ""
 
-RDEPENDS_${PN} = "${PBN}-common (>= ${PV})"
-RDEPENDS_${PN}-examples = "java2-runtime ${PN}-awt"
-RDEPENDS_${PN}-tools = "java2-runtime"
+RDEPENDS:${PN} = "${PBN}-common (>= ${PV})"
+RDEPENDS:${PN}-examples = "java2-runtime ${PN}-awt"
+RDEPENDS:${PN}-tools = "java2-runtime"
 
-RPROVIDES_${PN} = "${PBN}"
-RPROVIDES_${PN}-common = "${PBN}-common"
-RPROVIDES_${PN}-gtk = "${PBN}-awt"
+RPROVIDES:${PN} = "${PBN}"
+RPROVIDES:${PN}-common = "${PBN}-common"
+RPROVIDES:${PN}-gtk = "${PBN}-awt"
 
 PR = "r3"
 
@@ -49,7 +49,7 @@ EXTRA_OECONF = "\
 EXTRA_OECONF += "\
                "
 
-do_configure_prepend () {
+do_configure:prepend () {
   cp ${STAGING_DATADIR_NATIVE}/gettext/config.rpath ${S}
 }
 	
@@ -60,7 +60,7 @@ do_install() {
 }
 
 # We really have valid non-symlink .so files
-INSANE_SKIP_${PN} = "dev-so"
+INSANE_SKIP:${PN} = "dev-so"
 
 # Defines the packages that this classpath recipe creates.
 # This allows the classpath-minimal variants to override this
@@ -71,20 +71,20 @@ CPPACKAGES = "${PBN}-common ${PN}-examples \
 
 PACKAGES =+ "${CPPACKAGES}"
 
-FILES_${PN}-dev += "${libdir}/${PBN}/*.la ${incdir}/${PBN}"
+FILES:${PN}-dev += "${libdir}/${PBN}/*.la ${incdir}/${PBN}"
 
-FILES_${PBN}-common = "${datadir}/${PBN}/glibj.zip ${libdir}/logging.properties ${libdir}/${PBN}/security"
-FILES_${PN}-examples = "${datadir}/${PBN}/examples"
+FILES:${PBN}-common = "${datadir}/${PBN}/glibj.zip ${libdir}/logging.properties ${libdir}/${PBN}/security"
+FILES:${PN}-examples = "${datadir}/${PBN}/examples"
 
-FILES_${PN}-tools = "${datadir}/${PBN}/tools.zip ${bindir}"
-FILES_${PN}-tools-doc = "${mandir}"
+FILES:${PN}-tools = "${datadir}/${PBN}/tools.zip ${bindir}"
+FILES:${PN}-tools-doc = "${mandir}"
 
-FILES_${PN}-dbg += "${libdir}/${PBN}/.debug"
-FILES_${PN}-doc = "${infodir}"
+FILES:${PN}-dbg += "${libdir}/${PBN}/.debug"
+FILES:${PN}-doc = "${infodir}"
 
 # gcjwebplugin - not built yet
 #FILES_${PN}-gcjwebplugin = "${libdir}/${PBN}/libgcjwebplugin.so"
-FILES_${PN}-gtk = "${libdir}/${PBN}/libgtkpeer.so ${libdir}/${PBN}/libjawt.so"
-FILES_${PN}-gconf = "${libdir}/${PBN}/libgconfpeer.so"
-FILES_${PN} = "${libdir}/${PBN}/lib*so*"
+FILES:${PN}-gtk = "${libdir}/${PBN}/libgtkpeer.so ${libdir}/${PBN}/libjawt.so"
+FILES:${PN}-gconf = "${libdir}/${PBN}/libgconfpeer.so"
+FILES:${PN} = "${libdir}/${PBN}/lib*so*"
 

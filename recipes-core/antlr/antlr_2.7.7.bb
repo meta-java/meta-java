@@ -5,11 +5,11 @@ LICENSE = "PD"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=361934e706423915b4d9f413ad37fb65"
 
 SRC_URI = "http://www.antlr2.org/download/${BP}.tar.gz"
-SRC_URI_append_class-native = " file://runantlr"
+SRC_URI:append:class-native = " file://runantlr"
 
 inherit java-library
 
-do_configure_class-native() {
+do_configure:class-native() {
     sed -i -e"s|@JAR_FILE@|${STAGING_DATADIR_JAVA_NATIVE}/antlr.jar|" ${WORKDIR}/runantlr
 }
 
@@ -21,7 +21,7 @@ do_compile() {
     fastjar cf ${JARFILENAME} -C build .
 }
 
-do_install_class-native() {
+do_install:class-native() {
     install -d ${D}${bindir}
     install -m 0755 ${WORKDIR}/runantlr ${D}${bindir}/
 }

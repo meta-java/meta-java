@@ -80,4 +80,4 @@ export DISTRIBUTION_PATCHES
 # to avoid this error add -fpermissive
 #
 # NOTE: When updating the recipe, please check if this is still needed
-CFLAGS_append = " -Wno-error=deprecated-declarations -Wno-error=narrowing -fpermissive"
+CFLAGS:append = " -Wno-error=deprecated-declarations -Wno-error=narrowing -fpermissive"

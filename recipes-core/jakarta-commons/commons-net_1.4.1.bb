@@ -11,8 +11,8 @@ S = "${WORKDIR}/${BP}"
 
 DEPENDS += "oro"
 
-RDEPENDS_${PN} = "liboro-java"
-RDEPENDS_${PN}_class-native = ""
+RDEPENDS:${PN} = "liboro-java"
+RDEPENDS:${PN}:class-native = ""
 
 CP = "oro"
 

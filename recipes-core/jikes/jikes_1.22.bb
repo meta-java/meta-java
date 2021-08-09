@@ -13,14 +13,14 @@ inherit autotools update-alternatives relative_symlinks
 
 BBCLASSEXTEND = "native"
 
-RDEPENDS_${PN} = "classpath"
-PROVIDES_class-native = ""
-RDEPENDS_${PN}_class-native = ""
+RDEPENDS:${PN} = "classpath"
+PROVIDES:class-native = ""
+RDEPENDS:${PN}:class-native = ""
 
 EXTRA_OECONF = "--disable-fp-emulation --enable-source15"
 
 # configure script incorrectly defines these when cross compiling for ARM
-CXXFLAGS_append_arm += "-UHAVE_64BIT_TYPES -DWORDS_BIGENDIAN=1"
+CXXFLAGS:append:arm += "-UHAVE_64BIT_TYPES -DWORDS_BIGENDIAN=1"
 
 do_install() {
     oe_runmake 'DESTDIR=${D}' install
@@ -28,7 +28,7 @@ do_install() {
 }
 
 PROVIDES = "virtual/javac"
-ALTERNATIVE_${PN} = "javac"
+ALTERNATIVE:${PN} = "javac"
 ALTERNATIVE_LINK = "/usr/bin/javac"
 ALTERNATIVE_TARGET = "${bindir}/javac.jikes"
 

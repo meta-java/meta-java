@@ -10,7 +10,7 @@ S = "${WORKDIR}/apache-tomcat-${PV}-src/servletapi/jsr152"
 inherit java-library
 
 DEPENDS = "servlet2.4"
-RDEPENDS_${PN} = "libservlet2.4-java"
+RDEPENDS:${PN} = "libservlet2.4-java"
 
 # Value of implementation.revision in build.xml
 IMPL_REVISION = "public_draft"

@@ -39,11 +39,11 @@ do_compile() {
     fastjar -C build-xpath -c -f xpp3-xpath-${PV}.jar .
 }
 
-do_install_append() {
+do_install:append() {
     oe_jarinstall xpp3-xpath-${PV}.jar xpp3-xpath.jar
 }
 
-FILES_libxpp3-xpath-java = "${datadir}/java/xpp3-xpath*"
+FILES:libxpp3-xpath-java = "${datadir}/java/xpp3-xpath*"
 
 
 SRC_URI[md5sum] = "e1b6aeaad1cd06e64568aae1a507d5c6"

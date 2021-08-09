@@ -16,25 +16,25 @@ PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'x11', '', d)}
 PACKAGECONFIG[x11] = ",--disable-headful,libx11-native xorgproto-native libxt-native libxext-native libxrender-native"
 
 OEMAKE_BUILD_HEADLESS_ONLY = "${@bb.utils.contains('PACKAGECONFIG', 'x11', '', 'BUILD_HEADLESS_ONLY=1', d)}"
-CFLAGS_append = "${@bb.utils.contains('PACKAGECONFIG', 'x11', '', ' -DHEADLESS=true', d)}"
+CFLAGS:append = "${@bb.utils.contains('PACKAGECONFIG', 'x11', '', ' -DHEADLESS=true', d)}"
 
 # Disable dead store elimination and set C++ standard to C++98.
 # There are dead stores in the JVM that would be pretty hard to
 # remove, so disable the optimisation in the compiler.
-CFLAGS_append = " -fno-tree-dse"
-CXXFLAGS_append = " -fno-tree-dse"
-CXX_append = " -std=gnu++98"
+CFLAGS:append = " -fno-tree-dse"
+CXXFLAGS:append = " -fno-tree-dse"
+CXX:append = " -std=gnu++98"
 
 # WORKAROUND: ignore errors from new compilers
-CFLAGS_append = " -Wno-error=stringop-overflow -Wno-error=return-type"
+CFLAGS:append = " -Wno-error=stringop-overflow -Wno-error=return-type"
 
 # oe.utils.get_host_compiler_version returns "gcc, 9.2" and we want -> "9"
 HOST_COMPILER_MAJOR="${@oe.utils.get_host_compiler_version(d)[1].split(".", 2)[0]}"
 # if compiler version 9 detected, add more CFLAGS
-CFLAGS_append = " ${@oe.utils.conditional('HOST_COMPILER_MAJOR', '9', '-Wno-error=format-overflow', '', d)}"
+CFLAGS:append = " ${@oe.utils.conditional('HOST_COMPILER_MAJOR', '9', '-Wno-error=format-overflow', '', d)}"
 
 # Explicitly pass -fcommon since GCC 10 defaults to -fno-common for C sources
-CFLAGS_append = " -fcommon"
+CFLAGS:append = " -fcommon"
 
 inherit java autotools pkgconfig
 inherit openjdk-build-helper
@@ -71,7 +71,7 @@ export ALT_CUPS_HEADERS_PATH = "${STAGING_INCDIR}"
 
 # libfreetype.so.6 is copied from STAGING_LIBDIR
 # which is already stripped.
-INSANE_SKIP_${PN} = "already-stripped"
+INSANE_SKIP:${PN} = "already-stripped"
 
 EXTRA_OECONF = "\
     --with-parallel-jobs=${@openjdk_build_helper_get_parallel_make(d)} \
@@ -101,7 +101,7 @@ JDK_DIR = "icedtea7-native"
 
 JDK_INSTALL_DIR = "${D}/${libdir_jvm}/${JDK_DIR}"
 
-do_configure_prepend() {
+do_configure:prepend() {
 	arch="${@openjdk_build_helper_get_icedtea_arch(d)}"
 	libarch="${@openjdk_build_helper_get_icedtea_arch(d)}"
 
@@ -132,7 +132,7 @@ do_configure_prepend() {
 
 POST_CONFIGURE_CLEAN_X11 = "${@bb.utils.contains('PACKAGECONFIG', 'x11', '', 'rm openjdk*/jdk/src/solaris/classes/sun/awt/X11/*.java', d)}"
 
-do_configure_append() {
+do_configure:append() {
 	oe_runmake patch-fsg
 
 	for F in openjdk/jdk/make/common/shared/Compiler-gcc.gmk ;

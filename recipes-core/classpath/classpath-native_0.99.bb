@@ -23,7 +23,7 @@ EXTRA_OECONF += "\
     --includedir=${STAGING_INCDIR}/classpath \
 "
 
-do_compile_append () {
+do_compile:append () {
     # tools using java-initial rather than java sed it out
     cd tools
     sed -e "s/java-initial/java/g" \

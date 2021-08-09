@@ -17,7 +17,7 @@ PACKAGECONFIG[jpeg] = "--with-libjpeg=system,--with-libjpeg=bundled,jpeg-native"
 PACKAGECONFIG[png] = "--with-libpng=system,--with-libpng=bundled,libpng-native"
 PACKAGECONFIG[zlib] = "--with-zlib=system,--with-zlib=bundled,zlib-native"
 
-EXTRA_OECONF_append = "\
+EXTRA_OECONF:append = "\
     --with-jobs=${@openjdk_build_helper_get_parallel_make(d)} \
     \
     --with-tools-dir=${STAGING_DIR_NATIVE} \
@@ -36,32 +36,32 @@ require openjdk-8-common.inc
 
 inherit native
 
-CFLAGS_append = " ${@jdk_cpp_options(d)}"
-CPPFLAGS_append = "${@jdk_cpp_options(d)}"
-CXXFLAGS_append = " ${@jdk_cpp_options(d)}"
+CFLAGS:append = " ${@jdk_cpp_options(d)}"
+CPPFLAGS:append = "${@jdk_cpp_options(d)}"
+CXXFLAGS:append = " ${@jdk_cpp_options(d)}"
 
 export MAKE_VERBOSE = "y"
 export MFLAGS="${@jdk_make_options(d)} MAKE_VERBOSE=y QUIETLY= VERBOSE=-s LOG_LEVEL=trace"
 
-EXTRA_OEMAKE_append = ' \
+EXTRA_OEMAKE:append = ' \
     ${@jdk_make_options(d)} \
     MAKE_VERBOSE=y VERBOSE=-s LOG_LEVEL=trace \
     QUIETLY= \
     images \
 '
 
-do_configure_prepend() {
+do_configure:prepend() {
     export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS}"
     export ${@jdk_environment_options(d)}
     unset CC CXX
 }
 
-do_compile_prepend() {
+do_compile:prepend() {
     export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS}"
     rm -f "${B}/images/j2sdk-image/jre/lib/security/cacerts"
 }
 
-do_compile_append() {
+do_compile:append() {
     set -x
     mkdir -p ${B}/certs
     for pem in $(find ${STAGING_DATADIR}/ca-certificates -name "*.crt")
@@ -90,4 +90,4 @@ do_install() {
 }
 
 # FIXME libfreetype.so.6 is copied from STAGING_LIBDIR which is already stripped
-INSANE_SKIP_${PN} = "already-stripped"
+INSANE_SKIP:${PN} = "already-stripped"

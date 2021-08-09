@@ -1,7 +1,7 @@
 INC_FILE_SUFFIX = ""
-INC_FILE_SUFFIX_aarch64 = "-aarch64"
-INC_FILE_SUFFIX_armv7a = "-aarch32"
-INC_FILE_SUFFIX_armv7ve = "-aarch32"
+INC_FILE_SUFFIX:aarch64 = "-aarch64"
+INC_FILE_SUFFIX:armv7a = "-aarch32"
+INC_FILE_SUFFIX:armv7ve = "-aarch32"
 require openjdk-8-release${INC_FILE_SUFFIX}.inc
 require openjdk-8-cross.inc
 
@@ -14,12 +14,12 @@ do_install() {
     find ${D}${JDK_HOME} -name "*.debuginfo" -exec rm {} \;
 }
 
-PACKAGES_append = " \
+PACKAGES:append = " \
     ${PN}-demo \
     ${PN}-source \
 "
 
-FILES_${PN}_append = "\
+FILES:${PN}:append = "\
     ${JDK_HOME}/bin/[a-z]* \
     ${JDK_HOME}/lib/[a-z]* \
     ${JDK_HOME}/jre/bin/[a-z]* \
@@ -29,14 +29,14 @@ FILES_${PN}_append = "\
     ${JDK_HOME}/release \
 "
 
-FILES_${PN}-dev_append = "\
+FILES:${PN}-dev:append = "\
     ${JDK_HOME}/include \
 "
 
-FILES_${PN}-demo = " ${JDK_HOME}/demo ${JDK_HOME}/sample "
-RDEPENDS_${PN}-demo = " ${PN} "
+FILES:${PN}-demo = " ${JDK_HOME}/demo ${JDK_HOME}/sample "
+RDEPENDS:${PN}-demo = " ${PN} "
 
-FILES_${PN}-doc_append = "\
+FILES:${PN}-doc:append = "\
     ${JDK_HOME}/man \
     ${JDK_HOME}/ASSEMBLY_EXCEPTION \
     ${JDK_HOME}/THIRD_PARTY_README \
@@ -45,15 +45,15 @@ FILES_${PN}-doc_append = "\
     ${JDK_HOME}/man \
 "
 
-FILES_${PN}-source = " ${JDK_HOME}/src.zip "
+FILES:${PN}-source = " ${JDK_HOME}/src.zip "
 
-RPROVIDES_${PN} = "java2-runtime"
+RPROVIDES:${PN} = "java2-runtime"
 
 inherit update-alternatives
 
 ALTERNATIVE_PRIORITY = "100"
 
-ALTERNATIVE_${PN} = "java javac keytool"
+ALTERNATIVE:${PN} = "java javac keytool"
 ALTERNATIVE_LINK_NAME[java] = "${bindir}/java"
 ALTERNATIVE_TARGET[java] = "${JDK_HOME}/bin/java"
 

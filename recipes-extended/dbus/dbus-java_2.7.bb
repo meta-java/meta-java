@@ -1,15 +1,15 @@
 SUMMARY = "A pure Java D-Bus Implementation"
-SUMMARY_${PN}-viewer = "${SUMMARY} (DBusViewer Binary)"
-SUMMARY_${PN}-bin = "${SUMMARY} (Binaries)"
+SUMMARY:${PN}-viewer = "${SUMMARY} (DBusViewer Binary)"
+SUMMARY:${PN}-bin = "${SUMMARY} (Binaries)"
 AUTHOR = "Matthew Johnson <dbus@matthew.ath.cx>"
 HOMEPAGE = "http://dbus.freedesktop.org/doc/dbus-java"
 SECTION = "libs"
 LICENSE = "LGPL-2.1 & AFL-2.1"
 
 DEPENDS = "libmatthew gettext-native fastjar-native"
-RDEPENDS_${PN}-viewer = "java2-runtime libunixsocket-java ${PN}-bin libmatthew-debug-java ${JPN}"
-RDEPENDS_${PN}-bin = "java2-runtime libunixsocket-java libmatthew-debug-java ${JPN}"
-RSUGGESTS_${JPN} = "libunixsocket-java"
+RDEPENDS:${PN}-viewer = "java2-runtime libunixsocket-java ${PN}-bin libmatthew-debug-java ${JPN}"
+RDEPENDS:${PN}-bin = "java2-runtime libunixsocket-java libmatthew-debug-java ${JPN}"
+RSUGGESTS:${JPN} = "libunixsocket-java"
 
 PR = "r1"
 
@@ -73,5 +73,5 @@ do_install () {
 # and dbus-bin*.jar
 PACKAGES = "${PN}-viewer ${PN}-bin ${JPN}"
 
-FILES_${PN}-viewer = "${datadir}/java/dbus-java-viewer*.jar ${bindir}/DBusViewer"
-FILES_${PN}-bin = "${datadir}/java/dbus-java-bin*.jar ${bindir}"
+FILES:${PN}-viewer = "${datadir}/java/dbus-java-viewer*.jar ${bindir}/DBusViewer"
+FILES:${PN}-bin = "${datadir}/java/dbus-java-bin*.jar ${bindir}"

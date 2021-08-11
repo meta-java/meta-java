@@ -14,6 +14,12 @@ LIC_FILES_CHKSUM = " \
 
 SRC_URI = "http://archive.apache.org/dist/xerces/j/Xerces-J-src.${PV}.tar.gz"
 
+# CVE only applies to some Oracle Java SE and Red Hat Enterprise Linux versions.
+# Already fixed with updates and closed.
+# https://access.redhat.com/security/cve/CVE-2018-2799
+# https://bugzilla.redhat.com/show_bug.cgi?id=1567542
+CVE_CHECK_WHITELIST += "CVE-2018-2799"
+
 S = "${WORKDIR}/xerces-2_11_0"
 
 inherit java-library

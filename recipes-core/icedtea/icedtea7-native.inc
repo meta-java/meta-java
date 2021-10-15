@@ -30,8 +30,7 @@ CFLAGS:append = " -Wno-error=stringop-overflow -Wno-error=return-type"
 
 # oe.utils.get_host_compiler_version returns "gcc, 9.2" and we want -> "9"
 HOST_COMPILER_MAJOR="${@oe.utils.get_host_compiler_version(d)[1].split(".", 2)[0]}"
-# if compiler version 9 detected, add more CFLAGS
-CFLAGS:append = " ${@oe.utils.conditional('HOST_COMPILER_MAJOR', '9', '-Wno-error=format-overflow', '', d)}"
+CFLAGS:append = " ${@oe.utils.less_or_equal('HOST_COMPILER_MAJOR', '8', '', ' -Wno-error=format-overflow', d)}"
 
 # Explicitly pass -fcommon since GCC 10 defaults to -fno-common for C sources
 CFLAGS:append = " -fcommon"

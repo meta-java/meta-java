@@ -45,7 +45,7 @@ def openjdk_build_helper_get_target_cflags(d):
     # doesn't work anyway.
     version = d.getVar('GCCVERSION')[0]
     # skip non digit characters at the beginning, e.g. from "linaro-6.2%"
-    match = re.search("\d", version)
+    match = re.search(r"\d", version)
     if match:
         version = version[match.start():]
     return openjdk_build_helper_get_cflags_by_cc_version(d, version)

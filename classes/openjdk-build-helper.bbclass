@@ -83,7 +83,7 @@ def openjdk_build_helper_get_llvm_configure_arch(d):
     elif arch == "arm":
         arch = "arm"
     else:
-        if 'shark' in d.getVar('PACKAGECONFIG').split():
+        if bb.utils.contains('PACKAGECONFIG', 'shark', True, False, d):
             bb.warn("%s does not support %s in Shark builds yet" % (d.getVar('PN'), arch) );
 
     return arch

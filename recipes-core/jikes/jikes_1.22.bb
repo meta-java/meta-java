@@ -20,7 +20,7 @@ RDEPENDS:${PN}:class-native = ""
 EXTRA_OECONF = "--disable-fp-emulation --enable-source15"
 
 # configure script incorrectly defines these when cross compiling for ARM
-CXXFLAGS:append:arm += "-UHAVE_64BIT_TYPES -DWORDS_BIGENDIAN=1"
+CXXFLAGS:append:arm = " -UHAVE_64BIT_TYPES -DWORDS_BIGENDIAN=1"
 
 do_install() {
     oe_runmake 'DESTDIR=${D}' install

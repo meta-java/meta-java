@@ -25,10 +25,10 @@ revision: HEAD
 For use with a specific Yocto Project release please refer to the corresponding
 git branches.
 
-Contributing
-------------
+Contributing via E-Mail
+-----------------------
 
-To contribute to this layer you should submit the patches for review to the
+To contribute to this layer you may submit the patches for review to the
 mailing list (openembedded-devel@lists.openembedded.org).
 
 Please refer to:
@@ -63,6 +63,15 @@ Main layer maintainers:
   Henning Heinold <henning@itconsulting-heinold.de>
   Otavio Salvador <otavio@ossystems.com.br>
   Richard Leitner <richard.leitner@skidata.com>
+
+Contributing via GitLab
+-----------------------
+
+To contribute to this layer you may also fork the repository and create a merge
+request at https://gitlab.com/meta-java/meta-java.
+
+Please refer to: https://docs.gitlab.com/ee/user/project/merge_requests/
+for more information on merge requests in GitLab.
 
 Testing
 -------

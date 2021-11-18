@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=f5777d32a7709d558c2877d4a6616230"
 
 HOMEPAGE = "https://github.com/clarkware/jdepend"
 
-SRC_URI = "git://github.com/clarkware/jdepend"
+SRC_URI = "git://github.com/clarkware/jdepend;protocol=https;branch=master"
 SRCREV = "57980590313a5dbde236a3eb2c8958e9e53e6a10"
 S = "${WORKDIR}/git"
 

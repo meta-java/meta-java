@@ -21,7 +21,7 @@ SRC_URI = "\
 # SGFactoryChain cannot be resolved to a type
 # ----------
 # ... and many more
-PNBLACKLIST[jaxme] ?= "BROKEN: do_compile fails"
+SKIP_RECIPE[jaxme] ?= "BROKEN: do_compile fails"
 
 S = "${WORKDIR}/ws-${P}"
 

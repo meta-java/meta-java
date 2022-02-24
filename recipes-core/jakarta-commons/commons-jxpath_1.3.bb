@@ -6,7 +6,7 @@ SUMMARY = "JXPath interpreter for Java"
 
 SRC_URI = "http://archive.apache.org/dist/commons/jxpath/source/${BP}-src.tar.gz"
 
-PNBLACKLIST[commons-jxpath] ?= "BROKEN: indirectly depends on broken 'xom'"
+SKIP_RECIPE[commons-jxpath] ?= "BROKEN: indirectly depends on broken 'xom'"
 
 DEPENDS += "commons-logging commons-collections3 commons-beanutils servlet2.3 jdom"
 RDEPENDS:${PN} = "libcommons-logging-java libcommons-collections3-java libcommons-beanutils-java libservlet2.3-java libjdom-java"

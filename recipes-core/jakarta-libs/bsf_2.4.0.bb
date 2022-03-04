@@ -4,7 +4,7 @@ LICENSE = "Apache-2.0"
 PR = "r2"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=b1e01b26bacfc2232046c90a330332b3"
 
-SRC_URI = "http://archive.apache.org/dist/jakarta/bsf/source/bsf-src-${PV}.tar.gz"
+SRC_URI = "https://dlcdn.apache.org/commons/bsf/source/bsf-src-${PV}.tar.gz"
 
 PACKAGE_ARCH = "${TUNE_PKGARCH}"
 

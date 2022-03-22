@@ -7,7 +7,7 @@ LICENSE = "GPL-2.0 & SAX-PD"
 
 PBN = "classpath"
 
-inherit autotools java gettext
+inherit autotools pkgconfig java gettext
 
 DEPENDS = "virtual/javac-native fastjar-native zip-native gmp antlr-native gtk+ gconf libxtst file"
 

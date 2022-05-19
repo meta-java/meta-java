@@ -4,7 +4,7 @@ DOM, XOM, dom4j, and JDOM. Is it also possible to write adapters that \
 treat non-XML trees such as compiled Java byte code or Java beans as XML, \
 thus enabling you to query these trees with XPath too.\
 "
-LICENSE = "BSD"
+LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=a2e66c2e2482aa23c11342f1469fa3b6"
 
 HOMEPAGE = "http://jaxen.org/"

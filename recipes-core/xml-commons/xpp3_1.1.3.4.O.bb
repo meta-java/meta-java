@@ -1,5 +1,5 @@
 SUMMARY = "Streaming pull XML parser for Java (3rd edition)"
-LICENSE = "BSD-like"
+LICENSE = "BSD-4-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=35235e1ea47db355da0627f8d93e3a6c"
 
 HOMEPAGE = "http://www.extreme.indiana.edu/xgws/xsoap/xpp/mxp1"

@@ -1,6 +1,6 @@
 SUMMARY = "SSH implementation in Java"
 HOMEPAGE = "http://www.jcraft.com/jsch"
-LICENSE = "BSD"
+LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=55e3b6a0987ccd0c34530f3df2d206ae"
 
 SRC_URI = "${SOURCEFORGE_MIRROR}/jsch/jsch-${PV}.zip"

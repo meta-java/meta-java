@@ -1,5 +1,5 @@
 SUMMARY = "zlib implementation in Java"
-LICENSE = "BSD"
+LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=a2b2e5b95bf768dd5c4ca097c9cde9e9"
 
 HOMEPAGE = "http://www.jcraft.com/jzlib"

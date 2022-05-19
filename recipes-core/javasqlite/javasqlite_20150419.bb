@@ -5,7 +5,7 @@ This is a Java wrapper including a basic JDBC driver for the SQLite 2/3 \
 database engine. It is designed using JNI to interface to the SQLite API. \
 That API is wrapped by methods in the SQLite.Database class."
 
-LICENSE = "BSD"
+LICENSE = "MIT-Modern-Variant"
 SECTION = "application"
 PR = "r1"
 SRC_URI =  " \
@@ -13,7 +13,7 @@ SRC_URI =  " \
     file://0001-fix-errors-during-cross-compile.patch \
     "
 
-LIC_FILES_CHKSUM = "file://license.terms;md5=3da0e50feac5f64f08184584a8cad58a"
+LIC_FILES_CHKSUM = "file://license.terms;md5=788a765d15de8312110c282b2ef53c83"
 
 inherit autotools-brokensep
 

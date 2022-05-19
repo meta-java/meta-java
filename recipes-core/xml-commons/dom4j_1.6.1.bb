@@ -1,6 +1,6 @@
 SUMMARY = "A simple and flexible library for working with XML, XPath and XSLT"
 DESCRIPTION = "dom4j is a simple and flexible Java library for working with XML, XPath and XSLT"
-LICENSE = "BSD"
+LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=3f752b663f2a821c3b32482fc6aece3c"
 
 HOMEPAGE = "http://dom4j.github.io"

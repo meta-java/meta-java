@@ -1,7 +1,7 @@
 SUMMARY = "Parses, manipulates, and outputs XML using standard Java constructs"
 DESCRIPTION = "JDOM aims to provide a complete, Java-based solution for \
 accessing, manipulating, and outputting XML data from Java code."
-LICENSE = "BSD"
+LICENSE = "BSD-4-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=897c700e4c122d8f4ef8f6d253a6f744"
 
 HOMEPAGE = "http://jdom.org/"

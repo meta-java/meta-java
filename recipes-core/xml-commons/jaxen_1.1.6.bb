@@ -15,7 +15,7 @@ DEPENDS = "fastjar-native virtual/javac-native xerces-j xom"
 SRCREV = "7d7755ac8b19daa2ff6f319f432b864cc72d89b6"
 
 SRC_URI = "\
-        git://github.com/codehaus/${BPN} \
+        git://github.com/codehaus/${BPN};protocol=https;branch=master \
         http://www.jdom.org/dist/binary/archive/jdom-1.1.tar.gz;name=jdom \
 "
 SRC_URI[jdom.md5sum] = "22745cbaaddb12884ed8ee09083d8fe2"

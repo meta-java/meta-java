@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = " \
                     file://LICENSE.serializer.txt;md5=d229da563da18fe5d58cd95a6467d584 \
                    "
 
-SRC_URI = "http://archive.apache.org/dist/xerces/j/Xerces-J-src.${PV}.tar.gz"
+SRC_URI = "http://archive.apache.org/dist/xerces/j/source/Xerces-J-src.${PV}.tar.gz"
 
 # CVE only applies to some Oracle Java SE and Red Hat Enterprise Linux versions.
 # Already fixed with updates and closed.
@@ -20,7 +20,7 @@ SRC_URI = "http://archive.apache.org/dist/xerces/j/Xerces-J-src.${PV}.tar.gz"
 # https://bugzilla.redhat.com/show_bug.cgi?id=1567542
 CVE_CHECK_WHITELIST += "CVE-2018-2799"
 
-S = "${WORKDIR}/xerces-2_11_0"
+S = "${WORKDIR}/xerces-2_12_2"
 
 inherit java-library
 
@@ -63,7 +63,7 @@ do_compile() {
 
 }
 
-SRC_URI[md5sum] = "d01fc11eacbe43b45681cb85ac112ebf"
-SRC_URI[sha256sum] = "f59a5ef7b51bd883f2e9bda37a9360692e6c5e439b98d9b6ac1953e1f98b0680"
+SRC_URI[md5sum] = "41dde3c515fca8d307416123bc07a739"
+SRC_URI[sha256sum] = "6dd1ebd4c88e935c182375346cd7365514bd8dd2ad2f30f0d0b05257bab34ee8"
 
 BBCLASSEXTEND = "native"

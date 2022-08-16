@@ -40,3 +40,4 @@ SRC_URI[md5sum] = "9b8963ba2147a64bd5f1574b6fd289cb"
 SRC_URI[sha256sum] = "aae23d20e6f4dc45b4bf0b10fedcbd209c100342a0cafce1aa07d2da6da1f24a"
 
 BBCLASSEXTEND = "native"
+CVE_PRODUCT = "junit:junit4"

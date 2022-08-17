@@ -5,10 +5,13 @@ SECTION = "libs"
 LICENSE = "MIT"
 DEPENDS = "virtual/java-native classpath-native classpath"
 
+
 S = "${WORKDIR}/libmatthew-java-${PV}"
 
 PACKAGE_ARCH = "${TUNE_PKGARCH}"
 inherit java-library
+
+include recipes-core/classpath/classpath-features-check.inc
 
 # Some internal version numbers which change from time to time.
 # Allowing to override them makes this include file more

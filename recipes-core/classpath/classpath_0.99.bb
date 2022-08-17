@@ -1,8 +1,6 @@
 require classpath.inc
 
-inherit features_check
-
-REQUIRED_DISTRO_FEATURES = "x11"
+include classpath-features-check.inc
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=92acc79f1f429143f4624d07b253702a"
 

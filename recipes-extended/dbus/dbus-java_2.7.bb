@@ -25,6 +25,8 @@ S = "${WORKDIR}/dbus-java-${PV}"
 
 inherit java-library
 
+include recipes-core/classpath/classpath-features-check.inc
+
 # jamvm-native unfortunately contains non-generificed java/lang/reflect classes
 # which are accessed in this package. Work around this by setting the bootclasspath
 # explicitly.

@@ -36,10 +36,10 @@ Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
  13 files changed, 17 insertions(+), 15 deletions(-)
 
 diff --git a/hotspot/make/linux/makefiles/gcc.make b/hotspot/make/linux/makefiles/gcc.make
-index 36b3c8ba9..cd9511e50 100644
+index ac44b6837..7a5162a06 100644
 --- a/hotspot/make/linux/makefiles/gcc.make
 +++ b/hotspot/make/linux/makefiles/gcc.make
-@@ -211,7 +211,7 @@ ifeq ($(USE_CLANG), true)
+@@ -212,7 +212,7 @@ ifeq ($(USE_CLANG), true)
    WARNINGS_ARE_ERRORS += -Wno-return-type -Wno-empty-body
  endif
  
@@ -95,7 +95,7 @@ index 4b4b4e250..196622aed 100644
  
  
 diff --git a/hotspot/src/share/vm/classfile/symbolTable.cpp b/hotspot/src/share/vm/classfile/symbolTable.cpp
-index 83369cbcf..8dd4e6b21 100644
+index ec97077b7..2621a7d62 100644
 --- a/hotspot/src/share/vm/classfile/symbolTable.cpp
 +++ b/hotspot/src/share/vm/classfile/symbolTable.cpp
 @@ -249,7 +249,7 @@ Symbol* SymbolTable::lookup(const char* name, int len, TRAPS) {
@@ -117,7 +117,7 @@ index 83369cbcf..8dd4e6b21 100644
  
  Symbol* SymbolTable::lookup_only(const char* name, int len,
 diff --git a/hotspot/src/share/vm/classfile/systemDictionary.cpp b/hotspot/src/share/vm/classfile/systemDictionary.cpp
-index 4541e815a..98412e1e1 100644
+index 5911d94f5..df4d56f6f 100644
 --- a/hotspot/src/share/vm/classfile/systemDictionary.cpp
 +++ b/hotspot/src/share/vm/classfile/systemDictionary.cpp
 @@ -236,15 +236,15 @@ Klass* SystemDictionary::resolve_or_null(Symbol* class_name, Handle class_loader
@@ -166,10 +166,10 @@ index 2f3abae6a..d58ebecb2 100644
    static ReservedSpace* shared_rs() {
      CDS_ONLY(return _shared_rs);
 diff --git a/hotspot/src/share/vm/oops/constantPool.hpp b/hotspot/src/share/vm/oops/constantPool.hpp
-index 68435471d..fad4a92cb 100644
+index 124c970e2..dae574c09 100644
 --- a/hotspot/src/share/vm/oops/constantPool.hpp
 +++ b/hotspot/src/share/vm/oops/constantPool.hpp
-@@ -350,7 +350,7 @@ class ConstantPool : public Metadata {
+@@ -353,7 +353,7 @@ class ConstantPool : public Metadata {
  
    Klass* klass_at(int which, TRAPS) {
      constantPoolHandle h_this(THREAD, this);
@@ -177,7 +177,7 @@ index 68435471d..fad4a92cb 100644
 +    return klass_at_impl(h_this, which, THREAD);
    }
  
-   Symbol* klass_name_at(int which) const;  // Returns the name, w/o resolving.
+   Symbol* klass_name_at(int which);  // Returns the name, w/o resolving.
 diff --git a/hotspot/src/share/vm/prims/jvm.cpp b/hotspot/src/share/vm/prims/jvm.cpp
 index 6f2221c41..daa69f89a 100644
 --- a/hotspot/src/share/vm/prims/jvm.cpp
@@ -192,7 +192,7 @@ index 6f2221c41..daa69f89a 100644
  
  JVM_ENTRY(jboolean,JVM_DTraceIsProbeEnabled(JNIEnv* env, jmethodID method))
 diff --git a/hotspot/src/share/vm/runtime/reflection.cpp b/hotspot/src/share/vm/runtime/reflection.cpp
-index 4b39d8ccb..9cd7b0dcb 100644
+index d9fddbe47..a5f737935 100644
 --- a/hotspot/src/share/vm/runtime/reflection.cpp
 +++ b/hotspot/src/share/vm/runtime/reflection.cpp
 @@ -1093,7 +1093,7 @@ oop Reflection::invoke(instanceKlassHandle klass, methodHandle reflected_method,
@@ -205,10 +205,10 @@ index 4b39d8ccb..9cd7b0dcb 100644
  }
  
 diff --git a/hotspot/src/share/vm/runtime/sharedRuntime.cpp b/hotspot/src/share/vm/runtime/sharedRuntime.cpp
-index d5bea29c3..50578ad63 100644
+index 013aa7a23..df4cde963 100644
 --- a/hotspot/src/share/vm/runtime/sharedRuntime.cpp
 +++ b/hotspot/src/share/vm/runtime/sharedRuntime.cpp
-@@ -1041,7 +1041,7 @@ Handle SharedRuntime::find_callee_info(JavaThread* thread, Bytecodes::Code& bc,
+@@ -1045,7 +1045,7 @@ Handle SharedRuntime::find_callee_info(JavaThread* thread, Bytecodes::Code& bc,
    // last java frame on stack (which includes native call frames)
    vframeStream vfst(thread, true);  // Do not skip and javaCalls
  

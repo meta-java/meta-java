@@ -63,10 +63,10 @@ index 077efa2..b98575a 100644
    CFLAGS_JDK="${CFLAGS_JDK} ${NO_DELETE_NULL_POINTER_CHECKS_CFLAG} ${NO_LIFETIME_DSE_CFLAG}"
    AC_SUBST([NO_LIFETIME_DSE_CFLAG])
 diff --git a/common/autoconf/generated-configure.sh b/common/autoconf/generated-configure.sh
-index d57035b..1953dc4 100644
+index f285a74..31d41b1 100644
 --- a/common/autoconf/generated-configure.sh
 +++ b/common/autoconf/generated-configure.sh
-@@ -41498,12 +41498,12 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
+@@ -41503,12 +41503,12 @@ $as_echo "$ac_cv_c_bigendian" >&6; }
      fi
      CXXSTD_CXXFLAG="-std=gnu++98"
  
@@ -82,7 +82,7 @@ index d57035b..1953dc4 100644
    ac_ext=cpp
  ac_cpp='$CXXCPP $CPPFLAGS'
  ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-@@ -41654,12 +41654,12 @@ fi
+@@ -41659,12 +41659,12 @@ fi
    NO_DELETE_NULL_POINTER_CHECKS_CFLAG="-fno-delete-null-pointer-checks"
  
  
@@ -98,7 +98,7 @@ index d57035b..1953dc4 100644
    ac_ext=c
  ac_cpp='$CPP $CPPFLAGS'
  ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-@@ -41694,12 +41694,12 @@ $as_echo "$supports" >&6; }
+@@ -41699,12 +41699,12 @@ $as_echo "$supports" >&6; }
    fi
  
  
@@ -114,7 +114,7 @@ index d57035b..1953dc4 100644
    ac_ext=cpp
  ac_cpp='$CXXCPP $CPPFLAGS'
  ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-@@ -41733,8 +41733,8 @@ $as_echo "$supports" >&6; }
+@@ -41738,8 +41738,8 @@ $as_echo "$supports" >&6; }
    fi
  
  
@@ -125,7 +125,7 @@ index d57035b..1953dc4 100644
    supports=no
    if test "x$C_COMP_SUPPORTS" = "xyes" -a "x$CXX_COMP_SUPPORTS" = "xyes"; then supports=yes; fi
  
-@@ -41750,12 +41750,12 @@ $as_echo "$supports" >&6; }
+@@ -41755,12 +41755,12 @@ $as_echo "$supports" >&6; }
    NO_LIFETIME_DSE_CFLAG="-fno-lifetime-dse"
  
  
@@ -141,7 +141,7 @@ index d57035b..1953dc4 100644
    ac_ext=c
  ac_cpp='$CPP $CPPFLAGS'
  ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-@@ -41789,12 +41789,12 @@ $as_echo "$supports" >&6; }
+@@ -41794,12 +41794,12 @@ $as_echo "$supports" >&6; }
    fi
  
  
@@ -157,7 +157,7 @@ index d57035b..1953dc4 100644
    ac_ext=cpp
  ac_cpp='$CXXCPP $CPPFLAGS'
  ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-@@ -41828,8 +41828,8 @@ $as_echo "$supports" >&6; }
+@@ -41833,8 +41833,8 @@ $as_echo "$supports" >&6; }
    fi
  
  
@@ -168,7 +168,7 @@ index d57035b..1953dc4 100644
    supports=no
    if test "x$C_COMP_SUPPORTS" = "xyes" -a "x$CXX_COMP_SUPPORTS" = "xyes"; then supports=yes; fi
  
-@@ -41862,12 +41862,12 @@ $as_echo "$supports" >&6; }
+@@ -41867,12 +41867,12 @@ $as_echo "$supports" >&6; }
      #          -mno-fused-madd -fno-strict-aliasing for GCC < 4.6
      COMPILER_FP_CONTRACT_OFF_FLAG="-ffp-contract=off"
  
@@ -184,7 +184,7 @@ index d57035b..1953dc4 100644
    ac_ext=cpp
  ac_cpp='$CXXCPP $CPPFLAGS'
  ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-@@ -41906,12 +41906,12 @@ $as_echo "$supports" >&6; }
+@@ -41911,12 +41911,12 @@ $as_echo "$supports" >&6; }
           test "$OPENJDK_TARGET_CPU_ARCH" = "ppc"; then
          M_NO_FUSED_ADD_FLAG="-mno-fused-madd"
  
@@ -200,7 +200,7 @@ index d57035b..1953dc4 100644
    ac_ext=cpp
  ac_cpp='$CXXCPP $CPPFLAGS'
  ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-@@ -41946,12 +41946,12 @@ $as_echo "$supports" >&6; }
+@@ -41951,12 +41951,12 @@ $as_echo "$supports" >&6; }
  
          NO_STRICT_ALIASING_FLAG="-fno-strict-aliasing"
  

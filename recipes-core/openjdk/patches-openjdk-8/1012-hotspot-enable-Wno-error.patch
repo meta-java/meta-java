@@ -14,10 +14,10 @@ Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/hotspot/make/linux/makefiles/gcc.make b/hotspot/make/linux/makefiles/gcc.make
-index cd9511e50..94412c8fe 100644
+index 7a5162a06..67607fb26 100644
 --- a/hotspot/make/linux/makefiles/gcc.make
 +++ b/hotspot/make/linux/makefiles/gcc.make
-@@ -200,8 +200,8 @@ else
+@@ -201,8 +201,8 @@ else
    CFLAGS += -pipe
  endif
  

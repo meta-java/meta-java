@@ -1,17 +1,11 @@
-meta-java contribution guidelines
-=================================
+# meta-java contribution guidelines
 
-Contributing via GitLab.com
----------------------------
+## Contributing via GitHub.com
 
-To contribute to this layer you may fork the repository and create a merge
-request at https://gitlab.com/meta-java/meta-java.
+To contribute to this layer you may fork the repository and create a pull
+request at https://github.com/meta-java/meta-java.
 
-Please refer to: https://docs.gitlab.com/ee/user/project/merge_requests/
-for more information on merge requests in GitLab.
-
-Contributing via E-Mail
------------------------
+## Contributing via E-Mail
 
 To contribute to this layer you may submit the patches for review to the
 mailing list (openembedded-devel@lists.openembedded.org).
@@ -47,4 +41,4 @@ Please add the main layer maintainers to CC:
 
   Henning Heinold <henning@itconsulting-heinold.de>
   Otavio Salvador <otavio@ossystems.com.br>
-  Richard Leitner <richard.leitner@skidata.com>
+  Richard Leitner <dev@g0hl1n.net>

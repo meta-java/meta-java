@@ -1,8 +1,7 @@
-From 794a7bf743e23ff74c4900801ddc56c253542b44 Mon Sep 17 00:00:00 2001
+From 7cca9e147d9f4b98ffbc6b10e817d2e8dbd686fb Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Mon, 13 Aug 2018 16:40:34 +0100
-Subject: [PATCH 1004/1013] hotspot: fix -Wreturn-type issues introduced by
- 8061651
+Subject: [PATCH] hotspot: fix -Wreturn-type issues introduced by 8061651
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -19,12 +18,13 @@ Upstream-Status: Backport
 
 Signed-off-by: André Draszik <andre.draszik@jci.com>
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+
 ---
- src/share/vm/prims/jvm.cpp | 6 +++---
+ hotspot/src/share/vm/prims/jvm.cpp | 6 +++---
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/hotspot/src/share/vm/prims/jvm.cpp b/hotspot/src/share/vm/prims/jvm.cpp
-index c32c98ade..6f2221c41 100644
+index c32c98ad..6f2221c4 100644
 --- a/hotspot/src/share/vm/prims/jvm.cpp
 +++ b/hotspot/src/share/vm/prims/jvm.cpp
 @@ -929,7 +929,7 @@ JVM_END
@@ -54,6 +54,3 @@ index c32c98ade..6f2221c41 100644
  #else
    return NULL;
  #endif
--- 
-2.26.2
-

@@ -1,7 +1,7 @@
-From f8a3f19fa4fabaf57b0c2c77e966d9896399b3f8 Mon Sep 17 00:00:00 2001
+From 9ae232a21a7c2cec88cdb4ff7e6cf7092f1578ab Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Mon, 13 Aug 2018 16:45:24 +0100
-Subject: [PATCH 1005/1013] hotspot: Zero build requires disabled warnings
+Subject: [PATCH] hotspot: Zero build requires disabled warnings
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -19,15 +19,16 @@ Upstream-Status: Backport
 
 Signed-off-by: André Draszik <andre.draszik@jci.com>
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+
 ---
- src/cpu/zero/vm/cppInterpreter_zero.cpp        |  2 +-
- src/cpu/zero/vm/interpreterRT_zero.cpp         |  4 ++--
- src/os_cpu/linux_zero/vm/os_linux_zero.cpp     | 14 ++++++++++++--
- src/os_cpu/linux_zero/vm/thread_linux_zero.hpp |  3 ++-
+ hotspot/src/cpu/zero/vm/cppInterpreter_zero.cpp    |  2 +-
+ hotspot/src/cpu/zero/vm/interpreterRT_zero.cpp     |  4 ++--
+ hotspot/src/os_cpu/linux_zero/vm/os_linux_zero.cpp | 14 ++++++++++++--
+ .../src/os_cpu/linux_zero/vm/thread_linux_zero.hpp |  3 ++-
  4 files changed, 17 insertions(+), 6 deletions(-)
 
 diff --git a/hotspot/src/cpu/zero/vm/cppInterpreter_zero.cpp b/hotspot/src/cpu/zero/vm/cppInterpreter_zero.cpp
-index 525031eb9..d47422b8c 100644
+index 525031eb..d47422b8 100644
 --- a/hotspot/src/cpu/zero/vm/cppInterpreter_zero.cpp
 +++ b/hotspot/src/cpu/zero/vm/cppInterpreter_zero.cpp
 @@ -100,7 +100,7 @@ intptr_t narrow(BasicType type, intptr_t result) {
@@ -40,7 +41,7 @@ index 525031eb9..d47422b8c 100644
  }
  
 diff --git a/hotspot/src/cpu/zero/vm/interpreterRT_zero.cpp b/hotspot/src/cpu/zero/vm/interpreterRT_zero.cpp
-index e23e3eaa9..061ed8ce8 100644
+index e23e3eaa..061ed8ce 100644
 --- a/hotspot/src/cpu/zero/vm/interpreterRT_zero.cpp
 +++ b/hotspot/src/cpu/zero/vm/interpreterRT_zero.cpp
 @@ -1,5 +1,5 @@
@@ -60,7 +61,7 @@ index e23e3eaa9..061ed8ce8 100644
    case T_VOID:
      ftype = &ffi_type_void;
 diff --git a/hotspot/src/os_cpu/linux_zero/vm/os_linux_zero.cpp b/hotspot/src/os_cpu/linux_zero/vm/os_linux_zero.cpp
-index d22ea1141..cbee43baa 100644
+index d22ea114..cbee43ba 100644
 --- a/hotspot/src/os_cpu/linux_zero/vm/os_linux_zero.cpp
 +++ b/hotspot/src/os_cpu/linux_zero/vm/os_linux_zero.cpp
 @@ -61,6 +61,7 @@ address os::current_stack_pointer() {
@@ -119,7 +120,7 @@ index d22ea1141..cbee43baa 100644
  
  void os::Linux::set_fpu_control_word(int fpu) {
 diff --git a/hotspot/src/os_cpu/linux_zero/vm/thread_linux_zero.hpp b/hotspot/src/os_cpu/linux_zero/vm/thread_linux_zero.hpp
-index 94bc83a30..b3ba526f2 100644
+index 94bc83a3..b3ba526f 100644
 --- a/hotspot/src/os_cpu/linux_zero/vm/thread_linux_zero.hpp
 +++ b/hotspot/src/os_cpu/linux_zero/vm/thread_linux_zero.hpp
 @@ -1,5 +1,5 @@
@@ -137,6 +138,3 @@ index 94bc83a30..b3ba526f2 100644
    }
  
    bool pd_get_top_frame_for_profiling(frame* fr_addr,
--- 
-2.26.2
-

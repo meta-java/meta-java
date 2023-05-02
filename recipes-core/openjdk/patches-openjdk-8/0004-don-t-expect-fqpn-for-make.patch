@@ -1,15 +1,16 @@
-From 12dbeed90199730ad56ad842ae53e9d8aa477c0c Mon Sep 17 00:00:00 2001
+From a99cf53a082c1b25f5f7159c65bfd2c27a63fe75 Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 13:42:43 +0100
-Subject: [PATCH 04/13] don't expect fqpn for make
+Subject: [PATCH] don't expect fqpn for make
 
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+
 ---
  common/autoconf/basics.m4 | 8 +++++---
  1 file changed, 5 insertions(+), 3 deletions(-)
 
 diff --git a/common/autoconf/basics.m4 b/common/autoconf/basics.m4
-index 4ee9cdd..c20ea76 100644
+index 4ee9cdd1..c20ea765 100644
 --- a/common/autoconf/basics.m4
 +++ b/common/autoconf/basics.m4
 @@ -740,10 +740,12 @@ AC_DEFUN([BASIC_CHECK_GNU_MAKE],
@@ -28,6 +29,3 @@ index 4ee9cdd..c20ea76 100644
      if test "x$FOUND_MAKE" = x; then
        AC_MSG_ERROR([The specified make (by MAKE=$MAKE) is not GNU make 3.81 or newer.])
      fi
--- 
-2.26.2
-

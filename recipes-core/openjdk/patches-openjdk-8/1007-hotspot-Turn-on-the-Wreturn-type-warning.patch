@@ -1,7 +1,11 @@
-From 024e0d522f205ca8659fce60ca4be68b9e3e08db Mon Sep 17 00:00:00 2001
+From 6758bf27e31110dc5d4c7237476c823ff05454a2 Mon Sep 17 00:00:00 2001
 From: Richard Leitner <richard.leitner@skidata.com>
 Date: Thu, 22 Oct 2020 09:41:07 +0200
-Subject: [PATCH 1007/1013] hotspot: Turn on the -Wreturn-type warning
+Subject: [PATCH] hotspot: Turn on the -Wreturn-type warning
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -19,27 +23,28 @@ Upstream-Status: Backport
 
 Signed-off-by: André Draszik <andre.draszik@jci.com>
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+
 ---
- make/linux/makefiles/gcc.make               | 2 +-
- src/cpu/x86/vm/x86_32.ad                    | 1 +
- src/os_cpu/linux_x86/vm/os_linux_x86.cpp    | 1 +
- src/share/vm/classfile/defaultMethods.cpp   | 4 ++--
- src/share/vm/classfile/symbolTable.cpp      | 4 ++--
- src/share/vm/classfile/systemDictionary.cpp | 6 +++---
- src/share/vm/memory/heapInspection.hpp      | 2 +-
- src/share/vm/memory/metaspaceShared.hpp     | 2 +-
- src/share/vm/oops/constantPool.hpp          | 2 +-
- src/share/vm/prims/jvm.cpp                  | 2 +-
- src/share/vm/runtime/reflection.cpp         | 2 +-
- src/share/vm/runtime/sharedRuntime.cpp      | 2 +-
- src/share/vm/services/memTracker.hpp        | 2 +-
+ hotspot/make/linux/makefiles/gcc.make               | 2 +-
+ hotspot/src/cpu/x86/vm/x86_32.ad                    | 1 +
+ hotspot/src/os_cpu/linux_x86/vm/os_linux_x86.cpp    | 1 +
+ hotspot/src/share/vm/classfile/defaultMethods.cpp   | 4 ++--
+ hotspot/src/share/vm/classfile/symbolTable.cpp      | 4 ++--
+ hotspot/src/share/vm/classfile/systemDictionary.cpp | 6 +++---
+ hotspot/src/share/vm/memory/heapInspection.hpp      | 2 +-
+ hotspot/src/share/vm/memory/metaspaceShared.hpp     | 2 +-
+ hotspot/src/share/vm/oops/constantPool.hpp          | 2 +-
+ hotspot/src/share/vm/prims/jvm.cpp                  | 2 +-
+ hotspot/src/share/vm/runtime/reflection.cpp         | 2 +-
+ hotspot/src/share/vm/runtime/sharedRuntime.cpp      | 2 +-
+ hotspot/src/share/vm/services/memTracker.hpp        | 2 +-
  13 files changed, 17 insertions(+), 15 deletions(-)
 
 diff --git a/hotspot/make/linux/makefiles/gcc.make b/hotspot/make/linux/makefiles/gcc.make
-index ac44b6837..7a5162a06 100644
+index 36b3c8ba..cd9511e5 100644
 --- a/hotspot/make/linux/makefiles/gcc.make
 +++ b/hotspot/make/linux/makefiles/gcc.make
-@@ -212,7 +212,7 @@ ifeq ($(USE_CLANG), true)
+@@ -211,7 +211,7 @@ ifeq ($(USE_CLANG), true)
    WARNINGS_ARE_ERRORS += -Wno-return-type -Wno-empty-body
  endif
  
@@ -49,7 +54,7 @@ index ac44b6837..7a5162a06 100644
  ifeq ($(USE_CLANG),)
    # Since GCC 4.3, -Wconversion has changed its meanings to warn these implicit
 diff --git a/hotspot/src/cpu/x86/vm/x86_32.ad b/hotspot/src/cpu/x86/vm/x86_32.ad
-index f42d1a288..c8f4ee161 100644
+index f42d1a28..c8f4ee16 100644
 --- a/hotspot/src/cpu/x86/vm/x86_32.ad
 +++ b/hotspot/src/cpu/x86/vm/x86_32.ad
 @@ -1250,6 +1250,7 @@ uint MachSpillCopyNode::implementation( CodeBuffer *cbuf, PhaseRegAlloc *ra_, bo
@@ -61,7 +66,7 @@ index f42d1a288..c8f4ee161 100644
  
  #ifndef PRODUCT
 diff --git a/hotspot/src/os_cpu/linux_x86/vm/os_linux_x86.cpp b/hotspot/src/os_cpu/linux_x86/vm/os_linux_x86.cpp
-index c35d8677f..65c3165ca 100644
+index c35d8677..65c3165c 100644
 --- a/hotspot/src/os_cpu/linux_x86/vm/os_linux_x86.cpp
 +++ b/hotspot/src/os_cpu/linux_x86/vm/os_linux_x86.cpp
 @@ -541,6 +541,7 @@ JVM_handle_linux_signal(int sig,
@@ -73,7 +78,7 @@ index c35d8677f..65c3165ca 100644
  
  void os::Linux::init_thread_fpu_state(void) {
 diff --git a/hotspot/src/share/vm/classfile/defaultMethods.cpp b/hotspot/src/share/vm/classfile/defaultMethods.cpp
-index 4b4b4e250..196622aed 100644
+index 4b4b4e25..196622ae 100644
 --- a/hotspot/src/share/vm/classfile/defaultMethods.cpp
 +++ b/hotspot/src/share/vm/classfile/defaultMethods.cpp
 @@ -506,7 +506,7 @@ Symbol* MethodFamily::generate_method_message(Symbol *klass_name, Method* method
@@ -95,7 +100,7 @@ index 4b4b4e250..196622aed 100644
  
  
 diff --git a/hotspot/src/share/vm/classfile/symbolTable.cpp b/hotspot/src/share/vm/classfile/symbolTable.cpp
-index ec97077b7..2621a7d62 100644
+index 83369cbc..8dd4e6b2 100644
 --- a/hotspot/src/share/vm/classfile/symbolTable.cpp
 +++ b/hotspot/src/share/vm/classfile/symbolTable.cpp
 @@ -249,7 +249,7 @@ Symbol* SymbolTable::lookup(const char* name, int len, TRAPS) {
@@ -117,7 +122,7 @@ index ec97077b7..2621a7d62 100644
  
  Symbol* SymbolTable::lookup_only(const char* name, int len,
 diff --git a/hotspot/src/share/vm/classfile/systemDictionary.cpp b/hotspot/src/share/vm/classfile/systemDictionary.cpp
-index 5911d94f5..df4d56f6f 100644
+index 4541e815..98412e1e 100644
 --- a/hotspot/src/share/vm/classfile/systemDictionary.cpp
 +++ b/hotspot/src/share/vm/classfile/systemDictionary.cpp
 @@ -236,15 +236,15 @@ Klass* SystemDictionary::resolve_or_null(Symbol* class_name, Handle class_loader
@@ -140,7 +145,7 @@ index 5911d94f5..df4d56f6f 100644
  }
  
 diff --git a/hotspot/src/share/vm/memory/heapInspection.hpp b/hotspot/src/share/vm/memory/heapInspection.hpp
-index 09ee6602e..c5fec15c3 100644
+index 09ee6602..c5fec15c 100644
 --- a/hotspot/src/share/vm/memory/heapInspection.hpp
 +++ b/hotspot/src/share/vm/memory/heapInspection.hpp
 @@ -367,7 +367,7 @@ class HeapInspection : public StackObj {
@@ -153,7 +158,7 @@ index 09ee6602e..c5fec15c3 100644
   private:
    void iterate_over_heap(KlassInfoTable* cit, BoolObjectClosure* filter = NULL);
 diff --git a/hotspot/src/share/vm/memory/metaspaceShared.hpp b/hotspot/src/share/vm/memory/metaspaceShared.hpp
-index 2f3abae6a..d58ebecb2 100644
+index 2f3abae6..d58ebecb 100644
 --- a/hotspot/src/share/vm/memory/metaspaceShared.hpp
 +++ b/hotspot/src/share/vm/memory/metaspaceShared.hpp
 @@ -93,7 +93,7 @@ class MetaspaceShared : AllStatic {
@@ -166,10 +171,10 @@ index 2f3abae6a..d58ebecb2 100644
    static ReservedSpace* shared_rs() {
      CDS_ONLY(return _shared_rs);
 diff --git a/hotspot/src/share/vm/oops/constantPool.hpp b/hotspot/src/share/vm/oops/constantPool.hpp
-index 124c970e2..dae574c09 100644
+index 68435471..fad4a92c 100644
 --- a/hotspot/src/share/vm/oops/constantPool.hpp
 +++ b/hotspot/src/share/vm/oops/constantPool.hpp
-@@ -353,7 +353,7 @@ class ConstantPool : public Metadata {
+@@ -350,7 +350,7 @@ class ConstantPool : public Metadata {
  
    Klass* klass_at(int which, TRAPS) {
      constantPoolHandle h_this(THREAD, this);
@@ -177,9 +182,9 @@ index 124c970e2..dae574c09 100644
 +    return klass_at_impl(h_this, which, THREAD);
    }
  
-   Symbol* klass_name_at(int which);  // Returns the name, w/o resolving.
+   Symbol* klass_name_at(int which) const;  // Returns the name, w/o resolving.
 diff --git a/hotspot/src/share/vm/prims/jvm.cpp b/hotspot/src/share/vm/prims/jvm.cpp
-index 6f2221c41..daa69f89a 100644
+index 6f2221c4..daa69f89 100644
 --- a/hotspot/src/share/vm/prims/jvm.cpp
 +++ b/hotspot/src/share/vm/prims/jvm.cpp
 @@ -4368,7 +4368,7 @@ JVM_ENTRY(jlong,JVM_DTraceActivate(
@@ -192,7 +197,7 @@ index 6f2221c41..daa69f89a 100644
  
  JVM_ENTRY(jboolean,JVM_DTraceIsProbeEnabled(JNIEnv* env, jmethodID method))
 diff --git a/hotspot/src/share/vm/runtime/reflection.cpp b/hotspot/src/share/vm/runtime/reflection.cpp
-index d9fddbe47..a5f737935 100644
+index 4b39d8cc..9cd7b0dc 100644
 --- a/hotspot/src/share/vm/runtime/reflection.cpp
 +++ b/hotspot/src/share/vm/runtime/reflection.cpp
 @@ -1093,7 +1093,7 @@ oop Reflection::invoke(instanceKlassHandle klass, methodHandle reflected_method,
@@ -205,10 +210,10 @@ index d9fddbe47..a5f737935 100644
  }
  
 diff --git a/hotspot/src/share/vm/runtime/sharedRuntime.cpp b/hotspot/src/share/vm/runtime/sharedRuntime.cpp
-index 013aa7a23..df4cde963 100644
+index d5bea29c..50578ad6 100644
 --- a/hotspot/src/share/vm/runtime/sharedRuntime.cpp
 +++ b/hotspot/src/share/vm/runtime/sharedRuntime.cpp
-@@ -1045,7 +1045,7 @@ Handle SharedRuntime::find_callee_info(JavaThread* thread, Bytecodes::Code& bc,
+@@ -1041,7 +1041,7 @@ Handle SharedRuntime::find_callee_info(JavaThread* thread, Bytecodes::Code& bc,
    // last java frame on stack (which includes native call frames)
    vframeStream vfst(thread, true);  // Do not skip and javaCalls
  
@@ -218,7 +223,7 @@ index 013aa7a23..df4cde963 100644
  
  
 diff --git a/hotspot/src/share/vm/services/memTracker.hpp b/hotspot/src/share/vm/services/memTracker.hpp
-index 8ea859ddb..535147f8c 100644
+index 8ea859dd..535147f8 100644
 --- a/hotspot/src/share/vm/services/memTracker.hpp
 +++ b/hotspot/src/share/vm/services/memTracker.hpp
 @@ -64,7 +64,7 @@ class MemTracker : AllStatic {
@@ -230,6 +235,3 @@ index 8ea859ddb..535147f8c 100644
    static inline void record_virtual_memory_type(void* addr, MEMFLAGS flag) { }
    static inline void record_thread_stack(void* addr, size_t size) { }
    static inline void release_thread_stack(void* addr, size_t size) { }
--- 
-2.26.2
-

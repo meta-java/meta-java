@@ -1,7 +1,7 @@
-From 17413a1bca9a6c27e049122d65b0d4fa291a53ec Mon Sep 17 00:00:00 2001
+From 048b9cb7910cf2f04f73483dd9755aeb50017e6b Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Thu, 2 Jan 2020 13:40:50 +0100
-Subject: [PATCH 02/13] Allow using a system-installed libpng
+Subject: [PATCH] Allow using a system-installed libpng
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -19,12 +19,13 @@ Upstream-Status: Backport
 
 Signed-off-by: André Draszik <andre.draszik@jci.com>
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+
 ---
  common/autoconf/libraries.m4 | 41 ++++++++++++++++++++++++++++++++++++
  1 file changed, 41 insertions(+)
 
 diff --git a/common/autoconf/libraries.m4 b/common/autoconf/libraries.m4
-index d2732eb..727f018 100644
+index d2732eb8..727f0181 100644
 --- a/common/autoconf/libraries.m4
 +++ b/common/autoconf/libraries.m4
 @@ -843,6 +843,47 @@ AC_DEFUN_ONCE([LIB_SETUP_MISC_LIBS],
@@ -75,6 +76,3 @@ index d2732eb..727f018 100644
    ###############################################################################
    #
    # Check for the zlib library
--- 
-2.26.2
-

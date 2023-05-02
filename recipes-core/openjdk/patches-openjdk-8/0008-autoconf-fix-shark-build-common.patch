@@ -1,15 +1,16 @@
-From c03f916a8a49a3c83f72f28fefa6eab6377b909c Mon Sep 17 00:00:00 2001
+From bc54b9fbe29c524c07377fb8a87922be55c61700 Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 13:51:40 +0100
-Subject: [PATCH 08/13] autoconf: fix shark build (common)
+Subject: [PATCH] autoconf: fix shark build (common)
 
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+
 ---
  common/autoconf/libraries.m4 | 5 +++--
  1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/common/autoconf/libraries.m4 b/common/autoconf/libraries.m4
-index 727f018..91d2b5c 100644
+index 727f0181..91d2b5ca 100644
 --- a/common/autoconf/libraries.m4
 +++ b/common/autoconf/libraries.m4
 @@ -1079,8 +1079,9 @@ AC_DEFUN_ONCE([LIB_SETUP_STATIC_LINK_LIBSTDCPP],
@@ -32,6 +33,3 @@ index 727f018..91d2b5c 100644
        if echo "${flag}" | grep -q '^-l'; then
          if test "${LLVM_LIBS}" != ""; then
            LLVM_LIBS="${LLVM_LIBS} "
--- 
-2.26.2
-

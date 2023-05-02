@@ -1,15 +1,16 @@
-From 8864d47290e9d5563fb8f3ea92639c4accc46fe8 Mon Sep 17 00:00:00 2001
+From b6e88ffb6c4a8d84da643fa9cb29c086f7c02584 Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 13:55:29 +0100
-Subject: [PATCH 10/13] autoconf: remove shell variables from autoheader
+Subject: [PATCH] autoconf: remove shell variables from autoheader
 
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+
 ---
  common/autoconf/basics.m4 | 14 +++++++-------
  1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/common/autoconf/basics.m4 b/common/autoconf/basics.m4
-index 8e06cd2..c220bba 100644
+index 8e06cd25..c220bba7 100644
 --- a/common/autoconf/basics.m4
 +++ b/common/autoconf/basics.m4
 @@ -661,21 +661,21 @@ AC_DEFUN_ONCE([BASIC_SETUP_OUTPUT_DIR],
@@ -41,6 +42,3 @@ index 8e06cd2..c220bba 100644
  ])
  
  AC_DEFUN_ONCE([BASIC_SETUP_LOGGING],
--- 
-2.26.2
-

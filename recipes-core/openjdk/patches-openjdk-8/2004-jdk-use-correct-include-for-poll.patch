@@ -1,7 +1,7 @@
-From 5bced26833d8e7876852fa65479f7ada5266a3d7 Mon Sep 17 00:00:00 2001
+From 44512cfca65ea5b7b6d1732560d8aa2cd221de22 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 09:28:06 +0000
-Subject: [PATCH 2004/2009] jdk: use correct include for poll
+Subject: [PATCH] jdk: use correct include for poll
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -25,21 +25,22 @@ the following command:
 Upstream-Status: Pending
 Signed-off-by: André Draszik <andre.draszik@jci.com>
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+
 ---
- src/aix/native/java/net/aix_close.c                 | 2 +-
- src/aix/native/sun/nio/ch/AixPollPort.c             | 2 +-
- src/solaris/native/java/net/PlainSocketImpl.c       | 2 +-
- src/solaris/native/java/net/bsd_close.c             | 2 +-
- src/solaris/native/java/net/linux_close.c           | 2 +-
- src/solaris/native/java/net/net_util_md.h           | 2 +-
- src/solaris/native/sun/nio/ch/DevPollArrayWrapper.c | 2 +-
- src/solaris/native/sun/nio/ch/Net.c                 | 2 +-
- src/solaris/native/sun/nio/fs/LinuxWatchService.c   | 2 +-
- src/solaris/transport/socket/socket_md.c            | 2 +-
+ jdk/src/aix/native/java/net/aix_close.c                 | 2 +-
+ jdk/src/aix/native/sun/nio/ch/AixPollPort.c             | 2 +-
+ jdk/src/solaris/native/java/net/PlainSocketImpl.c       | 2 +-
+ jdk/src/solaris/native/java/net/bsd_close.c             | 2 +-
+ jdk/src/solaris/native/java/net/linux_close.c           | 2 +-
+ jdk/src/solaris/native/java/net/net_util_md.h           | 2 +-
+ jdk/src/solaris/native/sun/nio/ch/DevPollArrayWrapper.c | 2 +-
+ jdk/src/solaris/native/sun/nio/ch/Net.c                 | 2 +-
+ jdk/src/solaris/native/sun/nio/fs/LinuxWatchService.c   | 2 +-
+ jdk/src/solaris/transport/socket/socket_md.c            | 2 +-
  10 files changed, 10 insertions(+), 10 deletions(-)
 
 diff --git a/jdk/src/aix/native/java/net/aix_close.c b/jdk/src/aix/native/java/net/aix_close.c
-index 90d57b42f0..fbeb73efa4 100644
+index 90d57b42..fbeb73ef 100644
 --- a/jdk/src/aix/native/java/net/aix_close.c
 +++ b/jdk/src/aix/native/java/net/aix_close.c
 @@ -54,7 +54,7 @@
@@ -52,7 +53,7 @@ index 90d57b42f0..fbeb73efa4 100644
  /*
   * Stack allocated by thread when doing blocking operation
 diff --git a/jdk/src/aix/native/sun/nio/ch/AixPollPort.c b/jdk/src/aix/native/sun/nio/ch/AixPollPort.c
-index 70064b890e..c10c602b6b 100644
+index 70064b89..c10c602b 100644
 --- a/jdk/src/aix/native/sun/nio/ch/AixPollPort.c
 +++ b/jdk/src/aix/native/sun/nio/ch/AixPollPort.c
 @@ -34,7 +34,7 @@
@@ -65,7 +66,7 @@ index 70064b890e..c10c602b6b 100644
  #include <fcntl.h>
  #include <stddef.h>
 diff --git a/jdk/src/solaris/native/java/net/PlainSocketImpl.c b/jdk/src/solaris/native/java/net/PlainSocketImpl.c
-index 373c5e3625..9aafbc09e5 100644
+index 373c5e36..9aafbc09 100644
 --- a/jdk/src/solaris/native/java/net/PlainSocketImpl.c
 +++ b/jdk/src/solaris/native/java/net/PlainSocketImpl.c
 @@ -28,7 +28,7 @@
@@ -78,7 +79,7 @@ index 373c5e3625..9aafbc09e5 100644
  #include <netinet/tcp.h>        /* Defines TCP_NODELAY, needed for 2.6 */
  #include <netinet/in.h>
 diff --git a/jdk/src/solaris/native/java/net/bsd_close.c b/jdk/src/solaris/native/java/net/bsd_close.c
-index 89a20707c4..511ab845a8 100644
+index 89a20707..511ab845 100644
 --- a/jdk/src/solaris/native/java/net/bsd_close.c
 +++ b/jdk/src/solaris/native/java/net/bsd_close.c
 @@ -38,7 +38,7 @@
@@ -91,7 +92,7 @@ index 89a20707c4..511ab845a8 100644
  /*
   * Stack allocated by thread when doing blocking operation
 diff --git a/jdk/src/solaris/native/java/net/linux_close.c b/jdk/src/solaris/native/java/net/linux_close.c
-index eacc2afd15..159ca132c4 100644
+index eacc2afd..159ca132 100644
 --- a/jdk/src/solaris/native/java/net/linux_close.c
 +++ b/jdk/src/solaris/native/java/net/linux_close.c
 @@ -36,7 +36,7 @@
@@ -104,7 +105,7 @@ index eacc2afd15..159ca132c4 100644
  /*
   * Stack allocated by thread when doing blocking operation
 diff --git a/jdk/src/solaris/native/java/net/net_util_md.h b/jdk/src/solaris/native/java/net/net_util_md.h
-index a48446de9c..8915b68aae 100644
+index a48446de..8915b68a 100644
 --- a/jdk/src/solaris/native/java/net/net_util_md.h
 +++ b/jdk/src/solaris/native/java/net/net_util_md.h
 @@ -33,7 +33,7 @@
@@ -117,7 +118,7 @@ index a48446de9c..8915b68aae 100644
  
  
 diff --git a/jdk/src/solaris/native/sun/nio/ch/DevPollArrayWrapper.c b/jdk/src/solaris/native/sun/nio/ch/DevPollArrayWrapper.c
-index 6860a167bb..20849dabcf 100644
+index 6860a167..20849dab 100644
 --- a/jdk/src/solaris/native/sun/nio/ch/DevPollArrayWrapper.c
 +++ b/jdk/src/solaris/native/sun/nio/ch/DevPollArrayWrapper.c
 @@ -28,7 +28,7 @@
@@ -130,7 +131,7 @@ index 6860a167bb..20849dabcf 100644
  #include <sys/time.h>
  
 diff --git a/jdk/src/solaris/native/sun/nio/ch/Net.c b/jdk/src/solaris/native/sun/nio/ch/Net.c
-index 73560ad6c6..a3720055c4 100644
+index 73560ad6..a3720055 100644
 --- a/jdk/src/solaris/native/sun/nio/ch/Net.c
 +++ b/jdk/src/solaris/native/sun/nio/ch/Net.c
 @@ -23,7 +23,7 @@
@@ -143,7 +144,7 @@ index 73560ad6c6..a3720055c4 100644
  #include <sys/socket.h>
  #include <string.h>
 diff --git a/jdk/src/solaris/native/sun/nio/fs/LinuxWatchService.c b/jdk/src/solaris/native/sun/nio/fs/LinuxWatchService.c
-index 375aaa4850..7606e9ba82 100644
+index 375aaa48..7606e9ba 100644
 --- a/jdk/src/solaris/native/sun/nio/fs/LinuxWatchService.c
 +++ b/jdk/src/solaris/native/sun/nio/fs/LinuxWatchService.c
 @@ -32,7 +32,7 @@
@@ -156,7 +157,7 @@ index 375aaa4850..7606e9ba82 100644
  
  #include "sun_nio_fs_LinuxWatchService.h"
 diff --git a/jdk/src/solaris/transport/socket/socket_md.c b/jdk/src/solaris/transport/socket/socket_md.c
-index 33e062e087..819fcabdb8 100644
+index 33e062e0..819fcabd 100644
 --- a/jdk/src/solaris/transport/socket/socket_md.c
 +++ b/jdk/src/solaris/transport/socket/socket_md.c
 @@ -37,7 +37,7 @@
@@ -168,6 +169,3 @@ index 33e062e087..819fcabdb8 100644
  #endif
  
  #include "socket_md.h"
--- 
-2.26.2
-

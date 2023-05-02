@@ -1,7 +1,7 @@
-From b8d48149b05fcd1a12dce25ffc345b43aaa76f32 Mon Sep 17 00:00:00 2001
+From 2206e1d037359cf4f08a6c7b944d6735b56ea36d Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Erkka=20K=C3=A4=C3=A4ri=C3=A4?= <erkka.kaaria@intel.com>
 Date: Thu, 2 Jan 2020 13:49:02 +0100
-Subject: [PATCH 07/13] fix assembler flag handling in makefile
+Subject: [PATCH] fix assembler flag handling in makefile
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -14,12 +14,13 @@ Upstream-Status: Pending
 
 Signed-off-by: Erkka Kääriä <erkka.kaaria@intel.com>
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+
 ---
  make/common/NativeCompilation.gmk | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/make/common/NativeCompilation.gmk b/make/common/NativeCompilation.gmk
-index 92f8033..46a1be9 100644
+index 92f8033f..46a1be91 100644
 --- a/make/common/NativeCompilation.gmk
 +++ b/make/common/NativeCompilation.gmk
 @@ -391,7 +391,7 @@ define SetupNativeCompilation
@@ -31,6 +32,3 @@ index 92f8033..46a1be9 100644
  
    # On windows we need to create a resource file
    ifeq ($(OPENJDK_TARGET_OS), windows)
--- 
-2.26.2
-

@@ -1,7 +1,7 @@
-From 21c555306afcc4cab2819adc550f1546f3390d15 Mon Sep 17 00:00:00 2001
+From 74366a35d754d2dacab28d36804b5cde5dec481b Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 13:36:53 +0000
-Subject: [PATCH 01/13] Allow using a system-installed libjpeg
+Subject: [PATCH] Allow using a system-installed libjpeg
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -22,12 +22,13 @@ Upstream-Status: Backport
 
 Signed-off-by: André Draszik <andre.draszik@jci.com>
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+
 ---
  common/autoconf/libraries.m4 | 35 ++++++++++++++++++++++++++++++-----
  1 file changed, 30 insertions(+), 5 deletions(-)
 
 diff --git a/common/autoconf/libraries.m4 b/common/autoconf/libraries.m4
-index 6d803f9..d2732eb 100644
+index 6d803f9b..d2732eb8 100644
 --- a/common/autoconf/libraries.m4
 +++ b/common/autoconf/libraries.m4
 @@ -774,11 +774,36 @@ AC_DEFUN_ONCE([LIB_SETUP_MISC_LIBS],
@@ -72,6 +73,3 @@ index 6d803f9..d2732eb 100644
    AC_SUBST(USE_EXTERNAL_LIBJPEG)
  
    ###############################################################################
--- 
-2.26.2
-

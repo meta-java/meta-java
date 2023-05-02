@@ -1,7 +1,7 @@
-From b4e7774c35cf29aaca2bd04d115afc3ea3c77d7a Mon Sep 17 00:00:00 2001
+From dcf3e46758fa5e77ce6fb4b3f51867bb5186f8f0 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Fri, 2 Mar 2018 11:13:08 +0000
-Subject: [PATCH 2001/2009] jdk: comparison between pointer and integer
+Subject: [PATCH] jdk: comparison between pointer and integer
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -21,14 +21,15 @@ Upstream-Status: Backport [http://hg.openjdk.java.net/jdk9/jdk9/jdk/rev/90c64359
 
 Signed-off-by: André Draszik <andre.draszik@jci.com>
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+
 ---
- src/share/native/java/net/net_util.c           | 15 +++++++--------
- src/share/native/java/net/net_util.h           |  8 ++++----
- src/solaris/native/java/net/Inet6AddressImpl.c |  4 ++--
+ jdk/src/share/native/java/net/net_util.c          | 15 +++++++--------
+ jdk/src/share/native/java/net/net_util.h          |  8 ++++----
+ .../solaris/native/java/net/Inet6AddressImpl.c    |  4 ++--
  3 files changed, 13 insertions(+), 14 deletions(-)
 
 diff --git a/jdk/src/share/native/java/net/net_util.c b/jdk/src/share/native/java/net/net_util.c
-index b1b8223a63..2eee6261ac 100644
+index b1b8223a..2eee6261 100644
 --- a/jdk/src/share/native/java/net/net_util.c
 +++ b/jdk/src/share/native/java/net/net_util.c
 @@ -108,7 +108,7 @@ jobject getInet6Address_scopeifname(JNIEnv *env, jobject iaObj) {
@@ -99,7 +100,7 @@ index b1b8223a63..2eee6261ac 100644
              int scope;
  
 diff --git a/jdk/src/share/native/java/net/net_util.h b/jdk/src/share/native/java/net/net_util.h
-index c8a5e68c49..176ca586ee 100644
+index c8a5e68c..176ca586 100644
 --- a/jdk/src/share/native/java/net/net_util.h
 +++ b/jdk/src/share/native/java/net/net_util.h
 @@ -64,12 +64,12 @@ JNIEXPORT void JNICALL initInetAddressIDs(JNIEnv *env);
@@ -120,7 +121,7 @@ index c8a5e68c49..176ca586ee 100644
  extern void setInetAddress_addr(JNIEnv *env, jobject iaObj, int address);
  extern void setInetAddress_family(JNIEnv *env, jobject iaObj, int family);
 diff --git a/jdk/src/solaris/native/java/net/Inet6AddressImpl.c b/jdk/src/solaris/native/java/net/Inet6AddressImpl.c
-index 0a51a365fd..dcc348cf1f 100644
+index 0a51a365..dcc348cf 100644
 --- a/jdk/src/solaris/native/java/net/Inet6AddressImpl.c
 +++ b/jdk/src/solaris/native/java/net/Inet6AddressImpl.c
 @@ -392,7 +392,7 @@ Java_java_net_Inet6AddressImpl_lookupAllHostAddr(JNIEnv *env, jobject this,
@@ -141,6 +142,3 @@ index 0a51a365fd..dcc348cf1f 100644
                      ret = NULL;
                      goto cleanupAndReturn;
                  }
--- 
-2.26.2
-

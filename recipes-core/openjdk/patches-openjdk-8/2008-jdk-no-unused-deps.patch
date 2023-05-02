@@ -1,18 +1,19 @@
-From 335f9891be66e1292509d6a9dc18d41fac0a066c Mon Sep 17 00:00:00 2001
+From bc6450aaa4b7652ee034423f1d04cb439152eaf6 Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 13:26:42 +0100
-Subject: [PATCH 2008/2009] jdk: no unused deps
+Subject: [PATCH] jdk: no unused deps
 
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+
 ---
- make/CompileNativeLibraries.gmk           |  2 ++
- make/lib/Awt2dLibraries.gmk               | 30 +++++++++++++++++------
- src/solaris/native/sun/awt/jawt.c         |  2 +-
- src/solaris/native/sun/awt/utility/rect.h |  2 +-
+ jdk/make/CompileNativeLibraries.gmk           |  2 ++
+ jdk/make/lib/Awt2dLibraries.gmk               | 30 ++++++++++++++-----
+ jdk/src/solaris/native/sun/awt/jawt.c         |  2 +-
+ jdk/src/solaris/native/sun/awt/utility/rect.h |  2 +-
  4 files changed, 26 insertions(+), 10 deletions(-)
 
 diff --git a/jdk/make/CompileNativeLibraries.gmk b/jdk/make/CompileNativeLibraries.gmk
-index c23b958b06..2984302f0a 100644
+index c23b958b..2984302f 100644
 --- a/jdk/make/CompileNativeLibraries.gmk
 +++ b/jdk/make/CompileNativeLibraries.gmk
 @@ -85,7 +85,9 @@ include lib/ServiceabilityLibraries.gmk
@@ -26,7 +27,7 @@ index c23b958b06..2984302f0a 100644
  # Include the corresponding custom file, if present. 
  -include $(CUSTOM_MAKE_DIR)/CompileNativeLibraries.gmk
 diff --git a/jdk/make/lib/Awt2dLibraries.gmk b/jdk/make/lib/Awt2dLibraries.gmk
-index 7f42e09ce4..10232b61ca 100644
+index 7f42e09c..10232b61 100644
 --- a/jdk/make/lib/Awt2dLibraries.gmk
 +++ b/jdk/make/lib/Awt2dLibraries.gmk
 @@ -232,6 +232,10 @@ ifeq ($(OPENJDK_TARGET_OS), aix)
@@ -88,7 +89,7 @@ index 7f42e09ce4..10232b61ca 100644
      LIBAWT_HEADLESS_REORDER :=
      ifeq ($(OPENJDK_TARGET_OS), solaris)
 diff --git a/jdk/src/solaris/native/sun/awt/jawt.c b/jdk/src/solaris/native/sun/awt/jawt.c
-index 64284bc6e9..b3584c7efe 100644
+index 64284bc6..b3584c7e 100644
 --- a/jdk/src/solaris/native/sun/awt/jawt.c
 +++ b/jdk/src/solaris/native/sun/awt/jawt.c
 @@ -33,7 +33,7 @@
@@ -101,7 +102,7 @@ index 64284bc6e9..b3584c7efe 100644
      return JNI_FALSE;
  #else
 diff --git a/jdk/src/solaris/native/sun/awt/utility/rect.h b/jdk/src/solaris/native/sun/awt/utility/rect.h
-index ceea38f434..8d85782ba0 100644
+index ceea38f4..8d85782b 100644
 --- a/jdk/src/solaris/native/sun/awt/utility/rect.h
 +++ b/jdk/src/solaris/native/sun/awt/utility/rect.h
 @@ -28,7 +28,7 @@
@@ -113,6 +114,3 @@ index ceea38f434..8d85782ba0 100644
  #include <X11/Xlib.h>
  typedef XRectangle RECT_T;
  #else
--- 
-2.26.2
-

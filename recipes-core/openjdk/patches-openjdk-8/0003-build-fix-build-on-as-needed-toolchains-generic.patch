@@ -1,7 +1,7 @@
-From 770123c9fcc4ab8c8ce8f37cde5afe9c44c7176c Mon Sep 17 00:00:00 2001
+From 34bfdbabf0b2d9b1d0965b5fe362fd9596f58527 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Mon, 12 Mar 2018 15:40:58 +0000
-Subject: [PATCH 03/13] build: fix build on --as-needed toolchains (generic)
+Subject: [PATCH] build: fix build on --as-needed toolchains (generic)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -66,12 +66,13 @@ all.
 
 Signed-off-by: André Draszik <andre.draszik@jci.com>
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+
 ---
  make/common/NativeCompilation.gmk | 5 ++---
  1 file changed, 2 insertions(+), 3 deletions(-)
 
 diff --git a/make/common/NativeCompilation.gmk b/make/common/NativeCompilation.gmk
-index d961cf3..92f8033 100644
+index d961cf35..92f8033f 100644
 --- a/make/common/NativeCompilation.gmk
 +++ b/make/common/NativeCompilation.gmk
 @@ -618,9 +618,8 @@ endif # no MacOS X support yet
@@ -86,6 +87,3 @@ index d961cf3..92f8033 100644
          ifneq (,$$($1_GEN_MANIFEST))
  	  $(MT) -nologo -manifest $$($1_GEN_MANIFEST) -outputresource:$$@;#1
          endif
--- 
-2.26.2
-

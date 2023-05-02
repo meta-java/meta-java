@@ -1,16 +1,16 @@
-From a2a8f8df244efca22da633b676a45d62b2fbb580 Mon Sep 17 00:00:00 2001
+From 038f36c083a83916504b8b59c80099fbeb9a68d6 Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <rehsack@gmail.com>
 Date: Thu, 2 Jan 2020 13:53:50 +0100
-Subject: [PATCH 09/13] prevent debuginfo in favour of openembedded package
- split
+Subject: [PATCH] prevent debuginfo in favour of openembedded package split
 
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+
 ---
  make/common/NativeCompilation.gmk | 122 ------------------------------
  1 file changed, 122 deletions(-)
 
 diff --git a/make/common/NativeCompilation.gmk b/make/common/NativeCompilation.gmk
-index 46a1be9..b4ea2c6 100644
+index 46a1be91..b4ea2c6f 100644
 --- a/make/common/NativeCompilation.gmk
 +++ b/make/common/NativeCompilation.gmk
 @@ -456,67 +456,6 @@ define SetupNativeCompilation
@@ -149,6 +149,3 @@ index 46a1be9..b4ea2c6 100644
        endif
      endif
  
--- 
-2.26.2
-

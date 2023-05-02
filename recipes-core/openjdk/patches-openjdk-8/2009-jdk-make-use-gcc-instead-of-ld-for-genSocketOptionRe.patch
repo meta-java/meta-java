@@ -1,18 +1,18 @@
-From 2d5e8ce975fb241a825dbf070923ccbdf8b65ee9 Mon Sep 17 00:00:00 2001
+From 83d3b8427c8996f3a0359d218f174b46fe9120c8 Mon Sep 17 00:00:00 2001
 From: Richard Leitner <richard.leitner@skidata.com>
 Date: Thu, 20 Aug 2020 11:24:40 +0200
-Subject: [PATCH 2009/2009] jdk: make: use gcc instead of ld for
- genSocketOptionRegistry
+Subject: [PATCH] jdk: make: use gcc instead of ld for genSocketOptionRegistry
 
 Upstream-Status: Pending
 
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+
 ---
- make/gensrc/GensrcMisc.gmk | 2 +-
+ jdk/make/gensrc/GensrcMisc.gmk | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/jdk/make/gensrc/GensrcMisc.gmk b/jdk/make/gensrc/GensrcMisc.gmk
-index 9db5c9d6f7..84a3c27e7d 100644
+index 9db5c9d6..84a3c27e 100644
 --- a/jdk/make/gensrc/GensrcMisc.gmk
 +++ b/jdk/make/gensrc/GensrcMisc.gmk
 @@ -76,7 +76,7 @@ $(eval $(call SetupNativeCompilation,BUILD_GENSRC_SOR_EXE, \
@@ -24,6 +24,3 @@ index 9db5c9d6f7..84a3c27e7d 100644
      OBJECT_DIR := $(GENSRC_SOR_BIN), \
      OUTPUT_DIR := $(GENSRC_SOR_BIN), \
      PROGRAM := genSocketOptionRegistry))
--- 
-2.26.2
-

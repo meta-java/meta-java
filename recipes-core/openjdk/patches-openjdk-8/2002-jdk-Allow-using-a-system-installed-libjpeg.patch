@@ -1,7 +1,7 @@
-From 1d7ea474a12a12e0e28e1a24f686a7478fe42b8d Mon Sep 17 00:00:00 2001
+From a1a63e85513aa3501588b02940e4f0e93e992e89 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Tue, 27 Feb 2018 13:36:53 +0000
-Subject: [PATCH 2002/2009] jdk: Allow using a system-installed libjpeg
+Subject: [PATCH] jdk: Allow using a system-installed libjpeg
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -21,8 +21,9 @@ Issues fixed on top of debian patch:
 Upstream-Status: Backport
 Signed-off-by: André Draszik <andre.draszik@jci.com>
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+
 ---
- make/lib/Awt2dLibraries.gmk                   | 69 +++++++++++++------
+ jdk/make/lib/Awt2dLibraries.gmk               | 69 +++++++++++++------
  .../imageio/plugins/jpeg/JPEGImageReader.java |  2 +-
  .../imageio/plugins/jpeg/JPEGImageWriter.java |  2 +-
  .../sun/awt/image/JPEGImageDecoder.java       |  2 +-
@@ -30,7 +31,7 @@ Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
  5 files changed, 51 insertions(+), 26 deletions(-)
 
 diff --git a/jdk/make/lib/Awt2dLibraries.gmk b/jdk/make/lib/Awt2dLibraries.gmk
-index 9368a9d508..7fffcafc70 100644
+index 9368a9d5..7fffcafc 100644
 --- a/jdk/make/lib/Awt2dLibraries.gmk
 +++ b/jdk/make/lib/Awt2dLibraries.gmk
 @@ -702,21 +702,24 @@ $(BUILD_LIBLCMS): $(BUILD_LIBAWT)
@@ -160,7 +161,7 @@ index 9368a9d508..7fffcafc70 100644
        VERSIONINFO_RESOURCE := $(JDK_TOPDIR)/src/windows/resource/version.rc, \
        RC_FLAGS := $(RC_FLAGS) \
 diff --git a/jdk/src/share/classes/com/sun/imageio/plugins/jpeg/JPEGImageReader.java b/jdk/src/share/classes/com/sun/imageio/plugins/jpeg/JPEGImageReader.java
-index 8f58f5b3e6..fcbab82602 100644
+index 8f58f5b3..fcbab826 100644
 --- a/jdk/src/share/classes/com/sun/imageio/plugins/jpeg/JPEGImageReader.java
 +++ b/jdk/src/share/classes/com/sun/imageio/plugins/jpeg/JPEGImageReader.java
 @@ -89,7 +89,7 @@ public class JPEGImageReader extends ImageReader {
@@ -173,7 +174,7 @@ index 8f58f5b3e6..fcbab82602 100644
                  }
              });
 diff --git a/jdk/src/share/classes/com/sun/imageio/plugins/jpeg/JPEGImageWriter.java b/jdk/src/share/classes/com/sun/imageio/plugins/jpeg/JPEGImageWriter.java
-index 6a33bd5a15..dca189ed85 100644
+index 6a33bd5a..dca189ed 100644
 --- a/jdk/src/share/classes/com/sun/imageio/plugins/jpeg/JPEGImageWriter.java
 +++ b/jdk/src/share/classes/com/sun/imageio/plugins/jpeg/JPEGImageWriter.java
 @@ -177,7 +177,7 @@ public class JPEGImageWriter extends ImageWriter {
@@ -186,7 +187,7 @@ index 6a33bd5a15..dca189ed85 100644
                  }
              });
 diff --git a/jdk/src/share/classes/sun/awt/image/JPEGImageDecoder.java b/jdk/src/share/classes/sun/awt/image/JPEGImageDecoder.java
-index 872ffc0197..5965a186b9 100644
+index 872ffc01..5965a186 100644
 --- a/jdk/src/share/classes/sun/awt/image/JPEGImageDecoder.java
 +++ b/jdk/src/share/classes/sun/awt/image/JPEGImageDecoder.java
 @@ -56,7 +56,7 @@ public class JPEGImageDecoder extends ImageDecoder {
@@ -199,7 +200,7 @@ index 872ffc0197..5965a186b9 100644
                  }
              });
 diff --git a/jdk/src/share/native/sun/awt/image/jpeg/imageioJPEG.c b/jdk/src/share/native/sun/awt/image/jpeg/imageioJPEG.c
-index 7e1d8c99d7..8cac61da32 100644
+index 7e1d8c99..8cac61da 100644
 --- a/jdk/src/share/native/sun/awt/image/jpeg/imageioJPEG.c
 +++ b/jdk/src/share/native/sun/awt/image/jpeg/imageioJPEG.c
 @@ -51,7 +51,7 @@
@@ -211,6 +212,3 @@ index 7e1d8c99d7..8cac61da32 100644
  
  #undef MAX
  #define MAX(a,b)        ((a) > (b) ? (a) : (b))
--- 
-2.26.2
-

@@ -1,7 +1,7 @@
-From 5e21de887d87243b6be03781afb4015c4673851c Mon Sep 17 00:00:00 2001
+From 1f618dcda554d85d1c1dcd1bfd84d9554cb2f3b8 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@jci.com>
 Date: Mon, 13 Aug 2018 16:46:33 +0100
-Subject: [PATCH 1006/1013] hotspot: Missing return statement in
+Subject: [PATCH] hotspot: Missing return statement in
  __sync_val_compare_and_swap_8
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -21,13 +21,14 @@ Upstream-Status: Backport
 
 Signed-off-by: André Draszik <andre.draszik@jci.com>
 Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+
 ---
- src/os_cpu/bsd_zero/vm/os_bsd_zero.cpp     | 1 +
- src/os_cpu/linux_zero/vm/os_linux_zero.cpp | 1 +
+ hotspot/src/os_cpu/bsd_zero/vm/os_bsd_zero.cpp     | 1 +
+ hotspot/src/os_cpu/linux_zero/vm/os_linux_zero.cpp | 1 +
  2 files changed, 2 insertions(+)
 
 diff --git a/hotspot/src/os_cpu/bsd_zero/vm/os_bsd_zero.cpp b/hotspot/src/os_cpu/bsd_zero/vm/os_bsd_zero.cpp
-index c857b5526..4aaf78b1d 100644
+index c857b552..4aaf78b1 100644
 --- a/hotspot/src/os_cpu/bsd_zero/vm/os_bsd_zero.cpp
 +++ b/hotspot/src/os_cpu/bsd_zero/vm/os_bsd_zero.cpp
 @@ -457,6 +457,7 @@ extern "C" {
@@ -39,7 +40,7 @@ index c857b5526..4aaf78b1d 100644
  };
  #endif // !_LP64
 diff --git a/hotspot/src/os_cpu/linux_zero/vm/os_linux_zero.cpp b/hotspot/src/os_cpu/linux_zero/vm/os_linux_zero.cpp
-index cbee43baa..136d4d3de 100644
+index cbee43ba..136d4d3d 100644
 --- a/hotspot/src/os_cpu/linux_zero/vm/os_linux_zero.cpp
 +++ b/hotspot/src/os_cpu/linux_zero/vm/os_linux_zero.cpp
 @@ -498,6 +498,7 @@ extern "C" {
@@ -50,6 +51,3 @@ index cbee43baa..136d4d3de 100644
    }
  };
  #endif // !_LP64
--- 
-2.26.2
-

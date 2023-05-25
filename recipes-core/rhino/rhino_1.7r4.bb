@@ -46,6 +46,3 @@ do_install:append() {
 	install -m 0755 ${WORKDIR}/rhino ${D}${bindir}
 	install -m 0755 ${WORKDIR}/rhino-jsc ${D}${bindir}
 }
-
-SRC_URI[md5sum] = "ad67a3dff135e3a70f0c3528a2d6edf2"
-SRC_URI[sha256sum] = "9eb08f85bbe7c8e0b9eaffb1cf4984b31fb679f3c8a682acc3bb8ac20626c61e"

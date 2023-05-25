@@ -10,13 +10,14 @@ PACKAGE_ARCH = "${TUNE_PKGARCH}"
 
 inherit java-library
 
+SRCREV = "82ffb8f3e09e77e3b1f5782c35b621e7ca742b58"
 SRC_URI = "\
-	https://github.com/downloads/mozilla/rhino/rhino1_7R4.zip \
+	git://github.com/mozilla/rhino;protocol=https;branch=master \
 	file://rhino \
 	file://rhino-jsc \
 	"
 
-S = "${WORKDIR}/rhino1_7R4"
+S = "${WORKDIR}/git"
 
 PACKAGES = "${JPN} rhino"
 

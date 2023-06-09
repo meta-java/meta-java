@@ -13,7 +13,7 @@ SRC_URI =  " \
     file://0001-fix-errors-during-cross-compile.patch \
     "
 
-LIC_FILES_CHKSUM = "file://license.terms;md5=788a765d15de8312110c282b2ef53c83"
+LIC_FILES_CHKSUM = "file://license.terms;md5=3da0e50feac5f64f08184584a8cad58a"
 
 inherit autotools-brokensep
 

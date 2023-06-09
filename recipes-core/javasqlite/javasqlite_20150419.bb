@@ -37,10 +37,6 @@ EXTRA_OEMAKE = "DESTDIR=${D}"
 # This dev package contains an '.so' file used for JNI development
 INSANE_SKIP:${PN}-dev = "dev-elf"
 
-do_configure:append (){
-	cp ${S}/*-libtool ${S}/libtool
-}
-
 do_compile:prepend (){
 	echo '#!/bin/sh' > ${STAGING_BINDIR_NATIVE}/cc
 	echo '${BUILD_CC} $@' >> ${STAGING_BINDIR_NATIVE}/cc

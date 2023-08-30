@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = " \
                     file://LICENSE.serializer.txt;md5=d229da563da18fe5d58cd95a6467d584 \
                    "
 
-SRC_URI = "http://archive.apache.org/dist/xerces/j/Xerces-J-src.${PV}.tar.gz"
+SRC_URI = "http://archive.apache.org/dist/xerces/j/source/Xerces-J-src.${PV}.tar.gz"
 
 # CVE only applies to some Oracle Java SE and Red Hat Enterprise Linux versions.
 # Already fixed with updates and closed.

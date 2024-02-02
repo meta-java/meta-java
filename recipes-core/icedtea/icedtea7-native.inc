@@ -21,9 +21,8 @@ CFLAGS:append = "${@bb.utils.contains('PACKAGECONFIG', 'x11', '', ' -DHEADLESS=t
 # Disable dead store elimination and set C++ standard to C++98.
 # There are dead stores in the JVM that would be pretty hard to
 # remove, so disable the optimisation in the compiler.
-CFLAGS:append = " -fno-tree-dse"
-CXXFLAGS:append = " -fno-tree-dse"
-CXX:append = " -std=gnu++98"
+CFLAGS:append = " -std=gnu++98 -fno-tree-dse -fno-tree-vectorize"
+CXXFLAGS:append = " -std=gnu++98 -fno-tree-dse"
 
 # WORKAROUND: ignore errors from new compilers
 CFLAGS:append = " -Wno-error=stringop-overflow -Wno-error=return-type"

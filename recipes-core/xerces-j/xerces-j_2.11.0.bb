@@ -18,7 +18,7 @@ SRC_URI = "http://archive.apache.org/dist/xerces/j/source/Xerces-J-src.${PV}.tar
 # Already fixed with updates and closed.
 # https://access.redhat.com/security/cve/CVE-2018-2799
 # https://bugzilla.redhat.com/show_bug.cgi?id=1567542
-CVE_CHECK_IGNORE += "CVE-2018-2799"
+CVE_STATUS += "CVE-2018-2799"
 
 S = "${WORKDIR}/xerces-2_11_0"
 

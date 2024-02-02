@@ -194,3 +194,6 @@ BUILD_CXXFLAGS:append = " ${GLOBAL_FLAGS}"
 # flags for -cross
 TARGET_CFLAGS:append = " ${GLOBAL_FLAGS}"
 TARGET_CXXFLAGS:append = " ${GLOBAL_FLAGS}"
+
+# canon-prefix-map doesn't exist in gcc 12.x
+DEBUG_PREFIX_MAP:remove = "-fcanon-prefix-map"

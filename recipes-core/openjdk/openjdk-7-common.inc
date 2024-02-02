@@ -459,3 +459,6 @@ ALTERNATIVE_LINK_NAME[javac] = "${bindir}/javac"
 ALTERNATIVE_LINK_NAME[keytool] = "${bindir}/keytool"
 
 ALTERNATIVE_PRIORITY = "50"
+
+# canon-prefix-map doesn't exist in gcc 12.x
+DEBUG_PREFIX_MAP:remove = "-fcanon-prefix-map"

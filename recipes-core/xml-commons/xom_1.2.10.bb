@@ -14,7 +14,7 @@ PV_jaxen = "1.1.6"
 
 SRC_URI = "\
 	http://www.cafeconleche.org/XOM/${P}-src.tar.gz;name=archive \
-	git://github.com/codehaus/${SRCNAME_jaxen};name=jaxen \
+	git://github.com/codehaus/${SRCNAME_jaxen};name=jaxen;branch=master;protocol=https \
 	file://04_remove_sun_import.patch \
 "
 SRC_URI[archive.md5sum] = "9f3a2ae827a9f6826fe76e4b7b0c22b3"

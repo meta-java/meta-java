@@ -17,7 +17,7 @@ DEPENDS = "virtual/javac-native fastjar-native"
 PACKAGE_WRITE_DEPS += "openjdk-8-native"
 
 SRC_URI = "\
-	git://salsa.debian.org/java-team/ca-certificates-java.git \
+	git://salsa.debian.org/java-team/ca-certificates-java.git;branch=master;protocol=https \
 	file://0001-UpdateCertificates-handle-SYSROOT-environment-variab.patch \
 	file://${BPN}.hook.in \
 "
@@ -100,7 +100,6 @@ pkg_postinst:${PN} () {
 
 RDEPENDS:${PN} = "ca-certificates"
 RDEPENDS:${PN}:append:class-target = " java2-runtime"
-RDEPENDS:${PN}:append:class-native = " virtual/java-native"
 
 FILES:${PN} += "${datadir_java}"
 

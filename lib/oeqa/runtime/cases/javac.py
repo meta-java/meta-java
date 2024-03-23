@@ -18,12 +18,16 @@ class JavacTest(OERuntimeTestCase):
         dst = '/tmp/test.java /tmp/test.class'
         cls.tc.target.run('rm %s' % dst)
 
+    @OETestDepends(['ssh.SSHTest.test_ssh'])
+    @OEHasPackage(["openjdk-7", "openjdk-8"])
     @OETestDepends(['java.JavaTest.test_java_exists'])
     def test_javac_exists(self):
         status, output = self.target.run('which javac')
         msg = 'javac binary not in PATH or not on target.'
         self.assertEqual(status, 0, msg=msg)
 
+    @OETestDepends(['ssh.SSHTest.test_ssh'])
+    @OEHasPackage(["openjdk-7", "openjdk-8"])
     @OETestDepends(['javac.JavacTest.test_javac_exists'])
     def test_javac_works(self):
         status, output = self.target.run('javac /tmp/test.java')

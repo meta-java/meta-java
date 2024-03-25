@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = " \
 
 HOMEPAGE = "http://sourceforge.net/projects/tcljava"
 
-SRC_URI = "http://downloads.sourceforge.net/tcljava/jacl${PV}.tar.gz"
+SRC_URI = "https://downloads.sourceforge.net/tcljava/jacl${PV}.tar.gz"
 
 inherit java-library
 

@@ -5,7 +5,7 @@ LICENSE = "CPL-1.0"
 LIC_FILES_CHKSUM = "file://cpl-v10.html;md5=67a4b75d42edcbd82d2878eba913691b"
 PR = "r1"
 
-SRC_URI = "http://downloads.sourceforge.net/junit/junit${PV}.zip"
+SRC_URI = "https://downloads.sourceforge.net/junit/junit${PV}.zip"
 
 S = "${WORKDIR}/junit${PV}"
 

@@ -7,10 +7,10 @@ FILESPATH =. "${FILE_DIRNAME}/openjdk-7-03b147:"
 # Force arm mode for now
 ARM_INSTRUCTION_SET:armv4t = "ARM"
 
-ICEDTEA_URI = "http://icedtea.wildebeest.org/download/source/${ICEDTEA}.tar.gz;name=iced"
+ICEDTEA_URI = "https://icedtea.wildebeest.org/download/source/${ICEDTEA}.tar.gz;name=iced"
 
 ICEDTEA_PREFIX = "icedtea7-forest-2.1"
-ICEDTEA_HG_URL = "http://icedtea.classpath.org/hg/release/${ICEDTEA_PREFIX}"
+ICEDTEA_HG_URL = "https://icedtea.wildebeest.org/hg/release/${ICEDTEA_PREFIX}"
 
 OPENJDK_CHANGESET = "22cc03983e20"
 OPENJDK_FILE_UPSTREAM = "${OPENJDK_CHANGESET}.tar.bz2"

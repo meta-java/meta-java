@@ -6,7 +6,7 @@ PR = "r1"
 
 LIC_FILES_CHKSUM = " \
                     file://LICENSE;md5=d273d63619c9aeaf15cdaf76422c4f87 \
-                    file://LICENSE.DOM-documentation.html;md5=77c27084ca92e9a8efe9314f284acc05 \
+                    file://LICENSE.DOM-documentation.html;md5=f47d9caee3345b75b2d3117125dfa66b \
                     file://LICENSE.DOM-software.html;md5=1f920675d8473fd5cbabf133a7e39e0d \
                     file://LICENSE.resolver.txt;md5=d229da563da18fe5d58cd95a6467d584 \
                     file://LICENSE.serializer.txt;md5=d229da563da18fe5d58cd95a6467d584 \
@@ -20,7 +20,7 @@ SRC_URI = "http://archive.apache.org/dist/xerces/j/source/Xerces-J-src.${PV}.tar
 # https://bugzilla.redhat.com/show_bug.cgi?id=1567542
 CVE_STATUS[CVE-2018-2799] = "not-applicable-platform: Issue only applies on some Oracle Java SE and Red Hat Enterprise Linux versions"
 
-S = "${WORKDIR}/xerces-2_11_0"
+S = "${WORKDIR}/xerces-2_12_2"
 
 inherit java-library
 
@@ -63,7 +63,7 @@ do_compile() {
 
 }
 
-SRC_URI[md5sum] = "d01fc11eacbe43b45681cb85ac112ebf"
-SRC_URI[sha256sum] = "f59a5ef7b51bd883f2e9bda37a9360692e6c5e439b98d9b6ac1953e1f98b0680"
+SRC_URI[md5sum] = "41dde3c515fca8d307416123bc07a739"
+SRC_URI[sha256sum] = "6dd1ebd4c88e935c182375346cd7365514bd8dd2ad2f30f0d0b05257bab34ee8"
 
 BBCLASSEXTEND = "native"

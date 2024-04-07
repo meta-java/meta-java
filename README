@@ -67,7 +67,7 @@ Known Limitations/Bugs
    +--------+-----------------+-----------------+-----------------+
 
 If you encounter any other problems or bugs please report them to our mailing
-list at openembedded-devel@lists.openembedded.org.
+list at yocto-patches@lists.yoctoproject.org.
 
 Usage instructions
 ------------------

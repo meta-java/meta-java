@@ -23,7 +23,7 @@ for some useful guidelines to be followed when submitting patches.
 
 Mailing list:
 
-    http://lists.openembedded.org/mailman/listinfo/openembedded-devel
+    http://lists.yoctoproject.org/mailman/listinfo/yocto-patches
 
 Source code:
 
@@ -41,7 +41,7 @@ Therefore use something like:
 
 When sending patches, please use something like:
 
-    git send-email --to openembedded-devel@lists.openembedded.org <generated patch(es)>
+    git send-email --to yocto-patches@lists.yoctoproject.org <generated patch(es)>
 
 Please add the main layer maintainers to CC:
 

@@ -16,7 +16,6 @@ inherit java-library native
 
 SRC_URI = "${SOURCEFORGE_MIRROR}/ant-contrib/ant-contrib-${PV}-src.zip"
 
-SRC_URI[md5sum] = "07b23539bef04ec56970c876a33f7665"
 SRC_URI[sha256sum] = "ba3621f397af14d5a19375f391ec9bf2908c46c5558ca0df8365e04fe3ac3633"
 
 S = "${WORKDIR}/ant-contrib"

@@ -16,5 +16,4 @@ CP = "commons-beanutils commons-io servlet-2.3"
 COMPILE_FINDARGS = "-name '*.java' -not -wholename '*portlet*'"
 
 
-SRC_URI[md5sum] = "c2bdb9264aec564e3f4fbbdf4344a844"
 SRC_URI[sha256sum] = "08905cb3a0db4f7fa67f3b579b2c481060334d50d7f913c6974c7513243152f5"

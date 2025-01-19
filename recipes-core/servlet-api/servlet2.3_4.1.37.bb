@@ -43,7 +43,6 @@ do_compile() {
   fastjar cfm ${JARFILENAME} src/etc/manifest -C build .
 }
 
-SRC_URI[md5sum] = "fe50177a25a084ad1abf4a201d08c2a6"
 SRC_URI[sha256sum] = "65e4cc9d3ea4a7f30044bfd6c660c772adb75ac152d775342deb6049a0d19d74"
 
 BBCLASSEXTEND = "native"

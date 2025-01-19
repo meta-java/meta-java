@@ -62,6 +62,5 @@ do_install:append() {
 	install -m 0755 ${WORKDIR}/ant ${D}${bindir}
 }
 
-SRC_URI[md5sum] = "9e5960bd586d9425c46199cdd20a6fbc"
 SRC_URI[sha256sum] = "4f39057af228663c3cfb6dcfbee603a071a7e3cf48c95c30869ed81c5fcf21c8"
 

@@ -22,7 +22,6 @@ SRC_URI = "http://rxtx.qbang.org/pub/rxtx/rxtx-2.2pre2.zip \
            file://0001-Support-Freescale-i.MX-serial-ports.patch \
            file://javapath.patch"
 
-SRC_URI[md5sum] = "7eedb18e3f33a427e2b0e9be8ce3f94c"
 SRC_URI[sha256sum] = "3c30373e760f444def3650c76c5a00ae12fb1d860ec008750d084f4880495b03"
 
 S = "${WORKDIR}/rxtx-2.2pre2"

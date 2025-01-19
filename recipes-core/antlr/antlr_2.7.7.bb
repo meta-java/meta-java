@@ -26,7 +26,6 @@ do_install:class-native() {
     install -m 0755 ${WORKDIR}/runantlr ${D}${bindir}/
 }
 
-SRC_URI[md5sum] = "01cc9a2a454dd33dcd8c856ec89af090"
 SRC_URI[sha256sum] = "853aeb021aef7586bda29e74a6b03006bcb565a755c86b66032d8ec31b67dbb9"
 
 BBCLASSEXTEND = "native"

@@ -25,6 +25,5 @@ do_install() {
     cp build/lib/${PN}_1_1_3_4c.jar ${JAR}
 }
 
-SRC_URI[md5sum] = "34c8a093e5678dd633411dfea88f8558"
 SRC_URI[sha256sum] = "e17aa1a26119966258a3656a262bbba0f0b036eecb6d9bf192cf4b497686f4c3"
 

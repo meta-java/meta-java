@@ -9,7 +9,6 @@ HOMEPAGE = "http://jdom.org/"
 DEPENDS = "fastjar-native virtual/javac-native jaxen"
 
 SRC_URI = "http://www.jdom.org/dist/source/archive/jdom-${PV}.tar.gz"
-SRC_URI[md5sum] = "dc8391e84cfdb170fcd8279aa370019f"
 SRC_URI[sha256sum] = "d471718c4ac7a1a2f10715b93cb3fcd2ecbab60384b73ad1c089712e47bd8d1f"
 
 PACKAGE_ARCH = "${TUNE_PKGARCH}"

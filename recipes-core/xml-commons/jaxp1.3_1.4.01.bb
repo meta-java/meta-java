@@ -27,7 +27,6 @@ do_compile() {
   fastjar cfm ${JARFILENAME} manifest.commons -C build .
 }
 
-SRC_URI[md5sum] = "2fea8e97a5d4d1a24bd05f5f62f3e04e"
 SRC_URI[sha256sum] = "d34bd88dc89c5c1ed2545ec5c61e4606fc28beb200a6fecf8c3ed17694181866"
 
 BBCLASSEXTEND = "native"

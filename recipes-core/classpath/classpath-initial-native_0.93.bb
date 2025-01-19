@@ -12,7 +12,6 @@ SRC_URI += " \
 	    file://autotools.patch \
 	    file://miscompilation.patch \
 	   "
-SRC_URI[md5sum] = "ffa9e9cac31c5acbf0ea9eff9efa923d"
 SRC_URI[sha256sum] = "df2d093612abd23fe67e9409d89bb2a8e79b1664fe2b2da40e1c8ed693e32945"
 
 EXTRA_OECONF += "\

@@ -63,7 +63,6 @@ do_compile() {
 
 }
 
-SRC_URI[md5sum] = "d01fc11eacbe43b45681cb85ac112ebf"
 SRC_URI[sha256sum] = "f59a5ef7b51bd883f2e9bda37a9360692e6c5e439b98d9b6ac1953e1f98b0680"
 
 BBCLASSEXTEND = "native"

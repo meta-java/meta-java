@@ -13,7 +13,6 @@ SRC_URI += " \
            file://0001-Fix-bad-implementation-of-compareTo-in-BigDecimal.patch \
            file://0002-Fix-BigDecimal.stripTrailingZeros-s-handling-of-0.patch \
            "
-SRC_URI[md5sum] = "0ae1571249172acd82488724a3b8acb4"
 SRC_URI[sha256sum] = "f929297f8ae9b613a1a167e231566861893260651d913ad9b6c11933895fecc8"
 
 EXTRA_OECONF += "\

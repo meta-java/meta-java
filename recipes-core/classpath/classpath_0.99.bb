@@ -15,5 +15,4 @@ SRC_URI += " \
             file://aarch64.patch \
            "
 
-SRC_URI[md5sum] = "0ae1571249172acd82488724a3b8acb4"
 SRC_URI[sha256sum] = "f929297f8ae9b613a1a167e231566861893260651d913ad9b6c11933895fecc8"

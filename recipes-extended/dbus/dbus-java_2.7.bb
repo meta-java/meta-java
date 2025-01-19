@@ -18,7 +18,6 @@ PACKAGE_ARCH = "${TUNE_PKGARCH}"
 LIC_FILES_CHKSUM = "file://COPYING;md5=72cc739fb93ae32741edbae802490e92"
 SRC_URI = "http://dbus.freedesktop.org/releases/dbus-java/dbus-java-${PV}.tar.gz"
 
-SRC_URI[md5sum] = "8b8470db5cd657591bac245e3b6e18e4"
 SRC_URI[sha256sum] = "be404ea36284d938646192d0ee42e146853064217d4e3aaf89b56bd351ebca33"
 
 S = "${WORKDIR}/dbus-java-${PV}"
